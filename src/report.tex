@@ -1,0 +1,192 @@
+\documentclass[10pt,oneside]{report}
+
+% Encoding and font packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[nottoc]{tocbibind} % If you don't want the main TOC itself listed
+
+% Spacing and layout (optional, adjust as needed)
+\usepackage{setspace}
+\onehalfspacing
+
+% Hyperlinks in the document
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=blue
+}
+
+% Citation management (using BibTeX)
+\usepackage{natbib}
+
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+% Begin document
+\begin{document}
+
+% -------------------------
+% Title Page
+% -------------------------
+\begin{titlepage}
+    \centering
+    % Title (two lines)
+    {\LARGE TODO TITLE\\\par}
+    \vspace{2cm}
+    % Subtitle/description
+    {\large A report submitted to the University of Manchester for the degree of
+    Bachelor of Science in the Faculty of Science and Engineering\par}
+    \vspace{2cm}
+    \vspace{1cm}
+
+    {\large Author: Sai Putravu\par}
+    {\large Student id: 10829976\par}
+    {\large Supervisor: TODO\par}
+    \vfill
+    % Department
+    % Date
+    {\large 2025\par}
+    \vspace{1cm}
+    {\large School of Computer Science\par}
+\end{titlepage}
+
+% Roman page numbering for preliminary pages
+\pagenumbering{roman}
+
+% -------------------------
+% Table of Contents
+% -------------------------
+\tableofcontents
+\clearpage
+
+% -------------------------
+% List of Figures
+% -------------------------
+\listoffigures
+\clearpage
+
+% -------------------------
+% List of Tables
+% -------------------------
+\listoftables
+\clearpage
+
+
+% -------------------------
+% Abbreviations and Acronyms
+% -------------------------
+% \phantomsection
+\addcontentsline{toc}{chapter}{Abbreviations and Acronyms}
+\chapter*{Abbreviations and Acronyms}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{ll}
+        % \textbf{AI}  & Artificial Intelligence \\
+        % \textbf{ML}  & Machine Learning \\
+        % \textbf{CPU} & Central Processing Unit \\
+        % \textbf{GPU} & Graphics Processing Unit \\
+        % \textbf{BSc} & Bachelor of Science \\
+        % \textbf{PhD} & Doctor of Philosophy \\
+    \end{tabular}
+\end{table}
+
+\clearpage
+
+% Switch to Arabic numbering after preliminary pages
+\pagenumbering{arabic}
+
+% -------------------------
+% Chapters
+% -------------------------
+\chapter{Introduction}
+\section{Background}
+\todo{Fill this section out}
+Introduce the research topic. 
+
+The things in this section will include
+\begin{itemize}
+    \item Talk about the ISIS research facility
+    \item Talk about the Operational Cycle for ISIS (graph too)
+    \item Talk about the Datasets, operalog
+\end{itemize}
+
+\section{Motivation}
+Motivate the research project.
+
+
+The things in this section will include
+\begin{itemize}
+    \item Introduce the problem: Auto-categorisation and label inference
+    \item Identify the data input, expected output, data shape and explain why this motivates the project
+    \item Natural Language Processing
+    \item Semantic Similarity
+    \item Need for clustering
+\end{itemize}
+
+\chapter{Literature Review}
+
+The things in this section will include
+\begin{itemize}
+    \item Looking at general predictive maintenance 
+    \item Looking at general predictive maintenance in industrial applications
+    \item Similar pairwise sentence similarity literature
+    \item Similar literature in text clustering
+    \item Similar literature in specifically sentence clustering in industrial applications
+\end{itemize}
+
+\chapter{Technical Background}
+Describe the various technical factors required before attempting to understand the methodology
+
+The things in this section will include
+\begin{itemize}
+    \item Discuss sentence embedding, similarity measures: BERT, RoBERTA, MPNET, XLM, NOMIC.
+    \item Dimensional reduction techniques and need for them (UMAP, PCA, t-SNE).
+    \item Clustering methods: kmedoids, DBSCAN, DBSCAN*/HDBCAN
+    \item Clustering evaluation methods: \todo{I don't remember these off the top of my head}
+    \item Maybe briefly touch on Optuna?
+\end{itemize}
+
+
+\chapter{Methodology}
+Describe the methods and procedures used.
+
+The things in this section will include.
+\begin{itemize}
+    \item Explaining data format and data visualisation: wordcloud.
+    \item Data cleaning steps, including removing key words such as Ion Source.
+    \item Text preprocessing steps (cleaning) and computational challenges (tensorflow).
+    \item Choosing the best sentence embedding transformer: MPNET, NOMIC.
+    \item Data visualisation (before and after sentence embedding): similarity visualisation, explain unique sentences, token length distribution.
+    \item Motivate why clustering in higher dimensions performs worse
+    \item UMAP, PCA, t-SNE comparison. Motivate using UMAP.
+    \item UMAP hyperparameter optimisation.
+    \item Performing clustering with kmedoids, dbscan, hdbscan.
+    \item Using optuna.
+    \item Evaluation of results and choosing the best model (and arguing why hdbscan is the best by looking at the variance of dbscan and inflexibility of kmedoids)
+    \item Touch on the production of a CLI application that allows you to mix and match various parts of the pipeline. Motivate the need for command line tool.
+\end{itemize}
+
+\chapter{Results and Discussion}
+Describe the results and analyse the results
+
+\begin{itemize}
+    \item Analyse the word cloud 
+    \item Analyse the sentence embedding results.
+    \item Analyse UMAP vs. PCA vs. t-SNE qualitatively and later quantitatively (compared to the clustering)
+    \item Anaylse the UMAP hyperparameter optimisation qualitatively, mention that we use Optuna
+\end{itemize}
+
+\chapter{Conclusion}
+Summarize your findings and suggest areas for future work.
+
+% -------------------------
+% References
+% -------------------------
+\bibliographystyle{plainnat}
+\bibliography{refs}  % Uses the external file refs.bib
+
+\end{document}
