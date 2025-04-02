@@ -1,8 +1,278 @@
-\begin{thebibliography}{0}
-\providecommand{\natexlab}[1]{#1}
-\providecommand{\url}[1]{\texttt{#1}}
-\expandafter\ifx\csname urlstyle\endcsname\relax
-  \providecommand{\doi}[1]{doi: #1}\else
-  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+\begin{thebibliography}{10}
+
+\bibitem{abijith2023large}
+PY~Abijith, Piyush Patidar, Gaurav Nair, and Rohan Pandya.
+\newblock Large language models trained on equipment maintenance text.
+\newblock In {\em Abu Dhabi International Petroleum Exhibition and Conference},
+  page D021S065R003. SPE, 2023.
+
+\bibitem{aliguliyev2009new}
+Ramiz~M Aliguliyev.
+\newblock A new sentence similarity measure and sentence based extractive
+  technique for automatic text summarization.
+\newblock {\em Expert Systems with Applications}, 36(4):7764--7772, 2009.
+
+\bibitem{baba2017plagiarism}
+Kensuke Baba, Tetsuya Nakatoh, and Toshiro Minami.
+\newblock Plagiarism detection using document similarity based on distributed
+  representation.
+\newblock {\em Procedia computer science}, 111:382--387, 2017.
+
+\bibitem{bojanowski2017enriching}
+Piotr Bojanowski, Edouard Grave, Armand Joulin, and Tomas Mikolov.
+\newblock Enriching word vectors with subword information.
+\newblock {\em Transactions of the association for computational linguistics},
+  5:135--146, 2017.
+
+\bibitem{budanitsky2001semantic}
+Alexander Budanitsky and Graeme Hirst.
+\newblock Semantic distance in wordnet: An experimental, application-oriented
+  evaluation of five measures.
+\newblock In {\em Workshop on WordNet and other lexical resources}, volume~2,
+  pages 2--2, 2001.
+
+\bibitem{campello2013density}
+Ricardo~JGB Campello, Davoud Moulavi, and J{\"o}rg Sander.
+\newblock Density-based clustering based on hierarchical density estimates.
+\newblock In {\em Pacific-Asia conference on knowledge discovery and data
+  mining}, pages 160--172. Springer, 2013.
+
+\bibitem{cao2024recent}
+Hongliu Cao.
+\newblock Recent advances in text embedding: A comprehensive review of
+  top-performing methods on the mteb benchmark.
+\newblock {\em arXiv preprint arXiv:2406.01607}, 2024.
+
+\bibitem{carvalho2019systematic}
+Thyago~P Carvalho, Fabr{\'\i}zzio~AAMN Soares, Roberto Vita, Roberto da~P
+  Francisco, Jo{\~a}o~P Basto, and Symone~GS Alcal{\'a}.
+\newblock A systematic literature review of machine learning methods applied to
+  predictive maintenance.
+\newblock {\em Computers \& Industrial Engineering}, 137:106024, 2019.
+
+\bibitem{davies1979cluster}
+David~L Davies and Donald~W Bouldin.
+\newblock A cluster separation measure.
+\newblock {\em IEEE transactions on pattern analysis and machine intelligence},
+  (2):224--227, 1979.
+
+\bibitem{devlin2019bert}
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova.
+\newblock Bert: Pre-training of deep bidirectional transformers for language
+  understanding.
+\newblock In {\em Proceedings of the 2019 conference of the North American
+  chapter of the association for computational linguistics: human language
+  technologies, volume 1 (long and short papers)}, pages 4171--4186, 2019.
+
+\bibitem{ester1996density}
+Martin Ester, Hans-Peter Kriegel, J{\"o}rg Sander, Xiaowei Xu, et~al.
+\newblock A density-based algorithm for discovering clusters in large spatial
+  databases with noise.
+\newblock In {\em kdd}, volume~96, pages 226--231, 1996.
+
+\bibitem{faccio2014industrial}
+Maurizio Faccio, Alessandro Persona, Fabio Sgarbossa, and Giorgia Zanin.
+\newblock Industrial maintenance policy development: A quantitative framework.
+\newblock {\em International Journal of Production Economics}, 147:85--93,
+  2014.
+
+\bibitem{hotelling1933analysis}
+Harold Hotelling.
+\newblock Analysis of a complex of statistical variables into principal
+  components.
+\newblock {\em Journal of educational psychology}, 24(6):417, 1933.
+
+\bibitem{jezzini2013effects}
+Ali Jezzini, Mohammad Ayache, Lina Elkhansa, Bassem Makki, and Maya Zein.
+\newblock Effects of predictive maintenance (pdm), proactive maintenace (pom)
+  \& preventive maintenance (pm) on minimizing the faults in medical
+  instruments.
+\newblock In {\em 2013 2nd International conference on advances in biomedical
+  engineering}, pages 53--56. IEEE, 2013.
+
+\bibitem{jo2017k}
+Taeho Jo.
+\newblock K nearest neighbor for text summarization using feature similarity.
+\newblock In {\em 2017 International Conference on Communication, Control,
+  Computing and Electronics Engineering (ICCCCEE)}, pages 1--5. IEEE, 2017.
+
+\bibitem{kumar2020semantic}
+Sushil Kumar and Komal~Kumar Bhatia.
+\newblock Semantic similarity and text summarization based novelty detection.
+\newblock {\em SN Applied Sciences}, 2(3):332, 2020.
+
+\bibitem{landauer1998introduction}
+Thomas~K Landauer, Peter~W Foltz, and Darrell Laham.
+\newblock An introduction to latent semantic analysis.
+\newblock {\em Discourse processes}, 25(2-3):259--284, 1998.
+
+\bibitem{lee2024gecko}
+Jinhyuk Lee, Zhuyun Dai, Xiaoqi Ren, Blair Chen, Daniel Cer, Jeremy~R Cole, Kai
+  Hui, Michael Boratko, Rajvi Kapadia, Wen Ding, et~al.
+\newblock Gecko: Versatile text embeddings distilled from large language
+  models.
+\newblock {\em arXiv preprint arXiv:2403.20327}, 2024.
+
+\bibitem{li2014improving}
+Hongfei Li, Dhaivat Parikh, Qing He, Buyue Qian, Zhiguo Li, Dongping Fang, and
+  Arun Hampapur.
+\newblock Improving rail network velocity: A machine learning approach to
+  predictive maintenance.
+\newblock {\em Transportation Research Part C: Emerging Technologies},
+  45:17--26, 2014.
+
+\bibitem{lukashenko2007computer}
+Romans Lukashenko, Vita Graudina, and Janis Grundspenkis.
+\newblock Computer-based plagiarism detection methods and tools: an overview.
+\newblock In {\em Proceedings of the 2007 international conference on Computer
+  systems and technologies}, pages 1--6, 2007.
+
+\bibitem{mcinnes2018umap}
+Leland McInnes, John Healy, and James Melville.
+\newblock Umap: Uniform manifold approximation and projection for dimension
+  reduction.
+\newblock {\em arXiv preprint arXiv:1802.03426}, 2018.
+
+\bibitem{mikolov2013efficient}
+Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean.
+\newblock Efficient estimation of word representations in vector space.
+\newblock {\em arXiv preprint arXiv:1301.3781}, 2013.
+
+\bibitem{mobley2002introduction}
+R~Keith Mobley.
+\newblock {\em An introduction to predictive maintenance}.
+\newblock Elsevier, 2002.
+
+\bibitem{nota2022text}
+Giancarlo Nota, Alberto Postiglione, and Rosario Carvello.
+\newblock Text mining techniques for the management of predictive maintenance.
+\newblock {\em Procedia Computer Science}, 200:778--792, 2022.
+
+\bibitem{nussbaum2024nomic}
+Zach Nussbaum, John~X Morris, Brandon Duderstadt, and Andriy Mulyar.
+\newblock Nomic embed: Training a reproducible long context text embedder.
+\newblock {\em arXiv preprint arXiv:2402.01613}, 2024.
+
+\bibitem{pan2017cognitive}
+Zhaotai Pan, Yi~Ge, Yu~Chen Zhou, Jing~Chang Huang, Yu~Ling Zheng, Ning Zhang,
+  Xiao~Xing Liang, Peng Gao, Guan~Qun Zhang, Qingyan Wang, et~al.
+\newblock Cognitive acoustic analytics service for internet of things.
+\newblock In {\em 2017 IEEE International Conference on Cognitive Computing
+  (ICCC)}, pages 96--103. IEEE, 2017.
+
+\bibitem{pearson1901liii}
+Karl Pearson.
+\newblock Liii. on lines and planes of closest fit to systems of points in
+  space.
+\newblock {\em The London, Edinburgh, and Dublin philosophical magazine and
+  journal of science}, 2(11):559--572, 1901.
+
+\bibitem{pennington2014glove}
+Jeffrey Pennington, Richard Socher, and Christopher~D Manning.
+\newblock Glove: Global vectors for word representation.
+\newblock In {\em Proceedings of the 2014 conference on empirical methods in
+  natural language processing (EMNLP)}, pages 1532--1543, 2014.
+
+\bibitem{radford2018improving}
+Alec Radford, Karthik Narasimhan, Tim Salimans, Ilya Sutskever, et~al.
+\newblock Improving language understanding by generative pre-training.
+\newblock 2018.
+
+\bibitem{raju2022sentence}
+T~Nora Raju, PA~Rahana, Raichel Moncy, Sreedarsana Ajay, and Sindhya~K Nambiar.
+\newblock Sentence similarity-a state of art approaches.
+\newblock In {\em 2022 International Conference on Computing, Communication,
+  Security and Intelligent Systems (IC3SIS)}, pages 1--6. IEEE, 2022.
+
+\bibitem{rousseeuw1987silhouettes}
+Peter~J Rousseeuw.
+\newblock Silhouettes: a graphical aid to the interpretation and validation of
+  cluster analysis.
+\newblock {\em Journal of computational and applied mathematics}, 20:53--65,
+  1987.
+
+\bibitem{sarzynska2021detecting}
+Justyna Sarzynska-Wawer, Aleksander Wawer, Aleksandra Pawlak, Julia
+  Szymanowska, Izabela Stefaniak, Michal Jarkiewicz, and Lukasz Okruszek.
+\newblock Detecting formal thought disorder by deep contextualized word
+  representations.
+\newblock {\em Psychiatry Research}, 304:114135, 2021.
+
+\bibitem{song2020mpnet}
+Kaitao Song, Xu~Tan, Tao Qin, Jianfeng Lu, and Tie-Yan Liu.
+\newblock Mpnet: Masked and permuted pre-training for language understanding.
+\newblock {\em Advances in neural information processing systems},
+  33:16857--16867, 2020.
+
+\bibitem{steinberger2005text}
+Josef Steinberger and Karel Je{\v{z}}ek.
+\newblock Text summarization and singular value decomposition.
+\newblock In {\em Advances in Information Systems: Third International
+  Conference, ADVIS 2004, Izmir, Turkey, October 20-22, 2004. Proceedings 3},
+  pages 245--254. Springer, 2005.
+
+\bibitem{su2018real}
+Chuan-Jun Su and Shi-Feng Huang.
+\newblock Real-time big data analytics for hard disk drive predictive
+  maintenance.
+\newblock {\em Computers \& Electrical Engineering}, 71:93--101, 2018.
+
+\bibitem{susto2016dealing}
+Gian~Antonio Susto and Alessandro Beghi.
+\newblock Dealing with time-series data in predictive maintenance problems.
+\newblock In {\em 2016 IEEE 21st International Conference on Emerging
+  Technologies and Factory Automation (ETFA)}, pages 1--4. IEEE, 2016.
+
+\bibitem{susto2012predictive}
+Gian~Antonio Susto, Alessandro Beghi, and Cristina De~Luca.
+\newblock A predictive maintenance system for epitaxy processes based on
+  filtering and prediction techniques.
+\newblock {\em IEEE Transactions on Semiconductor Manufacturing},
+  25(4):638--649, 2012.
+
+\bibitem{thomason2019isis}
+JWG Thomason.
+\newblock The isis spallation neutron and muon source—the first thirty-three
+  years.
+\newblock {\em Nuclear Instruments and Methods in Physics Research Section A:
+  Accelerators, Spectrometers, Detectors and Associated Equipment}, 917:61--67,
+  2019.
+
+\bibitem{usuga2022using}
+Juan~Pablo Usuga-Cadavid, Samir Lamouri, Bernard Grabot, and Arnaud Fortin.
+\newblock Using deep learning to value free-form text data for predictive
+  maintenance.
+\newblock {\em International Journal of Production Research},
+  60(14):4548--4575, 2022.
+
+\bibitem{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock {\em Advances in neural information processing systems}, 30, 2017.
+
+\bibitem{waeyenbergh2002framework}
+Geert Waeyenbergh and Liliane Pintelon.
+\newblock A framework for maintenance concept development.
+\newblock {\em International journal of production economics}, 77(3):299--313,
+  2002.
+
+\bibitem{wang2024multilingual}
+Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder, and Furu
+  Wei.
+\newblock Multilingual e5 text embeddings: A technical report.
+\newblock {\em arXiv preprint arXiv:2402.05672}, 2024.
+
+\bibitem{yang2019xlnet}
+Zhilin Yang, Zihang Dai, Yiming Yang, Jaime Carbonell, Russ~R Salakhutdinov,
+  and Quoc~V Le.
+\newblock Xlnet: Generalized autoregressive pretraining for language
+  understanding.
+\newblock {\em Advances in neural information processing systems}, 32, 2019.
+
+\bibitem{yu2016string}
+Minghe Yu, Guoliang Li, Dong Deng, and Jianhua Feng.
+\newblock String similarity search and join: a survey.
+\newblock {\em Frontiers of Computer Science}, 10:399--417, 2016.
 
 \end{thebibliography}

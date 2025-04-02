@@ -1,16 +1,14 @@
 \documentclass[10pt,oneside]{report}
 
 % Encoding and font packages
+\usepackage[table]{xcolor}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{booktabs}
 \usepackage[nottoc]{tocbibind} % If you don't want the main TOC itself listed
-
-% Spacing and layout (optional, adjust as needed)
 \usepackage{setspace}
 \onehalfspacing
-
-% Hyperlinks in the document
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -19,11 +17,25 @@
     urlcolor=cyan,
     citecolor=blue
 }
-
-% Citation management (using BibTeX)
 \usepackage{natbib}
+\usepackage[colorinlistoftodos,prependcaption,textsize=small]{todonotes}
+\usepackage{adjustbox}
 
-\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{anyfontsize}
+\usepackage{lmodern}
+% Dynamically scale font sizes (80% of original)
+\let\oldnormalsize\normalsize
+\renewcommand{\normalsize}{\fontsize{8}{10}\selectfont}
+\let\oldlarge\large
+\renewcommand{\large}{\fontsize{10}{12}\selectfont}
+\let\oldLarge\Large
+\renewcommand{\Large}{\fontsize{11.5}{13.8}\selectfont}
+\let\oldLARGE\LARGE
+\renewcommand{\LARGE}{\fontsize{13}{15.6}\selectfont}
+\let\oldhuge\huge
+\renewcommand{\huge}{\fontsize{16}{19.2}\selectfont}
+\let\oldHuge\Huge
+\renewcommand{\Huge}{\fontsize{20}{24}\selectfont}
 
 % Begin document
 \begin{document}
@@ -82,15 +94,37 @@
 \addcontentsline{toc}{chapter}{Abbreviations and Acronyms}
 \chapter*{Abbreviations and Acronyms}
 
+\todo{Alphabetically sort this}
 \begin{table}[ht]
     \centering
     \begin{tabular}{ll}
-        % \textbf{AI}  & Artificial Intelligence \\
-        % \textbf{ML}  & Machine Learning \\
-        % \textbf{CPU} & Central Processing Unit \\
-        % \textbf{GPU} & Graphics Processing Unit \\
-        % \textbf{BSc} & Bachelor of Science \\
-        % \textbf{PhD} & Doctor of Philosophy \\
+
+        \textbf{CBM} & Condition-based maintenance policy. \\
+        \textbf{CNN} & Convolutional Neural Network. \\
+        \textbf{DL} & Deep Learning. \\
+        \textbf{FLD} & First-line diagnosis system. \\
+        \textbf{IoT} & Internet of Things. \\
+        \textbf{ML} & Machine Learning. \\
+        \textbf{PdM} & Predictive maintenance policy. \\
+        \textbf{PvM} & Preventative maintenance policy. \\
+        \textbf{RF} & Random Forest. \\
+        \textbf{R2F} & Run-to-failure maintenance policy. \\
+        \textbf{SAFE} & Supervised Aggregative Feature Extraction. \\
+        \textbf{SVM} & Support Vector Machine. \\
+        \textbf{HDD} & Hard-Disk Drive. \\
+        \textbf{SMART} & Self-monitoring and reporting technology. \\
+        \textbf{NLP} & Natural Language Processing. \\
+        \textbf{LSA} & Latent Semantic Analysis. \\
+        \textbf{SVD} & Singular Value Decomposition. \\
+        \textbf{ELMo} & Embeddings from Language Models. \\
+        \textbf{GPT} & Generative Pre-trained Transformer. \\
+        \textbf{BERT} & Bidirectional Encoder Representation from Transformers. \\
+        \textbf{UMAP} & Uniform Manifold Approximation and Projection. \\
+        \textbf{PCA} & Principle Component Analysis. \\
+        \textbf{t-SNE} & t-distributed Stochastic Neighbour Embedding. \\
+        \textbf{DBSCAN} & Density-Based Spatial Clustering of Application with Noise. \\
+        \textbf{HDBSCAN} & Hierarchical Density-Based Spatial Clustering of Application with Noise. \\
+
     \end{tabular}
 \end{table}
 
@@ -102,22 +136,39 @@
 % -------------------------
 % Chapters
 % -------------------------
+\chapter*{Abstract}
 \chapter{Introduction}
-\section{Background}
-\todo{Fill this section out}
-Introduce the research topic. 
 
+\todo[inline,caption={}]{
+Introduce the sections of the paper.
+\begin{itemize}
+    \item Section 2,
+    \item Section 3, 
+    \item ...
+\end{itemize}
+}
+
+\section{Background}
+
+\todo[inline,caption={}]{
+Introduce the research topic. 
 The things in this section will include
 \begin{itemize}
     \item Talk about the ISIS research facility
     \item Talk about the Operational Cycle for ISIS (graph too)
+    \item Talk about the ISIS Crew and importance of having trained staff on premises.
+    \item Talk about the Lost time and why it is important to minimise this for the ISIS research facility.
+    \item Describe the first-line diagnosis system (FLD) and FAPs.
     \item Talk about the Datasets, operalog
 \end{itemize}
+}
+
 
 \section{Motivation}
 Motivate the research project.
 
 
+\todo[inline,caption={}]{
 The things in this section will include
 \begin{itemize}
     \item Introduce the problem: Auto-categorisation and label inference
@@ -126,9 +177,10 @@ The things in this section will include
     \item Semantic Similarity
     \item Need for clustering
 \end{itemize}
+}
 
 \chapter{Literature Review}
-
+\todo[inline,caption={}]{
 The things in this section will include
 \begin{itemize}
     \item Looking at general predictive maintenance 
@@ -137,56 +189,164 @@ The things in this section will include
     \item Similar literature in text clustering
     \item Similar literature in specifically sentence clustering in industrial applications
 \end{itemize}
+}
+
+\section{Maintenance Techniques}
+In the industry, the uptime of production systems are strongly coupled with the equipment maintenance. So much so that what was once considered a "necessary evil" is now seen as a "profit contributor" to be able to maintain a world-class competitive edge \cite{waeyenbergh2002framework, faccio2014industrial}. For research facilities providing free-to-use systems, maintenance impacts the downtime and cost of running. As a result, both to minimise unexpected downtime and provide a world-class competitive edge, many industrial applications collect vast quantities of metrics during the entire life cycle of the system. This large amount of data may include information about processes, events and alarms \cite{carvalho2019systematic} which occur along the industrial production line, collected by different equipment. These equipment may be located in different locations in the sub-components of the larger system or even different sub-components themselves. \todo{talk about maintenance itself in a lot more depth}
+
+In literature, various terms and categories of maintenance arise each with differing strategies. Thus, while there exists some disagreement in nomenclature, we consider the categories presented in \cite{susto2012predictive}. The four maintenance policy categories are as follows, noting that each policy has, uniquely, their own benefits and drawbacks:
+
+\begin{enumerate}
+    \item{Run-to-failure (R2F) maintenance: Continual usage of the system until failure. Restoration is performed at the point of noticing failure condition. The simplest approach and typically the most costly method, due to requiring an accumulation of a large amount of defective components which require replacement as well as the consequentially large amount of necessary downtime.}
+    \item{Preventative maintenance (PvM): Otherwise referred to as scheduled maintenance, applying maintenance at regular intervals in anticipation for failure of components. While this typically prevents many errors, it wastes maintenance cycles when systems are perfectly healthy. Hence, causing unnecessary downtime and cost.}
+    \item{Condition-based maintenance (CBM): Taking the action to perform maintenance on equipment through monitoring various health characteristics and metrics of the components of the system. This approach requires continuous monitoring and, thus, allows for close to instant response on maintenance only when required. However, a drawback of this policy is that one cannot plan maintenances in advance.}
+    \item{Predictive maintenance (PdM): Otherwise referred to as statistical-based maintenance, only performs maintenance actions when determined necessary. Prediction tools are utilised to implement forward-planning and scheduling systems, using statistical inference methods. However, if these statistical inferences are not accurate, the whole system suffers which inevitably leads to additional downtime and costs.}
+\end{enumerate}
+It should be noted, that several sources conflate CBM and PdM \cite{mobley2002introduction}. As in \cite{susto2012predictive}, we refer to them as separate categories. \\ 
+
+The PdM strategy stands out in the four categories presented as, given a statistical inference model that is able to detect faults efficaciously, this policy optimises the trade-off between improving equipment condition, reduce failure rates for equipment and minimising maintenance costs \cite{carvalho2019systematic}. This technique enables one to apply foresight for pre-emptive scheduling of large-scale maintenance. \todo{Implement the ISIS version of this in the background. Talk about the FIRST LINE DIAGNOSIS system} As pointed out in Section~(\todo{fill this}...), the ISIS facility aims to strike a balance between PvM, CBM and PdM through periods of large-scaled scheduled maintenance and collection of high quantities of metrics. This is done through the careful coordination between cycle scheduling, day-to-day crew-based monitoring and the FLD \cite{thomason2019isis}.
+
+In the industry, many maintenance strategies prefer using PdM whilst experimenting with a variety of statistical inference and artificial intelligence modelling approaches \cite{mobley2002introduction, jezzini2013effects}. Some examples from \cite{carvalho2019systematic} are listed in Table~\ref{tab:pdmPaperTable} which highlights the trend in the industry towards more accurate, ML-based approaches.
+
+\rowcolors{2}{gray!10}{white}
+\begin{table}[htbp]
+    \fontsize{8}{12}\selectfont
+    \centering
+    \caption{\fontsize{9}{10}\selectfont Examples of applications of PdM for industrial maintenance strategies.}
+    \label{tab:pdmPaperTable}
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{p{2.5cm} p{2.5cm} p{8cm}}
+        \toprule
+        \textbf{Reference} & \textbf{Type} & \textbf{Description} \\
+        \midrule
+        \cite{susto2016dealing} & Statistical & Application of SAFE to deal with PdM problems characterised by time-series data. The approach is tested on a real-life dataset of the semiconductor ion implantation process.\\
+        \cite{li2014improving} & ML & Application of SVM classification for fault prediction of rail networks, with discussion on using the model in optimising trade-offs related to maintenance schedule and costs.\\
+        \cite{pan2017cognitive} & ML & Audio analysis on IoT devices, enabling acoustic event recognition for machine diagnosis. This paper describes designing an end-to-end system, utilising CNN-based classification.\\
+        \cite{su2018real} & ML & Utilisation of RF decision trees trained on SMART data to predict reliability of HDD in real-time. \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+\end{table}
+
+
+\section{Sentence Similarity}
+\todo{Think of a good transition between PdM and Doc Similarity}
+
+Sentence similarity, otherwise referred to as document similarity, is the (NLP) task of computing the quantification of the similarities between two sentences, documents or texts. This task is motivated by the increasingly large amount of digitisation of human languages (and data, in general), calling for the need to understand similarity between various texts \cite{raju2022sentence}. Examples of the use-cases of sentence similarity include: detection of academic malpractice via plagiarism \cite{lukashenko2007computer, baba2017plagiarism} and text summarisation \cite {aliguliyev2009new, kumar2020semantic, jo2017k}. According to \cite{raju2022sentence}, there are two main types of sentence similarities: (1) lexical similarity and (2) semantic similarity. The former is a computation of the equality between the lexicon of two sentences (i.e. a purely syntactical view), as opposed to the latter  being a comparison between the semantics. Further, the type we focus on, semantic similarity can be split into three types: 
+
+\begin{itemize}
+    \item String-based similarity: Measures similarity directly between two strings, accounting for string sequences and character composition. These can be fine-grained, i.e. character-based; coarse-grained, i.e. term-based; or a hybrid mixture of both \cite{yu2016string}.
+    \item Knowledge-based similarity: Measures the degree to which two sentences are related, utilising semantic networks (i.e. knowledge graphs). Examples of Knowledge-based similarity approaches include WordNet \cite{budanitsky2001semantic}, the most popular type of approach.
+    \item Corpus-based similarity: Premised on a provided corpus, a large database of text to derive inferences from. Methods of this type require the development statistical or DL models that train on the provided corpus and estimate the similarity between two sentence-pair inputs. Popular examples include traditional statistical models, such as LSA \cite{landauer1998introduction} and SVD \cite{steinberger2005text} as well as word embedding models (utilising ML), such as Word2Vec \cite{bojanowski2017enriching}, GloVe \cite{pennington2014glove} and fastText \cite{mikolov2013efficient}.
+\end{itemize}
+
+Most of the models mentioned above require some translation of text into a vector-based representation. Thus, the problem of sentence similarity can be directly mapped from the problem of sentence embedding (otherwise referred to as text embedding) - learning a higher-dimensional embedding space representation. Moreover, with the advent of the transformer architecture \cite{vaswani2017attention} and rise of the large language models, text embedding has been increasingly solved using DL models with high parameter counts \cite{cao2024recent} - with the word embedding models, described previously, only being considered second-generation. Further, according to \cite{cao2024recent}, newer generations fall into the following categories:
+\begin{itemize}
+    \item Third-generation: contextualised embeddings. These models dynamically account for contexts, encoding them into the embedding space. Examples of models include ELMo \cite{sarzynska2021detecting}, GPT \cite{radford2018improving} and BERT \cite{devlin2019bert}. 
+    \item Fourth-generation: universal text embeddings. The generation which is currently state-of-the-art, with the aim of developing a unified model which is able to address multiple downstream tasks. Examples of models in this generation, making progress towards unification include Gecko \cite{lee2024gecko}, Multilingual e5 text embeddings \cite{wang2024multilingual}, Nomic \cite{nussbaum2024nomic} and many more. 
+\end{itemize}
+
+Second-, third- and fourth-generation text embedding models are used frequently in PdM for applications such as insight extraction \cite{abijith2023large,usuga2022using} and clustering intents from unstructured text data \cite{nota2022text}. Sources of natural language datasets, in industrial applications typically arise from operational or managerial log files which document aspects such as failures, resolutions and comments similar to the ISIS facility failure logs \todo{cite and fill when section exists}(\cite{todo} see Section~\ref{}). Advanced text embedding models enable for semi- or fully automatic insight retrieval and auto-categorisation, enabling intuitive understanding of the textual datasets potentially highlighting patterns in failure.
+
+
+\section{(maybe) Clustering}
+Talk about clustering lit. rev.
+\todo{Think of a good transition between Sentence Similarity and Clustering}
+\todo[inline]{Think whether it is useful to present literature review in this section.}
+
+\todo[inline, caption={}] {
+The things in this section will include
+    \begin{itemize}
+        \item (DONE) Looking at general predictive maintenance 
+        \item (Done) Looking at general predictive maintenance in industrial applications
+        \item (Done) Similar pairwise sentence similarity literature
+        \item Similar literature in text clustering
+        \item (sort of DONE) Similar literature in specifically sentence clustering in industrial applications
+    \end{itemize}
+}
 
 \chapter{Technical Background}
-Describe the various technical factors required before attempting to understand the methodology
+This chapter delves into the technical background required in understanding and appreciating the approach proposed in Chapter~\ref{chap:Methodology}. Firstly, in Section~\ref{sec:BERT}, we discuss the technical details of the (third-generation text embedding) BERT model and its family of encoder-only transformers \cite{devlin2019bert}. Specifically we further explore two improvements over BERT (XLNet \cite{yang2019xlnet} and MPNet \cite{song2020mpnet}). Then, in Section~\ref{sec:nomic}, we explore the state-of-the-art, fourth-generation Nomic \cite{nussbaum2024nomic} architecture. After, we cover two methods of dimensionality reduction (PCA \cite{pearson1901liii,hotelling1933analysis} and UMAP \cite{mcinnes2018umap}) motivated by the need to visualise samples from the high-dimensional embedding spaces of the aforementioned models, in Section~\ref{sec:dimred}. Finally, we present three clustering algorithms - with one supervised (k-Medoids \cite{}) and two unsupervised (DBSCAN \cite{ester1996density} and HDBSCAN \cite{campello2013density}) in addition to four clustering evaluation metrics. The clustering metrics we look at are: (1) Inertia \todo{find the reference for this}\cite{}, (2) Silhouette \cite{rousseeuw1987silhouettes}, (3) Davies-Bouldin Index \cite{davies1979cluster}, (4) Calinski-Harabasz Index \cite{calinski1974dendrite}. \todo{maybe talk about optuna, if we use it.} \todo{double check all citations here are not empty}\\ 
+
+\todo[inline,caption={}]{
+Describe the various technical factors required before attempting to understand the methodology.
 
 The things in this section will include
 \begin{itemize}
-    \item Discuss sentence embedding, similarity measures: BERT, RoBERTA, MPNET, XLM, NOMIC.
+    \item Discuss sentence embedding, similarity measures: BERT, RoBERTA, MPNet, XLNet, NOMIC.
     \item Dimensional reduction techniques and need for them (UMAP, PCA, t-SNE).
     \item Clustering methods: kmedoids, DBSCAN, DBSCAN*/HDBCAN
     \item Clustering evaluation methods: \todo{I don't remember these off the top of my head}
     \item Maybe briefly touch on Optuna?
 \end{itemize}
+}
 
+\section{Sentence Embedding}
+\subsection{BERT-family Transformers}\label{sec:BERT}
+\subsubsection{BERT}
+\subsubsection{XLNet}
+\subsubsection{MPNet}
+\subsection{Nomic}\label{sec:nomic}
 
-\chapter{Methodology}
-Describe the methods and procedures used.
+\section{Dimensionality Reduction}\label{sec:dimred}
+\subsection{PCA}
+\subsection{UMAP}
 
-The things in this section will include.
-\begin{itemize}
-    \item Explaining data format and data visualisation: wordcloud.
-    \item Data cleaning steps, including removing key words such as Ion Source.
-    \item Text preprocessing steps (cleaning) and computational challenges (tensorflow).
-    \item Choosing the best sentence embedding transformer: MPNET, NOMIC.
-    \item Data visualisation (before and after sentence embedding): similarity visualisation, explain unique sentences, token length distribution.
-    \item Motivate why clustering in higher dimensions performs worse
-    \item UMAP, PCA, t-SNE comparison. Motivate using UMAP.
-    \item UMAP hyperparameter optimisation.
-    \item Performing clustering with kmedoids, dbscan, hdbscan.
-    \item Using optuna.
-    \item Evaluation of results and choosing the best model (and arguing why hdbscan is the best by looking at the variance of dbscan and inflexibility of kmedoids)
-    \item Touch on the production of a CLI application that allows you to mix and match various parts of the pipeline. Motivate the need for command line tool.
-\end{itemize}
+\section{Clustering}
+\subsection{k-Medoids}
+\subsection{DBSCAN}
+\subsection{HDBSCAN}
+
+\section{Clustering Evaluation}
+\subsection{Inertia}
+\subsection{Silhouette}
+\subsection{Davies-Bouldin Index}
+\subsection{Calinski-Harabasz Index}
+
+\section{(Maybe) Optuna}
+
+\chapter{Methodology}\label{chap:Methodology}
+\todo[inline,caption={}]{
+    Describe the methods and procedures used.
+    The things in this section will include.
+    \begin{itemize}
+        \item Explaining data format and data visualisation: wordcloud.
+        \item Data cleaning steps, including removing key words such as Ion Source.
+        \item Text preprocessing steps (cleaning) and computational challenges (tensorflow).
+        \item Choosing the best sentence embedding transformer: MPNET, NOMIC.
+        \item Data visualisation (before and after sentence embedding): similarity visualisation, explain unique sentences, token length distribution.
+        \item Motivate why clustering in higher dimensions performs worse
+        \item UMAP, PCA, t-SNE comparison. Motivate using UMAP.
+        \item UMAP hyperparameter optimisation.
+        \item Performing clustering with kmedoids, dbscan, hdbscan.
+        \item Using optuna.
+        \item Evaluation of results and choosing the best model (and arguing why hdbscan is the best by looking at the variance of dbscan and inflexibility of kmedoids)
+        \item Touch on the production of a CLI application that allows you to mix and match various parts of the pipeline. Motivate the need for command line tool.
+    \end{itemize}
+}
 
 \chapter{Results and Discussion}
+\todo[inline,caption={}]{
 Describe the results and analyse the results
 
 \begin{itemize}
-    \item Analyse the word cloud 
+    \item Analyse the word cloud.
     \item Analyse the sentence embedding results.
-    \item Analyse UMAP vs. PCA vs. t-SNE qualitatively and later quantitatively (compared to the clustering)
-    \item Anaylse the UMAP hyperparameter optimisation qualitatively, mention that we use Optuna
+    \item Analyse UMAP vs. PCA vs. t-SNE qualitatively and later quantitatively (compared to the clustering).
+    \item Anaylse the UMAP hyperparameter optimisation qualitatively, mention that we use Optuna.
 \end{itemize}
+}
 
 \chapter{Conclusion}
+\todo[inline,caption={}]{
 Summarize your findings and suggest areas for future work.
+}
 
 % -------------------------
 % References
 % -------------------------
-\bibliographystyle{plainnat}
+% \bibliographystyle{plainnat}
+\bibliographystyle{plain}
 \bibliography{refs}  % Uses the external file refs.bib
 
 \end{document}

@@ -1,48 +1,52 @@
 This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: report.aux
-The style file: plainnat.bst
-I found no \citation commands---while reading file report.aux
+The style file: plain.bst
 Database file #1: refs.bib
-You've used 0 entries,
-            2773 wiz_defined-function locations,
-            592 strings with 4828 characters,
-and the built_in function-call counts, 33 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 10
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
+Warning--I didn't find a database entry for "todo"
+Warning--I didn't find a database entry for ""
+Warning--there's a number but no volume in davies1979cluster
+Warning--can't use both volume and number fields in ester1996density
+Warning--empty journal in radford2018improving
+You've used 44 entries,
+            2118 wiz_defined-function locations,
+            760 strings with 13493 characters,
+and the built_in function-call counts, 17289 in all, are:
+= -- 1701
+> -- 949
+< -- 15
++ -- 383
+- -- 330
+* -- 1255
+:= -- 2852
+add.period$ -- 140
+call.type$ -- 44
+change.case$ -- 292
 chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
-int.to.chr$ -- 1
-int.to.str$ -- 1
-missing$ -- 0
-newline$ -- 8
-num.names$ -- 0
-pop$ -- 0
+cite$ -- 47
+duplicate$ -- 628
+empty$ -- 1224
+format.name$ -- 330
+if$ -- 3597
+int.to.chr$ -- 0
+int.to.str$ -- 44
+missing$ -- 45
+newline$ -- 223
+num.names$ -- 88
+pop$ -- 291
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 249
 quote$ -- 0
-skip$ -- 1
+skip$ -- 465
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
+substring$ -- 1036
+swap$ -- 172
+text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
-warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 7
-(There was 1 error message)
+type$ -- 174
+warning$ -- 3
+while$ -- 163
+width$ -- 46
+write$ -- 487
+(There were 5 warnings)
