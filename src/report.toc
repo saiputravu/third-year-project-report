@@ -2,33 +2,33 @@
 \contentsline {chapter}{List of Tables}{iv}{chapter*.3}%
 \contentsline {chapter}{Abbreviations and Acronyms}{v}{chapter*.3}%
 \contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Background}{2}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Motivation}{2}{section.1.2}%
-\contentsline {chapter}{\numberline {2}Literature Review}{4}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Maintenance Techniques}{4}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Sentence Similarity}{5}{section.2.2}%
-\contentsline {section}{\numberline {2.3}(maybe) Clustering}{7}{section.2.3}%
-\contentsline {chapter}{\numberline {3}Technical Background}{8}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Sentence Embedding}{9}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}BERT-family Transformers}{9}{subsection.3.1.1}%
-\contentsline {subsubsection}{BERT}{9}{section*.24}%
-\contentsline {subsubsection}{XLNet}{9}{section*.25}%
-\contentsline {subsubsection}{MPNet}{9}{section*.26}%
-\contentsline {subsection}{\numberline {3.1.2}Nomic}{9}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Dimensionality Reduction}{9}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}PCA}{9}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}UMAP}{9}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Clustering}{9}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}k-Medoids}{9}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}DBSCAN}{9}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}HDBSCAN}{9}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Clustering Evaluation}{9}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Inertia}{9}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Silhouette}{9}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Davies-Bouldin Index}{9}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Calinski-Harabasz Index}{9}{subsection.3.4.4}%
-\contentsline {section}{\numberline {3.5}(Maybe) Optuna}{9}{section.3.5}%
-\contentsline {chapter}{\numberline {4}Methodology}{10}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Results and Discussion}{11}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Conclusion}{12}{chapter.6}%
-\contentsline {chapter}{Bibliography}{13}{chapter*.30}%
+\contentsline {section}{\numberline {1.1}Motivation}{2}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Background}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Overview of the ISIS Research Facility}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Maintenance Techniques}{5}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Sentence Similarity}{6}{section.2.3}%
+\contentsline {section}{\numberline {2.4}(maybe) Clustering}{8}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Natural Language Processing Background}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Sentence Embedding}{10}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}BERT-family Transformers}{10}{subsection.3.1.1}%
+\contentsline {subsubsection}{BERT}{10}{section*.26}%
+\contentsline {subsubsection}{XLNet}{12}{section*.28}%
+\contentsline {subsubsection}{MPNet}{12}{section*.29}%
+\contentsline {subsubsection}{Nomic}{12}{section*.30}%
+\contentsline {section}{\numberline {3.2}Dimensionality Reduction}{12}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}PCA}{12}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}UMAP}{12}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Clustering}{12}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}k-Medoids}{12}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}DBSCAN}{12}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}HDBSCAN}{12}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Clustering Evaluation}{12}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Inertia}{12}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Silhouette}{12}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Davies-Bouldin Index}{12}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Calinski-Harabasz Index}{12}{subsection.3.4.4}%
+\contentsline {section}{\numberline {3.5}Maybe Optuna}{12}{section.3.5}%
+\contentsline {chapter}{\numberline {4}Automatic Label Generation}{13}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Results and Discussion}{14}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Conclusion}{15}{chapter.6}%
+\contentsline {chapter}{Bibliography}{16}{chapter*.31}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.4)  2 APR 2025 01:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.4)  12 APR 2025 20:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -502,7 +502,7 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 )) (/usr/share/texlive/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty
 Package: anyfontsize 2007/11/22 anyfontsize.sty by pts
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 41.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 43.
  (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -512,24 +512,24 @@ File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count305
@@ -549,7 +549,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 41.
+Package hyperref Info: Link coloring ON on input line 43.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -559,9 +559,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count311
 )
-LaTeX Info: Redefining \ref on input line 41.
-LaTeX Info: Redefining \pageref on input line 41.
-LaTeX Info: Redefining \nameref on input line 41.
+LaTeX Info: Redefining \ref on input line 43.
+LaTeX Info: Redefining \pageref on input line 43.
+LaTeX Info: Redefining \nameref on input line 43.
  (./report.out) (./report.out)
 \@outlinefile=\write4
 \openout4 = `report.out'.
@@ -612,127 +612,122 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 
 ]
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 97.
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 99.
  [5
 
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.140 \chapter
+l.147 \chapter
               {Introduction} [1
 
 
 ]
 Chapter 1.
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 149.
+
+Underfull \hbox (badness 10000) in paragraph at lines 149--150
+
+ []
+
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 161.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [2
 
 ] [3]
 Chapter 2.
-
-Overfull \hbox (0.52362pt too wide) in paragraph at lines 200--201
-[]\T1/lmr/m/n/8 Run-to-failure (R2F) main-te-nance: Con-tin-ual us-age of the sys-tem un-til fail-ure. Restora-
- []
-
 [4
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 205--206
-
+Overfull \hbox (0.52362pt too wide) in paragraph at lines 212--213
+[]\T1/lmr/m/n/8 Run-to-failure (R2F) main-te-nance: Con-tin-ual us-age of the sys-tem un-til fail-ure. Restora-
  []
 
 
-LaTeX Warning: Marginpar on page 5 moved.
+Underfull \hbox (badness 10000) in paragraph at lines 217--218
+
+ []
+
+[5]
+
+LaTeX Warning: Marginpar on page 6 moved.
+
+[6] [7]
+
+Package natbib Warning: Citation `todo' on page 8 undefined on input line 265.
 
 
-LaTeX Warning: Marginpar on page 5 moved.
+LaTeX Warning: Reference `' on page 8 undefined on input line 265.
 
-[5] [6]
-
-Package natbib Warning: Citation `todo' on page 7 undefined on input line 249.
-
-
-LaTeX Warning: Reference `' on page 7 undefined on input line 249.
-
-[7]
+[8]
 Chapter 3.
 
-Package natbib Warning: Citation `calinski1974dendrite' on page 8 undefined on input line 269.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 269--270
+Underfull \hbox (badness 10000) in paragraph at lines 285--286
 
  []
 
 
-LaTeX Warning: Marginpar on page 8 moved.
+LaTeX Warning: Marginpar on page 9 moved.
 
 
-LaTeX Warning: Marginpar on page 8 moved.
+LaTeX Warning: Marginpar on page 9 moved.
 
-[8
+[9
 
-] [9]
-
-./report.tex:308: LaTeX Error: Float(s) lost.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.308 \chapter
-              {Methodology}\label{chap:Methodology}
-You've lost some text.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+]
+<./images//BERT1.png, id=383, 768.42183pt x 312.67836pt>
+File: ./images//BERT1.png Graphic file (type png)
+<use ./images//BERT1.png>
+Package pdftex.def Info: ./images//BERT1.png  used on input line 312.
+(pdftex.def)             Requested size: 327.74895pt x 133.36603pt.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 318.
+ (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [10] [11 <./images//BERT1.png (PNG copy)>] [12]
 Chapter 4.
-[10
+[13
+
 
 ]
 Chapter 5.
-[11
+[14
 
 ]
 Chapter 6.
-(./report.bbl [12
+(./report.bbl [15
 
-] [13
+] [16
 
-] [14]
-Underfull \hbox (badness 1776) in paragraph at lines 152--155
+] [17]
+Underfull \hbox (badness 1776) in paragraph at lines 199--202
 \T1/lmr/m/n/8 em-bed: Train-ing a re-pro-ducible long con-text text em-bed-der.  \T1/lmr/m/it/8 arXiv preprint
  []
 
-[15])
+[18] [19])
 
 Package natbib Warning: There were undefined citations.
 
-[16] (./report.aux)
+[20] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: B1F03A71895C91D135636CA9F6CA72C8;3955.
+(rerunfilecheck)             Checksum: BF0F2EEB0EBE36B9E16D733FBB925B69;4146.
  ) 
 Here is how much of TeX's memory you used:
- 21762 strings out of 478287
- 412328 string characters out of 5849290
- 686545 words of memory out of 5000000
- 39420 multiletter control sequences out of 15000+600000
- 522016 words of font info for 54 fonts, out of 8000000 for 9000
+ 21863 strings out of 478287
+ 414155 string characters out of 5849290
+ 686450 words of memory out of 5000000
+ 39501 multiletter control sequences out of 15000+600000
+ 522337 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 115i,14n,118p,1513b,1803s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri8.pfb>
-Output written on report.pdf (22 pages, 278051 bytes).
+ 115i,13n,118p,1513b,950s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
+Output written on report.pdf (26 pages, 642589 bytes).
 PDF statistics:
- 470 PDF objects out of 1000 (max. 8388607)
- 423 compressed objects within 5 object streams
- 128 named destinations out of 1000 (max. 500000)
- 261 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 525 PDF objects out of 1000 (max. 8388607)
+ 470 compressed objects within 5 object streams
+ 141 named destinations out of 1000 (max. 500000)
+ 258 words of extra memory for PDF output out of 10000 (max. 10000000)
 
