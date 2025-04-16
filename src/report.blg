@@ -8,45 +8,46 @@ Warning--I didn't find a database entry for ""
 Warning--there's a number but no volume in davies1979cluster
 Warning--can't use both volume and number fields in ester1996density
 Warning--empty journal in radford2018improving
-You've used 52 entries,
+Warning--empty journal in stammler1983methods
+You've used 60 entries,
             2773 wiz_defined-function locations,
-            899 strings with 16135 characters,
-and the built_in function-call counts, 28629 in all, are:
-= -- 2517
-> -- 1960
-< -- 34
-+ -- 661
-- -- 609
-* -- 2400
-:= -- 4378
-add.period$ -- 164
-call.type$ -- 52
-change.case$ -- 353
-chr.to.int$ -- 52
-cite$ -- 107
-duplicate$ -- 1229
-empty$ -- 2122
-format.name$ -- 679
-if$ -- 6003
+            934 strings with 17271 characters,
+and the built_in function-call counts, 31944 in all, are:
+= -- 2815
+> -- 2127
+< -- 43
++ -- 720
+- -- 660
+* -- 2616
+:= -- 4870
+add.period$ -- 188
+call.type$ -- 60
+change.case$ -- 394
+chr.to.int$ -- 60
+cite$ -- 124
+duplicate$ -- 1391
+empty$ -- 2412
+format.name$ -- 742
+if$ -- 6720
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 53
-newline$ -- 268
-num.names$ -- 208
-pop$ -- 707
+missing$ -- 57
+newline$ -- 307
+num.names$ -- 240
+pop$ -- 810
 preamble$ -- 1
-purify$ -- 302
+purify$ -- 335
 quote$ -- 0
-skip$ -- 1009
+skip$ -- 1154
 stack$ -- 0
-substring$ -- 1055
-swap$ -- 192
-text.length$ -- 16
+substring$ -- 1143
+swap$ -- 223
+text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 567
-warning$ -- 3
-while$ -- 244
+type$ -- 655
+warning$ -- 4
+while$ -- 274
 width$ -- 0
-write$ -- 682
-(There were 5 warnings)
+write$ -- 779
+(There were 6 warnings)

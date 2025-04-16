@@ -1,4 +1,4 @@
-\begin{thebibliography}{52}
+\begin{thebibliography}{60}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -18,6 +18,19 @@ Ramiz~M Aliguliyev.
   technique for automatic text summarization.
 \newblock \emph{Expert Systems with Applications}, 36\penalty0 (4):\penalty0
   7764--7772, 2009.
+
+\bibitem[Ankenbrandt et~al.(1980)Ankenbrandt, Curtis, Hojvat, Johnson, Owen,
+  Schmidt, Teng, and Webber]{ankenbrandt1980h}
+C~Ankenbrandt, C~Curtis, C~Hojvat, RP~Johnson, C~Owen, C~Schmidt, L~Teng, and
+  RC~Webber.
+\newblock H- charge exchange injection systems.
+\newblock In \emph{11th International Conference on High-Energy Accelerators:
+  Geneva, Switzerland, July 7--11, 1980}, pages 260--271. Springer, 1980.
+
+\bibitem[{Asim Yaqoob}(2017)]{fld2017}
+{Asim Yaqoob}.
+\newblock {First line diagnosis at ISIS}, 10 2017.
+\newblock URL \url{https://indico.cern.ch/event/558933/contributions/2724364}.
 
 \bibitem[Baba et~al.(2017)Baba, Nakatoh, and Minami]{baba2017plagiarism}
 Kensuke Baba, Tetsuya Nakatoh, and Toshiro Minami.
@@ -107,6 +120,17 @@ Harold Hotelling.
 \newblock \emph{Journal of educational psychology}, 24\penalty0 (6):\penalty0
   417, 1933.
 
+\bibitem[{ISIS Neutron and Muon Source}(2021)]{2021practicalguide}
+{ISIS Neutron and Muon Source}.
+\newblock {ISIS A Practical Guide to the ISIS neutron and Muon source}, 4 2021.
+\newblock URL
+  \url{https://www.isis.stfc.ac.uk/Pages/News21_PracticalGuide.aspx}.
+
+\bibitem[{ISIS Neutron and Muon Source}(2024)]{isisbeamoperations2024}
+{ISIS Neutron and Muon Source}.
+\newblock {ISIS beam operations}, 4 2024.
+\newblock URL \url{https://www.isis.stfc.ac.uk/Pages/beam-status.aspx}.
+
 \bibitem[Jezzini et~al.(2013)Jezzini, Ayache, Elkhansa, Makki, and
   Zein]{jezzini2013effects}
 Ali Jezzini, Mohammad Ayache, Lina Elkhansa, Bassem Makki, and Maya Zein.
@@ -169,6 +193,10 @@ Leland McInnes, John Healy, and James Melville.
 \newblock Umap: Uniform manifold approximation and projection for dimension
   reduction.
 \newblock \emph{arXiv preprint arXiv:1802.03426}, 2018.
+
+\bibitem[Michael(2006)]{michael2006electronic}
+HT~Michael.
+\newblock Electronic circuits: fundamentals and applications, 2006.
 
 \bibitem[Mikolov et~al.(2013)Mikolov, Chen, Corrado, and
   Dean]{mikolov2013efficient}
@@ -258,11 +286,22 @@ Justyna Sarzynska-Wawer, Aleksander Wawer, Aleksandra Pawlak, Julia
   representations.
 \newblock \emph{Psychiatry Research}, 304:\penalty0 114135, 2021.
 
+\bibitem[Sharma(2001)]{sharma2001nuclear}
+BP~Sharma.
+\newblock Nuclear reactors: Moderator and reflector materials.
+\newblock \emph{Encyclopedia of Materials: Science and Technology}, pages
+  6365--6369, 2001.
+
 \bibitem[Song et~al.(2020)Song, Tan, Qin, Lu, and Liu]{song2020mpnet}
 Kaitao Song, Xu~Tan, Tao Qin, Jianfeng Lu, and Tie-Yan Liu.
 \newblock Mpnet: Masked and permuted pre-training for language understanding.
 \newblock \emph{Advances in neural information processing systems},
   33:\penalty0 16857--16867, 2020.
+
+\bibitem[Stammler and Abbate(1983)]{stammler1983methods}
+Rudi~JJ Stammler and M{\'a}ximo~Julio Abbate.
+\newblock Methods of steady-state reactor physics in nuclear design.
+\newblock 1983.
 
 \bibitem[Steinberger and Je{\v{z}}ek(2005)]{steinberger2005text}
 Josef Steinberger and Karel Je{\v{z}}ek.
@@ -361,5 +400,11 @@ Zhilin Yang, Zihang Dai, Yiming Yang, Jaime Carbonell, Russ~R Salakhutdinov,
 Minghe Yu, Guoliang Li, Dong Deng, and Jianhua Feng.
 \newblock String similarity search and join: a survey.
 \newblock \emph{Frontiers of Computer Science}, 10:\penalty0 399--417, 2016.
+
+\bibitem[Zhang and Sabuncu(2018)]{zhang2018generalized}
+Zhilu Zhang and Mert Sabuncu.
+\newblock Generalized cross entropy loss for training deep neural networks with
+  noisy labels.
+\newblock \emph{Advances in neural information processing systems}, 31, 2018.
 
 \end{thebibliography}

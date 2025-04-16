@@ -106,12 +106,18 @@
         \textbf{CNN} & Convolutional Neural Network. \\
         \textbf{DBSCAN} & Density-Based Spatial Clustering of Application with Noise. \\
         \textbf{DL} & Deep Learning. \\
+        \textbf{EPB1} & Extracted proton beam line 1. \\
+        \textbf{EPB2} & Extracted proton beam line 2. \\
         \textbf{ELMo} & Embeddings from Language Models. \\
         \textbf{FLD} & First-line diagnosis system. \\
         \textbf{GPT} & Generative Pre-trained Transformer. \\
         \textbf{HDBSCAN} & Hierarchical Density-Based Spatial Clustering of Application with Noise. \\
         \textbf{HDD} & Hard-Disk Drive. \\
+        \textbf{HEDS} & High energy drift space. \\
         \textbf{IoT} & Internet of Things. \\
+        \textbf{LEBT} & Low energy beam transport line. \\
+        \textbf{LINAC} & Linear Accelerator. \\
+        \textbf{FAP} & Fault Analysis Pathway. \\
         \textbf{LSA} & Latent Semantic Analysis. \\
         \textbf{ML} & Machine Learning. \\
         \textbf{NLP} & Natural Language Processing. \\
@@ -120,14 +126,19 @@
         \textbf{PLM} & Pre-trained Language Model. \\
         \textbf{PvM} & Preventative maintenance policy. \\
         \textbf{R2F} & Run-to-failure maintenance policy. \\
+        \textbf{RFQ} & Radio-frequency quadrupole. \\
         \textbf{RF} & Random Forest. \\
         \textbf{SAFE} & Supervised Aggregative Feature Extraction. \\
         \textbf{SMART} & Self-monitoring and reporting technology. \\
         \textbf{STFC} & Science and Technology Facilities Council. \\
         \textbf{SVD} & Singular Value Decomposition. \\
         \textbf{SVM} & Support Vector Machine. \\
+        \textbf{TS-1} & Target Station 1. \\
+        \textbf{TS-2} & Target Station 2. \\
         \textbf{t-SNE} & t-distributed Stochastic Neighbour Embedding. \\
+        \textbf{UKRI} & United Kingdom Research and Innovation. \\
         \textbf{UMAP} & Uniform Manifold Approximation and Projection. \\
+        \textbf{MCR} & Main Control Room. \\
 
     \end{tabular}
 \end{table}
@@ -174,36 +185,80 @@ The things in this section will include
 \end{itemize}
 }
 
-\chapter{Background}
-\todo[inline,caption={}]{
-The things in this section will include
-\begin{itemize}
-    \item Background
-    \item Literature Review
-    \item Looking at general predictive maintenance 
-    \item Looking at general predictive maintenance in industrial applications
-    \item Similar pairwise sentence similarity literature
-    \item Similar literature in text clustering
-    \item Similar literature in specifically sentence clustering in industrial applications
-\end{itemize}
-}
+
 \section{Overview of the ISIS Research Facility}
+
+
+The STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facility is a research centre for physical and life sciences. This is owned and operated by the STFC, which is a council that forms the United Kingdom Research and Innovation (UKRI). The UKRI is a public body of the United Kingdom's Government that directs funding for research and innovation through the science budget of the Department for Science, Innovation and Technology. ISIS was designed in the 1970s and early 1980s, with the core of the design being a strong-focusing machine with size radio frequency accelerating cavities to provide an average beam current of $200\mu A$ \cite{thomason2019isis}. According to (\cite{thomason2019isis}), with the introduction of ISIS and other neutron sources, rapid development of neutron instrumentation was stimulated. Through time, many components instrumentation have been added such as the second target station - the current schematic representation of the facility can be seen in Figure~\ref{fig:isis}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{ISIS.png}
+    \caption{The schematic representation of the physical layout of ISIS. The light grey areas are footprints of the buildings. Source: (\citet{thomason2019isis}).}\label{fig:isis}
+\end{figure}
+
+\textbf{}\\This section details the various stages of the ISIS facility and discusses the current maintenance procedures.
+
+\subsection{The end-to-end production of neutrons and muons}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{ISIS2.png}
+    \caption{ISIS ion source and chain of accelerators, with $H^-$ ions in blue and protons in red. Not to scale. Source: (\citet{2021practicalguide}).}\label{fig:isis2}
+\end{figure}
+
+The ISIS facility, described in A Practical Guide to the ISIS Neutron and Muon Source (\citet{2021practicalguide}), is comprised of four major stages: (1) the ion source, (2) the radio-frequency quadrupole (RFQ), (3) linear accelerator (LINAC) and (4) the synchrotron. These components combined produce a 800 MeV proton beam that is directed to either target station 1 (TS-1) or target station 2 (TS-2). Starting with $H^-$ ions (protons with two orbiting electrons), the path taken through the four stages is shown in Figure~\ref{fig:isis2}. Throughout the entire $H^-$ or proton acceleration process, the beam must be kept under good vacuum and, to do so, many tens of vacuum pumps are maintaining the vacuum between $10^{-8}$ and $10^{-9}$ of atmospheric pressure.
+
+The first stage of the ISIS machine is the ion source, which generates the negative hydrogen ($H^-$) ions, which are then accelerated through the RFQ and LINAC. This ion source is a pulsed source of $H^-$ ions, which is ionised from a stream of Hydrogen gas by arranging for an electric discharge to take place between an anode and a cathode inside. According to the guide, published by the ISIS facility, around 20ml of hydrogen gas per minute is continuously delivered to the ion source from a hydrogen gas bottle. Once the $H^-$ ions emerge from the ion source, they have an energy of 35 keV and are presented to the RFQ via the Low Energy Beam Transport line (LEBT). The LEBT prevents the low-energy $H^-$ beam from increasing in size (due to the mutual repulsion of the ions) and also incorporates a beam stop. This is essentially just a remotely removable sheet of metal that physically blocks the beam.
+
+Next, the ISIS RFQ uses high-intensity radio frequency electric fields that focus, bunch and accelerate this $H^-$ beam. The RFQ is located roughly one to two metres downstream from the ion source and immediately upstream of the LINAC and the beam leaves the RFQ at 665 keV. One of the roles of the RFQ is to effectively decouple the ion source from the LINAC, reducing the extent of variations in the beam in the LINAC, synchrotron and targets.
+
+The LINAC consists of four accelerating tanks which progressively accelerate the beam from 665 keV to 70 MeV using high-intensity radio-frequency fields. The whole structure is arranged purposefully to be highly resonant (with a Q factor \cite{michael2006electronic} of roughly 50000) at the operating radio-frequency. The tank structures are resonant at a sufficient enough level that their dimensions must be determined extremely precisely. This is done through controlling the temperature of a tank cooling water to significantly less than 1$^\circ $C which essentially eliminates the effects of thermal expansion and contraction. It should be noted that, as the second electrons making up the $H^-$ ions are not tightly bound, if the vacuum inside the LINAC tanks is faulty, then there could be a significant increase in radioactivity and beam loss. It is therefore important to maintain vacuum levels at the correct thresholds, mentioned in the guide. Beam loss monitors are installed over the length of the LINAC to provide metrics and warning signals when excessive losses occur. The output from the LINAC is a stream of $H^-$ ions lasting around 200 $\mu s$. 
+
+The ion beam from the LINAC is injected into the synchrotron via the High Energy Drift Space (HEDS) which is a roughly 50m beam transport line. To enter the synchrotron, charge-exchange injection \cite{ankenbrandt1980h} occurs and the $H^-$ ions are stripped of their electrons to become protons. Charge-exchange injection is chosen as it is the most efficient way of taking and wrapping a long string of particles around the circumference of a synchrotron.
+
+Once the protons at 70 MeV enter the synchrotron, a machine made up of many large magnets with a 26m circular orbit of radius and 163m circumference, they are accelerated to 800 MeV, 86\% of the speed of light. The synchrotron is made up of ten sections called `superperiods' each of which bends the beam at an angle of 36$^\circ$ using the magnets. These magnets further prevent beam expansion. The guide describes the LINAC to be thought of as a `once-through' machine and the synchrotron as a `thousands-of-times-around' machine. Additionally, in the synchrotron, there are four beam loss monitors to each superperiod to provide alerts when excessive beam losses arise due to poor synchronism. Every time the protons complete one full cycle, they pick up roughly 0.1 MeV of energy. Therefore, it takes just under 8000 turns for the protons to be accelerated to 800 MeV. Further configuration details can be found in the guide. The operational success of a synchrotron depends on good synchronism as the protons must be kept in the same orbit whilst being accelerated. To do this, the magnetic fields in the magnets and strength of the accelerating voltage have to increase with time to match the accelerating protons. After the injection from the LINAC is complete, a low-level accelerating voltage is applied, gradually separating the constant ring of charge into two separate bunches, which are a little more than $0.1\mu s$ apart. Finally, to send the two proton bunches to a particular target station, there exist three kicker magnets which deflect the bunches upwards. These are then bent up into the respective extracted proton beam lines (EPB1 or EPB2).
+
+These two extracted proton beam lines deliver, consisting of a long series of magnets for directing, bending and steering, the proton bunches from the synchrotron to the respective target stations (TS-1 and TS-2). Both EPB1 and EPB2 lines are enclosed in thick steel and concrete shielding to account for cases of complete beam loss. Again, beam loss monitors are positioned along both lines to provide warnings of excessive beam losses. 
+
+There are two neutron producing targets on ISIS, which convert the high-energy proton beam as many neutrons as possible in the smallest amount of volume. This means choosing a target material with a high atomic number and highest neutron fluxes \cite{stammler1983methods}. As described in the guide, ISIS uses tantalum-clad tungsten targets. These neutron-producing targets are surrounded by four moderators (a liquid hydrogen moderator at 100 K, liquid hydrogen moderator at 20 K and two water moderators at 300 K) and a beryllium reflector \cite{sharma2001nuclear}. Around 20m upstream from the TS-1 neutron producing target, the ISIS Intermediate Target is incorporated in EPB1. This is a roughly 1cm thick graphite target that is placed directly in the beam to produce pions that decay into muons. These muons are selected by the muon beam line which transports these to various instrumentation. \\ 
+
+\noindent With the detailed description of the steps required for the production of neutrons and muons, sourced from the guide, we highlight some key takeaways. There are an incredible number of points of failure in the facility due to the highly precise and radioactive nature task. The ISIS team have taken many precautions such as fault detection mechanisms (i.e. the beam loss monitors), breakdown counter-measures (i.e. the thick layer of steel and concrete in the EPB1 and EPB2 lines). However, as there are a large amount of components that can go wrong and issues that may arise, regular maintenance is required. 
+
+\subsection{Maintenance at ISIS} 
+As detailed in the 33-year historical account of the ISIS facility (\citet{thomason2019isis}), the ISIS operations occur in cycles, periods of roughly 30-50 days where the machine runs constantly without breaks. Roughly 10 days before the scheduled start of a cycle, and gaps between cycles typically range from 1 week to 3 months. In addition, typically every four years, shutdowns scheduled for 6-9 months occur for major maintenance and upgrade work. On the ground, day-to-day operations are run from the Main Control Room (MCR) by the ISIS crew which consists of 6 shift teams of the following roles: (1) duty officer, (2) assistant duty officer and (3) duty technician. \todo{Add the graph, if you can ever figure out the operating cycles before 2016.} Downtime, quantified as the amount of time the machine is out-of-use, is a major consideration when deciding maintenance schedules. Many factors affect downtime such as having a robust plan, the day-to-day operators knowledge of the system and adequate inventories of spares \cite{thomason2019isis}. Figure~\ref{fig:isisDowntime} shows the ratio of downtime to active machine operation since 2016, with over half the lifetime of the machine being down. In other words, over half the time, the machine is not active and is undergoing maintenance. This can be seen as a trade-off, between keeping the machine operative versus reducing failures through planned maintenance. The major maintenance strategies and their trade-offs are further explored in Section~\ref{sec:maintenanceTechniques}.
+
+To help reduce downtime, over the last few years, a first-line diagnosis (FLD) system was introduced, presented in (\citet{fld2017}). The FLD system helps reduce downtime by providing expert guidance on fault diagnosis and resolution, which has been shown to improve the dissemination of knowledge from experts to operations. The FLD utilises Fault Analysis Pathways (FAPs), which provide structural links between ISIS subsystems. This allows users of the system to access granular sub-systems' local documentation minimising file hunting and saving time and effort. An example FAP can be seen in Figure~\ref{fig:fap}. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{isisDowntime.png}
+    \caption{A visualisation of the machine downtime as opposed to time operating, according to the ISIS operational cycle. Data source: (\citet{isisbeamoperations2024})}\label{fig:isisDowntime}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{fap.png}
+    \caption{Example FAP1101, screenshotted from an iPAD version of FLD version 2.2, which shows the FAP for pre-injector, injector and high energy drift space. Source: (\citet{fld2017})}\label{fig:fap}
+\end{figure}
+
+\subsection{Datasets}
+
+As mentioned previously, the ISIS research 
 
 \todo[inline,caption={}]{
 Introduce the research topic. 
 The things in this section will include
 \begin{itemize}
-    \item Talk about the ISIS research facility
-    \item Talk about the Operational Cycle for ISIS (graph too)
-    \item Talk about the ISIS Crew and importance of having trained staff on premises.
-    \item Talk about the Lost time and why it is important to minimise this for the ISIS research facility.
-    \item Describe the first-line diagnosis system (FLD) and FAPs.
+    \item Talk about the ISIS research facility - DONE
+    \item Talk about the Operational Cycle for ISIS - SORT OF DONE (graph too)
+    \item Talk about the ISIS Crew and importance of having trained staff on premises. - SORT OF
+    \item Talk about the Lost time and why it is important to minimise this for the ISIS research facility. - SORT OF
+    \item Describe the first-line diagnosis system (FLD) and FAPs. - DONE
     \item Talk about the Datasets, operalog
 \end{itemize}
 }
 
 
-\section{Maintenance Techniques}
+\section{Maintenance Techniques}\label{sec:maintenanceTechniques}
 In industry, the uptime of production systems are strongly coupled with the equipment maintenance. So much so that what was once considered a `necessary evil' is now seen as a `profit contributor' to be able to maintain a competitive edge \cite{waeyenbergh2002framework, faccio2014industrial}. For facilities aiming to provide systems for research, maintenance impacts the downtime and cost of running. As a result, both to minimise unexpected downtime and provide a competitive edge, many industrial applications collect vast quantities of data during the entire life cycle of the system. This large amount of data may include information about processes, events and alarms \cite{carvalho2019systematic} which occur along the industrial production line, collected by different equipment. The equipment may be located in different locations in the sub-components of the larger system or even different sub-components themselves. \todo{talk about maintenance itself in a lot more depth}
 
 In the literature, various terms and categories of maintenance arise each with differing strategies \cite{susto2012predictive, mobley2002introduction, susto2016dealing}. Thus, while there exists some disagreement in nomenclature, we consider the four categories presented in (\citet{susto2012predictive}). The four maintenance policy categories are as follows, noting that each policy has, uniquely, their own benefits and drawbacks:
@@ -300,12 +355,12 @@ The things in this section will include
 Briefly touched on in Section~\ref{sec:sentenceSimilarity}, sentence embedding (otherwise known as text embedding) is the NLP task of computing some high-dimensional embedding vector-space representation for unstructured text data. This numerical representation should encode the semantic and syntactic meaning of the text and establish meaningful relationships. For example, the sentence `I like dogs' should have the opposite representation to \todo{Maybe add this as an image illustration} `I hate dogs'.  However these sentences should be more related than to the sentence `My house was destroyed in an earthquake'. Deep learning sentence embedding models are now seen to be state-of-the-art as they are able to extract features automatically and more effectively than manual efforts, when supported with large quantities of data \cite{liang2017text}.
 
 \subsection{BERT-family Transformers}\label{sec:BERT}
-Pre-trained language models (PLMs), such as BERT \cite{devlin2019bert}, have been widely successful in a wide range of NLP tasks through fine-tuning \cite{edunov2019pre, min2023recent}. Fine-tuning is the process of re-training a PLM on specialised tasks, leveraging the model's base knowledge, by applying perturbations to the pre-trained model parameters through gradient descent learning algorithms. These language models, trained on (1) finding an embedding space for natural language and (2) stochastically generating tokens to mimic natural language, often provide a great platform to perform task-specific model fine-tuning. 
+Pre-trained language models (PLMs), such as BERT \cite{devlin2019bert}, have been widely successful in a wide range of NLP tasks through fine-tuning \cite{edunov2019pre, min2023recent}. Fine-tuning is the process of re-training a PLM on specialised tasks, leveraging the model's base knowledge, by applying perturbations to the pre-trained model parameters through gradient descent learning algorithms. These language models, trained on finding an embedding space for natural language as well as stochastically generating tokens to mimic natural language, often provide a great platform to perform task-specific model fine-tuning. 
 Platforms such as HuggingFace \cite{wolf2019huggingface}, allow authors to upload these pre-trained model parameters which in-turn allows researchers to download them for them fine-tuning. Moreover, task-specific fine-tuned models parameters are uploaded, downloaded and shared on these platforms. These fine-tuned models are useful for researchers whose focus lies outside of optimising these model parameters.
 In this section, we talk about the BERT-family of language models.
 
 \subsubsection{BERT}
-The Bidirectional Encoder Representations from Transformer (BERT) language model introduced in (\citet{devlin2019bert}) was designed to learn deep bidirectional representations from unlabelled text. It achieved this by learning the left and right context in every layer of the model. The model implementation can be split into two phases: \todo{sprinkle some images in here.} (1) the pre-training phase; and (2) the fine-tuning phase. This allows the model architecture to remain common, with many down-stream NLP tasks benefiting from a single PLM. An example illustration can be seen in Figure~\ref{fig:bert1}, where a single model can be fine-tuned on many down-stream tasks by simply replacing the output layer. The model architecture is a multi-layer Transformer encoder based on the original paper (\citet{vaswani2017attention}) which is bidirectional by nature. As the transformer architecture is a very well researched architecture, well represented in the literature and slightly out-of-scope for this paper, we refer the reader to the original paper.
+The Bidirectional Encoder Representations from Transformer (BERT) language model introduced in 2018 by Google AI Language team in (\citet{devlin2019bert}) was designed to learn deep bidirectional representations from unlabelled text. It achieved this by learning the left and right context in every layer of the model. The model implementation can be split into two phases: \todo{sprinkle some images in here.} (1) the pre-training phase; and (2) the fine-tuning phase. This allows the model architecture to remain common, with many down-stream NLP tasks benefiting from a single PLM. An example illustration can be seen in Figure~\ref{fig:bert1}, where a single model can be fine-tuned on many down-stream tasks by simply replacing the output layer. The model architecture is a multi-layer Transformer encoder based on the original paper (\citet{vaswani2017attention}) which is bidirectional by nature. As the transformer architecture is a very well researched architecture, well represented in the literature and slightly out-of-scope for this paper, we refer the reader to the original paper.
 
 \begin{figure}[htbp]
     \centering
@@ -313,26 +368,117 @@ The Bidirectional Encoder Representations from Transformer (BERT) language model
     \caption{The overall pre-training and fine-tuning phases for BERT. For different down-stream tasks, notice the same architecture, except output layer, is used. Source: (\citet{devlin2019bert}).}\label{fig:bert1}
 \end{figure}
 
-The pre-training phase can be split into two further training tasks:
+\textbf{}\\ The pre-training phase can be split into two further training tasks:
 \begin{itemize}
-    \item  Masked Language Model - During training, a portion of the input tokens are `masked' and the model predicts these masked tokens based on the remaining context, using cross-entropy loss. In the literature, this is referred to as a Cloze task \cite{taylor1953cloze}. In the experiments conducted by (\citet{devlin2019bert}) 15\% of tokens in each sequence are randomly selected for masking. However, to mitigate the mismatch between pre-training and fine-tuning phases, a training data generator replaces each chosen masked tokens with: (1) the special token \texttt{[MASK]} 80\% of the time; (2) a random token 10\% of the time; and (3) the original token itself 10\% of the time.
+    \item  Masked Language Model - During training, a portion of the input tokens are `masked' and the model predicts these masked tokens based on the remaining context, using cross-entropy loss\cite{zhang2018generalized}. In the literature, this is referred to as a Cloze task \cite{taylor1953cloze}. In the experiments conducted by (\citet{devlin2019bert}) 15\% of tokens in each sequence are randomly selected for masking. However, to mitigate the mismatch between pre-training and fine-tuning phases, a training data generator replaces each chosen masked tokens with: (1) the special token \texttt{[MASK]} 80\% of the time; (2) a random token 10\% of the time; and (3) the original token itself 10\% of the time.
     \item Next Sentence Prediction - In this task, the model is trained on a binary classification task prediction the relationship between sentence pairs. Given two sentences \texttt{A} and \texttt{B} either (1) sentence \texttt{B} is the actual sentence that follows \texttt{A} 50\% of the time or (2) sentence \texttt{B} is randomly selected from the corpus 50\% of the time. 
 \end{itemize}
 
-\subsubsection{XLNet}
-\subsubsection{MPNet}
+
+\textbf{}\\ The Google AI Language team further fine-tune BERT across 11 NLP tasks, showing that BERT out-performed the state-of-the-art models at its point in time.
+
+As previously mentioned, a benefit of using PLMs such as BERT for NLP tasks (such as text embedding) is the ability to off-load the computationally intensive pre-training and any initial fine-tuning stages to another party. Although, this means that there now exists an implicit trust on that third-party's model parameters. For example, the third-party could be motivated factors to censor certain phrases, artificially injecting testing data into training to increase performance metrics or maliciously change the embedding space. These are all factors which influence our decision on using a PLM and, thus, PLMs with transparently documented data sources, pre-training and fine-tuning should be preferred.
+
+\subsubsection{XLNet and MPNet}
+Since the release of the Google AI Language team's BERT, there have been some developments on further improving the performance of PLMs based on BERT's architecture. Namely, we touch on two: XLNet \cite{yang2019xlnet} and MPNet \cite{song2020mpnet}.
+
+One downside of BERT, briefly touched on earlier, is the discrepancy between the pre-training and fine-tuning phases. Although BERT utilises bidirectional context for reconstruction of the special \texttt{[MASK]} token during pre-training, this special token does not exist at the fine-tuning phase. Furthermore, the predicted tokens are masked in the \textit{input} thus BERT assumes the predicted tokens are independent to the surrounding context \cite{yang2019xlnet}. XLNet proposes
+
+\todo[inline, caption={}] {
+    \begin{itemize}
+        \item Mathematics of BERT (detailed in XLNet paper)
+        \item Mathematics of XLNet (detailed in XLNet paper)
+        \item Autoregressive vs autoencoder
+        \item Architectural changes in XLNet
+    \end{itemize}
+}
+
+
 \subsubsection{Nomic}\label{sec:nomic}
 
+\todo[inline, caption={}] {
+    \begin{itemize}
+        \item Mention nomic is pitched as the first fully reproducable open-source, open-weights, open-data text embedding model
+        \item Detail BERT archietcture adaptations
+        \item Higher masking rate
+        \item AdamW optimiser, learning rate with linear warmup.
+        \item (weakly supervised) Pre-training: consistency filtering, curated long context text pairs, gradcache, mixed precision training.
+        \item Prefixes on tasks: Symmetric category; asymmetric category.
+        \item Supervised contrastive fine-tuning: datasets; learning rate. Randomly sampled mined negatives.
+        \item talk about results, especially performance on long context
+    \end{itemize}
+}
+
+
 \section{Dimensionality Reduction}\label{sec:dimred}
+\todo[inline, caption={}] {
+    \begin{itemize}
+        \item Talk why dimensionality reduction is needed: visualisation, curse of dimensionality, clustering? Figure out how to structure this well for the story.
+        \item Talk about PCA and UMAP.
+    \end{itemize}
+}
 \subsection{PCA}
+\todo[inline, caption={}] {
+    \begin{itemize}
+        \item Talk about PCA mathematics and why its used for dim reduction
+        \item Talk about elbowing and finding the most optimal (?)
+    \end{itemize}
+}
+
 \subsection{UMAP}
+\todo[inline, caption={}] {
+    \begin{itemize}
+        \item Talk about UMAP, the algorithm, the assumptions, the constraints
+        \item Use the visualisation of the elephant here.
+    \end{itemize}
+}
 
 \section{Clustering}
+
+\todo[inline, caption={}] {
+    \begin{itemize}
+        \item Talk about what clustering does, i.e. looking at trying to categorise or something
+        \item Talk about the curse of dimensionality and why clustering does not perform well.
+        \item Talk about k-Medoids (supervised), DBSCAN and HDBSCAN (unsupervised).
+    \end{itemize}
+}
+
 \subsection{k-Medoids}
+\todo[inline, caption={}] {
+    \begin{itemize}
+        \item Talk about algorithm
+        \item Talk about the parameters any effects when tuning these parameters.
+        \item Talk about drawbacks and benefits of this approach, citations needed.
+    \end{itemize}
+}
 \subsection{DBSCAN}
+\todo[inline, caption={}] {
+    \begin{itemize}
+        \item Talk about algorithm
+        \item Talk about the parameters any effects when tuning these parameters.
+        \item Talk about drawbacks and benefits of this approach, citations needed.
+    \end{itemize}
+}
 \subsection{HDBSCAN}
+\todo[inline, caption={}] {
+    \begin{itemize}
+        \item Talk about algorithm
+        \item Talk about the parameters any effects when tuning these parameters.
+        \item Talk about drawbacks and benefits of this approach, citations needed.
+    \end{itemize}
+}
 
 \section{Clustering Evaluation}
+
+\todo[inline, caption={}] {
+
+    Maybe this should be later on in the methodology? 
+
+    \begin{itemize}
+        \item Motivate the need for clustering evaluation.
+        \item Just highlight mathematics of each algorithm and mention the need for them.
+    \end{itemize}
+}
 \subsection{Inertia}
 \subsection{Silhouette}
 \subsection{Davies-Bouldin Index}
@@ -340,41 +486,46 @@ The pre-training phase can be split into two further training tasks:
 
 \section{Maybe Optuna}
 
-\clearpage
 \chapter{Automatic Label Generation}\label{chap:Methodology}
 
-% \todo[inline,caption={}]{
-%     Describe the methods and procedures used.
-%     The things in this section will include.
-%     \begin{itemize}
-%         \item Explaining data format and data visualisation: wordcloud.
-%         \item Data cleaning steps, including removing key words such as Ion Source.
-%         \item Text preprocessing steps (cleaning) and computational challenges (tensorflow).
-%         \item Choosing the best sentence embedding transformer: MPNET, NOMIC.
-%         \item Data visualisation (before and after sentence embedding): similarity visualisation, explain unique sentences, token length distribution.
-%         \item Motivate why clustering in higher dimensions performs worse
-%         \item UMAP, PCA, t-SNE comparison. Motivate using UMAP.
-%         \item UMAP hyperparameter optimisation.
-%         \item Performing clustering with kmedoids, dbscan, hdbscan.
-%         \item Using optuna.
-%         \item Evaluation of results and choosing the best model (and arguing why hdbscan is the best by looking at the variance of dbscan and inflexibility of kmedoids)
-%         \item Touch on the production of a CLI application that allows you to mix and match various parts of the pipeline. Motivate the need for command line tool.
-%     \end{itemize}
-% }
+\todo[inline,caption={}]{
+    Describe the methods and procedures used.
+    The things in this section will include.
+    \begin{itemize}
+        \item Explaining data format and data visualisation: wordcloud.
+        \item Data cleaning steps, including removing key words such as Ion Source.
+        \item Text preprocessing steps (cleaning) and computational challenges (tensorflow).
+        \item Choosing the best sentence embedding transformer: MPNET, NOMIC.
+        \item Data visualisation (before and after sentence embedding): similarity visualisation, explain unique sentences, token length distribution.
+        \item Motivate why clustering in higher dimensions performs worse
+        \item UMAP, PCA, t-SNE comparison. Motivate using UMAP.
+        \item UMAP hyperparameter optimisation.
+        \item Performing clustering with kmedoids, dbscan, hdbscan.
+        \item Using optuna.
+        \item Evaluation of results and choosing the best model (and arguing why hdbscan is the best by looking at the variance of dbscan and inflexibility of kmedoids)
+        \item Touch on the production of a CLI application that allows you to mix and match various parts of the pipeline. Motivate the need for command line tool.
+    \end{itemize}
+}
 
 \chapter{Results and Discussion}
 
-% \todo[inline,caption={}]{
-% Describe the results and analyse the results
-% \begin{itemize}
-%     \item Analyse the word cloud.
-%     \item Analyse the sentence embedding results.
-%     \item Analyse UMAP vs. PCA vs. t-SNE qualitatively and later quantitatively (compared to the clustering).
-%     \item Anaylse the UMAP hyperparameter optimisation qualitatively, mention that we use Optuna.
-% \end{itemize}
-% }
+\todo[inline,caption={}]{
+Describe the results and analyse the results
+\begin{itemize}
+    \item Analyse the word cloud.
+    \item Analyse the sentence embedding results.
+    \item Analyse UMAP vs. PCA vs. t-SNE qualitatively and later quantitatively (compared to the clustering).
+    \item Anaylse the UMAP hyperparameter optimisation qualitatively, mention that we use Optuna.
+\end{itemize}
+}
 
 \chapter{Conclusion}
+
+\todo[inline, caption={}]{
+    \begin{itemize}
+        \item Definitely talk about clear and transparent PLMs and malicious stuff (see BERT section).
+    \end{itemize}
+}
 
 % \todo[inline,caption={}]{
 % Summarize your findings and suggest areas for future work.

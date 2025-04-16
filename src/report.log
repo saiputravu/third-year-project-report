@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.4)  12 APR 2025 20:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.4)  16 APR 2025 01:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -619,115 +619,136 @@ Package hyperref Info: bookmark level for unknown todo defaults to 0 on input li
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.147 \chapter
+l.158 \chapter
               {Introduction} [1
 
 
 ]
 Chapter 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 160--161
 
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 161.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 172.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [2
 
-] [3]
-Chapter 2.
-[4
-
 ]
-Overfull \hbox (0.52362pt too wide) in paragraph at lines 212--213
+<./images//ISIS.png, id=250, 770.63419pt x 936.56021pt>
+File: ./images//ISIS.png Graphic file (type png)
+<use ./images//ISIS.png>
+Package pdftex.def Info: ./images//ISIS.png  used on input line 196.
+(pdftex.def)             Requested size: 327.74895pt x 398.3115pt.
+<./images//ISIS2.png, id=253, 664.44153pt x 600.28346pt>
+File: ./images//ISIS2.png Graphic file (type png)
+<use ./images//ISIS2.png>
+Package pdftex.def Info: ./images//ISIS2.png  used on input line 205.
+(pdftex.def)             Requested size: 207.0021pt x 187.01106pt.
+ [3] [4 <./images//ISIS.png (PNG copy)>] [5 <./images//ISIS2.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 223--224
+
+ []
+
+[6]
+<./images//isisDowntime.png, id=291, 489.9906pt x 475.5366pt>
+File: ./images//isisDowntime.png Graphic file (type png)
+<use ./images//isisDowntime.png>
+Package pdftex.def Info: ./images//isisDowntime.png  used on input line 234.
+(pdftex.def)             Requested size: 172.5pt x 167.41261pt.
+<./images//fap.png, id=295, 603.97072pt x 805.29428pt>
+File: ./images//fap.png Graphic file (type png)
+<use ./images//fap.png>
+Package pdftex.def Info: ./images//fap.png  used on input line 239.
+(pdftex.def)             Requested size: 327.74895pt x 436.99051pt.
+ [7 <./images//isisDowntime.png>] [8 <./images//fap.png (PNG copy)>]
+Overfull \hbox (0.52362pt too wide) in paragraph at lines 267--268
 []\T1/lmr/m/n/8 Run-to-failure (R2F) main-te-nance: Con-tin-ual us-age of the sys-tem un-til fail-ure. Restora-
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 217--218
-
- []
-
-[5]
-
-LaTeX Warning: Marginpar on page 6 moved.
-
-[6] [7]
-
-Package natbib Warning: Citation `todo' on page 8 undefined on input line 265.
-
-
-LaTeX Warning: Reference `' on page 8 undefined on input line 265.
-
-[8]
-Chapter 3.
-
-Underfull \hbox (badness 10000) in paragraph at lines 285--286
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 272--273
 
  []
 
 
-LaTeX Warning: Marginpar on page 9 moved.
+LaTeX Warning: Marginpar on page 10 moved.
+
+[10] [11]
+
+Package natbib Warning: Citation `todo' on page 12 undefined on input line 320.
 
 
-LaTeX Warning: Marginpar on page 9 moved.
+LaTeX Warning: Reference `' on page 12 undefined on input line 320.
 
-[9
+[12]
+Chapter 2.
 
-]
-<./images//BERT1.png, id=383, 768.42183pt x 312.67836pt>
-File: ./images//BERT1.png Graphic file (type png)
-<use ./images//BERT1.png>
-Package pdftex.def Info: ./images//BERT1.png  used on input line 312.
-(pdftex.def)             Requested size: 327.74895pt x 133.36603pt.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 318.
- (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [10] [11 <./images//BERT1.png (PNG copy)>] [12]
-Chapter 4.
+Underfull \hbox (badness 10000) in paragraph at lines 340--341
+
+ []
+
+
+LaTeX Warning: Marginpar on page 13 moved.
+
+
+LaTeX Warning: Marginpar on page 13 moved.
+
 [13
 
+]
+<./images//BERT1.png, id=470, 768.42183pt x 312.67836pt>
+File: ./images//BERT1.png Graphic file (type png)
+<use ./images//BERT1.png>
+Package pdftex.def Info: ./images//BERT1.png  used on input line 367.
+(pdftex.def)             Requested size: 327.74895pt x 133.36603pt.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 373.
+ (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [14] [15 <./images//BERT1.png (PNG copy)>] [16] [17] [18]
+Chapter 3.
+[19
+
+]
+Chapter 4.
+[20
 
 ]
 Chapter 5.
-[14
+(./report.bbl [21
 
-]
-Chapter 6.
-(./report.bbl [15
+] [22
 
-] [16
-
-] [17]
-Underfull \hbox (badness 1776) in paragraph at lines 199--202
+] [23]
+Underfull \hbox (badness 1776) in paragraph at lines 227--230
 \T1/lmr/m/n/8 em-bed: Train-ing a re-pro-ducible long con-text text em-bed-der.  \T1/lmr/m/it/8 arXiv preprint
  []
 
-[18] [19])
+[24] [25])
 
 Package natbib Warning: There were undefined citations.
 
-[20] (./report.aux)
+[26] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: BF0F2EEB0EBE36B9E16D733FBB925B69;4146.
+(rerunfilecheck)             Checksum: A76276F697387D291FCA3117ECF8938C;4632.
  ) 
 Here is how much of TeX's memory you used:
- 21863 strings out of 478287
- 414155 string characters out of 5849290
- 686450 words of memory out of 5000000
- 39501 multiletter control sequences out of 15000+600000
+ 21994 strings out of 478287
+ 416855 string characters out of 5849290
+ 691973 words of memory out of 5000000
+ 39596 multiletter control sequences out of 15000+600000
  522337 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 115i,13n,118p,1513b,950s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
-Output written on report.pdf (26 pages, 642589 bytes).
+ 115i,13n,118p,1695b,950s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
+Output written on report.pdf (32 pages, 2705420 bytes).
 PDF statistics:
- 525 PDF objects out of 1000 (max. 8388607)
- 470 compressed objects within 5 object streams
- 141 named destinations out of 1000 (max. 500000)
- 258 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 665 PDF objects out of 1000 (max. 8388607)
+ 587 compressed objects within 6 object streams
+ 173 named destinations out of 1000 (max. 500000)
+ 294 words of extra memory for PDF output out of 10000 (max. 10000000)
 

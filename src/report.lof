@@ -1,7 +1,10 @@
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces The schematic representation of the physical layout of ISIS. The light grey areas are footprints of the buildings. Source: (\citet {thomason2019isis}).}}{4}{figure.1.1}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces ISIS ion source and chain of accelerators, with $H^-$ ions in blue and protons in red. Not to scale. Source: (\citet {2021practicalguide}).}}{5}{figure.1.2}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces A visualisation of the machine downtime as opposed to time operating, according to the ISIS operational cycle. Data source: (\citet {isisbeamoperations2024})}}{7}{figure.1.3}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Example FAP1101, screenshotted from an iPAD version of FLD version 2.2, which shows the FAP for pre-injector, injector and high energy drift space. Source: (\citet {fld2017})}}{8}{figure.1.4}%
 \addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces The overall pre-training and fine-tuning phases for BERT. For different down-stream tasks, notice the same architecture, except output layer, is used. Source: (\citet {devlin2019bert}).}}{11}{figure.3.1}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces The overall pre-training and fine-tuning phases for BERT. For different down-stream tasks, notice the same architecture, except output layer, is used. Source: (\citet {devlin2019bert}).}}{15}{figure.2.1}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
