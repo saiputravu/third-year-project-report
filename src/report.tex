@@ -22,6 +22,7 @@
 \usepackage{adjustbox}
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
+\usepackage{subcaption}
 
 \usepackage{anyfontsize}
 \usepackage{lmodern}
@@ -139,6 +140,7 @@
         \textbf{UKRI} & United Kingdom Research and Innovation. \\
         \textbf{UMAP} & Uniform Manifold Approximation and Projection. \\
         \textbf{MCR} & Main Control Room. \\
+        \textbf{Operalog} & The ISIS Operational Log. \\
 
     \end{tabular}
 \end{table}
@@ -186,18 +188,15 @@ The things in this section will include
 }
 
 
-\section{Overview of the ISIS Research Facility}
+\section{Overview of the ISIS Research Facility}\label{sec:isisbg}
 
-
-The STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facility is a research centre for physical and life sciences. This is owned and operated by the STFC, which is a council that forms the United Kingdom Research and Innovation (UKRI). The UKRI is a public body of the United Kingdom's Government that directs funding for research and innovation through the science budget of the Department for Science, Innovation and Technology. ISIS was designed in the 1970s and early 1980s, with the core of the design being a strong-focusing machine with size radio frequency accelerating cavities to provide an average beam current of $200\mu A$ \cite{thomason2019isis}. According to (\cite{thomason2019isis}), with the introduction of ISIS and other neutron sources, rapid development of neutron instrumentation was stimulated. Through time, many components instrumentation have been added such as the second target station - the current schematic representation of the facility can be seen in Figure~\ref{fig:isis}.
+The STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facility is a research centre for physical and life sciences. It is owned and operated by the STFC, a council within the United Kingdom Research and Innovation (UKRI). The UKRI is a public body of the United Kingdom's Government that directs funding for research and innovation through the science budget of the Department for Science, Innovation and Technology. ISIS was designed in the 1970s and early 1980s, with the core of the design being a strong-focusing machine with six radio frequency accelerating cavities to provide an average beam current of $200\mu A$ \cite{thomason2019isis}. According to (\citet{thomason2019isis}), with the introduction of ISIS and other neutron sources, rapid development of neutron instrumentation was stimulated. Over the years, the facility has been augmented with numerous components and instruments, such as the second target station - the current schematic representation of the facility can be seen in Figure~\ref{fig:isis}.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{ISIS.png}
     \caption{The schematic representation of the physical layout of ISIS. The light grey areas are footprints of the buildings. Source: (\citet{thomason2019isis}).}\label{fig:isis}
 \end{figure}
-
-\textbf{}\\This section details the various stages of the ISIS facility and discusses the current maintenance procedures.
 
 \subsection{The end-to-end production of neutrons and muons}
 \begin{figure}[htbp]
@@ -206,28 +205,30 @@ The STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facilit
     \caption{ISIS ion source and chain of accelerators, with $H^-$ ions in blue and protons in red. Not to scale. Source: (\citet{2021practicalguide}).}\label{fig:isis2}
 \end{figure}
 
-The ISIS facility, described in A Practical Guide to the ISIS Neutron and Muon Source (\citet{2021practicalguide}), is comprised of four major stages: (1) the ion source, (2) the radio-frequency quadrupole (RFQ), (3) linear accelerator (LINAC) and (4) the synchrotron. These components combined produce a 800 MeV proton beam that is directed to either target station 1 (TS-1) or target station 2 (TS-2). Starting with $H^-$ ions (protons with two orbiting electrons), the path taken through the four stages is shown in Figure~\ref{fig:isis2}. Throughout the entire $H^-$ or proton acceleration process, the beam must be kept under good vacuum and, to do so, many tens of vacuum pumps are maintaining the vacuum between $10^{-8}$ and $10^{-9}$ of atmospheric pressure.
+The ISIS facility, described in A Practical Guide to the ISIS Neutron and Muon Source (\citet{2021practicalguide}), is comprised of four major stages: (1) the ion source, (2) the radio-frequency quadrupole (RFQ), (3) linear accelerator (LINAC) and (4) the synchrotron. These components combine to produce a 800 MeV proton beam that is directed to either target station 1 (TS-1) or target station 2 (TS-2). Starting with $H^-$ ions (protons with two orbiting electrons), the path taken through the four stages is shown in Figure~\ref{fig:isis2}. Throughout the entire $H^-$ or proton acceleration process, the beam must be kept under good vacuum and, to do so, many tens of vacuum pumps are maintaining the vacuum between $10^{-8}$ and $10^{-9}$ of atmospheric pressure.
 
-The first stage of the ISIS machine is the ion source, which generates the negative hydrogen ($H^-$) ions, which are then accelerated through the RFQ and LINAC. This ion source is a pulsed source of $H^-$ ions, which is ionised from a stream of Hydrogen gas by arranging for an electric discharge to take place between an anode and a cathode inside. According to the guide, published by the ISIS facility, around 20ml of hydrogen gas per minute is continuously delivered to the ion source from a hydrogen gas bottle. Once the $H^-$ ions emerge from the ion source, they have an energy of 35 keV and are presented to the RFQ via the Low Energy Beam Transport line (LEBT). The LEBT prevents the low-energy $H^-$ beam from increasing in size (due to the mutual repulsion of the ions) and also incorporates a beam stop. This is essentially just a remotely removable sheet of metal that physically blocks the beam.
+The first stage of the ISIS machine is the ion source, which generates the negative hydrogen ($H^-$) ions, which are then accelerated through the RFQ and LINAC. This ion source is a pulsed source that ionises hydrogen gas via an electric discharge between an internal anode and cathode \cite{2021practicalguide}. As detailed in the guide, around 20ml of hydrogen gas per minute is continuously delivered to the ion source from a hydrogen gas bottle. Once the $H^-$ ions emerge from the ion source, they have an energy of 35 keV and are presented to the RFQ via the Low Energy Beam Transport line (LEBT). The LEBT prevents the low-energy $H^-$ beam from increasing in size (due to the mutual repulsion of the ions) and also incorporates a beam stop. This is essentially a remotely removable sheet of metal that physically blocks the beam.
 
-Next, the ISIS RFQ uses high-intensity radio frequency electric fields that focus, bunch and accelerate this $H^-$ beam. The RFQ is located roughly one to two metres downstream from the ion source and immediately upstream of the LINAC and the beam leaves the RFQ at 665 keV. One of the roles of the RFQ is to effectively decouple the ion source from the LINAC, reducing the extent of variations in the beam in the LINAC, synchrotron and targets.
+Following the ion source and LEBT, the $H^-$ beam enters the RFQ. This section of the machine utilises high-intensity radio frequency electric fields that contain (focus), group (bunch) and begin accelerating the particles in this beam up to an energy of 665 keV. A key function of the RFQ is to isolate downstream accelerators from variations originating in the ion source, thereby improving beam stability in the LINAC, synchrotron and target stations \cite{2021practicalguide}. 
 
-The LINAC consists of four accelerating tanks which progressively accelerate the beam from 665 keV to 70 MeV using high-intensity radio-frequency fields. The whole structure is arranged purposefully to be highly resonant (with a Q factor \cite{michael2006electronic} of roughly 50000) at the operating radio-frequency. The tank structures are resonant at a sufficient enough level that their dimensions must be determined extremely precisely. This is done through controlling the temperature of a tank cooling water to significantly less than 1$^\circ $C which essentially eliminates the effects of thermal expansion and contraction. It should be noted that, as the second electrons making up the $H^-$ ions are not tightly bound, if the vacuum inside the LINAC tanks is faulty, then there could be a significant increase in radioactivity and beam loss. It is therefore important to maintain vacuum levels at the correct thresholds, mentioned in the guide. Beam loss monitors are installed over the length of the LINAC to provide metrics and warning signals when excessive losses occur. The output from the LINAC is a stream of $H^-$ ions lasting around 200 $\mu s$. 
+The subsequent stage is the LINAC, which increases the beam energy from 665 keV to 70 MeV. This acceleration is achieved via high-intensity radio-frequency fields arranged in structure to possess a very high Q factor \cite{michael2006electronic} (around 50,000). This means their geometry must be exceptionally stable. Through the precise temperature regulation of the cooling water tank, ensuring it is significantly under $1^\circ C$, the effects of thermal expansion and contraction are countered \cite{2021practicalguide}. Furthermore, maintaining a high vacuum is critical throughout the LINAC. Failure to do so can lead to premature stripping of loosely bound electrons in the $H^-$ ions, consequently leading to an increase in radioactivity and particle loss (i.e. beam loss). To detect and warn about such cases, beam loss monitors are installed throughout the LINAC, which provide indicate whenever there is an excessive loss in particles. \cite{2021practicalguide}.
 
-The ion beam from the LINAC is injected into the synchrotron via the High Energy Drift Space (HEDS) which is a roughly 50m beam transport line. To enter the synchrotron, charge-exchange injection \cite{ankenbrandt1980h} occurs and the $H^-$ ions are stripped of their electrons to become protons. Charge-exchange injection is chosen as it is the most efficient way of taking and wrapping a long string of particles around the circumference of a synchrotron.
+Once the $H^-$ particles leave the LINAC, they then pass through a beam transport line - the High Energy Drift Space (HEDS). The function of this is to mainly reduce the particles spreading and focus the beam to the synchrotron. To accumulate the high intensity beam in the synchrotron, ISIS employs charge-exchange injection . This technique allows incoming $H^-$ beam from the LINAC to be `layered' into the synchrotron's circumference over many turns. As the $H^-$ ions enter the synchrotron ring, they pass through a thin foil which strips away their two electrons, converting them to protons. The charge-exchange injection process is specifically chosen as it is the most efficient way of taking and wrapping a long string of particles around the circumference of a synchrotron \cite{2021practicalguide, ankenbrandt1980h}.
 
-Once the protons at 70 MeV enter the synchrotron, a machine made up of many large magnets with a 26m circular orbit of radius and 163m circumference, they are accelerated to 800 MeV, 86\% of the speed of light. The synchrotron is made up of ten sections called `superperiods' each of which bends the beam at an angle of 36$^\circ$ using the magnets. These magnets further prevent beam expansion. The guide describes the LINAC to be thought of as a `once-through' machine and the synchrotron as a `thousands-of-times-around' machine. Additionally, in the synchrotron, there are four beam loss monitors to each superperiod to provide alerts when excessive beam losses arise due to poor synchronism. Every time the protons complete one full cycle, they pick up roughly 0.1 MeV of energy. Therefore, it takes just under 8000 turns for the protons to be accelerated to 800 MeV. Further configuration details can be found in the guide. The operational success of a synchrotron depends on good synchronism as the protons must be kept in the same orbit whilst being accelerated. To do this, the magnetic fields in the magnets and strength of the accelerating voltage have to increase with time to match the accelerating protons. After the injection from the LINAC is complete, a low-level accelerating voltage is applied, gradually separating the constant ring of charge into two separate bunches, which are a little more than $0.1\mu s$ apart. Finally, to send the two proton bunches to a particular target station, there exist three kicker magnets which deflect the bunches upwards. These are then bent up into the respective extracted proton beam lines (EPB1 or EPB2).
+The 70 MeV beam is then injected into the synchrotron, which is the primary accelerator ring at ISIS. This ring boosts the (now proton) beam energy to 800 MeV. For an idea of scale, the machine has a circumference of around 163m (corresponding to a radius of approximately 26m). It features a repeating structure of ten `superperiods'. Each superperoid uses dipole magnets to bend the proton path by $36^\circ$ and quadrupole magnets to maintain beam focus \cite{2021practicalguide}. The protons gain energy over just under 8000 revolutions, as each turn gives a proton 0.1 MeV. While the protons gain energy, the magnetic fields and accelerating radio-frequency voltages must be, very precisely, increased in synchronism. The initially continuous ring of injected protons is gathered into two distinct bunches, a little more than $0.1\mu s$ apart, using a low-level radio-frequency voltage before the main acceleration begins \cite{2021practicalguide}.
 
-These two extracted proton beam lines deliver, consisting of a long series of magnets for directing, bending and steering, the proton bunches from the synchrotron to the respective target stations (TS-1 and TS-2). Both EPB1 and EPB2 lines are enclosed in thick steel and concrete shielding to account for cases of complete beam loss. Again, beam loss monitors are positioned along both lines to provide warnings of excessive beam losses. 
+Once accelerated, in order to direct the proton bunches towards a pre-selected target station (TS-1 or TS-2) three kicker magnets are used which deflect the bunches upwards. These bunches are then bent into the respective extracted proton beam lines (EPB1 or EPB2). These transfer lines utilise magnets to steer the beam towards the respective target stations. Additionally, as a safety precaution, both lines are heavily shielded in thick steel and concrete and beam loss monitors are installed along their length to detect any errant particles \cite{2021practicalguide}.
 
-There are two neutron producing targets on ISIS, which convert the high-energy proton beam as many neutrons as possible in the smallest amount of volume. This means choosing a target material with a high atomic number and highest neutron fluxes \cite{stammler1983methods}. As described in the guide, ISIS uses tantalum-clad tungsten targets. These neutron-producing targets are surrounded by four moderators (a liquid hydrogen moderator at 100 K, liquid hydrogen moderator at 20 K and two water moderators at 300 K) and a beryllium reflector \cite{sharma2001nuclear}. Around 20m upstream from the TS-1 neutron producing target, the ISIS Intermediate Target is incorporated in EPB1. This is a roughly 1cm thick graphite target that is placed directly in the beam to produce pions that decay into muons. These muons are selected by the muon beam line which transports these to various instrumentation. \\ 
+The primary purpose of the ISIS facility culminates at the target stations. The high-energy proton beam collides with a dense, high atomic number target (tantalum-clad tungsten at ISIS) designed to produce a large number of neutrons via spallation, within a compact region of space \cite{2021practicalguide}. These energetic neutrons are then slowed down (moderated) by surrounding materials (liquid nitrogen, liquid hydrogen and water at ISIS) and reflected back towards instruments by a beryllium reflected \cite{sharma2001nuclear, 2021practicalguide}. Additionally, ISIS produces muons for experiments by inserting a thin (roughly 1cm thick) graphite target into the proton beam around 20m away from the TS-1 neutron target. Collision in this target generates pions, which subsequently decay into muons \cite{2021practicalguide}.
 
-\noindent With the detailed description of the steps required for the production of neutrons and muons, sourced from the guide, we highlight some key takeaways. There are an incredible number of points of failure in the facility due to the highly precise and radioactive nature task. The ISIS team have taken many precautions such as fault detection mechanisms (i.e. the beam loss monitors), breakdown counter-measures (i.e. the thick layer of steel and concrete in the EPB1 and EPB2 lines). However, as there are a large amount of components that can go wrong and issues that may arise, regular maintenance is required. 
+\noindent This detailed description sourced from the guide highlights some key takeaways. There are an incredible number of points of failure in the facility due to the highly precise and radioactive nature of the task. The ISIS team has taken many precautions such as fault detection mechanisms (i.e. the beam loss monitors), breakdown counter-measures (i.e. the thick layer of steel and concrete in the EPB1 and EPB2 lines). However, as there are a large number of components that can go wrong and issues that may arise, regular maintenance is required. 
 
 \subsection{Maintenance at ISIS} 
-As detailed in the 33-year historical account of the ISIS facility (\citet{thomason2019isis}), the ISIS operations occur in cycles, periods of roughly 30-50 days where the machine runs constantly without breaks. Roughly 10 days before the scheduled start of a cycle, and gaps between cycles typically range from 1 week to 3 months. In addition, typically every four years, shutdowns scheduled for 6-9 months occur for major maintenance and upgrade work. On the ground, day-to-day operations are run from the Main Control Room (MCR) by the ISIS crew which consists of 6 shift teams of the following roles: (1) duty officer, (2) assistant duty officer and (3) duty technician. \todo{Add the graph, if you can ever figure out the operating cycles before 2016.} Downtime, quantified as the amount of time the machine is out-of-use, is a major consideration when deciding maintenance schedules. Many factors affect downtime such as having a robust plan, the day-to-day operators knowledge of the system and adequate inventories of spares \cite{thomason2019isis}. Figure~\ref{fig:isisDowntime} shows the ratio of downtime to active machine operation since 2016, with over half the lifetime of the machine being down. In other words, over half the time, the machine is not active and is undergoing maintenance. This can be seen as a trade-off, between keeping the machine operative versus reducing failures through planned maintenance. The major maintenance strategies and their trade-offs are further explored in Section~\ref{sec:maintenanceTechniques}.
+As detailed in the 33-year historical account of the ISIS facility (\citet{thomason2019isis}), the ISIS operations occur in cycles, periods of roughly 30-50 days where the machine runs constantly without breaks. Roughly 10 days before the scheduled start of a cycle, and gaps between cycles typically range from 1 week to 3 months. In addition, typically every four years, shutdowns scheduled for 6-9 months occur for major maintenance and upgrade work. On the ground, day-to-day operations are run from the Main Control Room (MCR) by the ISIS crew which consists of 6 shift teams of the following roles: (1) duty officer, (2) assistant duty officer and (3) duty technician. \todo{Add the graph, if you can ever figure out the operating cycles before 2016.} The expertise and rapid response capabilities of these trained operational crews are vital for both routine operation and initial fault response.
+Minimising this downtime is crucial for several reasons inherent to operating a large-scale user facility like ISIS \cite{thomason2019isis}. Primarily, unscheduled downtime directly impacts the international researchers allocated beam time, potentially jeopardising experiments planned months or years in advance and wasting valuable research opportunities. Furthermore, interruptions disrupt the tightly packed operational schedule, reduce the overall scientific output, and incur significant operational costs without delivering the facility's core research product \cite{thomason2019isis}. Therefore, understanding the factors that contribute to downtime and implementing strategies to mitigate it are paramount.
+Many factors affect downtime such as having a robust plan, the day-to-day operators' knowledge of the system and adequate inventories of spares \cite{thomason2019isis}. Figure~\ref{fig:isisDowntime} shows the ratio of downtime to active machine operation since 2016, with over half the time of the machine since 2016 being down. In other words, over half the time, the machine is not active and is undergoing maintenance. This highlights the trade-off between maximising operational availability and minimizing failures through planned maintenance. The major maintenance strategies and their trade-offs are further explored in Section~\ref{sec:maintenanceTechniques}.
 
-To help reduce downtime, over the last few years, a first-line diagnosis (FLD) system was introduced, presented in (\citet{fld2017}). The FLD system helps reduce downtime by providing expert guidance on fault diagnosis and resolution, which has been shown to improve the dissemination of knowledge from experts to operations. The FLD utilises Fault Analysis Pathways (FAPs), which provide structural links between ISIS subsystems. This allows users of the system to access granular sub-systems' local documentation minimising file hunting and saving time and effort. An example FAP can be seen in Figure~\ref{fig:fap}. 
+To help reduce downtime, over the last few years, a first-line diagnosis (FLD) system was introduced, presented in (\citet{fld2017}). The FLD system helps reduce downtime by providing expert guidance on fault diagnosis and resolution, which has been shown to improve the dissemination of knowledge from experts to operations. The FLD utilises Fault Analysis Pathways (FAPs), which provide structural links between ISIS subsystems. This allows users of the system to access granular subsystems' local documentation minimising file hunting and saving time and effort. An example FAP can be seen in Figure~\ref{fig:fap}.
 
 \begin{figure}[htbp]
     \centering
@@ -237,13 +238,11 @@ To help reduce downtime, over the last few years, a first-line diagnosis (FLD) s
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{fap.png}
-    \caption{Example FAP1101, screenshotted from an iPAD version of FLD version 2.2, which shows the FAP for pre-injector, injector and high energy drift space. Source: (\citet{fld2017})}\label{fig:fap}
+    \caption{Example FAP1101, screenshotted from an iPAD version of FLD version 2.2, which shows the FAP for pre-injector, injector and High Energy Drift Space. Source: (\citet{fld2017})}\label{fig:fap}
 \end{figure}
 
-\subsection{Datasets}
 
-As mentioned previously, the ISIS research 
-
+\textbf{}\\
 \todo[inline,caption={}]{
 Introduce the research topic. 
 The things in this section will include
@@ -253,7 +252,7 @@ The things in this section will include
     \item Talk about the ISIS Crew and importance of having trained staff on premises. - SORT OF
     \item Talk about the Lost time and why it is important to minimise this for the ISIS research facility. - SORT OF
     \item Describe the first-line diagnosis system (FLD) and FAPs. - DONE
-    \item Talk about the Datasets, operalog
+    \item Talk about the Datasets, operalog (MOVED)
 \end{itemize}
 }
 
@@ -271,7 +270,7 @@ In the literature, various terms and categories of maintenance arise each with d
 \end{enumerate}
 It should be noted, that several sources conflate CBM and PdM \cite{mobley2002introduction}. As in (\citet{susto2012predictive}), where they are given as separate categories, we follow suit. \\ 
 
-The PdM strategy stands out in the four categories presented as, given a statistical inference model that is able to detect faults accurately, this policy optimises the trade-off between improving equipment condition, reduce failure rates for equipment and minimising maintenance costs \cite{carvalho2019systematic}. This technique enables one to apply foresight for pre-emptive scheduling of large-scale maintenance. \todo{Implement the ISIS version of this in the background. Talk about the FIRST LINE DIAGNOSIS system} As pointed out in Section~(\todo{fill this}...), the ISIS facility aims to strike a balance between PvM, CBM and PdM through periods of large-scaled scheduled maintenance and collection of high quantities of metrics. This is done through the careful coordination between cycle scheduling, day-to-day crew-based monitoring and the FLD \cite{thomason2019isis}.
+The PdM strategy stands out in the four categories presented as, given a statistical inference model that is able to detect faults accurately, this policy optimises the trade-off between improving equipment condition, reduce failure rates for equipment and minimising maintenance costs \cite{carvalho2019systematic}. This technique enables one to apply foresight for pre-emptive scheduling of large-scale maintenance. As pointed out in Section~\ref{sec:isisbg}, the ISIS facility aims to strike a balance between PvM, CBM and PdM through periods of large-scaled scheduled maintenance and collection of high quantities of metrics. This balance is achieved through the careful coordination between cycle scheduling, day-to-day crew-based monitoring and the FLD \cite{thomason2019isis}.
 
 In industry, many maintenance strategies prefer using PdM whilst experimenting with a variety of statistical inference and artificial intelligence modelling approaches \cite{mobley2002introduction, jezzini2013effects}. Some examples from \cite{carvalho2019systematic} are listed in Table~\ref{tab:pdmPaperTable} which highlights the trend in the industry towards more accurate, ML-based approaches.
 
@@ -317,7 +316,7 @@ Therefore, the problem of sentence similarity can be directly mapped from the pr
     \item Fourth-generation: universal text embeddings. The generation which is currently state-of-the-art, with the aim of developing a unified model which is able to address multiple downstream tasks. Examples of models in this generation, making progress towards unification include Gecko \cite{lee2024gecko}, Multilingual e5 text embeddings \cite{wang2024multilingual}, Nomic \cite{nussbaum2024nomic} and many more. 
 \end{itemize}
 
-Second-, third- and fourth-generation text embedding models are used frequently in PdM for applications such as insight extraction \cite{abijith2023large,usuga2022using} and clustering intents from unstructured text data \cite{nota2022text}. Sources of natural language datasets, in industrial applications typically arise from operational or managerial log files which document aspects such as failures, resolutions and comments similar to the ISIS facility failure logs \todo{cite and fill when section exists}(\cite{todo} see Section~\ref{}). Advanced text embedding models enable for semi- or fully automatic insight retrieval and auto-categorisation, enabling intuitive understanding of the textual datasets potentially highlighting patterns in failure.
+Second-, third- and fourth-generation text embedding models are used frequently in PdM for applications such as insight extraction \cite{abijith2023large,usuga2022using} and clustering intents from unstructured text data. Sources of natural language datasets, in industrial applications typically arise from operational or managerial log files which document aspects such as failures, resolutions and comments. Advanced text embedding models enable for semi- or fully automatic insight retrieval and auto-categorisation, enabling intuitive understanding of the textual datasets potentially highlighting patterns in failure \cite{nota2022text}.
 
 
 \section{(maybe) Clustering}
@@ -352,7 +351,13 @@ The things in this section will include
 }
 
 \section{Sentence Embedding}\label{sec:sentenceEmbedding}
-Briefly touched on in Section~\ref{sec:sentenceSimilarity}, sentence embedding (otherwise known as text embedding) is the NLP task of computing some high-dimensional embedding vector-space representation for unstructured text data. This numerical representation should encode the semantic and syntactic meaning of the text and establish meaningful relationships. For example, the sentence `I like dogs' should have the opposite representation to \todo{Maybe add this as an image illustration} `I hate dogs'.  However these sentences should be more related than to the sentence `My house was destroyed in an earthquake'. Deep learning sentence embedding models are now seen to be state-of-the-art as they are able to extract features automatically and more effectively than manual efforts, when supported with large quantities of data \cite{liang2017text}.
+Briefly touched on in Section~\ref{sec:sentenceSimilarity}, sentence embedding (otherwise known as text embedding) is the NLP task of computing some high-dimensional embedding vector-space representation for unstructured text data. This numerical representation should encode the semantic and syntactic meaning of the text and establish meaningful relationships. For example, the sentence `I like dogs' should have the opposite representation to `I hate dogs'.  However these sentences should be more related than to the sentence `My house was destroyed in an earthquake'. For a naive illustration of this, see Figure~\ref{fig:sentenceEmbeddingExample}, which shows how similar sentences should be grouped together. As Nomic requires the task explicitly in input text (more on this later), `clustering: ' is appended to all sentences. Deep learning sentence embedding models are now seen to be state-of-the-art as they are able to extract features automatically and more effectively than manual efforts, when supported with large quantities of data \cite{liang2017text}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{sentenceEmbeddingExample.png}
+    \caption{Example embedding of random sentences generated using OpenAI's ChatGPT o3-mini-high and then performing text embedding using Nomic Text Embedding v1.5 \cite{nussbaum2024nomic}, then projected onto 2 dimensions using UMAP with a random seed of 42, and minimum neighbours of 15. Only some of the labels are for visual clarity.}\label{fig:sentenceEmbeddingExample}
+\end{figure}
 
 \subsection{BERT-family Transformers}\label{sec:BERT}
 Pre-trained language models (PLMs), such as BERT \cite{devlin2019bert}, have been widely successful in a wide range of NLP tasks through fine-tuning \cite{edunov2019pre, min2023recent}. Fine-tuning is the process of re-training a PLM on specialised tasks, leveraging the model's base knowledge, by applying perturbations to the pre-trained model parameters through gradient descent learning algorithms. These language models, trained on finding an embedding space for natural language as well as stochastically generating tokens to mimic natural language, often provide a great platform to perform task-specific model fine-tuning. 
@@ -487,6 +492,68 @@ One downside of BERT, briefly touched on earlier, is the discrepancy between the
 \section{Maybe Optuna}
 
 \chapter{Automatic Label Generation}\label{chap:Methodology}
+
+\section{Data}
+
+The ISIS research facility publish some open-sourced data at (\citet{isisdata}), which contains over 2000 datasets containing instrumentation calibrations and metrics. In addition to this, the ISIS team maintain proprietary, internal datasets that are available on request. Finally, the day-to-day crew additionally maintain an operational log `Operalog' that contains information about faults that occur and remediation steps taken. As mentioned previously, ISIS has an incredibly large number of sensors for instrumentation precision and safety. In the interest of time and research effort, a specialised focus was set on reviewing the ion source component. The ISIS research facility provided us with data logs of the ion source component, with the earliest entry being on the 27$^{th}$ March 2003. In addition to this, we explored the Operalog. \todo{Maybe mention Yuvan?} In the interest of time, this project was divided into two, with this paper focusing on the Operalog. 
+
+\subsection{The Operalog}
+The operational log, otherwise referred to as the `Operalog', is an Excel spreadsheet with entries documenting moments of machinery failure within the ISIS facility since 1996 till the end of 2023. Important features are documented in Table~\ref{tab:operalog}. One important point to note is that the day-to-day operational crew have developed custom abbreviations, acronyms and terminology which may not immediately be clear. Additionally, different crew members have varying writing styles and levels of depth of information. Thus, this results in a unstructured text dataset which has a huge variance in quality and quantity of information. Furthermore, as noted in Table~\ref{tab:operalog}, FaultRepair was seemingly made redundant post-2017. Figure~\ref{fig:FaultDescriptionVSFaultRepairs} highlights the distribution in the text lengths of both unstructured text fields. Evidently, FaultRepair has lower quality of information, having most of the entries of less than 10. This is further made clear in the Wordcloud illustrations (Figure~\ref{fig:wc}), where FaultDescription clearly has less free space, meaning it has a larger amount of unique words. This indicates the information extracted from FaultDescription encodes more informative context of the failures that have occurred. Therefore, we only consider the FaultDescription text field.
+
+\rowcolors{2}{gray!10}{white}
+\begin{table}[htbp]
+    \fontsize{8}{10}\selectfont
+    \centering
+    \begin{adjustbox}{max width=\textwidth}
+    % \begin{tabular}{p{1cm} p{2cm}, p{9cm}}
+
+    \begin{tabular}{p{3cm} p{4cm} p{10cm}}
+        \toprule
+        \textbf{Feature Name} & \textbf{Data Type} & \textbf{Description} \\
+        \midrule
+        FaultDate & Date-time & Date the fault occurred, with a precision up to the nearest second. \\
+        UserRun & String & Operational cycle that this fault has occurred within. Cycle information up to 2016 can be found at (\citet{isisbeamoperations2024}). \\
+        Downtime & Integer & The amount of time, in hours the downtime has occurred for. \\
+        Group & String, Fixed Category & The group that the faulty equipment is part of. There are 13 unique equipment groups. \\
+        Equipment & String, Fixed Category & The equipment that failed. There are around 200 unique equipment types that have been logged to fail. \\
+        FaultDescription & String, Free-form & This is a free-form, unstructured text field that allows the on-shift operational crew to note details about the problem diagnosis and remediation that has occurred. There is no constraint to the size of this text field.\\
+        FaultRepair & String, Free-form & Another free-form, unstructured text field that allows the on-shift operational crew to note only the remediation steps. The crew seems to have stopped using this field after the end of 2017, preferring to put remediation steps in FaultDescription. \\
+        ManagersComments & String, Free-form & A very rarely used free-form text field, where the manager in charge of the on-shift crew will input comments. \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+    \caption{\fontsize{9}{10}\selectfont Description of important features (columns) in the Operalog.}
+    \label{tab:operalog}
+\end{table}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{FaultDescriptionVSFaultRepairs.png}
+    \caption{Frequency distribution of the lengths of non-blank text fields FaultDescription and FaultRepair. The bin size is 50, thus bar in the x-axis direction a difference of text length of 10.}\label{fig:FaultDescriptionVSFaultRepairs}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{wcFaultRepairs.png}
+        \caption{\fontsize{7}{8}\selectfont FaultRepair}
+        \label{fig:wcFaultRepairs}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{wcFaultDescription.png}
+        \caption{\fontsize{7}{8}\selectfont FaultDescription}
+        \label{fig:wcFaultDescription}
+    \end{subfigure}
+    \caption{Comparison of word clouds for the top 300 most common words for the FaultRepair field versus the FaultDescription field. Larger words are more common, less free space means there more unique words.}
+    \label{fig:wc}
+\end{figure}
+
+
+
+
 
 \todo[inline,caption={}]{
     Describe the methods and procedures used.

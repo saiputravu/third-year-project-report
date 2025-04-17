@@ -29,8 +29,9 @@ C~Ankenbrandt, C~Curtis, C~Hojvat, RP~Johnson, C~Owen, C~Schmidt, L~Teng, and
 
 \bibitem[{Asim Yaqoob}(2017)]{fld2017}
 {Asim Yaqoob}.
-\newblock {First line diagnosis at ISIS}, 10 2017.
+\newblock {First line diagnosis at ISIS}, Oct 2017.
 \newblock URL \url{https://indico.cern.ch/event/558933/contributions/2724364}.
+\newblock Last visited 2025-04-15.
 
 \bibitem[Baba et~al.(2017)Baba, Nakatoh, and Minami]{baba2017plagiarism}
 Kensuke Baba, Tetsuya Nakatoh, and Toshiro Minami.
@@ -120,16 +121,24 @@ Harold Hotelling.
 \newblock \emph{Journal of educational psychology}, 24\penalty0 (6):\penalty0
   417, 1933.
 
+\bibitem[{ISIS Neutron and Muon Source}()]{isisdata}
+{ISIS Neutron and Muon Source}.
+\newblock {ISIS data gateway}.
+\newblock URL \url{https://data.isis.stfc.ac.uk/datagateway}.
+\newblock Last visited 2025-04-16.
+
 \bibitem[{ISIS Neutron and Muon Source}(2021)]{2021practicalguide}
 {ISIS Neutron and Muon Source}.
-\newblock {ISIS A Practical Guide to the ISIS neutron and Muon source}, 4 2021.
+\newblock {A Practical Guide to the ISIS neutron and Muon source}, Apr 2021.
 \newblock URL
   \url{https://www.isis.stfc.ac.uk/Pages/News21_PracticalGuide.aspx}.
+\newblock Last visited 2025-04-15.
 
 \bibitem[{ISIS Neutron and Muon Source}(2024)]{isisbeamoperations2024}
 {ISIS Neutron and Muon Source}.
-\newblock {ISIS beam operations}, 4 2024.
+\newblock {ISIS beam operations}, Apr 2024.
 \newblock URL \url{https://www.isis.stfc.ac.uk/Pages/beam-status.aspx}.
+\newblock Last visited 2025-04-15.
 
 \bibitem[Jezzini et~al.(2013)Jezzini, Ayache, Elkhansa, Makki, and
   Zein]{jezzini2013effects}
@@ -297,11 +306,6 @@ Kaitao Song, Xu~Tan, Tao Qin, Jianfeng Lu, and Tie-Yan Liu.
 \newblock Mpnet: Masked and permuted pre-training for language understanding.
 \newblock \emph{Advances in neural information processing systems},
   33:\penalty0 16857--16867, 2020.
-
-\bibitem[Stammler and Abbate(1983)]{stammler1983methods}
-Rudi~JJ Stammler and M{\'a}ximo~Julio Abbate.
-\newblock Methods of steady-state reactor physics in nuclear design.
-\newblock 1983.
 
 \bibitem[Steinberger and Je{\v{z}}ek(2005)]{steinberger2005text}
 Josef Steinberger and Karel Je{\v{z}}ek.

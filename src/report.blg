@@ -3,45 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: report.aux
 The style file: plainnat.bst
 Database file #1: refs.bib
-Warning--I didn't find a database entry for "todo"
 Warning--I didn't find a database entry for ""
 Warning--there's a number but no volume in davies1979cluster
 Warning--can't use both volume and number fields in ester1996density
+Warning--empty year in isisdata
 Warning--empty journal in radford2018improving
-Warning--empty journal in stammler1983methods
 You've used 60 entries,
             2773 wiz_defined-function locations,
-            934 strings with 17271 characters,
-and the built_in function-call counts, 31944 in all, are:
-= -- 2815
-> -- 2127
+            936 strings with 17255 characters,
+and the built_in function-call counts, 31914 in all, are:
+= -- 2817
+> -- 2116
 < -- 43
-+ -- 720
-- -- 660
-* -- 2616
-:= -- 4870
-add.period$ -- 188
++ -- 717
+- -- 657
+* -- 2608
+:= -- 4865
+add.period$ -- 192
 call.type$ -- 60
-change.case$ -- 394
+change.case$ -- 393
 chr.to.int$ -- 60
 cite$ -- 124
-duplicate$ -- 1391
-empty$ -- 2412
-format.name$ -- 742
-if$ -- 6720
+duplicate$ -- 1387
+empty$ -- 2414
+format.name$ -- 737
+if$ -- 6716
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 57
-newline$ -- 307
+missing$ -- 56
+newline$ -- 311
 num.names$ -- 240
-pop$ -- 810
+pop$ -- 814
 preamble$ -- 1
-purify$ -- 335
+purify$ -- 334
 quote$ -- 0
-skip$ -- 1154
+skip$ -- 1145
 stack$ -- 0
 substring$ -- 1143
-swap$ -- 223
+swap$ -- 224
 text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 0
@@ -49,5 +48,5 @@ type$ -- 655
 warning$ -- 4
 while$ -- 274
 width$ -- 0
-write$ -- 779
-(There were 6 warnings)
+write$ -- 787
+(There were 5 warnings)
