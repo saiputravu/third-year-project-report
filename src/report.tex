@@ -6,6 +6,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{booktabs}
+\usepackage{amsmath}
 \usepackage[nottoc]{tocbibind} % If you don't want the main TOC itself listed
 \usepackage{setspace}
 \onehalfspacing
@@ -107,24 +108,29 @@
 
         \textbf{BERT} & Bidirectional Encoder Representation from Transformers. \\
         \textbf{CBM} & Condition-based maintenance policy. \\
+        \textbf{CLI} & Command Line Interface. \\
         \textbf{CNN} & Convolutional Neural Network. \\
+        \textbf{CUDA} & Compute Unified Device Architecture. \\
         \textbf{DBSCAN} & Density-Based Spatial Clustering of Application with Noise. \\
         \textbf{DL} & Deep Learning. \\
+        \textbf{ELMo} & Embeddings from Language Models. \\
         \textbf{EPB1} & Extracted proton beam line 1. \\
         \textbf{EPB2} & Extracted proton beam line 2. \\
-        \textbf{ELMo} & Embeddings from Language Models. \\
+        \textbf{FAP} & Fault Analysis Pathway. \\
         \textbf{FLD} & First-line diagnosis system. \\
         \textbf{GPT} & Generative Pre-trained Transformer. \\
+        \textbf{GPU} & Graphics Processing Unit. \\
         \textbf{HDBSCAN} & Hierarchical Density-Based Spatial Clustering of Application with Noise. \\
         \textbf{HDD} & Hard-Disk Drive. \\
         \textbf{HEDS} & High energy drift space. \\
         \textbf{IoT} & Internet of Things. \\
         \textbf{LEBT} & Low energy beam transport line. \\
         \textbf{LINAC} & Linear Accelerator. \\
-        \textbf{FAP} & Fault Analysis Pathway. \\
         \textbf{LSA} & Latent Semantic Analysis. \\
+        \textbf{MCR} & Main Control Room. \\
         \textbf{ML} & Machine Learning. \\
         \textbf{NLP} & Natural Language Processing. \\
+        \textbf{Operalog} & The ISIS Operational Log. \\
         \textbf{PCA} & Principle Component Analysis. \\
         \textbf{PdM} & Predictive maintenance policy. \\
         \textbf{PLM} & Pre-trained Language Model. \\
@@ -142,8 +148,6 @@
         \textbf{t-SNE} & t-distributed Stochastic Neighbour Embedding. \\
         \textbf{UKRI} & United Kingdom Research and Innovation. \\
         \textbf{UMAP} & Uniform Manifold Approximation and Projection. \\
-        \textbf{MCR} & Main Control Room. \\
-        \textbf{Operalog} & The ISIS Operational Log. \\
 
     \end{tabular}
 \end{table}
@@ -162,9 +166,13 @@
 
 \chapter{Introduction}
 
-This project concerns the use of statistical and Machine Learning models to augment the predictive maintenance process at the STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facility. The ISIS Neutron and Muon facility is a research centre for physical and life sciences, owned and operated by the STFC, a council that forms the UK Research and Innovation. In order to produce beams of neutrons and muons, allowing scientists to study materials at the atomic level, large and complex structures and machinery are required. The facility has a wealth of instrumentation taking multitudes of measurements to ensure that proper maintenance is completed in a timely manner. \\
+This project concerns the use of statistical and machine learning models to augment the predictive maintenance process at the STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facility. The ISIS Neutron and Muon facility is a research centre for physical and life sciences, owned and operated by the STFC, a council that forms the UK Research and Innovation. In order to produce beams of neutrons and muons, allowing scientists to study materials at the atomic level, large and complex structures and machinery are required. The facility has a wealth of instrumentation taking multitudes of measurements to ensure that proper maintenance is completed in a timely manner. \\
 
-\todo[inline] {Finish this off, also mention this is one of two parts. And this aims to focus on the Operalog, a rich textual record of real-world failures of the of the ISIS facility.}
+\todo[inline] {Finish this off, also mention this is one of two parts. And this aims to focus on the Operalog, a rich textual record of real-world failures of the of the ISIS facility.
+
+Also, mention that this is a very open-ended research project and what we should be judged on? i.e. progressing the space of auto-categorisation of industrial operational logs.
+}
+
 \textbf{ }
 \todo[inline,caption={}]{
 Introduce the sections of the paper.
@@ -208,26 +216,27 @@ The STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facilit
     \caption{ISIS ion source and chain of accelerators, with $H^-$ ions in blue and protons in red. Not to scale. Source: (\citet{2021practicalguide}).}\label{fig:isis2}
 \end{figure}
 
-The ISIS facility, described in A Practical Guide to the ISIS Neutron and Muon Source (\citet{2021practicalguide}), is comprised of four major stages: (1) the ion source, (2) the radio-frequency quadrupole (RFQ), (3) linear accelerator (LINAC) and (4) the synchrotron. These components combine to produce a 800 MeV proton beam that is directed to either target station 1 (TS-1) or target station 2 (TS-2). Starting with $H^-$ ions (protons with two orbiting electrons), the path taken through the four stages is shown in Figure~\ref{fig:isis2}. Throughout the entire $H^-$ or proton acceleration process, the beam must be kept under good vacuum and, to do so, many tens of vacuum pumps are maintaining the vacuum between $10^{-8}$ and $10^{-9}$ of atmospheric pressure.
+The ISIS facility, described in A Practical Guide to the ISIS Neutron and Muon Source (\citet{2021practicalguide}), is comprised of four major stages: (1) the ion source, (2) the radio-frequency quadrupole (RFQ), (3) linear accelerator (LINAC) and (4) the synchrotron. These components combine to produce a 800 MeV proton beam that is directed to either target station 1 (TS-1) or target station 2 (TS-2). Starting with $H^-$ ions (protons with two orbiting electrons), the path taken through the four stages is shown in Figure~\ref{fig:isis2}. Throughout the entire $H^-$ or proton acceleration process, the beam must be kept under tight vacuum and, to do so, many tens of vacuum pumps are maintaining the vacuum between $10^{-8}$ and $10^{-9}$ of atmospheric pressure. Maintaining this vacuum integrity is a constant operational challenge as leaks may disrupt the beam and potentially damage sensitive components, necessitating numerous pumps and continuous monitoring system \cite{2021practicalguide}. The rest of this section explains the various stages in a more detail with the purpose of highlighting the complex infrastructure in place and critical control required for the reliable operation of the facility.
 
-The first stage of the ISIS machine is the ion source, which generates the negative hydrogen ($H^-$) ions, which are then accelerated through the RFQ and LINAC. This ion source is a pulsed source that ionises hydrogen gas via an electric discharge between an internal anode and cathode \cite{2021practicalguide}. As detailed in the guide, around 20ml of hydrogen gas per minute is continuously delivered to the ion source from a hydrogen gas bottle. Once the $H^-$ ions emerge from the ion source, they have an energy of 35 keV and are presented to the RFQ via the Low Energy Beam Transport line (LEBT). The LEBT prevents the low-energy $H^-$ beam from increasing in size (due to the mutual repulsion of the ions) and also incorporates a beam stop. This is essentially a remotely removable sheet of metal that physically blocks the beam.
+The first stage of the ISIS machine is the ion source, which generates the negative hydrogen ($H^-$) ions, which are then accelerated through the RFQ and LINAC. This ion source is a pulsed source that ionises hydrogen gas via an electric discharge between an internal anode and cathode \cite{2021practicalguide}. As detailed in the guide, around 20ml of hydrogen gas per minute is continuously delivered to the ion source from a hydrogen gas bottle. Once the $H^-$ ions emerge from the ion source, they have an energy of 35 keV and are presented to the RFQ via the Low Energy Beam Transport line (LEBT). The LEBT prevents the low-energy $H^-$ beam from increasing in size (due to the mutual repulsion of the ions) and also incorporates a beam stop. This is essentially a remotely removable sheet of metal that physically blocks the beam. Precise control and monitoring of the beam intensity are required here since inconsistencies originating from the ion source affect the overall performance of the machine. This is because these issues can propagate and amplify through the subsequent stages. Additionally, the failure of the source itself, for example due to component wear, requires immediate intervention and is a common maintenance task \cite{2021practicalguide}.
 
-Following the ion source and LEBT, the $H^-$ beam enters the RFQ. This section of the machine utilises high-intensity radio frequency electric fields that contain (focus), group (bunch) and begin accelerating the particles in this beam up to an energy of 665 keV. A key function of the RFQ is to isolate downstream accelerators from variations originating in the ion source, thereby improving beam stability in the LINAC, synchrotron and target stations \cite{2021practicalguide}. 
+Following the ion source and LEBT, the $H^-$ beam enters the RFQ. This section of the machine utilises high-intensity radio frequency electric fields that contain (focus), group (bunch) and begin accelerating the particles in this beam up to an energy of 665 keV. A key function of the RFQ is to isolate downstream accelerators from variations originating in the ion source, thereby improving beam stability in the LINAC, synchrotron and target stations \cite{2021practicalguide}. However, the stability of the RFQ's own high-intensity beam is prerogative as, again, fluctuations can lead to poorly formed bunches.
 
-The subsequent stage is the LINAC, which increases the beam energy from 665 keV to 70 MeV. This acceleration is achieved via high-intensity radio-frequency fields arranged in structure to possess a very high Q factor \cite{michael2006electronic} (around 50,000). This means their geometry must be exceptionally stable. Through the precise temperature regulation of the cooling water tank, ensuring it is significantly under $1^\circ C$, the effects of thermal expansion and contraction are countered \cite{2021practicalguide}. Furthermore, maintaining a high vacuum is critical throughout the LINAC. Failure to do so can lead to premature stripping of loosely bound electrons in the $H^-$ ions, consequently leading to an increase in radioactivity and particle loss (i.e. beam loss). To detect and warn about such cases, beam loss monitors are installed throughout the LINAC, which provide indicate whenever there is an excessive loss in particles. \cite{2021practicalguide}.
+The subsequent stage is the LINAC, which increases the beam energy from 665 keV to 70 MeV. This acceleration is achieved via high-intensity radio-frequency fields arranged in structure to possess a very high Q factor \cite{michael2006electronic} (around 50,000). This means their geometry must be exceptionally stable. Therefore the precise temperature regulation of the cooling water tank is critical in ensuring it is significantly under $1^\circ C$ so that the effects of thermal expansion and contraction are countered \cite{2021practicalguide}. Furthermore, maintaining a high vacuum is critical throughout the LINAC. Failure to do so can lead to premature stripping of loosely bound electrons in the $H^-$ ions, consequently leading to an increase in radioactivity and particle loss (i.e. beam loss). To detect and warn about such cases, beam loss monitors are installed throughout the LINAC, which provide indicate whenever there is an excessive loss in particles. \cite{2021practicalguide}.
 
-Once the $H^-$ particles leave the LINAC, they then pass through a beam transport line - the High Energy Drift Space (HEDS). The function of this is to mainly reduce the particles spreading and focus the beam to the synchrotron. To accumulate the high intensity beam in the synchrotron, ISIS employs charge-exchange injection . This technique allows incoming $H^-$ beam from the LINAC to be `layered' into the synchrotron's circumference over many turns. As the $H^-$ ions enter the synchrotron ring, they pass through a thin foil which strips away their two electrons, converting them to protons. The charge-exchange injection process is specifically chosen as it is the most efficient way of taking and wrapping a long string of particles around the circumference of a synchrotron \cite{2021practicalguide, ankenbrandt1980h}.
+Once the $H^-$ particles leave the LINAC, they then pass through a beam transport line - the High Energy Drift Space (HEDS). The function of this is to mainly reduce the particles spreading and focus the beam to the synchrotron. To accumulate the high intensity beam in the synchrotron, ISIS employs charge-exchange injection. This technique allows incoming $H^-$ beam from the LINAC to be `layered' into the synchrotron's circumference over many turns. As the $H^-$ ions enter the synchrotron ring, they pass through a thin foil which strips away their two electrons, converting them to protons. The charge-exchange injection process is specifically chosen as it is the most efficient way of taking and wrapping a long string of particles around the circumference of a synchrotron \cite{2021practicalguide, ankenbrandt1980h}. The integrity of this thin foil is vital for efficient injection and represents a consumable component requiring periodic replacement, which is a scheduled maintenance activity. Damage to the foil will lead directly to beam loss and reduced performance.
 
-The 70 MeV beam is then injected into the synchrotron, which is the primary accelerator ring at ISIS. This ring boosts the (now proton) beam energy to 800 MeV. For an idea of scale, the machine has a circumference of around 163m (corresponding to a radius of approximately 26m). It features a repeating structure of ten `superperiods'. Each superperoid uses dipole magnets to bend the proton path by $36^\circ$ and quadrupole magnets to maintain beam focus \cite{2021practicalguide}. The protons gain energy over just under 8000 revolutions, as each turn gives a proton 0.1 MeV. While the protons gain energy, the magnetic fields and accelerating radio-frequency voltages must be, very precisely, increased in synchronism. The initially continuous ring of injected protons is gathered into two distinct bunches, a little more than $0.1\mu s$ apart, using a low-level radio-frequency voltage before the main acceleration begins \cite{2021practicalguide}.
+The 70 MeV beam is then injected into the synchrotron, which is the primary accelerator ring at ISIS. This ring boosts the (now proton) beam energy to 800 MeV. For an idea of scale, the machine has a circumference of around 163m (corresponding to a radius of approximately 26m). It features a repeating structure of ten `superperiods'. Each superperoid uses dipole magnets to bend the proton path by $36^\circ$ and quadrupole magnets to maintain beam focus \cite{2021practicalguide}. The protons gain energy over just under 8000 revolutions, as each turn gives a proton 0.1 MeV. Achieving this final energy requires extreme precision over each and every revolution. While the protons gain energy, the magnetic fields and accelerating radio-frequency voltages must, also very precisely, be increased in synchronism. Any deviations can cause the beam to oscillate and strike the vacuum vessel walls which results in particle loss and potential component damage. Therefore, continuous precise monitoring of beam position, magnet currents and more via a network of sensors is imperative for controlling the beam orbit and ensuring successful acceleration \cite{2021practicalguide}. The initially continuous ring of injected protons is gathered into two distinct bunches, a little more than $0.1\mu s$ apart, using a low-level radio-frequency voltage before the main acceleration begins \cite{2021practicalguide}.
 
-Once accelerated, in order to direct the proton bunches towards a pre-selected target station (TS-1 or TS-2) three kicker magnets are used which deflect the bunches upwards. These bunches are then bent into the respective extracted proton beam lines (EPB1 or EPB2). These transfer lines utilise magnets to steer the beam towards the respective target stations. Additionally, as a safety precaution, both lines are heavily shielded in thick steel and concrete and beam loss monitors are installed along their length to detect any errant particles \cite{2021practicalguide}.
+Once accelerated, in order to direct the proton bunches towards a pre-selected target station (TS-1 or TS-2) three kicker magnets are used which deflect the bunches upwards. These bunches are then bent into the respective extracted proton beam lines (EPB1 or EPB2). These lines use further magnets for steering. Safe transport relies on accurate magnet performance as mis-steering could direct the high-energy beam into the pipe walls. Additionally, as a safety precaution, both lines are heavily shielded in thick steel and concrete and beam loss monitors are installed along their length to detect any errant particles and provide crucial, real-time feedback to operators \cite{2021practicalguide}.
 
-The primary purpose of the ISIS facility culminates at the target stations. The high-energy proton beam collides with a dense, high atomic number target (tantalum-clad tungsten at ISIS) designed to produce a large number of neutrons via spallation, within a compact region of space \cite{2021practicalguide}. These energetic neutrons are then slowed down (moderated) by surrounding materials (liquid nitrogen, liquid hydrogen and water at ISIS) and reflected back towards instruments by a beryllium reflected \cite{sharma2001nuclear, 2021practicalguide}. Additionally, ISIS produces muons for experiments by inserting a thin (roughly 1cm thick) graphite target into the proton beam around 20m away from the TS-1 neutron target. Collision in this target generates pions, which subsequently decay into muons \cite{2021practicalguide}.
+The primary purpose of the ISIS facility culminates at the target stations. The high-energy proton beam collides with a dense, high atomic number target (tantalum-clad tungsten at ISIS) designed to produce a large number of neutrons via spallation, within a compact region of space \cite{2021practicalguide}. These energetic neutrons are then slowed down (moderated) by surrounding materials (liquid nitrogen, liquid hydrogen and water at ISIS) and reflected back towards instruments by a beryllium reflector \cite{sharma2001nuclear, 2021practicalguide}. Additionally, ISIS produces muons for experiments by inserting a thin (roughly 1cm thick) graphite target into the proton beam around 20m away from the TS-1 neutron target. Collision in this target generates pions, which subsequently decay into muons \cite{2021practicalguide}.
+This entire system needs extremely careful control and monitoring capabilities, as failure due to overheating or material damage is a major operational concern which requires careful management and represents a major maintenance undertaking. Precise monitoring is required of metrics such as incoming beam profile, target temperature, cryogenic temperatures. \\
 
-\noindent This detailed description sourced from the guide highlights some key takeaways. There are an incredible number of points of failure in the facility due to the highly precise and radioactive nature of the task. The ISIS team has taken many precautions such as fault detection mechanisms (i.e. the beam loss monitors), breakdown counter-measures (i.e. the thick layer of steel and concrete in the EPB1 and EPB2 lines). However, as there are a large number of components that can go wrong and issues that may arise, regular maintenance is required. 
+\noindent This detailed description sourced from the guide highlights some key takeaways. There are an incredible number of points of failure in the facility due to the highly precise and radioactive nature of the task. The ISIS team has taken many precautions such as fault detection mechanisms (i.e. the beam loss monitors) and breakdown counter-measures (i.e. the thick layer of steel and concrete in the EPB1 and EPB2 lines). However, the inherent complexity and harsh operating environment (radiation, high-power) necessitate both robust preventative maintenance schedules and sophisticated diagnostic capabilities that address the component degradation and failures that will inevitably arise. 
 
 \subsection{Maintenance at ISIS} 
-As detailed in the 33-year historical account of the ISIS facility (\citet{thomason2019isis}), the ISIS operations occur in cycles, periods of roughly 30-50 days where the machine runs constantly without breaks. Roughly 10 days before the scheduled start of a cycle, and gaps between cycles typically range from 1 week to 3 months. In addition, typically every four years, shutdowns scheduled for 6-9 months occur for major maintenance and upgrade work. On the ground, day-to-day operations are run from the Main Control Room (MCR) by the ISIS crew which consists of 6 shift teams of the following roles: (1) duty officer, (2) assistant duty officer and (3) duty technician. \todo{Add the graph, if you can ever figure out the operating cycles before 2016.} The expertise and rapid response capabilities of these trained operational crews are vital for both routine operation and initial fault response.
+As detailed in the 33-year historical account of the ISIS facility (\citet{thomason2019isis}), the ISIS operations occur in cycles, periods of roughly 30-50 days where the machine runs constantly without breaks. Gaps between cycles typically range from 1 week to 3 months. In addition, typically every four years, shutdowns scheduled for 6-9 months occur for major maintenance and upgrade work. On the ground, day-to-day operations are run from the Main Control Room (MCR) by the ISIS crew which consists of 6 shift teams of the following roles: (1) duty officer, (2) assistant duty officer and (3) duty technician. \todo{Add the graph, if you can ever figure out the operating cycles before 2016.} The expertise and rapid response capabilities of these trained operational crews are vital for both routine operation and initial fault response.
 Minimising this downtime is crucial for several reasons inherent to operating a large-scale user facility like ISIS \cite{thomason2019isis}. Primarily, unscheduled downtime directly impacts the international researchers allocated beam time, potentially jeopardising experiments planned months or years in advance and wasting valuable research opportunities. Furthermore, interruptions disrupt the tightly packed operational schedule, reduce the overall scientific output, and incur significant operational costs without delivering the facility's core research product \cite{thomason2019isis}. Therefore, understanding the factors that contribute to downtime and implementing strategies to mitigate it are paramount.
 Many factors affect downtime such as having a robust plan, the day-to-day operators' knowledge of the system and adequate inventories of spares \cite{thomason2019isis}. Figure~\ref{fig:isisDowntime} shows the ratio of downtime to active machine operation since 2016, with over half the time of the machine since 2016 being down. In other words, over half the time, the machine is not active and is undergoing maintenance. This highlights the trade-off between maximising operational availability and minimizing failures through planned maintenance. The major maintenance strategies and their trade-offs are further explored in Section~\ref{sec:maintenanceTechniques}.
 
@@ -298,9 +307,24 @@ In industry, many maintenance strategies prefer using PdM whilst experimenting w
 \end{table}
 
 
-\section{Sentence Similarity}\label{sec:sentenceSimilarity}
-\todo{Think of a good transition between PdM and Doc Similarity}
 
+\chapter{Natural Language Processing Background}
+
+This chapter delves into the technical background required to the methodology proposed in Chapter~\ref{chap:Methodology}. Firstly, we discuss various measures of text similarity in Section~\ref{sec:sentenceSimilarity}, which provides an introduction to text embeddings and categorises similarity measures into different generations. Section~\ref{sec:sentenceEmbedding} introduces both third-generation (BERT \cite{devlin2019bert}, XLNet \cite{yang2019xlnet} and MPNet \cite{song2020mpnet}) and fourth-generation models (Nomic \cite{nussbaum2024nomic}). We specifically discuss the technical details of the BERT model and its family of encoder-only transformers. We then detail two direct improvements over BERT (XLNet and MPNet) and explore the state-of-the-art, fourth-generation Nomic architecture. Afterwards, we cover two methods of dimensionality reduction (PCA \cite{pearson1901liii,hotelling1933analysis} and UMAP \cite{mcinnes2018umap}) motivated by the need to visualise samples from the high-dimensional embedding spaces of the aforementioned models, in Section~\ref{sec:dimred}. Finally, we present three clustering algorithms - with one partitioning-based (k-Medoids \todo{Fill this} \cite{}) and two density-based (DBSCAN \cite{ester1996density} and HDBSCAN \cite{campello2013density}) in addition to four clustering evaluation metrics. The clustering metrics we look at are: (1) Inertia \todo{find the reference for this}\cite{}, (2) Silhouette \cite{rousseeuw1987silhouettes}, (3) Davies-Bouldin Index \cite{davies1979cluster}, (4) Calinski-Harabasz Index \cite{calinski1974dendrite}. \todo{maybe talk about optuna, if we use it.} \todo{double check all citations here are not empty}\\ 
+
+\todo[inline,caption={}]{
+Describe the various technical factors required before attempting to understand the methodology.
+The things in this section will include
+\begin{itemize}
+    \item Discuss sentence embedding, similarity measures: BERT, RoBERTA, MPNet, XLNet, NOMIC.
+    \item Dimensional reduction techniques and need for them (UMAP, PCA, t-SNE).
+    \item Clustering methods: kmedoids, DBSCAN, DBSCAN*/HDBCAN
+    \item Clustering evaluation methods: todo I don't remember these off the top of my head 
+    \item Maybe briefly touch on Optuna?
+\end{itemize}
+}
+
+\section{Sentence Similarity}\label{sec:sentenceSimilarity}
 Sentence similarity, otherwise referred to as document similarity, is the (NLP) task of computing the quantification of the similarities between two sentences, documents or texts. This task is motivated by the increasingly large amount of digitisation of human languages (and data, in general), calling for the need to understand similarity between various texts \cite{raju2022sentence}. Examples of the use-cases of sentence similarity include: detection of academic malpractice via plagiarism \cite{lukashenko2007computer, baba2017plagiarism} and text summarisation \cite {aliguliyev2009new, kumar2020semantic, jo2017k}. According to \cite{raju2022sentence}, there are two main types of sentence similarities: (1) lexical similarity and (2) semantic similarity. The former is a computation of the equality between the lexicon of two sentences (i.e. a purely syntactical view), as opposed to the latter  being a comparison between the semantics. Further, the type we focus on, semantic similarity can be split into three types: 
 
 \begin{itemize}
@@ -338,28 +362,13 @@ The things in this section will include
     \end{itemize}
 }
 
-\chapter{Natural Language Processing Background}
-This chapter delves into the technical background required in understanding and appreciating the approach proposed in Chapter~\ref{chap:Methodology}. Firstly, in Section~\ref{sec:BERT}, we discuss the technical details of the (third-generation text embedding) BERT model and its family of encoder-only transformers \cite{devlin2019bert}. Specifically we further explore two improvements over BERT (XLNet \cite{yang2019xlnet} and MPNet \cite{song2020mpnet}). Then, in Section~\ref{sec:nomic}, we explore the state-of-the-art, fourth-generation Nomic \cite{nussbaum2024nomic} architecture. After, we cover two methods of dimensionality reduction (PCA \cite{pearson1901liii,hotelling1933analysis} and UMAP \cite{mcinnes2018umap}) motivated by the need to visualise samples from the high-dimensional embedding spaces of the aforementioned models, in Section~\ref{sec:dimred}. Finally, we present three clustering algorithms - with one supervised (k-Medoids \cite{}) and two unsupervised (DBSCAN \cite{ester1996density} and HDBSCAN \cite{campello2013density}) in addition to four clustering evaluation metrics. The clustering metrics we look at are: (1) Inertia \todo{find the reference for this}\cite{}, (2) Silhouette \cite{rousseeuw1987silhouettes}, (3) Davies-Bouldin Index \cite{davies1979cluster}, (4) Calinski-Harabasz Index \cite{calinski1974dendrite}. \todo{maybe talk about optuna, if we use it.} \todo{double check all citations here are not empty}\\ 
-
-\todo[inline,caption={}]{
-Describe the various technical factors required before attempting to understand the methodology.
-The things in this section will include
-\begin{itemize}
-    \item Discuss sentence embedding, similarity measures: BERT, RoBERTA, MPNet, XLNet, NOMIC.
-    \item Dimensional reduction techniques and need for them (UMAP, PCA, t-SNE).
-    \item Clustering methods: kmedoids, DBSCAN, DBSCAN*/HDBCAN
-    \item Clustering evaluation methods: todo I don't remember these off the top of my head 
-    \item Maybe briefly touch on Optuna?
-\end{itemize}
-}
-
 \section{Sentence Embedding}\label{sec:sentenceEmbedding}
 Briefly touched on in Section~\ref{sec:sentenceSimilarity}, sentence embedding (otherwise known as text embedding) is the NLP task of computing some high-dimensional embedding vector-space representation for unstructured text data. This numerical representation should encode the semantic and syntactic meaning of the text and establish meaningful relationships. For example, the sentence `I like dogs' should have the opposite representation to `I hate dogs'.  However these sentences should be more related than to the sentence `My house was destroyed in an earthquake'. For a naive illustration of this, see Figure~\ref{fig:sentenceEmbeddingExample}, which shows how similar sentences should be grouped together. As Nomic requires the task explicitly in input text (more on this later), `clustering: ' is appended to all sentences. Deep learning sentence embedding models are now seen to be state-of-the-art as they are able to extract features automatically and more effectively than manual efforts, when supported with large quantities of data \cite{liang2017text}.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{sentenceEmbeddingExample.png}
-    \caption{Example embedding of random sentences generated using OpenAI's ChatGPT o3-mini-high and then performing text embedding using Nomic Text Embedding v1.5 \cite{nussbaum2024nomic}, then projected onto 2 dimensions using UMAP with a random seed of 42, and minimum neighbours of 15. Only some of the labels are for visual clarity.}\label{fig:sentenceEmbeddingExample}
+    \caption{Example text embedding with Nomic Text Embedding v1.5 \cite{nussbaum2024nomic} of random sentences generated using OpenAI's ChatGPT o3-mini-high and projected onto 2 dimensions using UMAP \cite{mcinnes2018umap} with a random seed of 42 and minimum neighbours of 15. Only some of the labels are highlighted for visual clarity.}\label{fig:sentenceEmbeddingExample}
 \end{figure}
 
 \subsection{BERT-family Transformers}\label{sec:BERT}
@@ -498,12 +507,12 @@ One downside of BERT, briefly touched on earlier, is the discrepancy between the
 
 \section{Data}
 
-Data relevant to the operational state and maintenance of the ISIS facility originates from several sources. The facility publishes open-access datasets, primarily containing instrument calibrations and experimental metrics, via its data portal \citep{isisdata}. Alongside this, the ISIS team maintains proprietary internal datasets detailing specific component performance, which are available upon request. For this research, access was granted to historical logs for the ion source component, with entries dating back to March 27$^{th}$, 2003. Furthermore, the operations crew maintains a daily operational log, the `Operalog', documenting facility faults and the corresponding remedial actions taken.
+Data relevant to the operational state and maintenance of the ISIS facility originates from several sources. The facility publishes open-access datasets, primarily containing instrument calibrations and experimental metrics, via its data portal \citep{isisdata}. Alongside this, the ISIS team maintains proprietary internal datasets detailing specific component performance, which are available upon request. For this research, access was granted to historical logs for the ion source component, with entries dating back to March 27$^\text{th}$, 2003. Furthermore, the operations crew maintains a daily operational log, the `Operalog', documenting facility faults and the corresponding remedial actions taken.
 
 Given the breadth of available data and the project's scope constraints, a decision was made to focus the analysis presented in this paper on the \textbf{Operalog}. This dataset provides a rich textual record of real-world failures across the facility, offering valuable insights despite its partially unstructured nature. Data from the specialised ion source logs is the focus of the partner project. 
 
 \subsection{The Operalog}
-The operational log, otherwise referred to as the `Operalog', is an Excel spreadsheet with entries documenting moments of machinery failure within the ISIS facility covering the period 1996 - 2023. Table~\ref{tab:operalog} documents the important features. Notably, the day-to-day operational crew have developed custom abbreviations, acronyms and terminology which may not immediately be clear. Additionally, different crew members have varying writing styles and levels of depth of information. Thus, this results in an unstructured text dataset which has a huge variance in quality and quantity of information. Furthermore, as noted in Table~\ref{tab:operalog}, \texttt{FaultRepair} was seemingly made redundant post-2017. Figure~\ref{fig:FaultDescriptionVSFaultRepairs} highlights the distribution in the text lengths of both unstructured text fields. Furthermore, around $0.02\%$ of \texttt{FaultDescription} fields are empty in whereas around $66\%$ of \texttt{FaultRepair} fields are empty. The generally shorter entries in \texttt{FaultRepair}, with large majority having fewer than or equal to 5 characters, suggest lower informational content compared to \texttt{FaultDescription}. This is further illustrated in the Wordcloud illustrations \cite{oesper2011wordcloud} (Figure~\ref{fig:wc}), where \texttt{FaultRepair} only has one extremely large word (\texttt{reset}). As the size of the word indicates the frequency, this means \texttt{FaultRepair} has the word `reset' in almost all non-empty entries. With `reset' being exactly 5 characters and most non-empty entries in \texttt{FaultRepair} being at most 5 characters, it is easy to see that the \texttt{FaultDescription} field contains richer, more informative context. 
+The operational log, otherwise referred to as the `Operalog', is an Excel spreadsheet with entries documenting moments of machinery failure within the ISIS facility covering the period 1996 - 2023. Table~\ref{tab:operalog} documents the important features. Notably, the day-to-day operational crew have developed custom abbreviations, acronyms and terminology which may not immediately be clear. Additionally, different crew members have varying writing styles and levels of depth of information. Thus, this results in an unstructured text dataset which has a huge variance in quality and quantity of information. Furthermore, as noted in Table~\ref{tab:operalog}, \texttt{FaultRepair} was seemingly made redundant post-2017. Figure~\ref{fig:FaultDescriptionVSFaultRepairs} highlights the distribution in the text lengths of both unstructured text fields. Furthermore, around $0.02\%$ of \texttt{FaultDescription} fields are empty whereas around $66\%$ of \texttt{FaultRepair} fields are empty. The generally shorter entries in \texttt{FaultRepair}, with large majority having fewer than or equal to 5 characters, suggest lower informational content compared to \texttt{FaultDescription}. This is further illustrated in the Wordcloud illustrations \cite{oesper2011wordcloud} (Figure~\ref{fig:wc}), where \texttt{FaultRepair} only has one extremely large word (\texttt{reset}). As the size of the word indicates the frequency, this means \texttt{FaultRepair} has the word `reset' in almost all non-empty entries. With `reset' being exactly 5 characters and most non-empty entries in \texttt{FaultRepair} being at most 5 characters (of which, those that contain reset are over 70\% of entries), it is easy to see that the \texttt{FaultDescription} field contains richer, more informative context. 
 
 \rowcolors{2}{gray!10}{white}
 \begin{table}[htbp]
@@ -555,55 +564,102 @@ The operational log, otherwise referred to as the `Operalog', is an Excel spread
 \end{figure}
 
 \subsection{Preliminary Data Analysis}
-\todo[inline]{ Talk about the amount of issues and stuff each year maybe ? }
+\todo[inline, caption={}]{ 
+    \begin{itemize}
+        \item Talk about amount of issues per year
+        \item Talk about the distribution of text lengths across whole df
+        \item Talk about the distribution of text lengths across iondf
+    \end{itemize}
+}
 
 
 \section{Overview of the process}
 
-The process of transforming an unlabelled, uninformative Operalog into an informed, induced-label tagged dataset can be broadly characterised into five major steps. These steps are: (1) initial pre-processing and normalisation of the \texttt{FaultDescription} natural language text; (2) embedding the cleaned text into a high-dimensional embedding space using a BERT-family transformer encoder model; (3) low-dimensional projection of the embedding space while respecting the higher-dimensional topological manifold; (4) performing clustering on the low-dimensional data, optimising clustering using clustering metrics as heuristics for the `goodness' of a cluster; and (5) using natural language processing to induce label names for each cluster and tagging each entry with this label. Here, we choose to solely consider the \texttt{FaultDescription} field as the vast majority of \texttt{FaultRepair} fields are either empty or less than 5 characters long.
+The process of transforming an unlabelled, uninformative Operalog into an informed, induced-label tagged dataset can be broadly characterised into five major steps. These steps are: (1) initial pre-processing and normalisation of the \texttt{FaultDescription} natural language text; (2) embedding the cleaned text into a high-dimensional embedding space using a BERT-family transformer encoder model; (3) low-dimensional projection of the embedding space while respecting the higher-dimensional topological manifold; (4) performing clustering on the low-dimensional data, optimising clustering using clustering metrics as heuristics for the `goodness' of a cluster; and (5) using natural language processing to induce label names for each cluster and tagging each entry with this label. Here, we choose to solely consider the \texttt{FaultDescription} field as the vast majority of \texttt{FaultRepair} fields are either empty or less than or equal to 5 characters long.
 
 Several hyperparameters affect the performance of the label generating process. Examples include model or algorithm specific parameters (i.e. the dimensionality reduction or clustering algorithms) and clustering `goodness' heuristics used. These hyperparameters are tuned using Optuna hyperparameter optimisation framework, an automatic optimisation framework specifically designed for machine learning applications \cite{akiba2019optuna} and also allows for multi-objective optimisation. The hyperparameter optimisation of the process then produces the `best' induced categories and thus labels for each issue type. 
 
-Additionally, as this project is an early stage exploration of auto-categorisation for the ISIS Operalog, the major focus is on ion source \texttt{Equipment} type unless explicitly specified.
+Additionally, as this project is an early stage exploration of auto-categorisation for the ISIS Operalog, the major focus is on ion source \texttt{Equipment} type unless explicitly specified. This enables the project to focus on progressing the tooling in a scoped manner with a structured goal in mind - to progress the auto-categorisation effort on the ISIS Operalog.
 
 \todo{Clean up wording in the above}
 
 \section{Natural Language Pre-processing}
 
-The aim of pre-processing the unstructured, natural language text data from \texttt{FaultDescription} is to normalise and prepare it from text embedding. Normalisation allows many syntactic permutations or augmentations of a text to be collapsed into one standardised form. This allows for consistent results as it ensures syntactically different  but same-meaning texts will be mapped by embedding model to the same value. 
+The aim of pre-processing the unstructured, natural language text data from \texttt{FaultDescription} is to normalise and prepare it from text embedding. Normalisation allows many syntactic permutations or augmentations of a text to be collapsed into one standardised form. This allows for consistent results as it ensures syntactically different  but same-meaning texts will be mapped by embedding model to the same value. For pre-processing, and the rest of the pipeline, each log entry's \texttt{FaultDescription} is considered one text.
 
 \todo{Clean up wording in the above}
 
-Tokenisation is one of the earliest stages of natural language processing. To perform tokenisation, we use Tensorflow's \texttt{UnicodeScriptTokenizer} \cite{tensorflow2015whitepaper}. A tokeniser, such as this, splits the text into sub-units called `tokens' \cite{gefenstette1999tokenization}. These tokens are useful to pass to subsequent natural language processing stages which is, in our case, text embedding. UnicodeScriptTokenizer, a specialised version of Tensorflow's \texttt{Tokenizer}, tokenises `UTF-8 strings by splitting where there is a change in Unicode script' (\cite{tensorflow2015whitepaper}, Tensorflow Text). 
+Tokenisation is one of the earliest stages of natural language processing. To perform tokenisation, we use Tensorflow's \texttt{UnicodeScriptTokenizer} \cite{tensorflow2015whitepaper}. Tensorflow is `an end-to-end platform for machine learning', which provides efficient machine learning algorithm implementations. A tokeniser, such as this, splits the text into sub-units called `tokens' \cite{gefenstette1999tokenization}. These tokens are useful to pass to subsequent natural language processing stages which is, in our case, text embedding. UnicodeScriptTokenizer, a specialised version of Tensorflow's \texttt{Tokenizer}, tokenises `UTF-8 strings by splitting where there is a change in Unicode script' (\cite{tensorflow2015whitepaper}, Tensorflow Text). 
 
-Once tokenised, we perform stop-word removal. Stop-words are non-informative words such as articles, prepositions and pronouns. Therefore removal of these words tends to help models have access to informative contexts and reduce noise \cite{silva2003importance}. We consider the standard English stop-words from NLTK \cite{bird2009natural} and some context specific stop-words. These include `ion source' which does not provide any informative contexts as we have already scoped our dataset to ion source \texttt{Equipment} and `breakdown' which appears in just over $50\%$ of entries. 
+Once tokenised, stop-word removal is performed. Stop-words are non-informative words such as articles, prepositions and pronouns. Therefore removal of these words tends to help models have access to informative contexts and reduce noise \cite{silva2003importance}. We consider the standard English stop-words from NLTK \cite{bird2009natural} and some context specific stop-words. This includes `ion source' which does not provide any informative contexts as we have already scoped our dataset to ion source \texttt{Equipment} and `breakdown' which appears in just over $50\%$ of entries. 
 
-Furthermore, we convert punctuation tokens into two categories: end-of-sentence (\texttt{EOS}) tokens or regular punctuation (\texttt{PUNC}) tokens. The goal for this is to normalise punctuation to either signify sentence boundaries or collapse into one token. The majority of the \texttt{FaultDescription} text does not typically utilise punctuation to convey additional meaning. However, this is not trivial to see and thus this part of the process has been made into a hyperparameter through the usage of a flag to turn it on or off. If punctuation mapping is enabled, we ignore  
+As mentioned previously, there are a few non-trivial abbreviations used by the operational crew when writing a log entry. These abbreviations are normalised into a standard English word or phrase (see Table~\ref{tab:abbrevCrew}).
+
+Furthermore, punctuation tokens are converted into one of two categories: end-of-sentence (\texttt{EOS}) tokens or regular punctuation (\texttt{PUNC}) tokens, which are self-explanatory. The goal for this is to normalise punctuation to either signify sentence boundaries or collapse into one token. The majority of the \texttt{FaultDescription} text does not typically utilise punctuation to convey additional meaning. However, this is not trivial to see and thus this part of the process has been made into a parameter through the usage of a flag which decides whether punctuation mapping is enabled. Text casing normalisation follows the same procedure. 
+
+Just in terms of ion source \texttt{Equipment}, the pre-processing is applied across more than 1200 log entries, ranging from 2009 - 2023. Tokenisation and operating on tokens is computational intensive, thus the solution operates on tensors, leveraging Tensorflow capabilities to perform GPU-based compute, which speeds up machine learning based applications \cite{tensorflow2015whitepaper, baldini2014predicting}.
+
+As text pre-processing is intensive to compute, when performing hyperparameter optimisation (more on this in Section~\ref{sec:hyperparameterOpt}) attempting to use these flags as part of the optimisation process resulting in re-computation of this pre-processing is an inefficient use of computational resources. Additionally, as the flags are boolean, it is relatively easy to manually enumerate each configuration option. Therefore, these parameters are exposed through the CLI application (see Section~\ref{sec:CLI}), rather than the hyperparameter optimisation process.
+
+\todo{Clean up wording in the above}
+
+\rowcolors{2}{gray!10}{white}
+\begin{table}[htbp]
+    \fontsize{8}{12}\selectfont
+    \centering
+    \caption{Operational crew abbreviation mapping.}
+    \label{tab:abbrevCrew}
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{c | c}
+        \toprule
+        \textbf{Abbreviation Regular Expression} & \textbf{Mapped word or phrase} \\
+        \midrule
+        {o/p} & {output} \\
+        {i/s} & {ion source} \\
+        {(b/down|break-down|b\textbackslash down|b/d)} & {breakdown} \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+\end{table}
+
 
 \todo[inline,caption={}]{
     TODO Talk abuot
     \begin{itemize}
-        \item Tokenizer
-        \item Stopwords
-        \item TOKEN mapping (PUNC, EOS)
-        \item Casing
-        \item Shortcut mapping
-        \item a word on using tensorflow tensors (GPU mapping)
+        \item Tokenizer - DONE
+        \item Stopwords - DONE
+        \item TOKEN mapping (PUNC, EOS) - DONE
+        \item Casing - DONE
+        \item Shortcut mapping - DONE
+        \item a word on using tensorflow tensors (GPU mapping) - DONE
     \end{itemize}
 }
 
-\section{Similarity Visualisation}
+\section{Establishing an embedding space}
+After pre-processing, the cleaned and normalised text is ready to be digested by a sentence embedding model (see Section~\ref{sec:sentenceEmbedding}). This is motivated by the need to understand syntactic and semantic relationships between each label before any categorisation can take place. The categorisation process itself can be viewed as a more sophisticated task of understanding and ranking the relationship between various \texttt{FaultDescription}s, grouping together entries which appear the closest in meaning.  
+
+The PLMs considered are only MPNet and 
+
+\todo[inline, caption={}] {
+    \begin{itemize}
+        \item Motivate the need for sentence embedding
+        \item Talk about the two types of sentence embedding (PLM, MPNet and Nomic)
+        \item Talk about why we do not consider more embedding models
+        \item Highlight that choosing this is critical as it affects the rest of the pipeline
+    \end{itemize}
+}
+
+% \section{Dimensional Projection?}
+\section{Dimensionality reduction}
 \todo[inline]{Maybe combine this with dimensional projection}
 
-\section{Dimensional Projection?}
+\section{Unsupervised categorisation through clustering}
 
-\section{Clustering}
+\section{Hyperparameter optimisation}\label{sec:hyperparameterOpt}
 
-\section{Hyperparameter Optimisation}
+\section{Label generation}
 
-\section{Label Generation}
-
-\section{CLI Application}
+\section{CLI Application}\label{sec:CLI}
 
 
 \todo[inline,caption={}]{
@@ -634,6 +690,8 @@ Describe the results and analyse the results
     \item Analyse the sentence embedding results.
     \item Analyse UMAP vs. PCA vs. t-SNE qualitatively and later quantitatively (compared to the clustering).
     \item Anaylse the UMAP hyperparameter optimisation qualitatively, mention that we use Optuna.
+
+    \item Next steps: Fine tuning the PLM (Nomic or MPNet)
 \end{itemize}
 }
 
