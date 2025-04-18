@@ -22,11 +22,12 @@
 \usepackage{adjustbox}
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
-\usepackage{subcaption}
 
 \usepackage{anyfontsize}
 \usepackage{lmodern}
 % Dynamically scale font sizes (80% of original)
+\let\oldsmall\small
+\renewcommand{\small}{\fontsize{7}{8}\selectfont}
 \let\oldnormalsize\normalsize
 \renewcommand{\normalsize}{\fontsize{8}{10}\selectfont}
 \let\oldlarge\large
@@ -39,6 +40,8 @@
 \renewcommand{\huge}{\fontsize{16}{19.2}\selectfont}
 \let\oldHuge\Huge
 \renewcommand{\Huge}{\fontsize{20}{24}\selectfont}
+\usepackage{subcaption}
+\usepackage[font={normalsize},labelfont={bf}]{caption}
 
 % Begin document
 \begin{document}
@@ -161,7 +164,7 @@
 
 This project concerns the use of statistical and Machine Learning models to augment the predictive maintenance process at the STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facility. The ISIS Neutron and Muon facility is a research centre for physical and life sciences, owned and operated by the STFC, a council that forms the UK Research and Innovation. In order to produce beams of neutrons and muons, allowing scientists to study materials at the atomic level, large and complex structures and machinery are required. The facility has a wealth of instrumentation taking multitudes of measurements to ensure that proper maintenance is completed in a timely manner. \\
 
-\todo[inline] {Finish this off}
+\todo[inline] {Finish this off, also mention this is one of two parts. And this aims to focus on the Operalog, a rich textual record of real-world failures of the of the ISIS facility.}
 \textbf{ }
 \todo[inline,caption={}]{
 Introduce the sections of the paper.
@@ -278,7 +281,7 @@ In industry, many maintenance strategies prefer using PdM whilst experimenting w
 \begin{table}[htbp]
     \fontsize{8}{12}\selectfont
     \centering
-    \caption{\fontsize{9}{10}\selectfont Examples of applications of PdM for industrial maintenance strategies.}
+    \caption{Examples of applications of PdM for industrial maintenance strategies.}
     \label{tab:pdmPaperTable}
     \begin{adjustbox}{max width=\textwidth}
     \begin{tabular}{p{1.5cm} p{8.5cm} p{3cm}}
@@ -306,7 +309,7 @@ Sentence similarity, otherwise referred to as document similarity, is the (NLP) 
     \item Corpus-based similarity: Premised on a provided corpus, a large database of text to derive inferences from. Methods of this type require the development statistical or DL models that train on the provided corpus and estimate the similarity between two sentence-pair inputs. Popular examples include traditional statistical models, such as LSA \cite{landauer1998introduction} and SVD \cite{steinberger2005text} as well as word embedding models (utilising ML), such as Word2Vec \cite{bojanowski2017enriching}, GloVe \cite{pennington2014glove} and fastText \cite{mikolov2013efficient}.
 \end{itemize}
 
-Most of the models mentioned above require some numerical representation of the text to be able to apply mathematical procedures for similarity calculation. Computing this representation involves converting unstructured textual data into one or more vectors. Typically, this process includes (1) general pre-processing steps such as stop-word removal, case normalisation, parts-of-speech tagging, lemmatisation, and tokenisation \cite{tabassum2020survey}; and (2) applying an embedding model, either to a single token (word embedding) or to a sequence of tokens (sentence embedding). Step (1) can be seen as a feature extraction step applied on the unstructured textual data, where feature extraction is the process of extracting the most useful components of the data \cite{sammons2016edison}. For example, part-of-speech tagging can be seen as introducing non-trivial features to some token through extracting the surrounding context. 
+Most of the models mentioned above require some numerical representation of the text to be able to apply mathematical procedures for similarity calculation. Computing this representation involves converting unstructured textual data into one or more vectors. Typically, this process includes (1) general natural language pre-processing steps such as stop-word removal, case normalisation, parts-of-speech tagging, lemmatisation, and tokenisation \cite{tabassum2020survey}; and (2) applying an embedding model, either to a single token (word embedding) or to a sequence of tokens (sentence embedding). Step (1) can be seen as a feature extraction step applied on the unstructured textual data, where feature extraction is the process of extracting the most useful components of the data \cite{sammons2016edison}. For example, part-of-speech tagging can be seen as introducing non-trivial features to some token through extracting the surrounding context. 
 
 This representation is known as an embedding, with the span of the possible vectors referred to as the embedding space. The dimension of the span is termed the embedding dimension. This is an important concept because the characteristics of the embedding space influence the model's ability to capture syntactic and semantic meaning in text, as the embedding space itself encodes this information. This can be seen in the Word2Vec model, described in (\citet{bojanowski2017enriching}), which shows different embedding dimensions produce different results. Another conclusion that can be drawn from this paper is that, if embedding space is not constructed to maximise the meaning of texts, the accuracy of model predictions tends to deteriorate. 
 
@@ -443,7 +446,7 @@ One downside of BERT, briefly touched on earlier, is the discrepancy between the
 \todo[inline, caption={}] {
     \begin{itemize}
         \item Talk about what clustering does, i.e. looking at trying to categorise or something
-        \item Talk about the curse of dimensionality and why clustering does not perform well.
+        \item Talk about the curse of dimensionality and why clustering does not perform well. Then talk about what people usually do (dimensionality reduction via feature selection or algorithms)
         \item Talk about k-Medoids (supervised), DBSCAN and HDBSCAN (unsupervised).
     \end{itemize}
 }
@@ -491,22 +494,22 @@ One downside of BERT, briefly touched on earlier, is the discrepancy between the
 
 \section{Maybe Optuna}
 
-\chapter{Automatic Label Generation}\label{chap:Methodology}
+\chapter{Automatic Categorisation and Label Generation}\label{chap:Methodology}
 
 \section{Data}
 
-The ISIS research facility publish some open-sourced data at (\citet{isisdata}), which contains over 2000 datasets containing instrumentation calibrations and metrics. In addition to this, the ISIS team maintain proprietary, internal datasets that are available on request. Finally, the day-to-day crew additionally maintain an operational log `Operalog' that contains information about faults that occur and remediation steps taken. As mentioned previously, ISIS has an incredibly large number of sensors for instrumentation precision and safety. In the interest of time and research effort, a specialised focus was set on reviewing the ion source component. The ISIS research facility provided us with data logs of the ion source component, with the earliest entry being on the 27$^{th}$ March 2003. In addition to this, we explored the Operalog. \todo{Maybe mention Yuvan?} In the interest of time, this project was divided into two, with this paper focusing on the Operalog. 
+Data relevant to the operational state and maintenance of the ISIS facility originates from several sources. The facility publishes open-access datasets, primarily containing instrument calibrations and experimental metrics, via its data portal \citep{isisdata}. Alongside this, the ISIS team maintains proprietary internal datasets detailing specific component performance, which are available upon request. For this research, access was granted to historical logs for the ion source component, with entries dating back to March 27$^{th}$, 2003. Furthermore, the operations crew maintains a daily operational log, the `Operalog', documenting facility faults and the corresponding remedial actions taken.
+
+Given the breadth of available data and the project's scope constraints, a decision was made to focus the analysis presented in this paper on the \textbf{Operalog}. This dataset provides a rich textual record of real-world failures across the facility, offering valuable insights despite its partially unstructured nature. Data from the specialised ion source logs is the focus of the partner project. 
 
 \subsection{The Operalog}
-The operational log, otherwise referred to as the `Operalog', is an Excel spreadsheet with entries documenting moments of machinery failure within the ISIS facility since 1996 till the end of 2023. Important features are documented in Table~\ref{tab:operalog}. One important point to note is that the day-to-day operational crew have developed custom abbreviations, acronyms and terminology which may not immediately be clear. Additionally, different crew members have varying writing styles and levels of depth of information. Thus, this results in a unstructured text dataset which has a huge variance in quality and quantity of information. Furthermore, as noted in Table~\ref{tab:operalog}, FaultRepair was seemingly made redundant post-2017. Figure~\ref{fig:FaultDescriptionVSFaultRepairs} highlights the distribution in the text lengths of both unstructured text fields. Evidently, FaultRepair has lower quality of information, having most of the entries of less than 10. This is further made clear in the Wordcloud illustrations (Figure~\ref{fig:wc}), where FaultDescription clearly has less free space, meaning it has a larger amount of unique words. This indicates the information extracted from FaultDescription encodes more informative context of the failures that have occurred. Therefore, we only consider the FaultDescription text field.
+The operational log, otherwise referred to as the `Operalog', is an Excel spreadsheet with entries documenting moments of machinery failure within the ISIS facility covering the period 1996 - 2023. Table~\ref{tab:operalog} documents the important features. Notably, the day-to-day operational crew have developed custom abbreviations, acronyms and terminology which may not immediately be clear. Additionally, different crew members have varying writing styles and levels of depth of information. Thus, this results in an unstructured text dataset which has a huge variance in quality and quantity of information. Furthermore, as noted in Table~\ref{tab:operalog}, \texttt{FaultRepair} was seemingly made redundant post-2017. Figure~\ref{fig:FaultDescriptionVSFaultRepairs} highlights the distribution in the text lengths of both unstructured text fields. Furthermore, around $0.02\%$ of \texttt{FaultDescription} fields are empty in whereas around $66\%$ of \texttt{FaultRepair} fields are empty. The generally shorter entries in \texttt{FaultRepair}, with large majority having fewer than or equal to 5 characters, suggest lower informational content compared to \texttt{FaultDescription}. This is further illustrated in the Wordcloud illustrations \cite{oesper2011wordcloud} (Figure~\ref{fig:wc}), where \texttt{FaultRepair} only has one extremely large word (\texttt{reset}). As the size of the word indicates the frequency, this means \texttt{FaultRepair} has the word `reset' in almost all non-empty entries. With `reset' being exactly 5 characters and most non-empty entries in \texttt{FaultRepair} being at most 5 characters, it is easy to see that the \texttt{FaultDescription} field contains richer, more informative context. 
 
 \rowcolors{2}{gray!10}{white}
 \begin{table}[htbp]
     \fontsize{8}{10}\selectfont
     \centering
     \begin{adjustbox}{max width=\textwidth}
-    % \begin{tabular}{p{1cm} p{2cm}, p{9cm}}
-
     \begin{tabular}{p{3cm} p{4cm} p{10cm}}
         \toprule
         \textbf{Feature Name} & \textbf{Data Type} & \textbf{Description} \\
@@ -515,21 +518,21 @@ The operational log, otherwise referred to as the `Operalog', is an Excel spread
         UserRun & String & Operational cycle that this fault has occurred within. Cycle information up to 2016 can be found at (\citet{isisbeamoperations2024}). \\
         Downtime & Integer & The amount of time, in hours the downtime has occurred for. \\
         Group & String, Fixed Category & The group that the faulty equipment is part of. There are 13 unique equipment groups. \\
-        Equipment & String, Fixed Category & The equipment that failed. There are around 200 unique equipment types that have been logged to fail. \\
+        Equipment & String, Fixed Category & The equipment type that failed. There are around 200 unique equipment types that have been logged to fail. \\
         FaultDescription & String, Free-form & This is a free-form, unstructured text field that allows the on-shift operational crew to note details about the problem diagnosis and remediation that has occurred. There is no constraint to the size of this text field.\\
         FaultRepair & String, Free-form & Another free-form, unstructured text field that allows the on-shift operational crew to note only the remediation steps. The crew seems to have stopped using this field after the end of 2017, preferring to put remediation steps in FaultDescription. \\
         ManagersComments & String, Free-form & A very rarely used free-form text field, where the manager in charge of the on-shift crew will input comments. \\
         \bottomrule
     \end{tabular}
     \end{adjustbox}
-    \caption{\fontsize{9}{10}\selectfont Description of important features (columns) in the Operalog.}
+    \caption{Description of important features (columns) in the Operalog.}
     \label{tab:operalog}
 \end{table}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{FaultDescriptionVSFaultRepairs.png}
-    \caption{Frequency distribution of the lengths of non-blank text fields FaultDescription and FaultRepair. The bin size is 50, thus bar in the x-axis direction a difference of text length of 10.}\label{fig:FaultDescriptionVSFaultRepairs}
+    \caption{Frequency distribution of the text lengths for non-blank \texttt{FaultDescription} and \texttt{FaultRepair} fields. Each bar represents a range of 5 characters.}\label{fig:FaultDescriptionVSFaultRepairs}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -537,22 +540,70 @@ The operational log, otherwise referred to as the `Operalog', is an Excel spread
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{wcFaultRepairs.png}
-        \caption{\fontsize{7}{8}\selectfont FaultRepair}
+        \caption{FaultRepair}
         \label{fig:wcFaultRepairs}
     \end{subfigure}%
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{wcFaultDescription.png}
-        \caption{\fontsize{7}{8}\selectfont FaultDescription}
+        \caption{FaultDescription}
         \label{fig:wcFaultDescription}
     \end{subfigure}
-    \caption{Comparison of word clouds for the top 300 most common words for the FaultRepair field versus the FaultDescription field. Larger words are more common, less free space means there more unique words.}
+    \caption{Comparison of word clouds for the top 300 most common words for the FaultRepair field versus the FaultDescription field. Larger words are more common and collocations are enabled so both words and phrases are shown, leading to some repeating.}
     \label{fig:wc}
 \end{figure}
 
+\subsection{Preliminary Data Analysis}
+\todo[inline]{ Talk about the amount of issues and stuff each year maybe ? }
 
 
+\section{Overview of the process}
+
+The process of transforming an unlabelled, uninformative Operalog into an informed, induced-label tagged dataset can be broadly characterised into five major steps. These steps are: (1) initial pre-processing and normalisation of the \texttt{FaultDescription} natural language text; (2) embedding the cleaned text into a high-dimensional embedding space using a BERT-family transformer encoder model; (3) low-dimensional projection of the embedding space while respecting the higher-dimensional topological manifold; (4) performing clustering on the low-dimensional data, optimising clustering using clustering metrics as heuristics for the `goodness' of a cluster; and (5) using natural language processing to induce label names for each cluster and tagging each entry with this label. Here, we choose to solely consider the \texttt{FaultDescription} field as the vast majority of \texttt{FaultRepair} fields are either empty or less than 5 characters long.
+
+Several hyperparameters affect the performance of the label generating process. Examples include model or algorithm specific parameters (i.e. the dimensionality reduction or clustering algorithms) and clustering `goodness' heuristics used. These hyperparameters are tuned using Optuna hyperparameter optimisation framework, an automatic optimisation framework specifically designed for machine learning applications \cite{akiba2019optuna} and also allows for multi-objective optimisation. The hyperparameter optimisation of the process then produces the `best' induced categories and thus labels for each issue type. 
+
+Additionally, as this project is an early stage exploration of auto-categorisation for the ISIS Operalog, the major focus is on ion source \texttt{Equipment} type unless explicitly specified.
+
+\todo{Clean up wording in the above}
+
+\section{Natural Language Pre-processing}
+
+The aim of pre-processing the unstructured, natural language text data from \texttt{FaultDescription} is to normalise and prepare it from text embedding. Normalisation allows many syntactic permutations or augmentations of a text to be collapsed into one standardised form. This allows for consistent results as it ensures syntactically different  but same-meaning texts will be mapped by embedding model to the same value. 
+
+\todo{Clean up wording in the above}
+
+Tokenisation is one of the earliest stages of natural language processing. To perform tokenisation, we use Tensorflow's \texttt{UnicodeScriptTokenizer} \cite{tensorflow2015whitepaper}. A tokeniser, such as this, splits the text into sub-units called `tokens' \cite{gefenstette1999tokenization}. These tokens are useful to pass to subsequent natural language processing stages which is, in our case, text embedding. UnicodeScriptTokenizer, a specialised version of Tensorflow's \texttt{Tokenizer}, tokenises `UTF-8 strings by splitting where there is a change in Unicode script' (\cite{tensorflow2015whitepaper}, Tensorflow Text). 
+
+Once tokenised, we perform stop-word removal. Stop-words are non-informative words such as articles, prepositions and pronouns. Therefore removal of these words tends to help models have access to informative contexts and reduce noise \cite{silva2003importance}. We consider the standard English stop-words from NLTK \cite{bird2009natural} and some context specific stop-words. These include `ion source' which does not provide any informative contexts as we have already scoped our dataset to ion source \texttt{Equipment} and `breakdown' which appears in just over $50\%$ of entries. 
+
+Furthermore, we convert punctuation tokens into two categories: end-of-sentence (\texttt{EOS}) tokens or regular punctuation (\texttt{PUNC}) tokens. The goal for this is to normalise punctuation to either signify sentence boundaries or collapse into one token. The majority of the \texttt{FaultDescription} text does not typically utilise punctuation to convey additional meaning. However, this is not trivial to see and thus this part of the process has been made into a hyperparameter through the usage of a flag to turn it on or off. If punctuation mapping is enabled, we ignore  
+
+\todo[inline,caption={}]{
+    TODO Talk abuot
+    \begin{itemize}
+        \item Tokenizer
+        \item Stopwords
+        \item TOKEN mapping (PUNC, EOS)
+        \item Casing
+        \item Shortcut mapping
+        \item a word on using tensorflow tensors (GPU mapping)
+    \end{itemize}
+}
+
+\section{Similarity Visualisation}
+\todo[inline]{Maybe combine this with dimensional projection}
+
+\section{Dimensional Projection?}
+
+\section{Clustering}
+
+\section{Hyperparameter Optimisation}
+
+\section{Label Generation}
+
+\section{CLI Application}
 
 
 \todo[inline,caption={}]{

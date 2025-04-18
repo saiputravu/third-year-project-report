@@ -7,6 +7,7 @@ from sentence_transformers import SentenceTransformer
 # Define the sentences.
 sentences = [
     "clustering: I hate dogs.",
+    "clustering: i hate dogs",
     "clustering: I like dogs.",
     "clustering: My house was destroyed in an earthquake.",
     "clustering: I adore dogs.",
@@ -41,6 +42,7 @@ sentences = [
 
 displayed = [
     "clustering: I hate dogs.",
+    "clustering: i hate dogs",
     "clustering: I like dogs.",
     "clustering: My house was destroyed in an earthquake.",
     "clustering: I adore dogs.",
@@ -59,7 +61,7 @@ displayed = [
 # Initialize the SentenceTransformer model.
 model = SentenceTransformer("nomic-ai/nomic-embed-text-v1.5", trust_remote_code=True)
 embeddings = model.encode(sentences)
-print("Embeddings:\n", embeddings)
+print("Embeddings:\n", model.encode(displayed[:2]))
 
 # For small datasets (e.g., with 30 samples) use a lower n_neighbors if desired.
 n_neighbors = min(15, len(embeddings) - 1)

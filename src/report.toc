@@ -28,9 +28,18 @@
 \contentsline {subsection}{\numberline {2.4.3}Davies-Bouldin Index}{19}{subsection.2.4.3}%
 \contentsline {subsection}{\numberline {2.4.4}Calinski-Harabasz Index}{19}{subsection.2.4.4}%
 \contentsline {section}{\numberline {2.5}Maybe Optuna}{19}{section.2.5}%
-\contentsline {chapter}{\numberline {3}Automatic Label Generation}{20}{chapter.3}%
+\contentsline {chapter}{\numberline {3}Automatic Categorisation and Label Generation}{20}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Data}{20}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}The Operalog}{20}{subsection.3.1.1}%
-\contentsline {chapter}{\numberline {4}Results and Discussion}{23}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusion}{24}{chapter.5}%
-\contentsline {chapter}{Bibliography}{25}{chapter*.51}%
+\contentsline {subsection}{\numberline {3.1.2}Preliminary Data Analysis}{21}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Overview of the process}{22}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Natural Language Pre-processing}{22}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Similarity Visualisation}{23}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Dimensional Projection?}{24}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Clustering}{24}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Hyperparameter Optimisation}{24}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Label Generation}{24}{section.3.8}%
+\contentsline {section}{\numberline {3.9}CLI Application}{24}{section.3.9}%
+\contentsline {chapter}{\numberline {4}Results and Discussion}{25}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusion}{26}{chapter.5}%
+\contentsline {chapter}{Bibliography}{27}{chapter*.55}%

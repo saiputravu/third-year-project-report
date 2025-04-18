@@ -7,7 +7,7 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Example embedding of random sentences generated using OpenAI's ChatGPT o3-mini-high and then performing text embedding using Nomic Text Embedding v1.5 \cite {nussbaum2024nomic}, then projected onto 2 dimensions using UMAP with a random seed of 42, and minimum neighbours of 15. Only some of the labels are for visual clarity.\relax }}{14}{figure.caption.28}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces The overall pre-training and fine-tuning phases for BERT. For different down-stream tasks, notice the same architecture, except output layer, is used. Source: (\citet {devlin2019bert}).\relax }}{15}{figure.caption.31}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Frequency distribution of the lengths of non-blank text fields FaultDescription and FaultRepair. The bin size is 50, thus bar in the x-axis direction a difference of text length of 10.\relax }}{21}{figure.caption.46}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Comparison of word clouds for the top 300 most common words for the FaultRepair field versus the FaultDescription field. Larger words are more common, less free space means there more unique words.\relax }}{21}{figure.caption.47}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Frequency distribution of the text lengths for non-blank \texttt {FaultDescription} and \texttt {FaultRepair} fields. Each bar represents a range of 5 characters.\relax }}{21}{figure.caption.45}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Comparison of word clouds for the top 300 most common words for the FaultRepair field versus the FaultDescription field. Larger words are more common and collocations are enabled so both words and phrases are shown, leading to some repeating.\relax }}{22}{figure.caption.46}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

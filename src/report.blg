@@ -6,47 +6,46 @@ Database file #1: refs.bib
 Warning--I didn't find a database entry for ""
 Warning--there's a number but no volume in davies1979cluster
 Warning--can't use both volume and number fields in ester1996density
-Warning--empty year in isisdata
 Warning--empty journal in radford2018improving
-You've used 60 entries,
+You've used 66 entries,
             2773 wiz_defined-function locations,
-            936 strings with 17255 characters,
-and the built_in function-call counts, 31914 in all, are:
-= -- 2817
-> -- 2116
-< -- 43
-+ -- 717
-- -- 657
-* -- 2608
-:= -- 4865
-add.period$ -- 192
-call.type$ -- 60
-change.case$ -- 393
-chr.to.int$ -- 60
-cite$ -- 124
-duplicate$ -- 1387
-empty$ -- 2414
-format.name$ -- 737
-if$ -- 6716
+            969 strings with 19125 characters,
+and the built_in function-call counts, 36999 in all, are:
+= -- 3225
+> -- 2627
+< -- 49
++ -- 888
+- -- 822
+* -- 3074
+:= -- 5663
+add.period$ -- 213
+call.type$ -- 66
+change.case$ -- 465
+chr.to.int$ -- 66
+cite$ -- 135
+duplicate$ -- 1547
+empty$ -- 2681
+format.name$ -- 910
+if$ -- 7763
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 56
-newline$ -- 311
-num.names$ -- 240
-pop$ -- 814
+missing$ -- 62
+newline$ -- 342
+num.names$ -- 264
+pop$ -- 969
 preamble$ -- 1
-purify$ -- 334
+purify$ -- 401
 quote$ -- 0
-skip$ -- 1145
+skip$ -- 1318
 stack$ -- 0
-substring$ -- 1143
-swap$ -- 224
-text.length$ -- 18
+substring$ -- 1270
+swap$ -- 264
+text.length$ -- 22
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 655
-warning$ -- 4
-while$ -- 274
+type$ -- 716
+warning$ -- 3
+while$ -- 302
 width$ -- 0
-write$ -- 787
-(There were 5 warnings)
+write$ -- 869
+(There were 4 warnings)

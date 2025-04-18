@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.4)  17 APR 2025 13:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.4)  18 APR 2025 12:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -499,7 +499,9 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \sift@deathcycles=\count303
 \@vwid@loff=\dimen280
 \@vwid@roff=\dimen281
-)) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty
+Package: anyfontsize 2007/11/22 anyfontsize.sty by pts
+) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
  (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2020/10/26 v3.5g Customizing captions (AR)
@@ -520,10 +522,8 @@ Package caption Info: hyperref package is loaded.
 )
 \c@subfigure=\count306
 \c@subtable=\count307
-) (/usr/share/texlive/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty
-Package: anyfontsize 2007/11/22 anyfontsize.sty by pts
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 44.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 47.
  (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -533,24 +533,24 @@ File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count309
@@ -570,7 +570,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 44.
+Package hyperref Info: Link coloring ON on input line 47.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -580,9 +580,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count315
 )
-LaTeX Info: Redefining \ref on input line 44.
-LaTeX Info: Redefining \pageref on input line 44.
-LaTeX Info: Redefining \nameref on input line 44.
+LaTeX Info: Redefining \ref on input line 47.
+LaTeX Info: Redefining \pageref on input line 47.
+LaTeX Info: Redefining \nameref on input line 47.
  (./report.out) (./report.out)
 \@outlinefile=\write4
 \openout4 = `report.out'.
@@ -620,7 +620,11 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \tf@toc=\write5
 \openout5 = `report.toc'.
 
- [2] (./report.lof)
+ [2] (./report.lof
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 10.
+ (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+))
 \tf@lof=\write6
 \openout6 = `report.lof'.
 
@@ -635,69 +639,65 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 
 ]
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 100.
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 103.
  [5
 
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.160 \chapter
+l.163 \chapter
               {Introduction} [1
 
 
 ]
 Chapter 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--163
+Underfull \hbox (badness 10000) in paragraph at lines 165--166
 
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 174.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 177.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [2
 
 ]
-<./images//ISIS.png, id=274, 770.63419pt x 936.56021pt>
+<./images//ISIS.png, id=320, 770.63419pt x 936.56021pt>
 File: ./images//ISIS.png Graphic file (type png)
 <use ./images//ISIS.png>
-Package pdftex.def Info: ./images//ISIS.png  used on input line 197.
+Package pdftex.def Info: ./images//ISIS.png  used on input line 200.
 (pdftex.def)             Requested size: 327.74895pt x 398.3115pt.
-<./images//ISIS2.png, id=277, 664.44153pt x 600.28346pt>
+<./images//ISIS2.png, id=323, 664.44153pt x 600.28346pt>
 File: ./images//ISIS2.png Graphic file (type png)
 <use ./images//ISIS2.png>
-Package pdftex.def Info: ./images//ISIS2.png  used on input line 204.
+Package pdftex.def Info: ./images//ISIS2.png  used on input line 207.
 (pdftex.def)             Requested size: 207.0021pt x 187.01106pt.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 205.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 205.
  [3] [4 <./images//ISIS.png (PNG copy)>] [5 <./images//ISIS2.png (PNG copy)>] [6]
-<./images//isisDowntime.png, id=330, 489.9906pt x 475.5366pt>
+<./images//isisDowntime.png, id=374, 489.9906pt x 475.5366pt>
 File: ./images//isisDowntime.png Graphic file (type png)
 <use ./images//isisDowntime.png>
-Package pdftex.def Info: ./images//isisDowntime.png  used on input line 235.
+Package pdftex.def Info: ./images//isisDowntime.png  used on input line 238.
 (pdftex.def)             Requested size: 172.5pt x 167.41261pt.
-<./images//fap.png, id=334, 603.97072pt x 805.29428pt>
+<./images//fap.png, id=378, 603.97072pt x 805.29428pt>
 File: ./images//fap.png Graphic file (type png)
 <use ./images//fap.png>
-Package pdftex.def Info: ./images//fap.png  used on input line 240.
+Package pdftex.def Info: ./images//fap.png  used on input line 243.
 (pdftex.def)             Requested size: 327.74895pt x 436.99051pt.
  [7 <./images//isisDowntime.png>] [8 <./images//fap.png (PNG copy)>]
-Overfull \hbox (0.52362pt too wide) in paragraph at lines 266--267
+Overfull \hbox (0.52362pt too wide) in paragraph at lines 269--270
 []\T1/lmr/m/n/8 Run-to-failure (R2F) main-te-nance: Con-tin-ual us-age of the sys-tem un-til fail-ure. Restora-
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 271--272
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
 
  []
 
 [10] [11] [12]
 Chapter 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 339--340
+Underfull \hbox (badness 10000) in paragraph at lines 342--343
 
  []
 
@@ -710,71 +710,74 @@ LaTeX Warning: Marginpar on page 13 moved.
 [13
 
 ]
-<./images//sentenceEmbeddingExample.png, id=498, 1449.82469pt x 969.7454pt>
+<./images//sentenceEmbeddingExample.png, id=542, 1449.82469pt x 969.7454pt>
 File: ./images//sentenceEmbeddingExample.png Graphic file (type png)
 <use ./images//sentenceEmbeddingExample.png>
-Package pdftex.def Info: ./images//sentenceEmbeddingExample.png  used on input line 358.
+Package pdftex.def Info: ./images//sentenceEmbeddingExample.png  used on input line 361.
 (pdftex.def)             Requested size: 327.74895pt x 219.2191pt.
  [14 <./images//sentenceEmbeddingExample.png (PNG copy)>]
-<./images//BERT1.png, id=515, 768.42183pt x 312.67836pt>
+<./images//BERT1.png, id=559, 768.42183pt x 312.67836pt>
 File: ./images//BERT1.png Graphic file (type png)
 <use ./images//BERT1.png>
-Package pdftex.def Info: ./images//BERT1.png  used on input line 372.
+Package pdftex.def Info: ./images//BERT1.png  used on input line 375.
 (pdftex.def)             Requested size: 327.74895pt x 133.36603pt.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 378.
- (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [15 <./images//BERT1.png (PNG copy)>] [16] [17] [18] [19]
+ [15 <./images//BERT1.png (PNG copy)>] [16] [17] [18] [19]
 Chapter 3.
-<./images//FaultDescriptionVSFaultRepairs.png, id=569, 627.3036pt x 490.7133pt>
-File: ./images//FaultDescriptionVSFaultRepairs.png Graphic file (type png)
-<use ./images//FaultDescriptionVSFaultRepairs.png>
-Package pdftex.def Info: ./images//FaultDescriptionVSFaultRepairs.png  used on input line 531.
-(pdftex.def)             Requested size: 241.49895pt x 188.91397pt.
-<./images//wcFaultRepairs.png, id=570, 1157.7654pt x 483.4863pt>
-File: ./images//wcFaultRepairs.png Graphic file (type png)
-<use ./images//wcFaultRepairs.png>
-Package pdftex.def Info: ./images//wcFaultRepairs.png  used on input line 539.
-(pdftex.def)             Requested size: 165.59853pt x 69.14833pt.
-<./images//wcFaultDescription.png, id=571, 1157.7654pt x 483.4863pt>
-File: ./images//wcFaultDescription.png Graphic file (type png)
-<use ./images//wcFaultDescription.png>
-Package pdftex.def Info: ./images//wcFaultDescription.png  used on input line 546.
-(pdftex.def)             Requested size: 165.59853pt x 69.14833pt.
 [20
 
-] [21 <./images//FaultDescriptionVSFaultRepairs.png> <./images//wcFaultRepairs.png> <./images//wcFaultDescription.png>] [22]
+]
+<./images//FaultDescriptionVSFaultRepairs.png, id=620, 635.976pt x 496.4949pt>
+File: ./images//FaultDescriptionVSFaultRepairs.png Graphic file (type png)
+<use ./images//FaultDescriptionVSFaultRepairs.png>
+Package pdftex.def Info: ./images//FaultDescriptionVSFaultRepairs.png  used on input line 534.
+(pdftex.def)             Requested size: 241.49895pt x 188.53365pt.
+<./images//wcFaultRepairs.png, id=621, 1394.811pt x 566.5968pt>
+File: ./images//wcFaultRepairs.png Graphic file (type png)
+<use ./images//wcFaultRepairs.png>
+Package pdftex.def Info: ./images//wcFaultRepairs.png  used on input line 542.
+(pdftex.def)             Requested size: 165.59853pt x 67.26245pt.
+<./images//wcFaultDescription.png, id=622, 1394.811pt x 566.5968pt>
+File: ./images//wcFaultDescription.png Graphic file (type png)
+<use ./images//wcFaultDescription.png>
+Package pdftex.def Info: ./images//wcFaultDescription.png  used on input line 549.
+(pdftex.def)             Requested size: 165.59853pt x 67.26245pt.
+ [21 <./images//FaultDescriptionVSFaultRepairs.png>]
+Overfull \hbox (1.98938pt too wide) in paragraph at lines 573--574
+\T1/lmr/m/n/8 The aim of pre-processing the un-struc-tured, nat-u-ral lan-guage text data from \T1/lmtt/m/n/8 FaultDescription
+ []
+
+[22 <./images//wcFaultRepairs.png> <./images//wcFaultDescription.png>] [23] [24]
 Chapter 4.
-[23
+[25
 
 ]
 Chapter 5.
-(./report.bbl [24
+(./report.bbl [26
 
-] [25
+] [27
 
-] [26]
-Underfull \hbox (badness 1776) in paragraph at lines 236--239
+] [28] [29]
+Underfull \hbox (badness 1776) in paragraph at lines 275--278
 \T1/lmr/m/n/8 em-bed: Train-ing a re-pro-ducible long con-text text em-bed-der.  \T1/lmr/m/it/8 arXiv preprint
  []
 
-[27] [28]) [29] (./report.aux)
+[30] [31]) [32] (./report.aux)
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 5C74B6A41B1DCD1042C34F80C1D07591;4730.
+(rerunfilecheck)             Checksum: 4EF1D62B693C57B83217D5B3C0F76179;6339.
  ) 
 Here is how much of TeX's memory you used:
- 23350 strings out of 478287
- 444029 string characters out of 5849290
- 715385 words of memory out of 5000000
- 40926 multiletter control sequences out of 15000+600000
- 532534 words of font info for 62 fonts, out of 8000000 for 9000
+ 23398 strings out of 478287
+ 445091 string characters out of 5849290
+ 711983 words of memory out of 5000000
+ 40958 multiletter control sequences out of 15000+600000
+ 525326 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 115i,13n,131p,1513b,952s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
-Output written on report.pdf (35 pages, 5400785 bytes).
+ 115i,13n,131p,1785b,952s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx7.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
+Output written on report.pdf (38 pages, 5907807 bytes).
 PDF statistics:
- 750 PDF objects out of 1000 (max. 8388607)
- 652 compressed objects within 7 object streams
- 179 named destinations out of 1000 (max. 500000)
- 322 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 824 PDF objects out of 1000 (max. 8388607)
+ 726 compressed objects within 8 object streams
+ 201 named destinations out of 1000 (max. 500000)
+ 394 words of extra memory for PDF output out of 10000 (max. 10000000)
 
