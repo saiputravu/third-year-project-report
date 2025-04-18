@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.4)  18 APR 2025 16:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.4)  18 APR 2025 22:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -700,65 +700,68 @@ Package hyperref Info: bookmark level for unknown todo defaults to 0 on input li
 ] [6]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.167 \chapter
+l.171 \chapter
               {Introduction} [1
 
 
 ]
 Chapter 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
+Underfull \hbox (badness 10000) in paragraph at lines 173--174
 
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 185.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 189.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [2
 
 ]
-<./images//ISIS.png, id=327, 770.63419pt x 936.56021pt>
+<./images//ISIS.png, id=335, 770.63419pt x 936.56021pt>
 File: ./images//ISIS.png Graphic file (type png)
 <use ./images//ISIS.png>
-Package pdftex.def Info: ./images//ISIS.png  used on input line 208.
+Package pdftex.def Info: ./images//ISIS.png  used on input line 212.
 (pdftex.def)             Requested size: 327.74895pt x 398.3115pt.
-<./images//ISIS2.png, id=330, 664.44153pt x 600.28346pt>
+<./images//ISIS2.png, id=338, 664.44153pt x 600.28346pt>
 File: ./images//ISIS2.png Graphic file (type png)
 <use ./images//ISIS2.png>
-Package pdftex.def Info: ./images//ISIS2.png  used on input line 215.
+Package pdftex.def Info: ./images//ISIS2.png  used on input line 219.
 (pdftex.def)             Requested size: 207.0021pt x 187.01106pt.
  [3] [4 <./images//ISIS.png (PNG copy)>] [5 <./images//ISIS2.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 233--235
+Underfull \hbox (badness 10000) in paragraph at lines 237--239
 
  []
 
 [6] [7]
-<./images//isisDowntime.png, id=389, 489.9906pt x 475.5366pt>
+<./images//isisDowntime.png, id=396, 489.9906pt x 475.5366pt>
 File: ./images//isisDowntime.png Graphic file (type png)
 <use ./images//isisDowntime.png>
-Package pdftex.def Info: ./images//isisDowntime.png  used on input line 247.
+Package pdftex.def Info: ./images//isisDowntime.png  used on input line 251.
 (pdftex.def)             Requested size: 172.5pt x 167.41261pt.
-<./images//fap.png, id=393, 603.97072pt x 805.29428pt>
+<./images//fap.png, id=400, 603.97072pt x 805.29428pt>
 File: ./images//fap.png Graphic file (type png)
 <use ./images//fap.png>
-Package pdftex.def Info: ./images//fap.png  used on input line 252.
+Package pdftex.def Info: ./images//fap.png  used on input line 256.
 (pdftex.def)             Requested size: 327.74895pt x 436.99051pt.
  [8 <./images//isisDowntime.png>] [9 <./images//fap.png (PNG copy)>]
-Overfull \hbox (0.52362pt too wide) in paragraph at lines 278--279
+Overfull \hbox (0.52362pt too wide) in paragraph at lines 282--283
 []\T1/lmr/m/n/8 Run-to-failure (R2F) main-te-nance: Con-tin-ual us-age of the sys-tem un-til fail-ure. Restora-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 283--284
+Underfull \hbox (badness 10000) in paragraph at lines 287--288
 
  []
 
 [10] [11]
 Chapter 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 313--314
+Underfull \hbox (badness 10000) in paragraph at lines 317--318
 
  []
+
+
+LaTeX Warning: Marginpar on page 12 moved.
 
 
 LaTeX Warning: Marginpar on page 12 moved.
@@ -769,74 +772,89 @@ LaTeX Warning: Marginpar on page 12 moved.
 [12
 
 ] [13] [14]
-<./images//sentenceEmbeddingExample.png, id=554, 1449.82469pt x 969.7454pt>
+<./images//sentenceEmbeddingExample.png, id=562, 1449.82469pt x 969.7454pt>
 File: ./images//sentenceEmbeddingExample.png Graphic file (type png)
 <use ./images//sentenceEmbeddingExample.png>
-Package pdftex.def Info: ./images//sentenceEmbeddingExample.png  used on input line 370.
+Package pdftex.def Info: ./images//sentenceEmbeddingExample.png  used on input line 374.
 (pdftex.def)             Requested size: 327.74895pt x 219.2191pt.
  [15 <./images//sentenceEmbeddingExample.png (PNG copy)>]
-<./images//BERT1.png, id=573, 768.42183pt x 312.67836pt>
+<./images//BERT1.png, id=581, 768.42183pt x 312.67836pt>
 File: ./images//BERT1.png Graphic file (type png)
 <use ./images//BERT1.png>
-Package pdftex.def Info: ./images//BERT1.png  used on input line 384.
+Package pdftex.def Info: ./images//BERT1.png  used on input line 389.
 (pdftex.def)             Requested size: 327.74895pt x 133.36603pt.
  [16 <./images//BERT1.png (PNG copy)>] [17] [18] [19] [20]
 Chapter 3.
 [21
 
 ]
-<./images//FaultDescriptionVSFaultRepairs.png, id=635, 635.976pt x 496.4949pt>
+<./images//FaultDescriptionVSFaultRepairs.png, id=643, 635.976pt x 496.4949pt>
 File: ./images//FaultDescriptionVSFaultRepairs.png Graphic file (type png)
 <use ./images//FaultDescriptionVSFaultRepairs.png>
-Package pdftex.def Info: ./images//FaultDescriptionVSFaultRepairs.png  used on input line 543.
+Package pdftex.def Info: ./images//FaultDescriptionVSFaultRepairs.png  used on input line 550.
 (pdftex.def)             Requested size: 241.49895pt x 188.53365pt.
-<./images//wcFaultRepairs.png, id=636, 1394.811pt x 566.5968pt>
+<./images//wcFaultRepairs.png, id=644, 1394.811pt x 566.5968pt>
 File: ./images//wcFaultRepairs.png Graphic file (type png)
 <use ./images//wcFaultRepairs.png>
-Package pdftex.def Info: ./images//wcFaultRepairs.png  used on input line 551.
+Package pdftex.def Info: ./images//wcFaultRepairs.png  used on input line 558.
 (pdftex.def)             Requested size: 165.59853pt x 67.26245pt.
-<./images//wcFaultDescription.png, id=637, 1394.811pt x 566.5968pt>
+<./images//wcFaultDescription.png, id=645, 1394.811pt x 566.5968pt>
 File: ./images//wcFaultDescription.png Graphic file (type png)
 <use ./images//wcFaultDescription.png>
-Package pdftex.def Info: ./images//wcFaultDescription.png  used on input line 558.
+Package pdftex.def Info: ./images//wcFaultDescription.png  used on input line 565.
 (pdftex.def)             Requested size: 165.59853pt x 67.26245pt.
- [22 <./images//FaultDescriptionVSFaultRepairs.png>]
-Overfull \hbox (1.98938pt too wide) in paragraph at lines 588--589
+ [22] [23 <./images//FaultDescriptionVSFaultRepairs.png> <./images//wcFaultRepairs.png> <./images//wcFaultDescription.png>]
+Overfull \hbox (1.98938pt too wide) in paragraph at lines 619--620
 \T1/lmr/m/n/8 The aim of pre-processing the un-struc-tured, nat-u-ral lan-guage text data from \T1/lmtt/m/n/8 FaultDescription
  []
 
-[23 <./images//wcFaultRepairs.png> <./images//wcFaultDescription.png>] [24] [25] [26]
+[24] [25]
+Overfull \hbox (3.56938pt too wide) in paragraph at lines 689--689
+[]|\T1/lmtt/m/n/8 sentence-transformers/all-mpnet-base-v2| 
+ []
+
+[26] [27] [28]
 Chapter 4.
-[27
+[29
 
 ]
 Chapter 5.
-(./report.bbl [28
+(./report.bbl [30
 
-] [29
+] [31
 
-] [30] [31]
-Underfull \hbox (badness 1776) in paragraph at lines 281--284
+] [32] [33]
+Underfull \hbox (badness 1776) in paragraph at lines 296--299
 \T1/lmr/m/n/8 em-bed: Train-ing a re-pro-ducible long con-text text em-bed-der.  \T1/lmr/m/it/8 arXiv preprint
  []
 
-[32] [33]) [34] (./report.aux)
+
+Underfull \hbox (badness 3895) in paragraph at lines 301--306
+[]\T1/lmr/m/n/8 Nussbaum, Zach and Cem-balest, Max.  Nomic Em-bed's Sur-pris-ingly Good
+ []
+
+
+Underfull \hbox (badness 1895) in paragraph at lines 301--306
+\T1/lmr/m/n/8 MTEB Arena Elo Score, Aug 2024.  URL [][]$\T1/lmtt/m/n/8 https : / / www . nomic . ai / blog / posts /
+ []
+
+[34] [35]) [36] (./report.aux)
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 95A39FE886E25944BC71A6F305AED281;6574.
+(rerunfilecheck)             Checksum: 306858902D695DE01F74AD2F81009D0F;6543.
  ) 
 Here is how much of TeX's memory you used:
- 24096 strings out of 478287
- 454652 string characters out of 5849290
- 723692 words of memory out of 5000000
- 41631 multiletter control sequences out of 15000+600000
+ 24144 strings out of 478287
+ 455701 string characters out of 5849290
+ 728655 words of memory out of 5000000
+ 41668 multiletter control sequences out of 15000+600000
  531295 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 115i,13n,131p,1844b,950s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 115i,13n,131p,1982b,950s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx7.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
-Output written on report.pdf (41 pages, 5914166 bytes).
+Output written on report.pdf (43 pages, 5922789 bytes).
 PDF statistics:
- 851 PDF objects out of 1000 (max. 8388607)
- 750 compressed objects within 8 object streams
- 208 named destinations out of 1000 (max. 500000)
+ 890 PDF objects out of 1000 (max. 8388607)
+ 786 compressed objects within 8 object streams
+ 219 named destinations out of 1000 (max. 500000)
  394 words of extra memory for PDF output out of 10000 (max. 10000000)
 

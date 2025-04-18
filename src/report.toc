@@ -12,9 +12,9 @@
 \contentsline {section}{\numberline {2.2}(maybe) Clustering}{14}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Sentence Embedding}{15}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}BERT-family Transformers}{15}{subsection.2.3.1}%
-\contentsline {subsubsection}{BERT}{16}{section*.29}%
-\contentsline {subsubsection}{XLNet and MPNet}{17}{section*.32}%
-\contentsline {subsubsection}{Nomic}{18}{section*.34}%
+\contentsline {subsubsection}{BERT}{16}{section*.30}%
+\contentsline {subsubsection}{XLNet and MPNet}{17}{section*.33}%
+\contentsline {subsubsection}{Nomic}{18}{section*.35}%
 \contentsline {section}{\numberline {2.4}Dimensionality Reduction}{18}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}PCA}{18}{subsection.2.4.1}%
 \contentsline {subsection}{\numberline {2.4.2}UMAP}{18}{subsection.2.4.2}%
@@ -31,15 +31,15 @@
 \contentsline {chapter}{\numberline {3}Automatic Categorisation and Label Generation}{21}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Data}{21}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}The Operalog}{21}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Preliminary Data Analysis}{23}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Overview of the process}{23}{section.3.2}%
+\contentsline {subsection}{\numberline {3.1.2}Preliminary Data Analysis}{22}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Overview}{22}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Natural Language Pre-processing}{24}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Establishing an embedding space}{25}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Dimensionality reduction}{25}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Unsupervised categorisation through clustering}{26}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Hyperparameter optimisation}{26}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Label generation}{26}{section.3.8}%
-\contentsline {section}{\numberline {3.9}CLI Application}{26}{section.3.9}%
-\contentsline {chapter}{\numberline {4}Results and Discussion}{27}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusion}{28}{chapter.5}%
-\contentsline {chapter}{Bibliography}{29}{chapter*.58}%
+\contentsline {section}{\numberline {3.4}Establishing an embedding space}{26}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Embedding dimensionality reduction}{27}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Unsupervised categorisation through clustering}{28}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Hyperparameter optimisation}{28}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Label generation}{28}{section.3.8}%
+\contentsline {section}{\numberline {3.9}CLI Application}{28}{section.3.9}%
+\contentsline {chapter}{\numberline {4}Results and Discussion}{29}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusion}{30}{chapter.5}%
+\contentsline {chapter}{Bibliography}{31}{chapter*.64}%

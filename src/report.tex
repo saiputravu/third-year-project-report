@@ -106,6 +106,8 @@
     \centering
     \begin{tabular}{ll}
 
+        \textbf{AE} & Auto-encoding. \\
+        \textbf{AR} & Auto-regressive. \\
         \textbf{BERT} & Bidirectional Encoder Representation from Transformers. \\
         \textbf{CBM} & Condition-based maintenance policy. \\
         \textbf{CLI} & Command Line Interface. \\
@@ -120,6 +122,7 @@
         \textbf{FLD} & First-line diagnosis system. \\
         \textbf{GPT} & Generative Pre-trained Transformer. \\
         \textbf{GPU} & Graphics Processing Unit. \\
+        \textbf{CPU} & Central Processing Unit. \\
         \textbf{HDBSCAN} & Hierarchical Density-Based Spatial Clustering of Application with Noise. \\
         \textbf{HDD} & Hard-Disk Drive. \\
         \textbf{HEDS} & High energy drift space. \\
@@ -136,6 +139,7 @@
         \textbf{PLM} & Pre-trained Language Model. \\
         \textbf{PvM} & Preventative maintenance policy. \\
         \textbf{R2F} & Run-to-failure maintenance policy. \\
+        \textbf{MTEB} & Massive Text Embedding Benchmark. \\
         \textbf{RFQ} & Radio-frequency quadrupole. \\
         \textbf{RF} & Random Forest. \\
         \textbf{SAFE} & Supervised Aggregative Feature Extraction. \\
@@ -310,7 +314,7 @@ In industry, many maintenance strategies prefer using PdM whilst experimenting w
 
 \chapter{Natural Language Processing Background}
 
-This chapter delves into the technical background required to the methodology proposed in Chapter~\ref{chap:Methodology}. Firstly, we discuss various measures of text similarity in Section~\ref{sec:sentenceSimilarity}, which provides an introduction to text embeddings and categorises similarity measures into different generations. Section~\ref{sec:sentenceEmbedding} introduces both third-generation (BERT \cite{devlin2019bert}, XLNet \cite{yang2019xlnet} and MPNet \cite{song2020mpnet}) and fourth-generation models (Nomic \cite{nussbaum2024nomic}). We specifically discuss the technical details of the BERT model and its family of encoder-only transformers. We then detail two direct improvements over BERT (XLNet and MPNet) and explore the state-of-the-art, fourth-generation Nomic architecture. Afterwards, we cover two methods of dimensionality reduction (PCA \cite{pearson1901liii,hotelling1933analysis} and UMAP \cite{mcinnes2018umap}) motivated by the need to visualise samples from the high-dimensional embedding spaces of the aforementioned models, in Section~\ref{sec:dimred}. Finally, we present three clustering algorithms - with one partitioning-based (k-Medoids \todo{Fill this} \cite{}) and two density-based (DBSCAN \cite{ester1996density} and HDBSCAN \cite{campello2013density}) in addition to four clustering evaluation metrics. The clustering metrics we look at are: (1) Inertia \todo{find the reference for this}\cite{}, (2) Silhouette \cite{rousseeuw1987silhouettes}, (3) Davies-Bouldin Index \cite{davies1979cluster}, (4) Calinski-Harabasz Index \cite{calinski1974dendrite}. \todo{maybe talk about optuna, if we use it.} \todo{double check all citations here are not empty}\\ 
+This chapter delves into the technical background required to the methodology proposed in Chapter~\ref{chap:Methodology}. Firstly, we discuss various measures of text similarity in Section~\ref{sec:sentenceSimilarity}, which motivates text embeddings and categorises similarity measures into different generations. Section~\ref{sec:sentenceEmbedding} introduces both third-generation (BERT \cite{devlin2019bert}, XLNet \cite{yang2019xlnet} and MPNet \cite{song2020mpnet}) and fourth-generation models (Nomic \cite{nussbaum2024nomic}). We specifically discuss the technical details of the BERT model and its family of encoder-only transformers. We then detail two direct improvements over BERT (XLNet and MPNet) and explore the state-of-the-art, fourth-generation Nomic architecture. In actuality, only MPNet and Nomic models are used in Chapter~\ref{chap:Methodology} however, as MPNet builds on top of XLNet and BERT and Nomic builds on top of BERT, it is important to understand the key features of all four architectures.  Afterwards, we cover two methods of dimensionality reduction (PCA \cite{pearson1901liii,hotelling1933analysis} and UMAP \cite{mcinnes2018umap}) motivated by the need to visualise samples from the high-dimensional embedding spaces of the aforementioned models, in Section~\ref{sec:dimred}. Finally, we present three clustering algorithms - with one partitioning-based (k-Medoids \todo{Fill this} \cite{}) and two density-based (DBSCAN \cite{ester1996density} and HDBSCAN \cite{campello2013density}) in addition to four clustering evaluation metrics. The clustering metrics we look at are: (1) Inertia \todo{find the reference for this}\cite{}, (2) Silhouette \cite{rousseeuw1987silhouettes}, (3) Davies-Bouldin Index \cite{davies1979cluster}, (4) Calinski-Harabasz Index \cite{calinski1974dendrite}. \todo{maybe talk about optuna, if we use it.} \todo{double check all citations here are not empty}\\ 
 
 \todo[inline,caption={}]{
 Describe the various technical factors required before attempting to understand the methodology.
@@ -363,7 +367,7 @@ The things in this section will include
 }
 
 \section{Sentence Embedding}\label{sec:sentenceEmbedding}
-Briefly touched on in Section~\ref{sec:sentenceSimilarity}, sentence embedding (otherwise known as text embedding) is the NLP task of computing some high-dimensional embedding vector-space representation for unstructured text data. This numerical representation should encode the semantic and syntactic meaning of the text and establish meaningful relationships. For example, the sentence `I like dogs' should have the opposite representation to `I hate dogs'.  However these sentences should be more related than to the sentence `My house was destroyed in an earthquake'. For a naive illustration of this, see Figure~\ref{fig:sentenceEmbeddingExample}, which shows how similar sentences should be grouped together. As Nomic requires the task explicitly in input text (more on this later), `clustering: ' is appended to all sentences. Deep learning sentence embedding models are now seen to be state-of-the-art as they are able to extract features automatically and more effectively than manual efforts, when supported with large quantities of data \cite{liang2017text}.
+Briefly touched on in Section~\ref{sec:sentenceSimilarity}, sentence embedding (otherwise known as text embedding) is the NLP task of computing some high-dimensional embedding vector-space representation for unstructured text data. This vector-based representation should encode the semantic and syntactic meaning of the text and establish meaningful relationships. For example, the sentence `I like dogs' should have the opposite representation to `I hate dogs'.  However these sentences should be more related than to the sentence `My house was destroyed in an earthquake'. For a naive illustration of this, see Figure~\ref{fig:sentenceEmbeddingExample}, which shows how similar sentences should be grouped together. As Nomic requires the task explicitly in input text (more on this later), `clustering: ' is appended to all sentences. Deep learning sentence embedding models are now seen to be state-of-the-art as they are able to extract features automatically and more effectively than manual efforts, when supported with large quantities of data \cite{liang2017text}.
 
 \begin{figure}[htbp]
     \centering
@@ -373,6 +377,7 @@ Briefly touched on in Section~\ref{sec:sentenceSimilarity}, sentence embedding (
 
 \subsection{BERT-family Transformers}\label{sec:BERT}
 Pre-trained language models (PLMs), such as BERT \cite{devlin2019bert}, have been widely successful in a wide range of NLP tasks through fine-tuning \cite{edunov2019pre, min2023recent}. Fine-tuning is the process of re-training a PLM on specialised tasks, leveraging the model's base knowledge, by applying perturbations to the pre-trained model parameters through gradient descent learning algorithms. These language models, trained on finding an embedding space for natural language as well as stochastically generating tokens to mimic natural language, often provide a great platform to perform task-specific model fine-tuning. 
+\todo{fix wording}
 Platforms such as HuggingFace \cite{wolf2019huggingface}, allow authors to upload these pre-trained model parameters which in-turn allows researchers to download them for them fine-tuning. Moreover, task-specific fine-tuned models parameters are uploaded, downloaded and shared on these platforms. These fine-tuned models are useful for researchers whose focus lies outside of optimising these model parameters.
 In this section, we talk about the BERT-family of language models.
 
@@ -397,9 +402,11 @@ The Bidirectional Encoder Representations from Transformer (BERT) language model
 As previously mentioned, a benefit of using PLMs such as BERT for NLP tasks (such as text embedding) is the ability to off-load the computationally intensive pre-training and any initial fine-tuning stages to another party. Although, this means that there now exists an implicit trust on that third-party's model parameters. For example, the third-party could be motivated factors to censor certain phrases, artificially injecting testing data into training to increase performance metrics or maliciously change the embedding space. These are all factors which influence our decision on using a PLM and, thus, PLMs with transparently documented data sources, pre-training and fine-tuning should be preferred.
 
 \subsubsection{XLNet and MPNet}
-Since the release of the Google AI Language team's BERT, there have been some developments on further improving the performance of PLMs based on BERT's architecture. Namely, we touch on two: XLNet \cite{yang2019xlnet} and MPNet \cite{song2020mpnet}.
+Since the release of the Google AI Language team's BERT, there have been some developments on further improving the performance of PLMs based on BERT's architecture. Namely, we touch on two: XLNet \cite{yang2019xlnet} and MPNet \cite{song2020mpnet}. 
 
-One downside of BERT, briefly touched on earlier, is the discrepancy between the pre-training and fine-tuning phases. Although BERT utilises bidirectional context for reconstruction of the special \texttt{[MASK]} token during pre-training, this special token does not exist at the fine-tuning phase. Furthermore, the predicted tokens are masked in the \textit{input} thus BERT assumes the predicted tokens are independent to the surrounding context \cite{yang2019xlnet}. XLNet proposes
+BERT can be categorised as an auto-encoding (AE) language model. This is an 
+
+One downside of BERT, briefly touched on earlier, is the discrepancy between the pre-training and fine-tuning phases. Although BERT utilises bidirectional context for reconstruction of the special \texttt{[MASK]} token during pre-training, this special token does not exist at the fine-tuning phase. Additionally, the predicted tokens are masked in the \textit{input} thus BERT assumes the predicted tokens are independent to the surrounding context \cite{yang2019xlnet}. XLNet, therefore, proposes 
 
 \todo[inline, caption={}] {
     \begin{itemize}
@@ -516,10 +523,10 @@ The operational log, otherwise referred to as the `Operalog', is an Excel spread
 
 \rowcolors{2}{gray!10}{white}
 \begin{table}[htbp]
-    \fontsize{8}{10}\selectfont
+    \fontsize{8}{11}\selectfont
     \centering
     \begin{adjustbox}{max width=\textwidth}
-    \begin{tabular}{p{3cm} p{4cm} p{10cm}}
+    \begin{tabular}{p{3cm} p{3cm} p{7cm}}
         \toprule
         \textbf{Feature Name} & \textbf{Data Type} & \textbf{Description} \\
         \midrule
@@ -573,13 +580,37 @@ The operational log, otherwise referred to as the `Operalog', is an Excel spread
 }
 
 
-\section{Overview of the process}
+\section{Overview}
+
+\todo{Make a diagram that showcases the process (and all the hyperparameter choices)}
 
 The process of transforming an unlabelled, uninformative Operalog into an informed, induced-label tagged dataset can be broadly characterised into five major steps. These steps are: (1) initial pre-processing and normalisation of the \texttt{FaultDescription} natural language text; (2) embedding the cleaned text into a high-dimensional embedding space using a BERT-family transformer encoder model; (3) low-dimensional projection of the embedding space while respecting the higher-dimensional topological manifold; (4) performing clustering on the low-dimensional data, optimising clustering using clustering metrics as heuristics for the `goodness' of a cluster; and (5) using natural language processing to induce label names for each cluster and tagging each entry with this label. Here, we choose to solely consider the \texttt{FaultDescription} field as the vast majority of \texttt{FaultRepair} fields are either empty or less than or equal to 5 characters long.
 
 Several hyperparameters affect the performance of the label generating process. Examples include model or algorithm specific parameters (i.e. the dimensionality reduction or clustering algorithms) and clustering `goodness' heuristics used. These hyperparameters are tuned using Optuna hyperparameter optimisation framework, an automatic optimisation framework specifically designed for machine learning applications \cite{akiba2019optuna} and also allows for multi-objective optimisation. The hyperparameter optimisation of the process then produces the `best' induced categories and thus labels for each issue type. 
 
 Additionally, as this project is an early stage exploration of auto-categorisation for the ISIS Operalog, the major focus is on ion source \texttt{Equipment} type unless explicitly specified. This enables the project to focus on progressing the tooling in a scoped manner with a structured goal in mind - to progress the auto-categorisation effort on the ISIS Operalog.
+
+The hardware available for research is detailed in Table~\ref{tab:researchHw}. Some models, such as PLMs with a high parameter count, are unable to be loaded on the hardware available. Therefore, consideration of the limited computation resources played a major factor in the decisions regarding the pipeline.
+
+\rowcolors{2}{gray!10}{white}
+\begin{table}[htbp]
+    \fontsize{8}{12}\selectfont
+    \centering
+    \begin{adjustbox}{max width=\textwidth}
+        \begin{tabular}{p{3cm}|p{10cm}}
+        \toprule
+        \textbf{Hardware} & \textbf{Description} \\
+        \midrule
+        {CPU} & {11th Gen Intel i7-11800H (16 core) @ 4.600GHz} \\
+        {Main Memory} & {64Gb} \\
+        {GPU} & {NVIDIA GeForce RTX 3060 Mobile / Max-Q} \\
+        {GPU Memory} & {6Gb} \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+    \caption{Research hardware description.}
+    \label{tab:researchHw}
+\end{table}
 
 \todo{Clean up wording in the above}
 
@@ -616,7 +647,7 @@ As text pre-processing is intensive to compute, when performing hyperparameter o
         \midrule
         {o/p} & {output} \\
         {i/s} & {ion source} \\
-        {(b/down|break-down|b\textbackslash down|b/d)} & {breakdown} \\
+        {(b/down | break-down | b\textbackslash down | b/d)} & {breakdown} \\
         \bottomrule
     \end{tabular}
     \end{adjustbox}
@@ -638,20 +669,57 @@ As text pre-processing is intensive to compute, when performing hyperparameter o
 \section{Establishing an embedding space}
 After pre-processing, the cleaned and normalised text is ready to be digested by a sentence embedding model (see Section~\ref{sec:sentenceEmbedding}). This is motivated by the need to understand syntactic and semantic relationships between each label before any categorisation can take place. The categorisation process itself can be viewed as a more sophisticated task of understanding and ranking the relationship between various \texttt{FaultDescription}s, grouping together entries which appear the closest in meaning.  
 
-The PLMs considered are only MPNet and 
+In interest of time, and motivated by the literature suggesting the benefits of the current state-of-the-art models, this project only considers the PLMs listed in Table~\ref{tab:plms} (see Section~\ref{sec:BERT} for further detail on the models). The table describes the model architecture and specific model parameter configuration used (for example, different authors who fine-tune to different tasks will have varying model parameter configurations).
 
+Choosing the `right' embedding model for our task is extremely paramount. Similarly to choosing the pre-processing steps, choosing an embedding model affects the subsequent pipeline. If the embedding space is poorly constructed by during the pre-training or noise is introduced that affects clustering performance, the end result will change quite drastically. This is a key point to note going forward. 
+
+By using a pre-trained and pre-fine-tuned model we can have some certainty about performance on our specific task. However, due to the aforementioned computational resource bandwidth, choices in models is somewhat restricted - mainly bottlenecked by the amount of GPU memory (6 Gb, in our case). With this in mind, we specifically look at models that perform well for clustering on the Massive Text Embedding Benchmark (MTEB) leaderboard and have low computational usage requirements. The MTEB leaderboard compares more than 100 text and image embedding models across 132 tasks of 9 categories, 17 of which are clustering tasks \cite{muennighoff2022mteb}. Nomic has been shown to compete with models around 70 times its size (that rank in the top 10), ranking in the top 50 and achieving an average clustering score of around 43.9 in clustering (\texttt{nomic-ai/nomic-embed-text-v1.5})\cite{nussbaum2024nomicelo}. However, with MPNet being an older model, it falls slightly behind, ranking at 137 yet achieves an average of around 43.7 in clustering (\texttt{sentence-transformers/all-mpnet-base-v2}).
+
+\todo {Fix wording in the above}
+
+\rowcolors{2}{gray!10}{white}
+\begin{table}[htbp]
+    \fontsize{8}{10}\selectfont
+    \centering
+    \begin{adjustbox}{max width=\textwidth}
+        \begin{tabular}{p{1cm} p{5.7cm} p{6.2cm}}
+        \toprule
+        \textbf{Model} & \textbf{PLM Model Path} & \textbf{Description}  \\
+        \midrule
+        MPNet & \texttt{sentence-transformers/all-mpnet-base-v2} & This model is a fine-tuned version of the pre-trained MPNet base model. It was fine-tuned on a sentence pairs dataset that has around one billion entries using a contrastive learning objective (i.e. given a sentence from a pair, the model should predict which it was paired with out of randomly sample set of sentences). \\
+        Nomic & \texttt{nomic-ai/nomic-embed-text-v1.5} & This model is a slight upgrade from v1, which is the paper detailed in Section~\ref{sec:nomic}. Nomic Text v1.5 outperforms v1 by using Matryoshka representation learning which trains the model to learn nested representations at different embedding dimensions \cite{kusupati2022matryoshka}.\\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+    \caption{PLMs considered for this project, the HuggingFace \cite{wolf2019huggingface} model path and its feature description.)}
+    \label{tab:plms}
+\end{table}
+
+
+\textbf{}\\
 \todo[inline, caption={}] {
     \begin{itemize}
-        \item Motivate the need for sentence embedding
-        \item Talk about the two types of sentence embedding (PLM, MPNet and Nomic)
-        \item Talk about why we do not consider more embedding models
-        \item Highlight that choosing this is critical as it affects the rest of the pipeline
+        \item Motivate the need for sentence embedding - DONE
+        \item Talk about the two types of sentence embedding (PLM, MPNet and Nomic) - DONE
+        \item Talk about why we do not consider more embedding models - DONE
+        \item Highlight that choosing this is critical as it affects the rest of the pipeline - DONE
     \end{itemize}
 }
 
 % \section{Dimensional Projection?}
-\section{Dimensionality reduction}
-\todo[inline]{Maybe combine this with dimensional projection}
+\section{Embedding dimensionality reduction}
+\todo[inline, caption={}]{
+    \begin{itemize}
+        \item motivate this with the curse of dimensionality and state the embedding spaces of the models
+        \item Here, we put some effort into visualisation of the embedding dimension with MPNET and with Nomic. Show images
+        \item Note that only unique sentences are considered for embedding (we have a one to one mapping backwards anyways).
+        \item In literature, there exists PCA and t-SNE and UMAP. Explain why we did not choose t-SNE and stuck with comparing UMAP and PCA.
+        \item Reason why UMAP is fine to use here, the topological manifold assumption (hard).
+        \item Talk about selecting UMAP and why over PCA.
+        \item Talk about UMAP parameters and how changing them affects things.
+        \item Talk about UMAP librarys and just lightly motivate this as an optimal implementation.
+    \end{itemize}
+}
 
 \section{Unsupervised categorisation through clustering}
 
@@ -660,6 +728,12 @@ The PLMs considered are only MPNet and
 \section{Label generation}
 
 \section{CLI Application}\label{sec:CLI}
+
+\todo[inline, caption={}]{
+    \begin{itemize}
+        \item Okay so we have done hyper parameter tuning etc but the real benefit of this tool is that it gives you a qualitatively assessable result in an easy to run format.
+    \end{itemize}
+}
 
 
 \todo[inline,caption={}]{
@@ -691,7 +765,7 @@ Describe the results and analyse the results
     \item Analyse UMAP vs. PCA vs. t-SNE qualitatively and later quantitatively (compared to the clustering).
     \item Anaylse the UMAP hyperparameter optimisation qualitatively, mention that we use Optuna.
 
-    \item Next steps: Fine tuning the PLM (Nomic or MPNet)
+    \item Next steps: Fine tuning the PLM (Nomic or MPNet). Using MOE nomic (v2). Rent higher computation, then you can use top performing PLMS. 
 \end{itemize}
 }
 
