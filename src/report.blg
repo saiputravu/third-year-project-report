@@ -3,49 +3,54 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: report.aux
 The style file: plainnat.bst
 Database file #1: refs.bib
+Repeated entry---line 512 of file refs.bib
+ : @article{wang2024multilingual
+ :                              ,
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for ""
 Warning--there's a number but no volume in davies1979cluster
 Warning--can't use both volume and number fields in ester1996density
+Warning--empty journal in hinneburg1999optimal
 Warning--empty journal in radford2018improving
-You've used 70 entries,
+You've used 91 entries,
             2773 wiz_defined-function locations,
-            990 strings with 20048 characters,
-and the built_in function-call counts, 39333 in all, are:
-= -- 3426
-> -- 2807
-< -- 51
-+ -- 949
-- -- 879
-* -- 3273
-:= -- 6025
-add.period$ -- 227
-call.type$ -- 70
-change.case$ -- 495
-chr.to.int$ -- 70
-cite$ -- 143
-duplicate$ -- 1636
-empty$ -- 2842
-format.name$ -- 971
-if$ -- 8249
-int.to.chr$ -- 1
+            1087 strings with 23581 characters,
+and the built_in function-call counts, 49574 in all, are:
+= -- 4282
+> -- 3567
+< -- 64
++ -- 1208
+- -- 1116
+* -- 4124
+:= -- 7659
+add.period$ -- 293
+call.type$ -- 91
+change.case$ -- 632
+chr.to.int$ -- 90
+cite$ -- 186
+duplicate$ -- 2060
+empty$ -- 3584
+format.name$ -- 1239
+if$ -- 10341
+int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 65
-newline$ -- 363
-num.names$ -- 280
-pop$ -- 1034
+missing$ -- 87
+newline$ -- 470
+num.names$ -- 364
+pop$ -- 1325
 preamble$ -- 1
-purify$ -- 427
+purify$ -- 546
 quote$ -- 0
-skip$ -- 1395
+skip$ -- 1741
 stack$ -- 0
-substring$ -- 1347
-swap$ -- 279
-text.length$ -- 23
+substring$ -- 1598
+swap$ -- 313
+text.length$ -- 25
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 760
-warning$ -- 3
-while$ -- 319
+type$ -- 976
+warning$ -- 4
+while$ -- 398
 width$ -- 0
-write$ -- 922
-(There were 4 warnings)
+write$ -- 1187
+(There was 1 error message)

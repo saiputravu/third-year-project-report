@@ -1,4 +1,4 @@
-\begin{thebibliography}{70}
+\begin{thebibliography}{91}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -24,6 +24,12 @@ Mart\'{i}n Abadi, Ashish Agarwal, Paul Barham, Eugene Brevdo, Zhifeng Chen,
   2015.
 \newblock URL \url{https://www.tensorflow.org/}.
 \newblock Software available from tensorflow.org.
+
+\bibitem[Abdi and Williams(2010)]{abdi2010principal}
+Herv{\'e} Abdi and Lynne~J Williams.
+\newblock Principal component analysis.
+\newblock \emph{Wiley interdisciplinary reviews: computational statistics},
+  2\penalty0 (4):\penalty0 433--459, 2010.
 
 \bibitem[Abijith et~al.(2023)Abijith, Patidar, Nair, and
   Pandya]{abijith2023large}
@@ -92,6 +98,13 @@ Alexander Budanitsky and Graeme Hirst.
 \newblock In \emph{Workshop on WordNet and other lexical resources}, volume~2,
   pages 2--2, 2001.
 
+\bibitem[Cai and Ma(2022)]{cai2022theoretical}
+T~Tony Cai and Rong Ma.
+\newblock Theoretical foundations of t-sne for visualizing high-dimensional
+  clustered data.
+\newblock \emph{Journal of Machine Learning Research}, 23\penalty0
+  (301):\penalty0 1--54, 2022.
+
 \bibitem[Cali{\'n}ski and Harabasz(1974)]{calinski1974dendrite}
 Tadeusz Cali{\'n}ski and Jerzy Harabasz.
 \newblock A dendrite method for cluster analysis.
@@ -119,6 +132,28 @@ Thyago~P Carvalho, Fabr{\'\i}zzio~AAMN Soares, Roberto Vita, Roberto da~P
   predictive maintenance.
 \newblock \emph{Computers \& Industrial Engineering}, 137:\penalty0 106024,
   2019.
+
+\bibitem[{Coenen, Andy and Pearce, Adam}(2020)]{umapelephant}
+{Coenen, Andy and Pearce, Adam}.
+\newblock {Understanding UMAP}, 2020.
+\newblock URL \url{https://pair-code.github.io/understanding-umap/}.
+\newblock Last visited 2025-04-21.
+
+\bibitem[Dai et~al.(2019)Dai, Yang, Yang, Carbonell, Le, and
+  Salakhutdinov]{dai2019transformer}
+Zihang Dai, Zhilin Yang, Yiming Yang, Jaime Carbonell, Quoc~V Le, and Ruslan
+  Salakhutdinov.
+\newblock Transformer-xl: Attentive language models beyond a fixed-length
+  context.
+\newblock \emph{arXiv preprint arXiv:1901.02860}, 2019.
+
+\bibitem[Dao et~al.(2022)Dao, Fu, Ermon, Rudra, and
+  R{\'e}]{dao2022flashattention}
+Tri Dao, Dan Fu, Stefano Ermon, Atri Rudra, and Christopher R{\'e}.
+\newblock Flashattention: Fast and memory-efficient exact attention with
+  io-awareness.
+\newblock \emph{Advances in neural information processing systems},
+  35:\penalty0 16344--16359, 2022.
 
 \bibitem[Davies and Bouldin(1979)]{davies1979cluster}
 David~L Davies and Donald~W Bouldin.
@@ -153,11 +188,23 @@ Maurizio Faccio, Alessandro Persona, Fabio Sgarbossa, and Giorgia Zanin.
 \newblock \emph{International Journal of Production Economics}, 147:\penalty0
   85--93, 2014.
 
+\bibitem[Gao and Pavel(2017)]{gao2017properties}
+Bolin Gao and Lacra Pavel.
+\newblock On the properties of the softmax function with application in game
+  theory and reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:1704.00805}, 2017.
+
 \bibitem[Grefenstette(1999)]{gefenstette1999tokenization}
 Gregory Grefenstette.
 \newblock Tokenization.
 \newblock In \emph{Syntactic wordclass tagging}, pages 117--133. Springer,
   1999.
+
+\bibitem[Hinneburg and Keim(1999)]{hinneburg1999optimal}
+Alexander Hinneburg and Daniel~A Keim.
+\newblock Optimal grid-clustering: Towards breaking the curse of dimensionality
+  in high-dimensional clustering.
+\newblock 1999.
 
 \bibitem[Hotelling(1933)]{hotelling1933analysis}
 Harold Hotelling.
@@ -229,6 +276,17 @@ Jinhyuk Lee, Zhuyun Dai, Xiaoqi Ren, Blair Chen, Daniel Cer, Jeremy~R Cole, Kai
   models.
 \newblock \emph{arXiv preprint arXiv:2403.20327}, 2024.
 
+\bibitem[Lee(2003)]{lee2003smooth}
+John~M Lee.
+\newblock \emph{Smooth manifolds}.
+\newblock Springer, 2003.
+
+\bibitem[Lee(2006)]{lee2006riemannian}
+John~M Lee.
+\newblock \emph{Riemannian manifolds: an introduction to curvature}, volume
+  176.
+\newblock Springer Science \& Business Media, 2006.
+
 \bibitem[Li et~al.(2014)Li, Parikh, He, Qian, Li, Fang, and
   Hampapur]{li2014improving}
 Hongfei Li, Dhaivat Parikh, Qing He, Buyue Qian, Zhiguo Li, Dongping Fang, and
@@ -243,6 +301,13 @@ Hong Liang, Xiao Sun, Yunlei Sun, and Yuan Gao.
 \newblock Text feature extraction based on deep learning: a review.
 \newblock \emph{EURASIP journal on wireless communications and networking},
   2017:\penalty0 1--12, 2017.
+
+\bibitem[Liu et~al.(2019)Liu, Ott, Goyal, Du, Joshi, Chen, Levy, Lewis,
+  Zettlemoyer, and Stoyanov]{liu2019roberta}
+Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer
+  Levy, Mike Lewis, Luke Zettlemoyer, and Veselin Stoyanov.
+\newblock Roberta: A robustly optimized bert pretraining approach.
+\newblock \emph{arXiv preprint arXiv:1907.11692}, 2019.
 
 \bibitem[Lukashenko et~al.(2007)Lukashenko, Graudina, and
   Grundspenkis]{lukashenko2007computer}
@@ -297,9 +362,19 @@ Zach Nussbaum, John~X Morris, Brandon Duderstadt, and Andriy Mulyar.
 \newblock Nomic embed: Training a reproducible long context text embedder.
 \newblock \emph{arXiv preprint arXiv:2402.01613}, 2024.
 
-\bibitem[{Nussbaum, Zach and Cembalest, Max}(2024)]{nussbaum2024nomicelo}
+\bibitem[{Nussbaum, Zach and Cembalest,
+  Max}(2024{\natexlab{a}})]{nussbaum2024nomic1.5}
 {Nussbaum, Zach and Cembalest, Max}.
-\newblock {Nomic Embed's Surprisingly Good MTEB Arena Elo Score}, Aug 2024.
+\newblock {Unboxing Nomic Embed v1.5: Resizable Production Embeddings with
+  Matryoshka Representation Learning}, Feb 2024{\natexlab{a}}.
+\newblock URL \url{https://www.nomic.ai/blog/posts/nomic-embed-matryoshka}.
+\newblock Last visited 2025-04-20.
+
+\bibitem[{Nussbaum, Zach and Cembalest,
+  Max}(2024{\natexlab{b}})]{nussbaum2024nomicelo}
+{Nussbaum, Zach and Cembalest, Max}.
+\newblock {Nomic Embed's Surprisingly Good MTEB Arena Elo Score}, Aug
+  2024{\natexlab{b}}.
 \newblock URL
   \url{https://www.nomic.ai/blog/posts/evaluating-embedding-models}.
 \newblock Last visited 2025-04-18.
@@ -370,6 +445,11 @@ Justyna Sarzynska-Wawer, Aleksander Wawer, Aleksandra Pawlak, Julia
   representations.
 \newblock \emph{Psychiatry Research}, 304:\penalty0 114135, 2021.
 
+\bibitem[Schank(1972)]{schank1972conceptual}
+Roger~C Schank.
+\newblock Conceptual dependency: A theory of natural language understanding.
+\newblock \emph{Cognitive psychology}, 3\penalty0 (4):\penalty0 552--631, 1972.
+
 \bibitem[Sharma(2001)]{sharma2001nuclear}
 BP~Sharma.
 \newblock Nuclear reactors: Moderator and reflector materials.
@@ -389,6 +469,11 @@ Kaitao Song, Xu~Tan, Tao Qin, Jianfeng Lu, and Tie-Yan Liu.
 \newblock \emph{Advances in neural information processing systems},
   33:\penalty0 16857--16867, 2020.
 
+\bibitem[Sorzano et~al.(2014)Sorzano, Vargas, and Montano]{sorzano2014survey}
+Carlos Oscar~S{\'a}nchez Sorzano, Javier Vargas, and A~Pascual Montano.
+\newblock A survey of dimensionality reduction techniques.
+\newblock \emph{arXiv preprint arXiv:1403.2877}, 2014.
+
 \bibitem[Steinberger and Je{\v{z}}ek(2005)]{steinberger2005text}
 Josef Steinberger and Karel Je{\v{z}}ek.
 \newblock Text summarization and singular value decomposition.
@@ -402,6 +487,11 @@ Chuan-Jun Su and Shi-Feng Huang.
   maintenance.
 \newblock \emph{Computers \& Electrical Engineering}, 71:\penalty0 93--101,
   2018.
+
+\bibitem[Su et~al.(2024)Su, Ahmed, Lu, Pan, Bo, and Liu]{su2024roformer}
+Jianlin Su, Murtadha Ahmed, Yu~Lu, Shengfeng Pan, Wen Bo, and Yunfeng Liu.
+\newblock Roformer: Enhanced transformer with rotary position embedding.
+\newblock \emph{Neurocomputing}, 568:\penalty0 127063, 2024.
 
 \bibitem[Susto and Beghi(2016)]{susto2016dealing}
 Gian~Antonio Susto and Alessandro Beghi.
@@ -437,6 +527,13 @@ JWG Thomason.
   Accelerators, Spectrometers, Detectors and Associated Equipment},
   917:\penalty0 61--67, 2019.
 
+\bibitem[Udell et~al.(2016)Udell, Horn, Zadeh, Boyd,
+  et~al.]{udell2016generalized}
+Madeleine Udell, Corinne Horn, Reza Zadeh, Stephen Boyd, et~al.
+\newblock Generalized low rank models.
+\newblock \emph{Foundations and Trends{\textregistered} in Machine Learning},
+  9\penalty0 (1):\penalty0 1--118, 2016.
+
 \bibitem[Usuga-Cadavid et~al.(2022)Usuga-Cadavid, Lamouri, Grabot, and
   Fortin]{usuga2022using}
 Juan~Pablo Usuga-Cadavid, Samir Lamouri, Bernard Grabot, and Arnaud Fortin.
@@ -452,11 +549,33 @@ Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
 \newblock Attention is all you need.
 \newblock \emph{Advances in neural information processing systems}, 30, 2017.
 
+\bibitem[Verleysen and Fran{\c{c}}ois(2005)]{verleysen2005curse}
+Michel Verleysen and Damien Fran{\c{c}}ois.
+\newblock The curse of dimensionality in data mining and time series
+  prediction.
+\newblock In \emph{International work-conference on artificial neural
+  networks}, pages 758--770. Springer, 2005.
+
 \bibitem[Waeyenbergh and Pintelon(2002)]{waeyenbergh2002framework}
 Geert Waeyenbergh and Liliane Pintelon.
 \newblock A framework for maintenance concept development.
 \newblock \emph{International journal of production economics}, 77\penalty0
   (3):\penalty0 299--313, 2002.
+
+\bibitem[Wang et~al.(2018)Wang, Singh, Michael, Hill, Levy, and
+  Bowman]{wang2018glue}
+Alex Wang, Amanpreet Singh, Julian Michael, Felix Hill, Omer Levy, and Samuel~R
+  Bowman.
+\newblock Glue: A multi-task benchmark and analysis platform for natural
+  language understanding.
+\newblock \emph{arXiv preprint arXiv:1804.07461}, 2018.
+
+\bibitem[Wang et~al.(2023)Wang, Yang, Huang, Yang, Majumder, and
+  Wei]{wang2023improving}
+Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder, and Furu
+  Wei.
+\newblock Improving text embeddings with large language models.
+\newblock \emph{arXiv preprint arXiv:2401.00368}, 2023.
 
 \bibitem[Wang et~al.(2024)Wang, Yang, Huang, Yang, Majumder, and
   Wei]{wang2024multilingual}
@@ -464,6 +583,11 @@ Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder, and Furu
   Wei.
 \newblock Multilingual e5 text embeddings: A technical report.
 \newblock \emph{arXiv preprint arXiv:2402.05672}, 2024.
+
+\bibitem[Willard(2012)]{willard2012general}
+Stephen Willard.
+\newblock \emph{General topology}.
+\newblock Courier Corporation, 2012.
 
 \bibitem[Wolf et~al.(2019)Wolf, Debut, Sanh, Chaumond, Delangue, Moi, Cistac,
   Rault, Louf, Funtowicz, et~al.]{wolf2019huggingface}
@@ -473,6 +597,20 @@ Thomas Wolf, Lysandre Debut, Victor Sanh, Julien Chaumond, Clement Delangue,
 \newblock Huggingface's transformers: State-of-the-art natural language
   processing.
 \newblock \emph{arXiv preprint arXiv:1910.03771}, 2019.
+
+\bibitem[Xue et~al.(2023)Xue, Fu, Zhou, Zheng, and You]{xue2023repeat}
+Fuzhao Xue, Yao Fu, Wangchunshu Zhou, Zangwei Zheng, and Yang You.
+\newblock To repeat or not to repeat: Insights from scaling llm under
+  token-crisis.
+\newblock \emph{Advances in Neural Information Processing Systems},
+  36:\penalty0 59304--59322, 2023.
+
+\bibitem[Yang et~al.(2024)Yang, Yang, Hui, Zheng, Yu, Zhou, Li, Li, Liu, Huang,
+  et~al.]{yang2407qwen2}
+An~Yang, Baosong Yang, Binyuan Hui, Bo~Zheng, Bowen Yu, Chang Zhou, Chengpeng
+  Li, C~Li, D~Liu, F~Huang, et~al.
+\newblock Qwen2 technical report. arxiv 2024.
+\newblock \emph{arXiv preprint arXiv:2407.10671}, 2024.
 
 \bibitem[Yang et~al.(2019)Yang, Dai, Yang, Carbonell, Salakhutdinov, and
   Le]{yang2019xlnet}
