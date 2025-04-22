@@ -50,7 +50,37 @@
 \DeclareCaptionType{equ}[][]
 %\captionsetup[equ]{labelformat=empty}
 
+\usepackage{color}
+\usepackage{listings}
+\usepackage{lipsum}
 
+
+% Your provided environment setup:
+\newcounter{nalg}[chapter] % defines algorithm counter for chapter-level
+\renewcommand{\thenalg}{\thechapter .\arabic{nalg}} %defines appearance of the algorithm counter
+\DeclareCaptionLabelFormat{algocaption}{Algorithm \thenalg} % defines a new caption label as Algorithm x.y
+\lstnewenvironment{algorithm}[1][] %defines the algorithm listing environment
+{
+    \refstepcounter{nalg} %increments algorithm number
+    \captionsetup{labelformat=algocaption,labelsep=colon} %defines the caption setup
+    \lstset{ %this is the style
+        mathescape=true, % Allows math mode with $...$
+        frame=tB, % Top and bottom frame lines
+        numbers=left,
+        numberstyle=\tiny,
+        basicstyle=\scriptsize\ttfamily, % Use typewriter font for code feel
+        keywordstyle=\color{black}\bfseries, % Keywords bold (removed \em)
+        keywords={input, output, return, function, in, if, else, foreach, for, while, begin, end, then, repeat, until, compute, select, assign, perform, update}, % Added more keywords
+        commentstyle=\color{gray}\itshape, % Style for comments
+        morecomment=[l]{\#}, % Define # as line comment start
+        breaklines=true, % Allow line breaks
+        breakatwhitespace=true,
+        numbers=left,
+        xleftmargin=.04\textwidth,
+        #1 % this is to add specific settings to an usage of this environment
+    }
+}
+{} % End of environment definition
 % Begin document
 \begin{document}
 
@@ -117,9 +147,9 @@
         \textbf{AR} & Auto-regressive. \\
         \textbf{BERT} & Bidirectional Encoder Representation from Transformers. \\
         \textbf{CBM} & Condition-based maintenance policy. \\
-        \textbf{RoPE} & Rotary Positional Embeddings. \\
         \textbf{CLI} & Command Line Interface. \\
         \textbf{CNN} & Convolutional Neural Network. \\
+        \textbf{CPU} & Central Processing Unit. \\
         \textbf{CUDA} & Compute Unified Device Architecture. \\
         \textbf{DBSCAN} & Density-Based Spatial Clustering of Application with Noise. \\
         \textbf{DL} & Deep Learning. \\
@@ -128,11 +158,8 @@
         \textbf{EPB2} & Extracted proton beam line 2. \\
         \textbf{FAP} & Fault Analysis Pathway. \\
         \textbf{FLD} & First-line diagnosis system. \\
-        \textbf{RAM} & Random Access Memory. \\
-        \textbf{MRL} & Matryoshka Representation Learning. \\
         \textbf{GPT} & Generative Pre-trained Transformer. \\
         \textbf{GPU} & Graphics Processing Unit. \\
-        \textbf{CPU} & Central Processing Unit. \\
         \textbf{HDBSCAN} & Hierarchical Density-Based Spatial Clustering of Application with Noise. \\
         \textbf{HDD} & Hard-Disk Drive. \\
         \textbf{HEDS} & High energy drift space. \\
@@ -142,16 +169,20 @@
         \textbf{LSA} & Latent Semantic Analysis. \\
         \textbf{MCR} & Main Control Room. \\
         \textbf{ML} & Machine Learning. \\
+        \textbf{MRL} & Matryoshka Representation Learning. \\
+        \textbf{MTEB} & Massive Text Embedding Benchmark. \\
         \textbf{NLP} & Natural Language Processing. \\
         \textbf{Operalog} & The ISIS Operational Log. \\
+        \textbf{PAM} & Partitioning Around Medoids. \\
         \textbf{PCA} & Principle Component Analysis. \\
         \textbf{PdM} & Predictive maintenance policy. \\
         \textbf{PLM} & Pre-trained Language Model. \\
         \textbf{PvM} & Preventative maintenance policy. \\
         \textbf{R2F} & Run-to-failure maintenance policy. \\
-        \textbf{MTEB} & Massive Text Embedding Benchmark. \\
+        \textbf{RAM} & Random Access Memory. \\
         \textbf{RFQ} & Radio-frequency quadrupole. \\
         \textbf{RF} & Random Forest. \\
+        \textbf{RoPE} & Rotary Positional Embeddings. \\
         \textbf{SAFE} & Supervised Aggregative Feature Extraction. \\
         \textbf{SMART} & Self-monitoring and reporting technology. \\
         \textbf{STFC} & Science and Technology Facilities Council. \\
@@ -255,7 +286,7 @@ This entire system needs extremely careful control and monitoring capabilities, 
 \subsection{Maintenance at ISIS} 
 As detailed in the 33-year historical account of the ISIS facility (\citet{thomason2019isis}), the ISIS operations occur in cycles, periods of roughly 30-50 days where the machine runs constantly without breaks. Gaps between cycles typically range from 1 week to 3 months. In addition, typically every four years, shutdowns scheduled for 6-9 months occur for major maintenance and upgrade work. On the ground, day-to-day operations are run from the Main Control Room (MCR) by the ISIS crew which consists of 6 shift teams of the following roles: (1) duty officer, (2) assistant duty officer and (3) duty technician. \todo{Add the graph, if you can ever figure out the operating cycles before 2016.} The expertise and rapid response capabilities of these trained operational crews are vital for both routine operation and initial fault response.
 Minimising this downtime is crucial for several reasons inherent to operating a large-scale user facility like ISIS \cite{thomason2019isis}. Primarily, unscheduled downtime directly impacts the international researchers allocated beam time, potentially jeopardising experiments planned months or years in advance and wasting valuable research opportunities. Furthermore, interruptions disrupt the tightly packed operational schedule, reduce the overall scientific output, and incur significant operational costs without delivering the facility's core research product \cite{thomason2019isis}. Therefore, understanding the factors that contribute to downtime and implementing strategies to mitigate it are paramount.
-Many factors affect downtime such as having a robust plan, the day-to-day operators' knowledge of the system and adequate inventories of spares \cite{thomason2019isis}. Figure~\ref{fig:isisDowntime} shows the ratio of downtime to active machine operation since 2016, with over half the time of the machine since 2016 being down. In other words, over half the time, the machine is not active and is undergoing maintenance. This highlights the trade-off between maximising operational availability and minimizing failures through planned maintenance. The major maintenance strategies and their trade-offs are further explored in Section~\ref{sec:maintenanceTechniques}.
+Many factors affect downtime such as having a robust plan, the day-to-day operators' knowledge of the system and adequate inventories of spares \cite{thomason2019isis}. Figure~\ref{fig:isisDowntime} shows the ratio of downtime to active machine operation since 2016, indicating this machine has been down for maintenance over half the time since 2016. In other words, over half the time, the machine is not active and is undergoing maintenance. This highlights the trade-off between maximising operational availability and minimizing failures through planned maintenance. The major maintenance strategies and their trade-offs are further explored in Section~\ref{sec:maintenanceTechniques}.
 
 To help reduce downtime, over the last few years, a first-line diagnosis (FLD) system was introduced, presented in (\citet{fld2017}). The FLD system helps reduce downtime by providing expert guidance on fault diagnosis and resolution, which has been shown to improve the dissemination of knowledge from experts to operations. The FLD utilises Fault Analysis Pathways (FAPs), which provide structural links between ISIS subsystems. This allows users of the system to access granular subsystems' local documentation minimising file hunting and saving time and effort. An example FAP can be seen in Figure~\ref{fig:fap}.
 
@@ -271,23 +302,25 @@ To help reduce downtime, over the last few years, a first-line diagnosis (FLD) s
 \end{figure}
 
 
-\textbf{}\\
-\todo[inline,caption={}]{
-Introduce the research topic. 
-The things in this section will include
-\begin{itemize}
-    \item Talk about the ISIS research facility - DONE
-    \item Talk about the Operational Cycle for ISIS - SORT OF DONE (graph too)
-    \item Talk about the ISIS Crew and importance of having trained staff on premises. - SORT OF
-    \item Talk about the Lost time and why it is important to minimise this for the ISIS research facility. - SORT OF
-    \item Describe the first-line diagnosis system (FLD) and FAPs. - DONE
-    \item Talk about the Datasets, operalog (MOVED)
-\end{itemize}
-}
+% \textbf{}\\
+% \todo[inline,caption={}]{
+% Introduce the research topic. 
+% The things in this section will include
+% \begin{itemize}
+%     \item Talk about the ISIS research facility - DONE
+%     \item Talk about the Operational Cycle for ISIS - SORT OF DONE (graph too)
+%     \item Talk about the ISIS Crew and importance of having trained staff on premises. - SORT OF
+%     \item Talk about the Lost time and why it is important to minimise this for the ISIS research facility. - SORT OF
+%     \item Describe the first-line diagnosis system (FLD) and FAPs. - DONE
+%     \item Talk about the Datasets, operalog (MOVED)
+% \end{itemize}
+% }
 
 
 \section{Maintenance Techniques}\label{sec:maintenanceTechniques}
-In industry, the uptime of production systems are strongly coupled with the equipment maintenance. So much so that what was once considered a `necessary evil' is now seen as a `profit contributor' to be able to maintain a competitive edge \cite{waeyenbergh2002framework, faccio2014industrial}. For facilities aiming to provide systems for research, maintenance impacts the downtime and cost of running. As a result, both to minimise unexpected downtime and provide a competitive edge, many industrial applications collect vast quantities of data during the entire life cycle of the system. This large amount of data may include information about processes, events and alarms \cite{carvalho2019systematic} which occur along the industrial production line, collected by different equipment. The equipment may be located in different locations in the sub-components of the larger system or even different sub-components themselves. \todo{talk about maintenance itself in a lot more depth}
+In industry, the uptime of production systems is strongly coupled with the equipment maintenance. So much so that what was once considered a `necessary evil' is now seen as a `profit contributor' to be able to maintain a competitive edge \cite{waeyenbergh2002framework, faccio2014industrial}. For facilities aiming to provide systems for research, maintenance impacts the downtime and cost of running. As a result, both to minimise unexpected downtime and provide a competitive edge, many industrial applications collect vast quantities of data during the entire life cycle of the system. This large amount of data may include information about processes, events and alarms \cite{carvalho2019systematic} which occur along the industrial production line, collected by different equipment. The equipment may be located in different locations in the sub-components of the larger system or even different sub-components themselves. 
+
+% \todo{talk about maintenance itself in a lot more depth}
 
 In the literature, various terms and categories of maintenance arise each with differing strategies \cite{susto2012predictive, mobley2002introduction, susto2016dealing}. Thus, while there exists some disagreement in nomenclature, we consider the four categories presented in (\citet{susto2012predictive}). The four maintenance policy categories are as follows, noting that each policy has, uniquely, their own benefits and drawbacks:
 
@@ -297,7 +330,7 @@ In the literature, various terms and categories of maintenance arise each with d
     \item{Condition-based maintenance (CBM): Taking the action to perform maintenance on equipment through monitoring various health characteristics and metrics of the components of the system. This approach requires continuous monitoring and, thus, allows for close to instant response on maintenance only when required. However, a drawback of this policy is that one cannot plan maintenances in advance.}
     \item{Predictive maintenance (PdM): Otherwise referred to as statistical-based maintenance, only performs maintenance actions when determined necessary. Prediction tools are utilised to implement forward-planning and scheduling systems, using statistical inference methods. However, if these statistical inferences are not accurate, the whole system suffers which inevitably leads to additional downtime and costs.}
 \end{enumerate}
-It should be noted, that several sources conflate CBM and PdM \cite{mobley2002introduction}. As in (\citet{susto2012predictive}), where they are given as separate categories, we follow suit. \\ 
+It should be noted that several sources conflate CBM and PdM \cite{mobley2002introduction}. As in (\citet{susto2012predictive}), where they are given as separate categories, we follow suit. \\ 
 
 The PdM strategy stands out in the four categories presented as, given a statistical inference model that is able to detect faults accurately, this policy optimises the trade-off between improving equipment condition, reduce failure rates for equipment and minimising maintenance costs \cite{carvalho2019systematic}. This technique enables one to apply foresight for pre-emptive scheduling of large-scale maintenance. As pointed out in Section~\ref{sec:isisbg}, the ISIS facility aims to strike a balance between PvM, CBM and PdM through periods of large-scaled scheduled maintenance and collection of high quantities of metrics. This balance is achieved through the careful coordination between cycle scheduling, day-to-day crew-based monitoring and the FLD \cite{thomason2019isis}.
 
@@ -327,7 +360,7 @@ In industry, many maintenance strategies prefer using PdM whilst experimenting w
 
 \chapter{Natural Language Processing Background}
 
-This chapter delves into the technical background required to the methodology proposed in Chapter \ref{chap:Methodology}. Firstly, we discuss various measures of text similarity in Section \ref{sec:sentenceSimilarity}, which motivates text embeddings and categorises similarity measures into different generations. Section \ref{sec:sentenceEmbedding} introduces both third‑generation model BERT \cite{devlin2019bert} and the more recent fourth‑generation universal‐embedding architecture XLNet \cite{yang2019xlnet}. We specifically discuss the technical details of the BERT model and further iterations on it, then detail one improvement over BERT (XLNet) and outline the design principles that underpin contemporary fourth‑generation models. Afterwards, we cover two methods of dimensionality reduction,  PCA \cite{pearson1901liii,hotelling1933analysis} and UMAP \cite{mcinnes2018umap}, motivated by the need to visualise samples from the high‑dimensional embedding spaces of the aforementioned models, in Section \ref{sec:dimred}. Finally, we present three clustering algorithms—one partitioning‑based (k‑Medoids \todo{Fill this}\cite{}) and two density‑based (DBSCAN \cite{ester1996density} and HDBSCAN \cite{campello2013density})—together with four clustering‑evaluation metrics: (1) Inertia \todo{find the reference for this}\cite{}, (2) Silhouette \cite{rousseeuw1987silhouettes}, (3) Davies–Bouldin Index \cite{davies1979cluster}, and (4) Calinski–Harabasz Index \cite{calinski1974dendrite}. \todo{maybe talk about optuna, if we use it.} \todo{double check all citations here are not empty}\
+This chapter delves into the technical background required for the methodology proposed in Chapter \ref{chap:Methodology}. Firstly, we discuss various measures of text similarity in Section \ref{sec:sentenceSimilarity}, which motivates text embeddings and categorises similarity measures into different generations. Section \ref{sec:sentenceEmbedding} introduces both third‑generation model BERT \cite{devlin2019bert} and the more recent fourth‑generation universal‐embedding architecture XLNet \cite{yang2019xlnet}. We specifically discuss the technical details of the BERT model and further iterations on it, then detail one improvement over BERT (XLNet) and outline the design principles that underpin contemporary fourth‑generation models. Afterwards, we cover two methods of dimensionality reduction,  PCA \cite{pearson1901liii,hotelling1933analysis} and UMAP \cite{mcinnes2018umap}, motivated by the need to visualise samples from the high‑dimensional embedding spaces of the aforementioned models, in Section \ref{sec:dimred}. Finally, we present three clustering algorithms—one partitioning‑based (k‑Medoids \todo{Fill this}\cite{}) and two density‑based (DBSCAN \cite{ester1996density} and HDBSCAN \cite{campello2013density})—together with four clustering‑evaluation metrics: (1) Inertia \todo{find the reference for this}\cite{}, (2) Silhouette \cite{rousseeuw1987silhouettes}, (3) Davies–Bouldin Index \cite{davies1979cluster}, and (4) Calinski–Harabasz Index \cite{calinski1974dendrite}. \todo{maybe talk about optuna, if we use it.} \todo{double check all citations here are not empty}\
 
 
 \todo[inline,caption={}]{
@@ -343,7 +376,7 @@ The things in this section will include
 }
 
 \section{Sentence Similarity}\label{sec:sentenceSimilarity}
-Sentence similarity, otherwise referred to as document similarity, is the (NLP) task of computing the quantification of the similarities between two sentences, documents or texts. This task is motivated by the increasingly large amount of digitisation of human languages (and data, in general), calling for the need to understand similarity between various texts \cite{raju2022sentence}. Examples of the use-cases of sentence similarity include: detection of academic malpractice via plagiarism \cite{lukashenko2007computer, baba2017plagiarism} and text summarisation \cite {aliguliyev2009new, kumar2020semantic, jo2017k}. According to \cite{raju2022sentence}, there are two main types of sentence similarities: (1) lexical similarity and (2) semantic similarity. The former is a computation of the equality between the lexicon of two sentences (i.e. a purely syntactical view), as opposed to the latter  being a comparison between the semantics. Further, the type we focus on, semantic similarity can be split into three types: 
+Sentence similarity, otherwise referred to as document similarity, is the (NLP) task of computing the quantification of the similarities between two sentences, documents or texts. This task is motivated by the increasingly large amount of digitisation of human languages (and data, in general), calling for the need to understand similarity between various texts \cite{raju2022sentence}. Examples of the use-cases of sentence similarity include: detection of academic malpractice via plagiarism \cite{lukashenko2007computer, baba2017plagiarism}, and text summarisation \cite {aliguliyev2009new, kumar2020semantic, jo2017k}. According to \cite{raju2022sentence}, there are two main types of sentence similarities: (1) lexical similarity and (2) semantic similarity. The former is a computation of the equality between the lexicon of two sentences (i.e. a purely syntactical view). This contrasts with semantic similarity, which compares meaning. Further, the type we focus on, semantic similarity can be split into three types: 
 
 \begin{itemize}
     \item String-based similarity: Measures similarity directly between two strings, accounting for string sequences and character composition. These can be fine-grained, i.e. character-based; coarse-grained, i.e. term-based; or a hybrid mixture of both \cite{yu2016string}.
@@ -364,7 +397,7 @@ Therefore, the problem of sentence similarity can be directly mapped from the pr
 Second-, third- and fourth-generation text embedding models are used frequently in PdM for applications such as insight extraction \cite{abijith2023large,usuga2022using} and clustering intents from unstructured text data. Sources of natural language datasets, in industrial applications typically arise from operational or managerial log files which document aspects such as failures, resolutions and comments. Advanced text embedding models enable for semi- or fully automatic insight retrieval and auto-categorisation, enabling intuitive understanding of the textual datasets potentially highlighting patterns in failure \cite{nota2022text}.
 
 \section{Sentence Embedding}\label{sec:sentenceEmbedding}
-Briefly touched on in Section~\ref{sec:sentenceSimilarity}, sentence embedding (otherwise known as text embedding) is the NLP task of computing some high-dimensional embedding vector-space representation for unstructured text data. This vector-based representation should encode the semantic and syntactic meaning of the text and establish meaningful relationships. For example, the sentence `I like dogs' should have the opposite representation to `I hate dogs'.  However these sentences should be more related than to the sentence `My house was destroyed in an earthquake'. For a naive illustration of this, see Figure~\ref{fig:sentenceEmbeddingExample}, which shows how similar sentences should be grouped together. As Nomic requires the task explicitly in input text (more on this later), `clustering: ' is appended to all sentences. Deep learning sentence embedding models are now seen to be state-of-the-art as they are able to extract features automatically and more effectively than manual efforts, when supported with large quantities of data \cite{liang2017text}.
+Briefly touched on in Section~\ref{sec:sentenceSimilarity}, sentence embedding (otherwise known as text embedding) is the NLP task of computing some high-dimensional embedding vector-space representation for unstructured text data. This vector-based representation should encode the semantic and syntactic meaning of the text and establish meaningful relationships. For example, the sentence `I like dogs' should have the opposite representation to `I hate dogs'.  However these sentences should be more related than to the sentence `My house was destroyed in an earthquake'. For a naive illustration of this, see Figure~\ref{fig:sentenceEmbeddingExample}, which shows how similar sentences should be grouped together. As Nomic requires the task explicitly in input text (more on this later), `clustering:' is appended to all sentences. Deep learning sentence embedding models are now seen to be state-of-the-art as they are able to extract features automatically and more effectively than manual efforts, when supported with large quantities of data \cite{liang2017text}.
 
 \begin{figure}[htbp]
     \centering
@@ -395,10 +428,10 @@ The Bidirectional Encoder Representations from Transformer (BERT) language model
 
 \textbf{}\\ The Google AI Language team further fine-tune BERT across 11 NLP tasks, showing that BERT out-performed the state-of-the-art models at its point in time.
 
-As previously mentioned, a benefit of using PLMs such as BERT for NLP tasks (such as text embedding) is the ability to off-load the computationally intensive pre-training and any initial fine-tuning stages to another party. Although, this means that there now exists an implicit trust on that third-party's model parameters. For example, the third-party could be motivated factors to censor certain phrases, artificially injecting testing data into training to increase performance metrics or maliciously change the embedding space. These are all factors which influence our decision on using a PLM and, thus, PLMs with transparently documented data sources, pre-training and fine-tuning should be preferred.
+As previously mentioned, a benefit of using PLMs such as BERT for NLP tasks (such as text embedding) is the ability to off-load the computationally intensive pre-training and any initial fine-tuning stages to another party. Although, this means that there now exists an implicit trust in that third-party's model parameters. For example, the third-party could be motivated by factors to censor certain phrases, artificially injecting testing data into training to increase performance metrics or maliciously change the embedding space. These are all factors which influence our decision on using a PLM and, thus, PLMs with transparently documented data sources, pre-training and fine-tuning should be preferred.
 
 Since the release of the Google AI Language team's BERT, there have been some developments on further improving the performance of PLMs based on techniques presented in the paper. Namely, we touch on two: XLNet \cite{yang2019xlnet} and MPNet \cite{song2020mpnet}. 
-XLNet's architecture is backed by the Transfomer-XL model \cite{dai2019transformer}, however it is still briefly covered here to motivate MPNet. MPNet is a hybrid model that inherits XLNet's key feature, permutation language modelling, and BERT's masked language modelling, producing a `unified view'.
+XLNet's architecture is backed by the Transfomer-XL model \cite{dai2019transformer}. However, it is still briefly covered here to motivate MPNet. MPNet is a hybrid model that inherits XLNet's key feature, permutation language modelling, and BERT's masked language modelling, producing a `unified view'.
 
 \subsubsection{XLNet}\label{sec:xlnet}
 
@@ -434,23 +467,24 @@ Therefore, XLNet proposes an AR language modelling solution, backed by Transfome
 Through integration of permutation language modelling and two-stream self-attention, XLNet inherits the probability density estimation ability of AR models and bidirectional context of AE models. Additionally, it also side-steps BERT's pre-train and fine-tune discrepancy and independence assumption \cite{yang2019xlnet}. For further specific details on XLNet, the reader is referred to (\citet{yang2019xlnet}).
 
 
-\todo{Finish this off (the caption)}
+% \todo{Finish this off (the caption)}
 
 
-\todo[inline, caption={}] {
-    \begin{itemize}
-        \item Mathematics of BERT (detailed in XLNet paper) - DONE
-        \item Mathematics of XLNet (detailed in XLNet paper) - DONE
-        \item Mathematics of MPNet (detailed in MPNet paper) - DONE
-        \item Autoregressive vs autoencoder - DONE
-        \item Architectural changes in XLNet - SKIPPED
-        \item Compare XLNet, MPNet and BERT.
-        \item Architectural differences from BERT to MPNet.
-    \end{itemize}
-}
+% \todo[inline, caption={}] {
+%     \begin{itemize}
+%         \item Mathematics of BERT (detailed in XLNet paper) - DONE
+%         \item Mathematics of XLNet (detailed in XLNet paper) - DONE
+%         \item Mathematics of MPNet (detailed in MPNet paper) - DONE
+%         \item Autoregressive vs autoencoder - DONE
+%         \item Architectural changes in XLNet - SKIPPED
+%         \item Compare XLNet, MPNet and BERT.
+%         \item Architectural differences from BERT to MPNet.
+%     \end{itemize}
+% }
+
 \section{Dimensionality Reduction}\label{sec:dimred}
 
-Embedding spaces can get large, often on the scale of hundreds of embedding dimensions. For example, the BERT base architecture uses an embedding dimension of 768 \cite{devlin2019bert}. Therefore, in applications dealing with such embedding spaces, this motivates a technique that reduces the dimensions to 2- or 3-dimensions but reflects the high-dimensional characteristics of the dataset. 
+Embedding spaces can get large, often on the scale of hundreds or even thousands of embedding dimensions. For example, the BERT base architecture uses an embedding dimension of 768 \cite{devlin2019bert}. Therefore, in applications dealing with such embedding spaces, this motivates a technique that reduces the dimensions to 2- or 3-dimensions but reflects the high-dimensional characteristics of the dataset. 
 Dimensionality reduction exploits the redundancy of the dataset by finding a smaller set of new features (variables) that are representative of the original data \cite{sorzano2014survey}.
 
 It has been shown that many high-dimensional spaces show `counter-intuitive geometrical properties', impacting data analysis methods, such as clustering. This phenomenon is referred to as the `curse of dimensionality' \cite{verleysen2005curse, hinneburg1999optimal}. Further, most clustering algorithms (such as those described in Section~\ref{sec:clustering}) have been shown to be inefficient in high-dimensional spaces, due to this curse \cite{hinneburg1999optimal}. Thus, in order to apply clustering (as we will, later in Chapter~\ref{chap:Methodology}) dimensionality reduction is once again motivated.
@@ -516,10 +550,10 @@ The UMAP algorithm operates under the assumption that the high-dimensional data 
 \noindent Conceptually, the UMAP algorithm achieves this in two main stages \cite{mcinnes2018umap}:
 \begin{enumerate}
     \item High-dimensional graph construction - First, UMAP constructs a representation of the relationships between data points in the original high-dimensional space. It does this by finding the nearest neighbours for each point and constructing a weighted graph where edge weights represent the estimated probability or likelihood that two points are closely connected on the underlying manifold. This step focuses on capturing the local structure and connectivity of the data.
-    \item Low-dimensional layout optimization - Second, UMAP initialises the data points in the target low-dimensional space randomly. It then iteratively adjusts the positions of these low-dimensional points to create a graph structure that is as similar as possible to the high-dimensional graph constructed in the first stage. This optimisation process aims to minimise the difference (often measured using cross-entropy \cite{zhang2018generalized}) between the edge weights (probabilities of connection) in the high-dimensional and low-dimensional graphs. In other words, it tries to arrange the points in the low dimension such that connected points in the high dimension remain connected, and disconnected points remain disconnected.
+    \item Low-dimensional layout optimization - Second, UMAP initialises the data points in the target low-dimensional space randomly. It then iteratively adjusts the positions of these low-dimensional points to create a graph structure that is as similar as possible to the high-dimensional graph constructed in the first stage. This optimisation process aims to minimise the difference (often measured using cross-entropy, a measure of divergence between probability distributions \cite{zhang2018generalized}) between the edge weights (probabilities of connection) in the high-dimensional and low-dimensional graphs. In other words, it tries to arrange the points in the low dimension such that connected points in the high dimension remain connected, and disconnected points remain disconnected.
 \end{enumerate}
 
-The outcome is a low-dimensional embedding aims to preserve both the local connectivity structure and, to some extent, the broader global structure of the data's manifold. 
+The outcome is a low-dimensional embedding that aims to preserve both the local connectivity structure and, to some extent, the broader global structure of the data's manifold. 
 
 The output of the UMAP algorithm can be significantly influenced by several hyperparameters, which allow the user to tune the dimensionality reduction process \cite{mcinnes2018umap}. The two most commonly adjusted parameters are:
 \begin{itemize}
@@ -549,31 +583,151 @@ An example illustration of UMAP applied to an elephant skeletal structure, which
 
 \section{Clustering}\label{sec:clustering}
 
-\todo[inline, caption={}] {
-    \begin{itemize}
-        \item Talk about what clustering does, i.e. looking at trying to categorise or something
-        \item Talk about the curse of dimensionality and why clustering does not perform well. Then talk about what people usually do (dimensionality reduction via feature selection or algorithms)
-        \item Talk about k-Medoids (supervised), DBSCAN and HDBSCAN (unsupervised).
-    \end{itemize}
-}
+Clustering is an unsupervised machine learning task that aims to group data points such that items within a group (a cluster) are more similar to each other than to those in other clusters. Common approaches include partitioning methods, which divide the data into a predefined number of clusters, density-based methods, which identify clusters based on regions of high data point density, and hierarchical methods, which build a tree-like structure of nested clusters \cite{kaufman2009finding}.
+
+This section provides the necessary background for the clustering techniques employed later in this project. We will cover k-Medoids \cite{kmedoids}, a partitioning algorithm; Density-Based Spatial Clustering of Applications with Noise (DBSCAN) \cite{ester1996density}, a density-based algorithm; and Hierarchical DBSCAN (HDBSCAN) \cite{campello2013density}, which builds upon density and hierarchical concepts.
+
+% \todo[inline, caption={}] {
+%     \begin{itemize}
+%         \item Talk about what clustering does, i.e. looking at trying to categorise or something - DONE
+%         \item Talk about the curse of dimensionality and why clustering does not perform well. Then talk about what people usually do (dimensionality reduction via feature selection or algorithms) - BEFORE
+%         \item Talk about k-Medoids (supervised), DBSCAN and HDBSCAN (unsupervised). - DONE, but wrong classification here.
+%     \end{itemize}
+% }
 
 \subsection{k-Medoids}
-\todo[inline, caption={}] {
-    \begin{itemize}
-        \item Talk about algorithm
-        \item Talk about the parameters any effects when tuning these parameters.
-        \item Talk about drawbacks and benefits of this approach, citations needed.
-    \end{itemize}
-}
+The k-Medoids algorithm is a partitioning-based clustering method that aims to divide a dataset into k distinct clusters. The k-Medoids algorithm uses actual data points, known as medoids, as the centres of its clusters. It aims to minimise a cost function based on the sum of pairwise dissimilarities (that is, distances) between each point and the medoid of the cluster it is labelled under \cite{kmedoids}.
+
+A classical algorithm for implementing k-Medoids is Partitioning Around Medoids (PAM), introduced by (\citet{kmedoids}). PAM operates in two main phases:
+
+\begin{enumerate}
+    \item The build phase - An initial set of $k$ data points are seleceted as the starting medoids. This selection aims to establish a reasonable initial clustering by choosing points that are relatively central within potential groups that exists - minimising the initial total dissimilarity.
+    \item The swap phase - This phase iteratively refines the set of medoids. For each currently selected medoid $m$ and each non-medoid point data point $x$, the algorithm computes the change in total dissimilarity that would result from swapping $m$ and $x$. That is, setting $x$ as that centroid of $m$'s cluster. The swap that yields the greatest reduction across all possible pairs is finally performed. This process repeats until no swap can further reduce the total dissimilarity which indicates a local optimum has been reached.
+\end{enumerate}
+
+The PAM algorithm employs a greedy search strategy during the swap phase, which means it may converge to a local rather than a global optimum \cite{kmedoids}. The computational complexity of the SWAP phase is often cited as $O(k(n - k)^2)$ per iteration, where $n$ is the number of data points and $k$ is the number of clusters \cite{kmedoids}.
+
+Algorithm~\ref{alg:pam} provides a high-level pseudocode description of the relatively straightforward PAM process. It takes the desired number of clusters $k$ and the dataset $X$ as input, and outputs the final set of medoids $M$ and set of clusters $X'$. The fact that $k$ is a parameter to the algorithm means that either the number of clusters must be known beforehand or must be found through hyperparameter optimisation.
+
+% --- The Algorithm ---
+\begin{algorithm}[caption={Partitioning Around Medoids (PAM).}, label={alg:pam}]
+input: Dataset $X = \{x_1, ..., x_n\}$, integer $k$ (number of clusters)
+output: Set of $k$ medoids $M$, Partition $X' = \{C_1, ..., C_k\}$ where $C_j$ is the set of points assigned to medoid $m_j$
+
+begin
+    # --- Build Phase (Conceptual) ---
+    # Select an initial set of k medoids M from X
+    # (i.e. using a heuristic that minimizes initial total dissimilarity)
+    $M \gets$ SelectInitialMedoids($X, k$)
+
+    # --- Swap Phase ---
+    repeat
+        best_cost_reduction $\gets 0$
+        best_swap $\gets \emptyset$ 
+        total_cost $\gets$ ComputeTotalDissimilarity($X, M$) # Cost based on current M
+
+        # Consider swapping each medoid m with each non-medoid x
+        foreach $m \in M$ do
+            foreach $x \in X \setminus M$ do
+                # Compute cost if m is replaced by x
+                $M_{swap} \gets (M \setminus \{m\}) \cup \{x\}$
+                cost_after_swap $\gets$ ComputeTotalDissimilarity($X, M_{swap}$)
+                cost_reduction $\gets$ total_cost - cost_after_swap
+
+                # Check if this swap is the best found so far
+                if cost_reduction > best_cost_reduction then
+                    best_cost_reduction $\gets$ cost_reduction
+                    best_swap $\gets (m, x)$ # Store the potential swap pair
+                end
+            end
+        end
+
+        # Perform the best swap found in this iteration, if any cost reduction occurred
+        if best_cost_reduction > 0 then
+            ($m_{out}, x_{in}$) $\gets$ best_swap
+            $M \gets (M \setminus \{m_{out}\}) \cup \{x_{in}\}$ # Update medoid set
+            improved $\gets$ true
+        else
+            improved $\gets$ false # No cost reduction possible
+        end
+    until not improved # Stop when no swap improves the total cost
+
+    # Assign points to final medoids to form clusters X'
+    $X' \gets$ AssignPointsToClusters($X, M$)
+
+    return M, X'
+end
+\end{algorithm}
+
+% \todo[inline, caption={}] {
+%     \begin{itemize}
+%         \item Talk about algorithm
+%         \item Talk about the parameters any effects when tuning these parameters.
+%         \item Talk about drawbacks and benefits of this approach, citations needed.
+%     \end{itemize}
+% }
+
 \subsection{DBSCAN}
-\todo[inline, caption={}] {
-    \begin{itemize}
-        \item Talk about algorithm
-        \item Talk about the parameters any effects when tuning these parameters.
-        \item Talk about drawbacks and benefits of this approach, citations needed.
-    \end{itemize}
-}
+
+Density-Based Spatial Clustering of Applications with Noise (DBSCAN) is density-based clustering algorithm, unlike partitioning methods like k-Medoids \cite{ester1996density}. Instead of partitioning data around centres, DBSCAN groups together points that are closely packed in high-density regions, separated by sparser areas. A key characteristic of this approach is its ability to discover clusters of arbitrary shapes and to automatically determine the number of clusters present, rather than requiring it as a predefined input \cite{ester1996density}. The core intuition is that points belonging to the same conceptual group or category tend to lie close to each other, forming denser regions than considered noise or outliers.
+
+The algorithm's behaviour is primarily controlled by two hyperparameters \cite{ester1996density}:
+\begin{itemize}
+    \item \texttt{Eps} - This parameter defines the maximum distance between two points for one to be considered as in the neighbourhood of the other. It essentially sets the radius for identifying neighbours. A smaller \texttt{Eps} value requires points to be closer together to form a dense region, potentially leading to smaller, tighter clusters and classifying more points as noise. Conversely, a larger \texttt{Eps} value allows clusters to span sparser regions and potentially merge groups that might otherwise be distinct.
+    \item \texttt{MinPts} - This parameter specifies the minimum number of points (including the point itself) required within a point's Eps-neighbourhood for that point to be considered a core point (i.e. an interior point of a dense region). \text{MinPts} defines the threshold for density. A higher value requires more points to constitute a dense core, potentially resulting in fewer clusters and more points being classified as noise. A lower value allows sparser groupings to qualify as clusters, potentially resulting in more clusters.
+\end{itemize}
+
+Determining appropriate values for \texttt{Eps} and \texttt{MinPts} often requires a heuristic (such as the one described by (\citet{ester1996density})) or domain knowledge, as DBSCAN is an unsupervised machine learning algorithm \cite{ester1996density}.
+
+To understand the algorithm's operation, several core concepts are essential \cite{ester1996density} \begin{itemize}
+    \item Eps-neighbourhood - The Eps-neighbourhood of a point is the area within a radius of length \texttt{Eps} from that point.
+    \item Density-reachable - A point $p$ is density reachable from another core point, if there is a sequence of points from $p$ to $q$ where the distance between any two points is less than or equal to \texttt{Eps} and every point in this sequence except $q$ must be a core point. This defines a chain of density connecting $p$ to $q$.
+\end{itemize}
+
+Additionally, based on the hyperparameters, DBSCAN categorises each point in the dataset into one of the three types \cite{ester1996density}. 
+\begin{itemize}
+    \item Core point - A point whose Eps-neighbourhood contains at least \texttt{MinPts} points, including itself. Core points are considered to be in the interior of a dense cluster.
+    \item Border point - A point that is not a core point itself, but falls within the Eps-neighbourhood of at least one core point. Border points lie on the border of a cluster.
+    \item Noise point - A point that is neither a core point nor a border point. These points typically reside in low-density regions and are not assigned to any cluster.
+\end{itemize}
+
+The DBSCAN algorithm, formally defined in (\citet{ester1996density}), iterates through the data points. When it encounters an unvisited point, it checks if that point qualifies as a core point by examining the set of points Eps-neighbourhood. If it is indeed a core point, then a new cluster is formed. This cluster is then expanded by finding all density-reachable points, starting from this initial core points. This involves recursively exploring the Eps-neighbourhood of all core points found during the expansion process. Any point reachable through a chain of core points connected by their Eps-neighbourhood becomes part of the cluster. If an unvisited point examined is not a core point, it is initially marked as noise, although it may be later reclassified as a border point, if found within the Eps-neighbourhood of a core point belonging to an expanding cluster. Points identified as density-reachable but not core points become border points assigned to this cluster. This procedure continues until all points in the dataset have been visited and assigned to a cluster or designated as noise.
+
+An important consideration arises when a border point falls within the Eps-neighbourhood of core points belonging to different, simultaneously expanding clusters. Standard DBSCAN implementations typically resolve this based on the order of processing: the border point is assigned to the cluster associated with the first core point that `discovers' it during expansion \cite{ester1996density}. Once assigned, it is generally not reassigned, even if subsequently found to be reachable from another cluster's core point. Thus, while the core cluster structures are stable, the assignment of some border points can be implementation-dependent.
+
+In general, DBSCAN offers significant advantages: it can identify clusters of arbitrary shape, is inherently robust to noise (which it explicitly labels) and does not require the number of clusters to be specified beforehand. However, it also has limitations. The algorithm's performance is sensitive to the choice of \texttt{Eps} and \texttt{MinPts} and it can struggle to correctly identify clusters of significantly varying densities within the same dataset. Furthermore, the average runtime complexity is $O(n\log n)$ where $n$ is the number of points in the dataset. \cite{ester1996density, campello2013density}. Like many distance-based algorithms, its effectiveness can degrade in very high-dimensional spaces due to the `curse of dimensionality' (see Section~\ref{sec:dimred}) \cite{hinneburg1999optimal, verleysen2005curse}.
+
+
+% \todo[inline, caption={}] {
+%     \begin{itemize}
+%         \item Talk about algorithm
+%         \item Talk about the parameters any effects when tuning these parameters.
+%         \item Talk about drawbacks and benefits of this approach, citations needed.
+%     \end{itemize}
+% }
+
 \subsection{HDBSCAN}
+
+Hierarchical Density-Based Spatial Clustering of Applications with Noise (HDBSCAN) was proposed by (\cite{campello2013density}) as a density-based hierarchical clustering algorithm. The paper introduced two novel concepts: (1) a hierarchical clustering algorithm, HDBSCAN, which generates a density-based clustering from flattening a hierarchically-split view of data points (i.e. as a dendrogram) and keeping only the most stable and significant clusters; and (2) a measure of cluster stability, allowing for extraction of the most significant clusters as an optimisation problem that maximises the overall stability of the final set of clusters \cite{campello2013density}. One issue noted with DBSCAN is its inflexibility in dealing with clusters with varying local densities. This is because, as it employs global hyperparameters, DBSCAN only clusters based on a global density threshold. HDBSCAN is able to address the issue in DBSCAN through the construction of a hierarchy and choosing the most significant clusters, based on the novel cluster stability metric. Additionally, HDBSCAN only employs a single hyperparameter, $m_{\text{pts}}$ (equivalent to \texttt{MinPts} in DBSCAN) which makes the algorithm simple to configure \cite{campello2013density}.
+
+Importantly, this remaining section assumes a reasonably basic level of understanding of graph theory. For a great primer, the reader is referred to (\citet{harris2008combinatorics}).
+
+In order to produce a hierarchical clustering algorithm based on DBSCAN, a non-hierarchical algorithm, (\citet{campello2013density}) define DBSCAN\*. DBSCAN\* is similar to DBSCAN, except the algorithm finds clusters as the connected components of a graph, where all data points are vertices and pairs of vertices are connected if and only if they are both within each other's Eps-neighbourhood. Additionally, all non-core points are now defined as noise, including border points. This allows us to think of these connected components as a level set of a density; that is, a set of all (core) points at a certain density. This definition was introduced to allow a precise mathematical relationship between DBSCAN* and HDBSCAN \cite{campello2013density}. 
+
+Below, we define the primary concepts in discussing the HDBSCAN algorithm \cite{campello2013density}. 
+\begin{itemize}
+    \item Core distance - The distance of a object (data point) to the $m_{\text{pts}}$ furthest,nearest-neighbour. In other words, the distance of the furthest point that can still be considered part of the cluster. Smaller values mean the object is in a denser area.
+    \item Eps-core object - An Eps-core object is every value \texttt{Eps} that is further than or equal to the core distance. That is, all distances greater than the furthest point considered part of this core.
+    \item Mutual reachability distance - The mutual reachability distance between two objects is the maximum distance of either object to its core or their distance from each other.
+    \item Mutual reachability graph - A complete graph, where objects from the dataset are vertices and the weight of each edge is the mutual reachability distance between each pair of objects. 
+\end{itemize}
+
+[Describe the algorithm here, using mst and stuff. Say one, short line on the time complexity]
+
+Cluster stability is a measure of the stability of To generate a flattened, disjoint set of clusters, 
+
+
+
 \todo[inline, caption={}] {
     \begin{itemize}
         \item Talk about algorithm
@@ -583,6 +737,7 @@ An example illustration of UMAP applied to an elephant skeletal structure, which
 }
 
 \section{Clustering Evaluation}\label{sec:clusteringEval}
+Furthermore, as evaluating the quality of unsupervised clustering results is crucial, we will also introduce several common clustering evaluation heuristics used in this work: Inertia, the Silhouette coefficient \cite{rousseeuw1987silhouettes}, the Davies-Bouldin Index \cite{davies1979cluster}, and the Calinski-Harabasz Index \cite{calinski1974dendrite}.
 
 \todo[inline, caption={}] {
 
@@ -709,7 +864,7 @@ Furthermore, punctuation tokens are converted into one of two categories: end-of
 
 Just in terms of ion source \texttt{Equipment}, the pre-processing is applied across 1251 log entries, ranging from 2009 - 2023. Tokenisation and operating on tokens is computationally intensive, thus the solution operates on tensors, leveraging Tensorflow capabilities to perform GPU-based compute, which speeds up machine learning based applications \cite{tensorflow2015whitepaper, baldini2014predicting}.
 
-As text pre-processing is compute intensive, using these flags to perform hyperparameter optimisation (Section~\ref{sec:hyperparameterOpt}) is an inefficient use of compute. This is because the pre-processing must be re-computed using these Boolean flags, for each configuration run. As these flags are Boolean, it is relatively easy to manually enumerate each configuration option and, thus, these parameters are instead exposed through the CLI application (Section~\ref{sec:CLI}) rather than in the hyperparameter optimisation process.
+As text pre-processing is computationally intensive, using these flags to perform hyperparameter optimisation (Section~\ref{sec:hyperparameterOpt}) is an inefficient use of compute. This is because the pre-processing must be re-computed using these Boolean flags, for each configuration run. As these flags are Boolean, it is relatively easy to manually enumerate each configuration option and, thus, these parameters are instead exposed through the CLI application (Section~\ref{sec:CLI}) rather than in the hyperparameter optimisation process.
 
 \todo{Clean up wording in the above}
 
@@ -734,12 +889,12 @@ As text pre-processing is compute intensive, using these flags to perform hyperp
 
 
 \section{Text Embedding Model Selection and Application}
-After pre-processing, the cleaned and normalised \texttt{FaultDescription} text requiers transformation into a numerical format suitable for analysis. Sentence embedding (introduced in Section~\ref{sec:sentenceEmbedding}) provides this by mapping text into a high-dimensional vector space, where semantic relationships are preserved. This is crucial for the project's goal: automatically categorising log entries by grouping semantically similar entries, which corresponds to finding similar fault types. 
+After pre-processing, the cleaned and normalised \texttt{FaultDescription} text requires transformation into a numerical format suitable for analysis. Sentence embedding (introduced in Section~\ref{sec:sentenceEmbedding}) provides this by mapping text into a high-dimensional vector space, where semantic relationships are preserved. This is crucial for the project's goal: automatically categorising log entries by grouping semantically similar entries, which corresponds to finding similar fault types. 
 
 \subsection{Dataset and hardware driven requirements}
-Effective categorisation relies on an embedding model that can accurately capture the syntactic and semantic nuances of these technical descriptions. Figure~\ref{fig:ionSourceTokenCountDist} highlights that, although the average \texttt{FaultDescription} entry has roughly 7 tokens. In the dataset, over 60\% of entries have less than 5 tokens and there are around 10\% (of the roughly 1200 entries) that have over 20 tokens. This includes entries which stretch to multiple sentences. Additionally, the vocabulary is heavily domain specific (i.e. `ion source') and a single out-of-place adjective can reverse the meaning of a fault report (i.e. `beam loss' versus `no beam loss').  
+Effective categorisation relies on an embedding model that can accurately capture the syntactic and semantic nuances of these technical descriptions. Figure~\ref{fig:ionSourceTokenCountDist} highlights that, although the average \texttt{FaultDescription} entry has roughly 7 tokens, in the dataset, over 60\% of entries have less than 5 tokens and around 10\% of the 1251 entries have over 20 tokens. This includes entries which stretch to multiple sentences. Additionally, the vocabulary is heavily domain specific (i.e. `ion source') and a single out-of-place adjective can reverse the meaning of a fault report (i.e. `beam loss' versus `no beam loss').  
 
-Furthermore, the hardware available for research is detailed in Table~\ref{tab:researchHw}. Some models, such as large language models with a parameter counts in hundreds of millions or billions of parameters may exceed the 6GB GPU VRAM limit during inference. Therefore, we restrict consideration to models whose inference memory footprint and compute latency remain feasible on this hardware.
+Furthermore, the hardware available for research is detailed in Table~\ref{tab:researchHw}. Some models, such as large language models with a parameter counts in hundreds of millions or billions may exceed the 6GB GPU VRAM limit during inference. Therefore, we restrict consideration to models whose inference memory footprint and compute latency remain feasible on this hardware.
 
 As a result, we require a model that (1) handles sequences that contain both long- and short-term dependencies but still establish semantic relationships effectively; (2) is able to capture the semantic contextual meaning from the entire sequence - that is, bidirectionally; and (3) is able to be feasibly loaded and run on the research hardware specified in Table~\ref{tab:researchHw}.
 
@@ -774,7 +929,7 @@ Two BERT-family sentence-embedding models satisfy the constraints above, MPNet a
 512-token context window with a 768 embedding dimension. Unifies BERT's masked and XLNet's permutation language modelling pre-training objectives. This gives better positional awareness for tokens that are further away from each other \cite{song2020mpnet}. MPNet has around 109 million parameters, meaning it is able to load onto the research hardware. The HuggingFace model path is: \texttt{sentence-transformers/all-mpnet-base-v2} and achieves a clustering score of 40.77, ranking at 98 on the MTEB leaderboard, at time of writing.
 
 \paragraph{Nomic - an overview}
-Current state-of-the-art 8192-token context window with up to a 768 embedding dimension. Utilises rotary positional embeddings and flash attention that provide long-context support while remaining relatively small, with around 137 million parameters. Task prefixes (i.e. \texttt{classification: }, \texttt{clustering: }, etc.) encourage distinct semantic sub-spaces, thus we prepend all inputs passed to this model with `clustering: '. Specifically, we use version 1.5 which takes advantage of matryoshka representation learning and is able to encode coarse versus fine-grained semantic information in embedding vector sub-spaces \cite{nussbaum2024nomic, nussbaum2024nomic1.5}. The HuggingFace model path is: \texttt{nomic-ai/nomic-embed-text-v1.5} and achieves a clustering score of 41.55, ranking at 54 on the MTEB leaderboard, at time of writing.
+Current state-of-the-art 8192-token context window with up to a 768 embedding dimension. Utilises rotary positional embeddings and flash attention that provide long-context support while remaining relatively small, with around 137 million parameters. Task prefixes (i.e. \texttt{classification:}, \texttt{clustering:}, etc.) encourage distinct semantic sub-spaces, thus we prepend all inputs passed to this model with `clustering:'. Specifically, we use version 1.5 which takes advantage of matryoshka representation learning and is able to encode coarse versus fine-grained semantic information in embedding vector sub-spaces \cite{nussbaum2024nomic, nussbaum2024nomic1.5}. The HuggingFace model path is: \texttt{nomic-ai/nomic-embed-text-v1.5} and achieves a clustering score of 41.55, ranking at 54 on the MTEB leaderboard, at time of writing.
 
 \paragraph{Excluded Models}
 The following embedding models were evaluated but ultimately excluded, either because they exceeded our 6GB VRAM budget or failed to meet clustering performance thresholds in pilot runs (see Table~\ref{tab:excludedModels}). Excluding these ensures all retained models both fit our hardware and deliver the minimum clustering quality we require.
@@ -855,8 +1010,8 @@ The relevant adaptions and justifications are listed below.
 \begin{itemize}
     \item Long context handling via RoPE - Nomic utilise Rotary Positional Embeddings (RoPE) instead of traditional positional embeddings \cite{su2024roformer, nussbaum2024nomic, vaswani2017attention}. RoPE encodes positional information using rotations, which has been shown to improve model generalisation to sequences of lengths not seen during pre-training (whether longer or shorter) \cite{su2024roformer}. This is a significant advantage for the Operalog dataset, where \texttt{FaultDescription} entries vary greatly in length (Figure~\ref{fig:hists}), helping ensure effective semantic understanding by the model.
     \item Computational efficiency - Despite its capabilities, Nomic v1.5 maintains a relatively small parameter count of around 137 million compared to other leading models, whose parameter counts typically exceed 1 billion significantly. It also incorporates architectural optimizations like FlashAttention \cite{dao2022flashattention}, an I/O-aware attention mechanism that reduces memory usage and latency during inference \cite{nussbaum2024nomic}. These factors were significant in selecting Nomic, as they allow the model to run efficiently within the constraints of the available 6GB GPU VRAM (Table~\ref{tab:researchHw}), unlike larger models such as Qwen2 or Mistral-7B (Table~\ref{tab:excludedModels}).
-    \item Task-specific optimisation - Nomic supports task-specific prefixes prepended to the input text. For this project, the `clustering: ' prefix was used for all \texttt{FaultDescription} entries fed into the Nomic model. This technique enables the model to produce embeddings specifically optimized for clustering tasks, by leveraging distinct semantic embedding subspaces learned during pre-training \cite{nussbaum2024nomic}. Utilising this prefix aims to enhance the quality of the embedding space specifically for the goal of grouping similar fault types, potentially leading to more coherent and meaningful clusters.
-    \item Matryoshka Representation Learning (MRL) - Nomic version 1.5 incorporates MRL, which trains the model to produce nested embeddings where shorter prefixes of the full embedding vector still form meaningful representations \cite{kusupati2022matryoshka, nussbaum2024nomic1.5}. While the full 768-dimension embedding was used for this project, with MRL creating a structured embedding space, it opens up the possibility to detect patterns to categorise faults easier.
+    \item Task-specific optimisation - Nomic supports task-specific prefixes prepended to the input text. For this project, the `clustering:' prefix was used for all \texttt{FaultDescription} entries fed into the Nomic model. This technique enables the model to produce embeddings specifically optimized for clustering tasks, by leveraging distinct semantic embedding subspaces learned during pre-training \cite{nussbaum2024nomic}. Utilising this prefix aims to enhance the quality of the embedding space specifically for the goal of grouping similar fault types, potentially leading to more coherent and meaningful clusters.
+    \item Matryoshka Representation Learning (MRL) - Nomic version 1.5 incorporates MRL, which trains the model to produce nested embeddings where shorter prefixes of the full embedding vector still form meaningful representations \cite{kusupati2022matryoshka, nussbaum2024nomic1.5}. While the full 768-dimension embedding was used for this project, with MRL creating a structured embedding space, it opens up the possibility of detecting patterns that aid fault categorisation  more easily.
     \item Modern Architecture Choices - Nomic also incorporates other modern design choices adapted from BERT, such as removing the next sentence prediction pre-training objective, which simplifies pre-training and allowing for longer contiguous text processing, and using 0\% dropout, reflecting findings on training with very large datasets \cite{nussbaum2024nomic, liu2019roberta, xue2023repeat}. These contribute to its overall efficiency and performance.
     \item Benchmark Performance - Nomic version 1.5 demonstrates strong performance on the MTEB leaderboard, particularly for its size, ranking well on clustering tasks and providing empirical validation for its selection \cite{muennighoff2022mteb, nussbaum2024nomicelo}.
 \end{itemize}
@@ -871,11 +1026,11 @@ MPNet and Nomic satisfied the criteria set out initially, including the hardware
 
 % Motivated by the need for visualisation of the high-dimensional embedding space we explore dimensionality reduction techniques. Specifically we justify the applicability of two reduction techniques, Principal Component Analysis (PCA) \cite{pearson1901liii, hotelling1933analysis} and Uniform Manifold Approximation and Projection (UMAP) \cite{mcinnes2018umap}. Through justification from visualisation and literature, we decide to continue using UMAP in our pipeline. Apart from these two techniques, there was also consideration of t-distributed Stochastic Neighbour Embedding (t-SNE). However, as UMAP is known to be most consistent across runs and tends to better preserve the global structure of the data and due to the time constrained nature of this project, we opted to not explore t-SNE. Below, we show the justification in using UMAP for our dimensionality reduction use-case and explore the various hyperparameter applications to our dataset.
 
-The high dimensionality (768 dimensions) of the text embeddings necessitates dimensionality reduction, initially to enable visualisation and subsequently to aid clustering (referring to the `curse of dimensionality' \cite{verleysen2005curse}, see Section~\ref{sec:dimred} for more details). This section explores and justifies the applicability of two techniques for this purpose: Principal Component Analysis (PCA) \cite{pearson1901liii, hotelling1933analysis}, a linear method, and Uniform Manifold Approximation and Projection (UMAP) \cite{mcinnes2018umap}, a non-linear manifold learning approach. While another non-linear technique, t-distributed Stochastic Neighbour Embedding (t-SNE), was initially considered, we focused on the evaluation of PCA and UMAP. This decision was based on UMAP's reported advantages in preserving global data structure more effectively that t-SNE, alongside its generally greater computational efficiency and consistency run-to-run \cite{mcinnes2018umap}. Given the project's scope, these practical benefits drew us away from t-SNE. The proceeding subsections present a comparison between PCA and UMAP based on visualisations, justify the subsequent selection of UMAP for our pipeline; and detail its hyperparameter application to the Operalog dataset.
+The high dimensionality (768 dimensions) of the text embeddings necessitates dimensionality reduction, initially to enable visualisation and subsequently to aid clustering (referring to the `curse of dimensionality' \cite{verleysen2005curse}, see Section~\ref{sec:dimred} for more details). This section explores and justifies the applicability of two techniques for this purpose: Principal Component Analysis (PCA) \cite{pearson1901liii, hotelling1933analysis}, a linear method, and Uniform Manifold Approximation and Projection (UMAP) \cite{mcinnes2018umap}, a non-linear manifold learning approach. While another non-linear technique, t-distributed Stochastic Neighbour Embedding (t-SNE), was initially considered, we focused on the evaluation of PCA and UMAP. This decision was based on UMAP's reported advantages in preserving global data structure more effectively than t-SNE, alongside its generally greater computational efficiency and run-to-run consistency \cite{mcinnes2018umap}. Given the project's scope, these practical benefits drew us away from t-SNE. The following subsections present a comparison between PCA and UMAP based on visualisations, justify the subsequent selection of UMAP for our pipeline; and detail its hyperparameter application to the Operalog dataset.
 
 \subsection{Visualisation}
 
-An example visualisation comparing the 3-dimensional projection, obtained using both PCA and UMAP in both MPNet and Nomic embedding spaces, are shown in Figure~\ref{fig:dimred-compare}. Since the original data resides in a 768-dimension embedding space, direct visualisation is impossible. Projecting this data down to the three dimensions enables visualisation but potentially loses information, making purely visual comparisons between the method outputs subjective.
+An example visualisation comparing the 3-dimensional projection, obtained using both PCA and UMAP in both MPNet and Nomic embedding spaces, is shown in Figure~\ref{fig:dimred-compare}. Since the original data resides in a 768-dimension embedding space, direct visualisation is impossible. Projecting this data down to the three dimensions enables visualisation but potentially loses information, making purely visual comparisons between the method outputs subjective.
 
 To supplement the visual assessment with a quantitative measure, we evaluate the spread within these 3-dimensional projections using normalised variance. Normalised variance, defined for a data matrix $X$ in Equation~\ref{eq:normvar}, serves as a metric to quantify the overall dispersion of the points in the low-dimensional space.
 Observing Figure~\ref{fig:dimred-compare}, the UMAP projections visually appear to exhibit more defined structures, such as clearer separations and groupings of points. Comparatively, the corresponding PCA projections look more dispersed and do not show any `clusters' or groupings of points. This visual impression is supported quantitatively by the normalised variance metric, calculated for these specific runs. The values for the UMAP projections ($0.90$ for MPNet, $2.27$ for Nomic) are substantially lower and closer to 1 than those for PCA (approximately $1.0 \times 10^7$ for MPNet, $-2.4 \times 10^9$ for Nomic). In this context, the lower normalised variance for UMAP suggests a projection that arranges the data more compactly while potentially preserving meaningful neighbourhood relationships, consistent with UMAP's goal of modelling the data manifold.
@@ -885,9 +1040,9 @@ Observing Figure~\ref{fig:dimred-compare}, the UMAP projections visually appear 
     \label{eq:normvar}
 \end{align}
 
-However, as discussed in Section~\ref{sec:umap}, UMAP is a stochastic algorithm. That is, due to an element of algorithmic randomness, its output naturally varies between runs \cite{mcinnes2018umap}. To account for this variability, Figure~\ref{fig:normvarumap} visualises the distribution of normalised variance results obtained over 100 independent UMAP runs for both embedding spaces. While variation exists, these distributions reaffirm the concept that UMAP consistently produces projections with significantly lower normalised variance, as opposed to PCA. The distributions exhibit some right-skewness, particularly for the MPNet embeddings but remain concentrated in a range indicative of more structured projections than those from PCA.
+However, as discussed in Section~\ref{sec:umap}, UMAP is a stochastic algorithm. That is, due to an element of algorithmic randomness, its output naturally varies between runs \cite{mcinnes2018umap}. To account for this variability, Figure~\ref{fig:normvarumap} visualises the distribution of normalised variance results obtained over 100 independent UMAP runs for both embedding spaces. While variation exists, these distributions reaffirm the concept that UMAP consistently produces projections with significantly lower normalised variance than those produced by PCA. The distributions exhibit some right-skewness, particularly for the MPNet embeddings but remain concentrated in a range indicative of more structured projections than those from PCA.
 
-Based on the combination of visually apparent features in the example projections Figure~\ref{fig:dimred-compare} and the consistently lower (although variable) normalised variance scores, indicative of the better preservation of manifold structure, in Figure~\ref{fig:normvarumap}, UMAP is selected as the dimensionality reduction technique for the remainder of this pipeline. It appears more likely, than PCA, to produce a low-dimensional representation that retains structural information beneficial for the next clustering stage. 
+Based on the combination of visually apparent characteristics in the example projections Figure~\ref{fig:dimred-compare} and the consistently lower (although variable) normalised variance scores, indicative of the better preservation of manifold structure, in Figure~\ref{fig:normvarumap}, UMAP is selected as the dimensionality reduction technique for the remainder of this pipeline. It appears more likely, than PCA, to produce a low-dimensional representation that retains structural information beneficial for the next clustering stage. 
 
 
 
@@ -966,7 +1121,7 @@ Similarly, \texttt{min\_dist} affects the visual density. Here, lower values may
 % [*Optional: Add a sentence about the potential impact on density-based clustering if applicable.*]
 The choice of \texttt{metric} (i.e. `cosine' vs. `euclidean') is also critical, as `cosine' is often better suited for high-dimensional text embeddings like those used here \cite{baba2017plagiarism, cao2024recent}.
 
-To gain an initial understanding of suitable UMAP parameters for the Operalog data, a naive grid search was performed using both MPNet and Nomic embeddings across the parameter ranges displayed in Table~\ref{tab:umapgrid}. The resulting visualisations for each parameter combination are presented in Appendix~\ref{app:umaphypgrid}. However, visual inspection of these results highlighted a surprising finding: contrary to common practice for text embeddings, cosine distance did not appear to yield projections that obviously preserved structure more faithfully than Euclidean distance in this preliminary exploration. These inconclusive and unexpected outcomes underscore the need for a more systematic hyperparameter optimisation phase, which is later detailed in Section~\ref{sec:hyperparameterOpt}.
+To gain an initial understanding of suitable UMAP parameters for the Operalog data, a naive grid search was performed using both MPNet and Nomic embeddings across the parameter ranges displayed in Table~\ref{tab:umapgrid}. The resulting visualisations for each parameter combination are presented in Appendix~\ref{app:umaphypgrid}. However, visual inspection of these results highlighted a surprising finding: contrary to common practice for text embeddings, cosine distance did not appear to yield projections demonstrably better at preserving structure more faithfully than Euclidean distance in this preliminary exploration. These inconclusive and unexpected outcomes underscore the need for a more systematic hyperparameter optimisation phase, which is later detailed in Section~\ref{sec:hyperparameterOpt}.
 
 \begin{table}[htbp]
     \fontsize{8}{11}\selectfont % Kept your font size setting
@@ -1018,6 +1173,12 @@ Based on the comparison in the previous subsections, UMAP was selected over PCA 
 % }
 
 \section{Unsupervised categorisation through clustering}
+
+\todo[inline, caption={}]{
+    \begin{itemize}
+        \item mention k-medoids sklearn implementation uses PAM algorithm. Touch on the fact it only has one parameter, which is significant for our usecase
+    \end{itemize}
+}
 
 \section{Hyperparameter optimisation}\label{sec:hyperparameterOpt}
 

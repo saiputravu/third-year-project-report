@@ -12,45 +12,45 @@ Warning--there's a number but no volume in davies1979cluster
 Warning--can't use both volume and number fields in ester1996density
 Warning--empty journal in hinneburg1999optimal
 Warning--empty journal in radford2018improving
-You've used 91 entries,
+You've used 94 entries,
             2773 wiz_defined-function locations,
-            1087 strings with 23581 characters,
-and the built_in function-call counts, 49574 in all, are:
-= -- 4282
-> -- 3567
-< -- 64
-+ -- 1208
-- -- 1116
-* -- 4124
-:= -- 7659
-add.period$ -- 293
-call.type$ -- 91
-change.case$ -- 632
-chr.to.int$ -- 90
-cite$ -- 186
-duplicate$ -- 2060
-empty$ -- 3584
-format.name$ -- 1239
-if$ -- 10341
+            1102 strings with 23931 characters,
+and the built_in function-call counts, 50742 in all, are:
+= -- 4377
+> -- 3619
+< -- 69
++ -- 1226
+- -- 1131
+* -- 4198
+:= -- 7835
+add.period$ -- 302
+call.type$ -- 94
+change.case$ -- 643
+chr.to.int$ -- 93
+cite$ -- 192
+duplicate$ -- 2129
+empty$ -- 3696
+format.name$ -- 1261
+if$ -- 10597
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 87
-newline$ -- 470
-num.names$ -- 364
-pop$ -- 1325
+missing$ -- 93
+newline$ -- 485
+num.names$ -- 376
+pop$ -- 1366
 preamble$ -- 1
-purify$ -- 546
+purify$ -- 557
 quote$ -- 0
-skip$ -- 1741
+skip$ -- 1790
 stack$ -- 0
-substring$ -- 1598
-swap$ -- 313
-text.length$ -- 25
+substring$ -- 1627
+swap$ -- 324
+text.length$ -- 27
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 976
+type$ -- 994
 warning$ -- 4
-while$ -- 398
+while$ -- 409
 width$ -- 0
-write$ -- 1187
+write$ -- 1224
 (There was 1 error message)

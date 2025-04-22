@@ -1,4 +1,4 @@
-\begin{thebibliography}{91}
+\begin{thebibliography}{94}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -200,6 +200,11 @@ Gregory Grefenstette.
 \newblock In \emph{Syntactic wordclass tagging}, pages 117--133. Springer,
   1999.
 
+\bibitem[Harris(2008)]{harris2008combinatorics}
+John~M Harris.
+\newblock \emph{Combinatorics and graph theory}.
+\newblock Springer, 2008.
+
 \bibitem[Hinneburg and Keim(1999)]{hinneburg1999optimal}
 Alexander Hinneburg and Daniel~A Keim.
 \newblock Optimal grid-clustering: Towards breaking the curse of dimensionality
@@ -246,6 +251,17 @@ Taeho Jo.
 \newblock K nearest neighbor for text summarization using feature similarity.
 \newblock In \emph{2017 International Conference on Communication, Control,
   Computing and Electronics Engineering (ICCCCEE)}, pages 1--5. IEEE, 2017.
+
+\bibitem[Kaufman and Rousseeuw(1990)]{kmedoids}
+Leonard Kaufman and Peter Rousseeuw, J.
+\newblock \emph{Partitioning Around Medoids (Program PAM)}, chapter~2, pages
+  68--125.
+\newblock John Wiley and Sons, Ltd, 1990.
+
+\bibitem[Kaufman and Rousseeuw(2009)]{kaufman2009finding}
+Leonard Kaufman and Peter~J Rousseeuw.
+\newblock \emph{Finding groups in data: an introduction to cluster analysis}.
+\newblock John Wiley \& Sons, 2009.
 
 \bibitem[Kumar and Bhatia(2020)]{kumar2020semantic}
 Sushil Kumar and Komal~Kumar Bhatia.

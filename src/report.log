@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.4)  21 APR 2025 22:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.4)  22 APR 2025 17:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -594,54 +594,87 @@ Package newfloat Info: New float `equ' with options `' on input line 50.
 \newfloat@ftype=\count321
 Package newfloat Info: float type `equ'=8 on input line 50.
 \c@subequ=\count322
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 55.
+ (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count323
+\lst@gtempboxa=\box67
+\lst@token=\toks40
+\lst@length=\count324
+\lst@currlwidth=\dimen298
+\lst@column=\count325
+\lst@pos=\count326
+\lst@lostspace=\dimen299
+\lst@width=\dimen300
+\lst@newlines=\count327
+\lst@lineno=\count328
+\lst@maxwidth=\dimen301
+ (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count329
+\lst@skipnumbers=\count330
+\lst@framebox=\box68
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+ (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty (/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2022-01-21 L3 programming layer (loader) 
+ (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count331
+\l__pdf_internal_box=\box69
+))
+Package: l3keys2e 2022-01-12 LaTeX2e option processing using LaTeX3 keys
+)
+Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
+\g__lipsum_par_int=\count332
+\l__lipsum_a_int=\count333
+\l__lipsum_b_int=\count334
+ (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex))
+\c@nalg=\count335
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 85.
  (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count323
-\l__pdf_internal_box=\box67
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count324
-\scratchdimen=\dimen298
-\scratchbox=\box68
-\nofMPsegments=\count325
-\nofMParguments=\count326
-\everyMPshowfont=\toks40
-\MPscratchCnt=\count327
-\MPscratchDim=\dimen299
-\MPnumerator=\count328
-\makeMPintoPDFobject=\count329
-\everyMPtoPDFconversion=\toks41
+\scratchcounter=\count336
+\scratchdimen=\dimen302
+\scratchbox=\box70
+\nofMPsegments=\count337
+\nofMParguments=\count338
+\everyMPshowfont=\toks41
+\MPscratchCnt=\count339
+\MPscratchDim=\dimen303
+\MPnumerator=\count340
+\makeMPintoPDFobject=\count341
+\everyMPtoPDFconversion=\toks42
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 55.
+Package hyperref Info: Link coloring ON on input line 85.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -649,17 +682,19 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count330
+\c@section@level=\count342
 )
-LaTeX Info: Redefining \ref on input line 55.
-LaTeX Info: Redefining \pageref on input line 55.
-LaTeX Info: Redefining \nameref on input line 55.
+LaTeX Info: Redefining \ref on input line 85.
+LaTeX Info: Redefining \pageref on input line 85.
+LaTeX Info: Redefining \nameref on input line 85.
  (./report.out) (./report.out)
 \@outlinefile=\write4
 \openout4 = `report.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count343
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./report.toc
@@ -732,25 +767,25 @@ Overfull \hbox (11.8251pt too wide) in paragraph at lines 15--15
 
 
 ]
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 111.
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 141.
  [6
 
 
 ] [7]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.182 \chapter
+l.213 \chapter
               {Introduction} [1
 
 
 ]
 Chapter 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 184--185
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
 
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 202.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 233.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [2
@@ -759,15 +794,15 @@ File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 <./images//ISIS.png, id=454, 770.63419pt x 936.56021pt>
 File: ./images//ISIS.png Graphic file (type png)
 <use ./images//ISIS.png>
-Package pdftex.def Info: ./images//ISIS.png  used on input line 225.
+Package pdftex.def Info: ./images//ISIS.png  used on input line 256.
 (pdftex.def)             Requested size: 327.74895pt x 398.3115pt.
 <./images//ISIS2.png, id=459, 664.44153pt x 600.28346pt>
 File: ./images//ISIS2.png Graphic file (type png)
 <use ./images//ISIS2.png>
-Package pdftex.def Info: ./images//ISIS2.png  used on input line 232.
+Package pdftex.def Info: ./images//ISIS2.png  used on input line 263.
 (pdftex.def)             Requested size: 207.0021pt x 187.01106pt.
  [3] [4 <./images//ISIS.png (PNG copy)>] [5 <./images//ISIS2.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 250--252
+Underfull \hbox (badness 10000) in paragraph at lines 281--283
 
  []
 
@@ -775,224 +810,4 @@ Underfull \hbox (badness 10000) in paragraph at lines 250--252
 <./images//isisDowntime.png, id=523, 489.9906pt x 475.5366pt>
 File: ./images//isisDowntime.png Graphic file (type png)
 <use ./images//isisDowntime.png>
-Package pdftex.def Info: ./images//isisDowntime.png  used on input line 264.
-(pdftex.def)             Requested size: 172.5pt x 167.41261pt.
-<./images//fap.png, id=529, 603.97072pt x 805.29428pt>
-File: ./images//fap.png Graphic file (type png)
-<use ./images//fap.png>
-Package pdftex.def Info: ./images//fap.png  used on input line 269.
-(pdftex.def)             Requested size: 327.74895pt x 436.99051pt.
- [8 <./images//isisDowntime.png>] [9 <./images//fap.png (PNG copy)>]
-Overfull \hbox (0.52362pt too wide) in paragraph at lines 295--296
-[]\T1/lmr/m/n/8 Run-to-failure (R2F) main-te-nance: Con-tin-ual us-age of the sys-tem un-til fail-ure. Restora-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 300--301
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 317--318
-[]|\T1/lmr/m/n/8 ([][]Susto and Beghi[][][],
- []
-
-[10] [11]
-Chapter 2.
-
-Overfull \hbox (8.66747pt too wide) in paragraph at lines 330--331
-\T1/lmr/m/n/8 tion [][]2.2[][] in-tro-duces both third[]generation model BERT [[]] and the more re-cent fourth[]generation
- []
-
-
-LaTeX Warning: Marginpar on page 12 moved.
-
-
-LaTeX Warning: Marginpar on page 12 moved.
-
-
-LaTeX Warning: Marginpar on page 12 moved.
-
-[12
-
-] [13]
-<./images//sentenceEmbeddingExample.png, id=682, 1449.82469pt x 969.7454pt>
-File: ./images//sentenceEmbeddingExample.png Graphic file (type png)
-<use ./images//sentenceEmbeddingExample.png>
-Package pdftex.def Info: ./images//sentenceEmbeddingExample.png  used on input line 371.
-(pdftex.def)             Requested size: 327.74895pt x 219.2191pt.
- [14] [15 <./images//sentenceEmbeddingExample.png (PNG copy)>]
-<./images//BERT1.png, id=721, 768.42183pt x 312.67836pt>
-File: ./images//BERT1.png Graphic file (type png)
-<use ./images//BERT1.png>
-Package pdftex.def Info: ./images//BERT1.png  used on input line 386.
-(pdftex.def)             Requested size: 327.74895pt x 133.36603pt.
- [16 <./images//BERT1.png (PNG copy)>] [17] [18] [19] [20]
-Underfull \hbox (badness 10000) in paragraph at lines 514--515
-
- []
-
-[21]
-<./images/umapElephant.png, id=855, 1131.98418pt x 744.08601pt>
-File: ./images/umapElephant.png Graphic file (type png)
-<use ./images/umapElephant.png>
-Package pdftex.def Info: ./images/umapElephant.png  used on input line 536.
-(pdftex.def)             Requested size: 207.0021pt x 136.06421pt.
- [22] [23 <./images/umapElephant.png (PNG copy)>] [24]
-Chapter 3.
-[25
-
-]
-<./images//FaultDescriptionVSFaultRepairs.png, id=894, 635.976pt x 496.4949pt>
-File: ./images//FaultDescriptionVSFaultRepairs.png Graphic file (type png)
-<use ./images//FaultDescriptionVSFaultRepairs.png>
-Package pdftex.def Info: ./images//FaultDescriptionVSFaultRepairs.png  used on input line 642.
-(pdftex.def)             Requested size: 165.59853pt x 129.27502pt.
-<./images/ionSourceTokenCountDist.png, id=895, 628.749pt x 496.4949pt>
-File: ./images/ionSourceTokenCountDist.png Graphic file (type png)
-<use ./images/ionSourceTokenCountDist.png>
-Package pdftex.def Info: ./images/ionSourceTokenCountDist.png  used on input line 648.
-(pdftex.def)             Requested size: 165.59853pt x 130.76747pt.
-
-Underfull \hbox (badness 2435) in paragraph at lines 649--649
-[]\T1/lmr/bx/n/7 (b) |\T1/lmr/m/n/7 Fre-quency dis-tri-bu-tion of the num-ber
- []
-
-<./images//wcFaultRepairs.png, id=896, 1394.811pt x 566.5968pt>
-File: ./images//wcFaultRepairs.png Graphic file (type png)
-<use ./images//wcFaultRepairs.png>
-Package pdftex.def Info: ./images//wcFaultRepairs.png  used on input line 659.
-(pdftex.def)             Requested size: 165.59853pt x 67.26245pt.
-<./images//wcFaultDescription.png, id=897, 1394.811pt x 566.5968pt>
-File: ./images//wcFaultDescription.png Graphic file (type png)
-<use ./images//wcFaultDescription.png>
-Package pdftex.def Info: ./images//wcFaultDescription.png  used on input line 666.
-(pdftex.def)             Requested size: 165.59853pt x 67.26245pt.
-[26] [27 <./images//FaultDescriptionVSFaultRepairs.png> <./images/ionSourceTokenCountDist.png> <./images//wcFaultRepairs.png> <./images//wcFaultDescription.png>] [28] [29] [30] [31]
-<./images//MPNetMLM.png, id=996, 870.92725pt x 476.39204pt>
-File: ./images//MPNetMLM.png Graphic file (type png)
-<use ./images//MPNetMLM.png>
-Package pdftex.def Info: ./images//MPNetMLM.png  used on input line 833.
-(pdftex.def)             Requested size: 170.0837pt x 93.03055pt.
-<./images//MPNetPLM.png, id=997, 861.34041pt x 466.06775pt>
-File: ./images//MPNetPLM.png Graphic file (type png)
-<use ./images//MPNetPLM.png>
-Package pdftex.def Info: ./images//MPNetPLM.png  used on input line 840.
-(pdftex.def)             Requested size: 156.97563pt x 84.93398pt.
- [32] [33 <./images//MPNetMLM.png (PNG copy)> <./images//MPNetPLM.png (PNG copy)>] [34]
-<./images//distUMAP.png, id=1060, 839.0547pt x 440.847pt>
-File: ./images//distUMAP.png Graphic file (type png)
-<use ./images//distUMAP.png>
-Package pdftex.def Info: ./images//distUMAP.png  used on input line 896.
-(pdftex.def)             Requested size: 276.00105pt x 145.01581pt.
-<./images//pcaTestMPNet.png, id=1063, 573.8238pt x 596.2275pt>
-File: ./images//pcaTestMPNet.png Graphic file (type png)
-<use ./images//pcaTestMPNet.png>
-Package pdftex.def Info: ./images//pcaTestMPNet.png  used on input line 905.
-(pdftex.def)             Requested size: 165.59853pt x 172.06456pt.
-<./images//umapTestMPNet.png, id=1064, 573.8238pt x 596.2275pt>
-File: ./images//umapTestMPNet.png Graphic file (type png)
-<use ./images//umapTestMPNet.png>
-Package pdftex.def Info: ./images//umapTestMPNet.png  used on input line 912.
-(pdftex.def)             Requested size: 165.59853pt x 172.06456pt.
-<./images//pcaTestNomic.png, id=1065, 573.8238pt x 596.2275pt>
-File: ./images//pcaTestNomic.png Graphic file (type png)
-<use ./images//pcaTestNomic.png>
-Package pdftex.def Info: ./images//pcaTestNomic.png  used on input line 920.
-(pdftex.def)             Requested size: 165.59853pt x 172.06456pt.
-<./images//umapTestNomic.png, id=1066, 573.8238pt x 596.2275pt>
-File: ./images//umapTestNomic.png Graphic file (type png)
-<use ./images//umapTestNomic.png>
-Package pdftex.def Info: ./images//umapTestNomic.png  used on input line 927.
-(pdftex.def)             Requested size: 165.59853pt x 172.06456pt.
- [35]
-Overfull \hbox (6.60667pt too wide) in paragraph at lines 978--988
- [][] 
- []
-
-[36 <./images//distUMAP.png>] [37 <./images//pcaTestMPNet.png> <./images//umapTestMPNet.png> <./images//pcaTestNomic.png> <./images//umapTestNomic.png>] [38] [39]
-Chapter 4.
-[40
-
-]
-Chapter 5.
-(./report.bbl [41
-
-] [42
-
-] [43] [44] [45]
-Underfull \hbox (badness 1776) in paragraph at lines 361--364
-\T1/lmr/m/n/8 em-bed: Train-ing a re-pro-ducible long con-text text em-bed-der.  \T1/lmr/m/it/8 arXiv preprint
- []
-
-
-Underfull \hbox (badness 3895) in paragraph at lines 375--381
-[]\T1/lmr/m/n/8 Nussbaum, Zach and Cem-balest, Max.  Nomic Em-bed's Sur-pris-ingly Good
- []
-
-
-Underfull \hbox (badness 1895) in paragraph at lines 375--381
-\T1/lmr/m/n/8 MTEB Arena Elo Score, Aug 2024.  URL [][]$\T1/lmtt/m/n/8 https : / / www . nomic . ai / blog / posts /
- []
-
-[46] [47] [48]) [49]
-Appendix A.
-[50
-
-]
-<./images/mpnethyp1.png, id=1181, 2892.9681pt x 1243.044pt>
-File: ./images/mpnethyp1.png Graphic file (type png)
-<use ./images/mpnethyp1.png>
-Package pdftex.def Info: ./images/mpnethyp1.png  used on input line 1174.
-(pdftex.def)             Requested size: 345.0pt x 148.22945pt.
-<./images/mpnethyp2.png, id=1184, 4338.3681pt x 3925.7064pt>
-File: ./images/mpnethyp2.png Graphic file (type png)
-<use ./images/mpnethyp2.png>
-Package pdftex.def Info: ./images/mpnethyp2.png  used on input line 1180.
-(pdftex.def)             Requested size: 345.0pt x 312.14609pt.
-<./images/mpnethyp3.png, id=1187, 2892.9681pt x 1067.4279pt>
-File: ./images/mpnethyp3.png Graphic file (type png)
-<use ./images/mpnethyp3.png>
-Package pdftex.def Info: ./images/mpnethyp3.png  used on input line 1186.
-(pdftex.def)             Requested size: 345.0pt x 127.28772pt.
-<./images/nomichyp1.png, id=1190, 2892.9681pt x 1243.044pt>
-File: ./images/nomichyp1.png Graphic file (type png)
-<use ./images/nomichyp1.png>
-Package pdftex.def Info: ./images/nomichyp1.png  used on input line 1192.
-(pdftex.def)             Requested size: 345.0pt x 148.22945pt.
-<./images/nomichyp2.png, id=1193, 4338.3681pt x 3925.7064pt>
-File: ./images/nomichyp2.png Graphic file (type png)
-<use ./images/nomichyp2.png>
-Package pdftex.def Info: ./images/nomichyp2.png  used on input line 1198.
-(pdftex.def)             Requested size: 345.0pt x 312.14609pt.
-<./images/nomichyp3.png, id=1196, 2892.9681pt x 1067.4279pt>
-File: ./images/nomichyp3.png Graphic file (type png)
-<use ./images/nomichyp3.png>
-Package pdftex.def Info: ./images/nomichyp3.png  used on input line 1204.
-(pdftex.def)             Requested size: 345.0pt x 127.28772pt.
- [51 <./images/mpnethyp1.png>] [52 <./images/mpnethyp2.png> <./images/mpnethyp3.png>] [53 <./images/nomichyp1.png> <./images/nomichyp2.png>] [54 <./images/nomichyp3.png>] (./report.aux)
-
-Package rerunfilecheck Warning: File `report.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `report.out':
-(rerunfilecheck)             Before: 80174C0E6848C8BE1C2170AE905AC77B;8829
-(rerunfilecheck)             After:  7E2DD977B5F0CF24F3B9331202A1F9CD;8882.
- ) 
-Here is how much of TeX's memory you used:
- 24724 strings out of 478287
- 467012 string characters out of 5849290
- 742109 words of memory out of 5000000
- 42137 multiletter control sequences out of 15000+600000
- 533281 words of font info for 66 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 115i,17n,131p,1839b,950s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx7.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi5.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy5.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (62 pages, 17249565 bytes).
-PDF statistics:
- 1382 PDF objects out of 1440 (max. 8388607)
- 1200 compressed objects within 12 object streams
- 293 named destinations out of 1000 (max. 500000)
- 557 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+Package pdftex.def Info: ./images//isisDowntime.png  used o
