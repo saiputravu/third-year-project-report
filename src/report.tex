@@ -169,6 +169,7 @@
         \textbf{LSA} & Latent Semantic Analysis. \\
         \textbf{MCR} & Main Control Room. \\
         \textbf{ML} & Machine Learning. \\
+        \textbf{MST} & Minimum Spanning Tree \\
         \textbf{MRL} & Matryoshka Representation Learning. \\
         \textbf{MTEB} & Massive Text Embedding Benchmark. \\
         \textbf{NLP} & Natural Language Processing. \\
@@ -595,7 +596,7 @@ This section provides the necessary background for the clustering techniques emp
 %     \end{itemize}
 % }
 
-\subsection{k-Medoids}
+\subsection{k-Medoids}\label{sec:kmedoids}
 The k-Medoids algorithm is a partitioning-based clustering method that aims to divide a dataset into k distinct clusters. The k-Medoids algorithm uses actual data points, known as medoids, as the centres of its clusters. It aims to minimise a cost function based on the sum of pairwise dissimilarities (that is, distances) between each point and the medoid of the cluster it is labelled under \cite{kmedoids}.
 
 A classical algorithm for implementing k-Medoids is Partitioning Around Medoids (PAM), introduced by (\citet{kmedoids}). PAM operates in two main phases:
@@ -667,11 +668,11 @@ end
 %     \end{itemize}
 % }
 
-\subsection{DBSCAN}
+\subsection{DBSCAN}\ref{sec:dbscan}
 
 Density-Based Spatial Clustering of Applications with Noise (DBSCAN) is density-based clustering algorithm, unlike partitioning methods like k-Medoids \cite{ester1996density}. Instead of partitioning data around centres, DBSCAN groups together points that are closely packed in high-density regions, separated by sparser areas. A key characteristic of this approach is its ability to discover clusters of arbitrary shapes and to automatically determine the number of clusters present, rather than requiring it as a predefined input \cite{ester1996density}. The core intuition is that points belonging to the same conceptual group or category tend to lie close to each other, forming denser regions than considered noise or outliers.
 
-The algorithm's behaviour is primarily controlled by two hyperparameters \cite{ester1996density}:
+The algorithm's behaviour and the concept of density is controlled by two hyperparameters \cite{ester1996density}:
 \begin{itemize}
     \item \texttt{Eps} - This parameter defines the maximum distance between two points for one to be considered as in the neighbourhood of the other. It essentially sets the radius for identifying neighbours. A smaller \texttt{Eps} value requires points to be closer together to form a dense region, potentially leading to smaller, tighter clusters and classifying more points as noise. Conversely, a larger \texttt{Eps} value allows clusters to span sparser regions and potentially merge groups that might otherwise be distinct.
     \item \texttt{MinPts} - This parameter specifies the minimum number of points (including the point itself) required within a point's Eps-neighbourhood for that point to be considered a core point (i.e. an interior point of a dense region). \text{MinPts} defines the threshold for density. A higher value requires more points to constitute a dense core, potentially resulting in fewer clusters and more points being classified as noise. A lower value allows sparser groupings to qualify as clusters, potentially resulting in more clusters.
@@ -706,37 +707,39 @@ In general, DBSCAN offers significant advantages: it can identify clusters of ar
 %     \end{itemize}
 % }
 
-\subsection{HDBSCAN}
+\subsection{HDBSCAN}\ref{sec:hdbscan}
 
-Hierarchical Density-Based Spatial Clustering of Applications with Noise (HDBSCAN) was proposed by (\cite{campello2013density}) as a density-based hierarchical clustering algorithm. The paper introduced two novel concepts: (1) a hierarchical clustering algorithm, HDBSCAN, which generates a density-based clustering from flattening a hierarchically-split view of data points (i.e. as a dendrogram) and keeping only the most stable and significant clusters; and (2) a measure of cluster stability, allowing for extraction of the most significant clusters as an optimisation problem that maximises the overall stability of the final set of clusters \cite{campello2013density}. One issue noted with DBSCAN is its inflexibility in dealing with clusters with varying local densities. This is because, as it employs global hyperparameters, DBSCAN only clusters based on a global density threshold. HDBSCAN is able to address the issue in DBSCAN through the construction of a hierarchy and choosing the most significant clusters, based on the novel cluster stability metric. Additionally, HDBSCAN only employs a single hyperparameter, $m_{\text{pts}}$ (equivalent to \texttt{MinPts} in DBSCAN) which makes the algorithm simple to configure \cite{campello2013density}.
+Hierarchical Density-Based Spatial Clustering of Applications with Noise (HDBSCAN), proposed by \citet{campello2013density}, is an advancement over DBSCAN that generates a hierarchical clustering structure. This approach addresses a key limitation of DBSCAN: its reliance on a single global density threshold $\epsilon$ (equivalent to \texttt{Eps} in DBSCAN), which makes it difficult to identify clusters of varying densities simultaneously. HDBSCAN overcomes this by effectively exploring all possible density thresholds ($\lambda = \frac 1 \epsilon$, for all $\epsilon \in \big[0, \infty \big)$) to build a cluster hierarchy \cite{campello2013density}.
 
-Importantly, this remaining section assumes a reasonably basic level of understanding of graph theory. For a great primer, the reader is referred to (\citet{harris2008combinatorics}).
+The method introduces two main contributions: (1) the HDBSCAN algorithm itself, which constructs this complete density-based hierarchy, represented as a dendrogram (a hierarchical tree-based representation of the dataset points); and (2) a novel measure of cluster stability used to extract a simplified, flat partition containing only the most significant and persistent clusters from this hierarchy \cite{campello2013density}. This extraction is framed as an optimisation problem maximising the total stability of the selected clusters. A significant advantage of HDBSCAN is its reduced sensitivity to hyperparameters as it primarily requires only $m_{\text{pts}}$ (equivalent to \texttt{MinPts} in DBSCAN), a parameter whose effect as a density smoothing factor is generally well-understood \cite{campello2013density}.
 
-In order to produce a hierarchical clustering algorithm based on DBSCAN, a non-hierarchical algorithm, (\citet{campello2013density}) define DBSCAN\*. DBSCAN\* is similar to DBSCAN, except the algorithm finds clusters as the connected components of a graph, where all data points are vertices and pairs of vertices are connected if and only if they are both within each other's Eps-neighbourhood. Additionally, all non-core points are now defined as noise, including border points. This allows us to think of these connected components as a level set of a density; that is, a set of all (core) points at a certain density. This definition was introduced to allow a precise mathematical relationship between DBSCAN* and HDBSCAN \cite{campello2013density}. 
+Importantly, the remaining portion of this section assumes a reasonably basic level of understanding of graph theory. For a great primer, the reader is referred to (\citet{harris2008combinatorics}).
 
-Below, we define the primary concepts in discussing the HDBSCAN algorithm \cite{campello2013density}. 
+To establish a formal link between the flat clustering of DBSCAN and the hierarchy of HDBSCAN, the authors first revisit the DBSCAN concept (referred to as DBSCAN\* in the paper for clarity). In this view, clusters are defined as connected components of core objects within a graph where edges connect mutually reachable core points based on $\epsilon$ and $m_{\text{pts}}$. Non-core objects are considered noise, which includes border points. This perspective allows density-based clusters to be seen as connected components of a level set of density (i.e. here, given a density threshold $\lambda = \frac 1 \epsilon$, it can be thought of as a set with points with density above that value) \cite{campello2013density}.
+
+HDBSCAN builds upon the defining concepts relative to $m_{\text{pts}}$, only allowing $\epsilon$ (or $\lambda$) to vary \cite{campello2013density}:
 \begin{itemize}
-    \item Core distance - The distance of a object (data point) to the $m_{\text{pts}}$ furthest,nearest-neighbour. In other words, the distance of the furthest point that can still be considered part of the cluster. Smaller values mean the object is in a denser area.
-    \item Eps-core object - An Eps-core object is every value \texttt{Eps} that is further than or equal to the core distance. That is, all distances greater than the furthest point considered part of this core.
-    \item Mutual reachability distance - The mutual reachability distance between two objects is the maximum distance of either object to its core or their distance from each other.
-    \item Mutual reachability graph - A complete graph, where objects from the dataset are vertices and the weight of each edge is the mutual reachability distance between each pair of objects. 
+    \item Core distance ($d_{\text{core}}(x)$) - For a data point $x$, this is the distance to its $m_{\text{pts}}$-th nearest neighbour (including itself). It serves as a measure of the local density around $x$. A smaller core distance implies a denser region.
+    \item Mutual reachability distance ($d_{\text{mreach}}(x_p, x_q)$) - Defined for two data points $x_p, x_q$, this is the maximum of their respective core distances and their pairwise distance defined as:
+        \[d_{\text{mreach}}(x_p, x_q) = \max \{ d_{\text{core}}(x_p), d_{\text{core}}(x_q), d(x_p, x_q) \}\]
+    This adjusted distance measure ensures that points in sparse regions are effectively pushed further apart, reflecting density differences.
 \end{itemize}
 
-[Describe the algorithm here, using mst and stuff. Say one, short line on the time complexity]
+The HDBSCAN algorithm constructs the cluster hierarchy based on these concepts. Conceptually, it first computes the core distance for all points. Then, it builds a graph where all points are vertices, and the weight of the edge between any two points is their mutual reachability distance. The algorithm finds the Minimum Spanning Tree (MST) of this complete graph. The cluster hierarchy (dendrogram) is then extracted from this MST by considering edges in decreasing order of weight (distance). As edges are removed (corresponding to decreasing the density threshold $\lambda$ or increasing the distance threshold $\epsilon$), connected components in the remaining graph represent clusters at that specific density level. The hierarchy captures how these components merge as the density threshold decreases \cite{campello2013density}. This process can be implemented efficiently, with a typical time complexity of $O(n^2)$ if pairwise distances are precomputed or provided, or potentially $O(dn^2)$ depending on MST construction details if distances are computed on the fly from $d$-dimensional data \cite{campello2013density}.
 
-Cluster stability is a measure of the stability of To generate a flattened, disjoint set of clusters, 
+To extract a meaningful flat partition from this hierarchy, HDBSCAN introduces the concept of cluster stability. This measure quantifies how persistent a cluster $C_i$ is across different density levels ($\lambda = \frac 1 \epsilon$). That is, as you vary the density level $\lambda$, what is the longest period in which the cluster exists without disappear or splitting. The stability $S(C_i)$ is calculated by summing, for each point $x_j$ belonging to cluster $C_i$, the range of density levels for which that point remains part of that specific cluster \cite{campello2013density}. More formally, using the notation from the paper where $\lambda_{\text{min}}(C_i)$ is the density level at which cluster $C_i$ appears (thought of as is `born') and $\lambda_{\text{max}}(x_j, C_i)$ is the density at which point $x_j$ leaves cluster $C_i$, either through becoming noise or part of some child cluster as density increases \cite{campello2013density}:
 
+\begin{align}
+S(C_i) = \sum_{x_j \in C_i} (\lambda_{\text{max}}(x_j, C_i) - \lambda_{\text{min}}(C_i))
+\label{eq:hdbscan-stability}
+\end{align}
 
+Equation~\ref{eq:hdbscan-stability} adapts the concept of `excess of mass' \cite{muller1991excess} to a set of discrete data points and density levels derived from the hierarchy. Clusters where points persist over a larger range of $\lambda$ values (i.e. are more `stable' across varying density thresholds) will have higher stability scores.
 
-\todo[inline, caption={}] {
-    \begin{itemize}
-        \item Talk about algorithm
-        \item Talk about the parameters any effects when tuning these parameters.
-        \item Talk about drawbacks and benefits of this approach, citations needed.
-    \end{itemize}
-}
+Using this concept of stability, HDBSCAN selects the optimal flat clustering by solving an optimisation problem: finding a maximal disjoint set of clusters from the hierarchy  such that the sum of stabilities $S(C_i)$ is maximised. Here a maximal disjoint set of clusters refers to the fact that no two cluster is an ancestor or descendant of another selected cluster, ensuring a flat partition covering all points down certain branches \cite{campello2013density}. The paper provides an efficient algorithm that traverses the simplified cluster tree bottom-up and then top-down to find this optimal set of stable clusters in linear time, relative to the size of the simplified tree. The simplified cluster tree is obtained after applying a minimum cluster size $m_{\text{dSize}}$, typically set equal to $m_{\text{pts}}$. This process effectively performs the optimal `local cuts' in the cluster dendrogram at different levels of hierarchy, based on this notion of cluster persistence.
 
 \section{Clustering Evaluation}\label{sec:clusteringEval}
+\todo[inline] {Maybe this can be moved to the methodology?}
 Furthermore, as evaluating the quality of unsupervised clustering results is crucial, we will also introduce several common clustering evaluation heuristics used in this work: Inertia, the Silhouette coefficient \cite{rousseeuw1987silhouettes}, the Davies-Bouldin Index \cite{davies1979cluster}, and the Calinski-Harabasz Index \cite{calinski1974dendrite}.
 
 \todo[inline, caption={}] {
@@ -1174,9 +1177,33 @@ Based on the comparison in the previous subsections, UMAP was selected over PCA 
 
 \section{Unsupervised categorisation through clustering}
 
+The low-dimensional embedding space, projected by UMAP, is now ready for clustering. Clustering is the unsupervised machine learning task of grouping similar points together (see Section~\ref{sec:clustering}). Intuitively, each cluster produced by a clustering algorithm can be mapped uniquely to an Operalog fault category. However, as we are inducing fault categories `unsupervised', it is not immediate how to evaluate any one clustering. Three clustering algorithms were chosen, to compare against each other: k-Medoids \cite{kmedoids}, a partitioning-based clustering algorithm; DBSCAN \cite{ester1996density}, a density-based clustering algorithm; and HDBSCAN \cite{campello2013density}, a hybrid density and hierarchical clustering algorithm which is based on DBSCAN. In addition to this, k-Means \cite{macqueen1967some}, another partition-based clustering algorithm was considered but not chosen. This is due to the well-known disadvantages of k-Means; it is highly sensitive to the initialised configuration and it has issues with instability \cite{zhang2008improved}. This section outlines the clustering algorithms used and motivates the clustering heuristics used for clustering evaluation.
+
+\todo{Maybe list these clustering heuristics explicitly here?}
+
+\subsection{Clustering Candidates}
+
+The k-Medoids clustering algorithm has one key hyperparameter (see Section~\ref{sec:kmedoids}), $k$, the number of initial clusters. Due to this, to select the optimal configuration, various values of $k$ must be tested against clustering heuristics. Additionally, as mentioned in the detailed description of the k-Medoids algorithm, the runtime complexity of the algorithm 
+
+The DBSCAN algorithm has two key hyperparameters (see Section~\ref{sec:dbscan}), \texttt{Eps} and \texttt{MinPts}. 
+
+The HDBSCAN algorithm only has one key hyperparameter (see Section~\ref{sec:hdbscan}), $m_{\text{pts}}$.
+
+\todo{Heavily fix the wording here, discuss benefits and drawbacks of each for our operalog and motivate why we need to test all three.}
+
+\subsection{Clustering heuristics}  
+
+Motivated by the necessity to evaluate this open-ended problem, four clustering heuristics are utilised: inertia, ... \todo{list the others here}.
+
+
 \todo[inline, caption={}]{
     \begin{itemize}
         \item mention k-medoids sklearn implementation uses PAM algorithm. Touch on the fact it only has one parameter, which is significant for our usecase
+        \item motivate the clustering - DONE ISH
+        \item talk about clustering algorithms we did not consider, with research - DONE ISh
+        \item explain the 3 clustering methods we have chosen to use and the hyperparameters in a table
+        \item show test clustering 
+        \item this section is not really quantitative, highlight how we have to introduce clustering heuristics 
     \end{itemize}
 }
 
