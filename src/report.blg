@@ -7,55 +7,50 @@ Repeated entry---line 512 of file refs.bib
  : @article{wang2024multilingual
  :                              ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 690 of file refs.bib
- : @inproceedings{macqueen1967some
- :                                ,
-I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for ""
-Warning--I didn't find a database entry for "zhang2008improved"
 Warning--there's a number but no volume in davies1979cluster
 Warning--can't use both volume and number fields in ester1996density
 Warning--empty journal in hinneburg1999optimal
+Warning--empty note in spacy2
 Warning--empty journal in radford2018improving
-You've used 96 entries,
+You've used 102 entries,
             2773 wiz_defined-function locations,
-            1118 strings with 24379 characters,
-and the built_in function-call counts, 51730 in all, are:
-= -- 4477
-> -- 3650
-< -- 73
-+ -- 1237
-- -- 1140
-* -- 4266
-:= -- 7972
-add.period$ -- 309
-call.type$ -- 96
-change.case$ -- 652
-chr.to.int$ -- 95
-cite$ -- 196
-duplicate$ -- 2181
-empty$ -- 3789
-format.name$ -- 1274
-if$ -- 10819
+            1146 strings with 25611 characters,
+and the built_in function-call counts, 55075 in all, are:
+= -- 4760
+> -- 3927
+< -- 77
++ -- 1330
+- -- 1227
+* -- 4563
+:= -- 8505
+add.period$ -- 328
+call.type$ -- 102
+change.case$ -- 699
+chr.to.int$ -- 101
+cite$ -- 209
+duplicate$ -- 2308
+empty$ -- 4000
+format.name$ -- 1369
+if$ -- 11499
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 95
-newline$ -- 495
-num.names$ -- 384
-pop$ -- 1385
+missing$ -- 100
+newline$ -- 525
+num.names$ -- 408
+pop$ -- 1474
 preamble$ -- 1
-purify$ -- 564
+purify$ -- 605
 quote$ -- 0
-skip$ -- 1831
+skip$ -- 1944
 stack$ -- 0
-substring$ -- 1688
-swap$ -- 337
-text.length$ -- 29
+substring$ -- 1767
+swap$ -- 353
+text.length$ -- 31
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 1016
-warning$ -- 4
-while$ -- 420
+type$ -- 1082
+warning$ -- 5
+while$ -- 445
 width$ -- 0
-write$ -- 1252
-(There were 2 error messages)
+write$ -- 1328
+(There was 1 error message)

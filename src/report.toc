@@ -3,60 +3,63 @@
 \contentsline {chapter}{Abbreviations and Acronyms}{vi}{chapter*.3}%
 \contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Motivation}{2}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Overview of the ISIS Research Facility}{3}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}The end-to-end production of neutrons and muons}{3}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Maintenance at ISIS}{7}{subsection.1.2.2}%
-\contentsline {section}{\numberline {1.3}Maintenance Techniques}{8}{section.1.3}%
-\contentsline {chapter}{\numberline {2}Natural Language Processing Background}{12}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Sentence Similarity}{13}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Sentence Embedding}{14}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Transformers}{15}{subsection.2.2.1}%
-\contentsline {subsubsection}{BERT}{15}{section*.25}%
-\contentsline {subsubsection}{XLNet}{17}{section*.28}%
-\contentsline {section}{\numberline {2.3}Dimensionality Reduction}{19}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Principal Component Analysis}{19}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Uniform Manifold Approximation and Projection}{20}{subsection.2.3.2}%
-\contentsline {section}{\numberline {2.4}Clustering}{22}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}k-Medoids}{23}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}DBSCAN}{25}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}HDBSCAN}{26}{subsection.2.4.3}%
-\contentsline {section}{\numberline {2.5}Clustering Evaluation}{28}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Inertia}{29}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Silhouette}{29}{subsection.2.5.2}%
-\contentsline {subsection}{\numberline {2.5.3}Davies-Bouldin Index}{29}{subsection.2.5.3}%
-\contentsline {subsection}{\numberline {2.5.4}Calinski-Harabasz Index}{29}{subsection.2.5.4}%
-\contentsline {section}{\numberline {2.6}Maybe Optuna}{29}{section.2.6}%
-\contentsline {chapter}{\numberline {3}Automatic Categorisation and Label Generation}{30}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Data}{30}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}The Operalog}{30}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Preliminary Data Analysis}{31}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Overview}{31}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Natural Language Pre-processing}{33}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Text Embedding Model Selection and Application}{34}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Dataset and hardware driven requirements}{35}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Candidate Models}{35}{subsection.3.4.2}%
-\contentsline {paragraph}{MPNet - an overview}{35}{section*.42}%
-\contentsline {paragraph}{Nomic - an overview}{36}{section*.43}%
-\contentsline {paragraph}{Excluded Models}{36}{section*.44}%
-\contentsline {subsection}{\numberline {3.4.3}Detailed Rationale}{36}{subsection.3.4.3}%
-\contentsline {subsubsection}{MPNet}{36}{section*.46}%
-\contentsline {subsubsection}{Nomic}{37}{section*.48}%
-\contentsline {subsection}{\numberline {3.4.4}Section Summary}{39}{subsection.3.4.4}%
-\contentsline {section}{\numberline {3.5}Embedding dimensionality reduction}{39}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Visualisation}{39}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}UMAP Hyperparameters}{40}{subsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.5.3}Section Summary}{43}{subsection.3.5.3}%
-\contentsline {section}{\numberline {3.6}Unsupervised categorisation through clustering}{43}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Clustering Candidates}{43}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Clustering heuristics}{43}{subsection.3.6.2}%
-\contentsline {section}{\numberline {3.7}Hyperparameter optimisation}{44}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Label generation}{44}{section.3.8}%
-\contentsline {section}{\numberline {3.9}CLI Application}{44}{section.3.9}%
-\contentsline {chapter}{\numberline {4}Results and Discussion}{45}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Conclusion}{46}{chapter.5}%
-\contentsline {chapter}{Bibliography}{47}{chapter*.60}%
-\contentsline {chapter}{\numberline {A}Further Discussion}{55}{appendix.A}%
-\contentsline {section}{\numberline {A.1}MPNet Mathematical Formulations}{55}{section.A.1}%
-\contentsline {subsection}{\numberline {A.1.1}MPNet Pre-training Objective}{55}{subsection.A.1.1}%
-\contentsline {subsection}{\numberline {A.1.2}MPNet Input Structuring Example}{55}{subsection.A.1.2}%
-\contentsline {section}{\numberline {A.2}UMAP Hyperparameter Search}{56}{section.A.2}%
+\contentsline {section}{\numberline {1.2}The ISIS Facility's Complexity and Operational Challenges}{3}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}The end-to-end production of neutrons and muons}{4}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Maintenance at ISIS}{4}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}Maintenance Techniques}{6}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Natural Language Processing Background}{10}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Sentence Similarity}{10}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Sentence Embedding}{12}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Transformers and Foundational Pre-trained Language Models}{12}{subsection.2.2.1}%
+\contentsline {subsubsection}{BERT}{13}{section*.17}%
+\contentsline {subsubsection}{XLNet}{14}{section*.18}%
+\contentsline {subsubsection}{Considerations for Using Pre-trained Models}{14}{section*.19}%
+\contentsline {section}{\numberline {2.3}Dimensionality Reduction}{14}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}PCA}{15}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}UMAP}{15}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Clustering}{17}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}k-Medoids}{17}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}DBSCAN}{18}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}HDBSCAN}{20}{subsection.2.4.3}%
+\contentsline {chapter}{\numberline {3}Automatic Categorisation and Label Generation}{22}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Data}{22}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}The Operalog}{22}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Preliminary Data Analysis}{23}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Overview}{23}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Natural Language Pre-processing}{25}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Text Embedding Model Selection and Application}{26}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Dataset and hardware driven requirements}{27}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Candidate Models}{27}{subsection.3.4.2}%
+\contentsline {paragraph}{MPNet - an overview}{27}{section*.31}%
+\contentsline {paragraph}{Nomic - an overview}{28}{section*.32}%
+\contentsline {paragraph}{Excluded Models}{28}{section*.33}%
+\contentsline {subsubsection}{Detailed Rationale}{28}{section*.35}%
+\contentsline {paragraph}{MPNet Justification}{28}{section*.36}%
+\contentsline {paragraph}{Nomic Justification}{29}{section*.37}%
+\contentsline {subsection}{\numberline {3.4.3}Section Summary}{30}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}Embedding dimensionality reduction}{30}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Visualisation}{30}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}UMAP Hyperparameters}{31}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}Section Summary}{34}{subsection.3.5.3}%
+\contentsline {section}{\numberline {3.6}Unsupervised categorisation through clustering}{34}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Clustering Candidates}{35}{subsection.3.6.1}%
+\contentsline {paragraph}{k-Medoids}{35}{section*.41}%
+\contentsline {paragraph}{DBSCAN}{35}{section*.42}%
+\contentsline {paragraph}{HDBSCAN}{35}{section*.43}%
+\contentsline {subsection}{\numberline {3.6.2}Clustering heuristics}{36}{subsection.3.6.2}%
+\contentsline {section}{\numberline {3.7}Hyperparameter optimisation}{37}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Label generation}{38}{section.3.8}%
+\contentsline {section}{\numberline {3.9}CLI Application}{39}{section.3.9}%
+\contentsline {chapter}{\numberline {4}Results and Discussion}{41}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusion}{42}{chapter.5}%
+\contentsline {chapter}{Bibliography}{43}{chapter*.49}%
+\contentsline {chapter}{\numberline {A}Supplementary Technical Details}{49}{appendix.A}%
+\contentsline {section}{\numberline {A.1}BERT and XLNet Pre-training}{49}{section.A.1}%
+\contentsline {subsection}{\numberline {A.1.1}BERT Pre-training Tasks}{49}{subsection.A.1.1}%
+\contentsline {subsection}{\numberline {A.1.2}XLNet Technical Details}{49}{subsection.A.1.2}%
+\contentsline {section}{\numberline {A.2}MPNet Mathematical Formulations}{51}{section.A.2}%
+\contentsline {subsection}{\numberline {A.2.1}MPNet Pre-training Objective}{51}{subsection.A.2.1}%
+\contentsline {subsection}{\numberline {A.2.2}MPNet Input Structuring Example}{52}{subsection.A.2.2}%
+\contentsline {subsection}{\numberline {A.2.3}PCA Formalism and SVD Derivation}{52}{subsection.A.2.3}%
+\contentsline {section}{\numberline {A.3}UMAP Hyperparameter Search}{53}{section.A.3}%
+\contentsline {section}{\numberline {A.4}k-Medoids - The PAM Algorithm}{57}{section.A.4}%

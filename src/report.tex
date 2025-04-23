@@ -2,6 +2,7 @@
 
 % Encoding and font packages
 \usepackage[table]{xcolor}
+\usepackage{multicol}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -27,6 +28,7 @@
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
 
+\usepackage{tabularx}
 \usepackage{anyfontsize}
 \usepackage{lmodern}
 % Dynamically scale font sizes (80% of original)
@@ -68,7 +70,7 @@
         frame=tB, % Top and bottom frame lines
         numbers=left,
         numberstyle=\tiny,
-        basicstyle=\scriptsize\ttfamily, % Use typewriter font for code feel
+        basicstyle=\fontsize{6}{7}\ttfamily, % Use typewriter font for code feel
         keywordstyle=\color{black}\bfseries, % Keywords bold (removed \em)
         keywords={input, output, return, function, in, if, else, foreach, for, while, begin, end, then, repeat, until, compute, select, assign, perform, update}, % Added more keywords
         commentstyle=\color{gray}\itshape, % Style for comments
@@ -139,65 +141,69 @@
 \chapter*{Abbreviations and Acronyms}
 
 \todo{Alphabetically sort this}
-\begin{table}[ht]
-    \centering
-    \begin{tabular}{ll}
+\begin{multicols}{2}
+\begin{description}
+    % Using \item[<Term>] <Definition> format
+    \small
 
-        \textbf{AE} & Auto-encoding. \\
-        \textbf{AR} & Auto-regressive. \\
-        \textbf{BERT} & Bidirectional Encoder Representation from Transformers. \\
-        \textbf{CBM} & Condition-based maintenance policy. \\
-        \textbf{CLI} & Command Line Interface. \\
-        \textbf{CNN} & Convolutional Neural Network. \\
-        \textbf{CPU} & Central Processing Unit. \\
-        \textbf{CUDA} & Compute Unified Device Architecture. \\
-        \textbf{DBSCAN} & Density-Based Spatial Clustering of Application with Noise. \\
-        \textbf{DL} & Deep Learning. \\
-        \textbf{ELMo} & Embeddings from Language Models. \\
-        \textbf{EPB1} & Extracted proton beam line 1. \\
-        \textbf{EPB2} & Extracted proton beam line 2. \\
-        \textbf{FAP} & Fault Analysis Pathway. \\
-        \textbf{FLD} & First-line diagnosis system. \\
-        \textbf{GPT} & Generative Pre-trained Transformer. \\
-        \textbf{GPU} & Graphics Processing Unit. \\
-        \textbf{HDBSCAN} & Hierarchical Density-Based Spatial Clustering of Application with Noise. \\
-        \textbf{HDD} & Hard-Disk Drive. \\
-        \textbf{HEDS} & High energy drift space. \\
-        \textbf{IoT} & Internet of Things. \\
-        \textbf{LEBT} & Low energy beam transport line. \\
-        \textbf{LINAC} & Linear Accelerator. \\
-        \textbf{LSA} & Latent Semantic Analysis. \\
-        \textbf{MCR} & Main Control Room. \\
-        \textbf{ML} & Machine Learning. \\
-        \textbf{MST} & Minimum Spanning Tree \\
-        \textbf{MRL} & Matryoshka Representation Learning. \\
-        \textbf{MTEB} & Massive Text Embedding Benchmark. \\
-        \textbf{NLP} & Natural Language Processing. \\
-        \textbf{Operalog} & The ISIS Operational Log. \\
-        \textbf{PAM} & Partitioning Around Medoids. \\
-        \textbf{PCA} & Principle Component Analysis. \\
-        \textbf{PdM} & Predictive maintenance policy. \\
-        \textbf{PLM} & Pre-trained Language Model. \\
-        \textbf{PvM} & Preventative maintenance policy. \\
-        \textbf{R2F} & Run-to-failure maintenance policy. \\
-        \textbf{RAM} & Random Access Memory. \\
-        \textbf{RFQ} & Radio-frequency quadrupole. \\
-        \textbf{RF} & Random Forest. \\
-        \textbf{RoPE} & Rotary Positional Embeddings. \\
-        \textbf{SAFE} & Supervised Aggregative Feature Extraction. \\
-        \textbf{SMART} & Self-monitoring and reporting technology. \\
-        \textbf{STFC} & Science and Technology Facilities Council. \\
-        \textbf{SVD} & Singular Value Decomposition. \\
-        \textbf{SVM} & Support Vector Machine. \\
-        \textbf{TS-1} & Target Station 1. \\
-        \textbf{TS-2} & Target Station 2. \\
-        \textbf{t-SNE} & t-distributed Stochastic Neighbour Embedding. \\
-        \textbf{UKRI} & United Kingdom Research and Innovation. \\
-        \textbf{UMAP} & Uniform Manifold Approximation and Projection. \\
-        \textbf{VRAM} & Video Random Access Memory. \\
+    \item[\textbf{AE}] Auto-encoding.
+    \item[\textbf{AR}] Auto-regressive.
+    \item[\textbf{BERT}] Bidirectional Encoder Representation from Transformers.
+    \item[\textbf{CBM}] Condition-based maintenance policy.
+    \item[\textbf{CLI}] Command Line Interface.
+    \item[\textbf{CNN}] Convolutional Neural Network.
+    \item[\textbf{CPU}] Central Processing Unit.
+    \item[\textbf{CUDA}] Compute Unified Device Architecture.
+    \item[\textbf{DBSCAN}] Density-Based Spatial Clustering of Application with Noise.
+    \item[\textbf{DL}] Deep Learning.
+    \item[\textbf{ELMo}] Embeddings from Language Models.
+    \item[\textbf{EPB1}] Extracted proton beam line 1.
+    \item[\textbf{EPB2}] Extracted proton beam line 2.
+    \item[\textbf{FAP}] Fault Analysis Pathway.
+    \item[\textbf{FLD}] First-line diagnosis system.
+    \item[\textbf{GPT}] Generative Pre-trained Transformer.
+    \item[\textbf{GPU}] Graphics Processing Unit.
+    \item[\textbf{HDBSCAN}] Hierarchical Density-Based Spatial Clustering of Application with Noise.
+    \item[\textbf{HDD}] Hard-Disk Drive.
+    \item[\textbf{HEDS}] High energy drift space.
+    \item[\textbf{IoT}] Internet of Things.
+    \item[\textbf{LEBT}] Low energy beam transport line.
+    \item[\textbf{LINAC}] Linear Accelerator.
+    \item[\textbf{LSA}] Latent Semantic Analysis.
+    \item[\textbf{MCR}] Main Control Room.
+    \item[\textbf{ML}] Machine Learning.
+    \item[\textbf{MLM}] Masked Language Modelling.
+    \item[\textbf{MRL}] Matryoshka Representation Learning.
+    \item[\textbf{MST}] Minimum Spanning Tree.
+    \item[\textbf{MTEB}] Massive Text Embedding Benchmark.
+    \item[\textbf{NLP}] Natural Language Processing.
+    \item[\textbf{Operalog}] The ISIS Operational Log.
+    \item[\textbf{PAM}] Partitioning Around Medoids.
+    \item[\textbf{PCA}] Principle Component Analysis.
+    \item[\textbf{PdM}] Predictive maintenance policy.
+    \item[\textbf{PLM}] Pre-trained Language Model.
+    \item[\textbf{PvM}] Preventative maintenance policy.
+    \item[\textbf{R2F}] Run-to-failure maintenance policy.
+    \item[\textbf{RAM}] Random Access Memory.
+    \item[\textbf{RFQ}] Radio-frequency quadrupole.
+    \item[\textbf{RF}] Random Forest.
+    \item[\textbf{RoPE}] Rotary Positional Embeddings.
+    \item[\textbf{SAFE}] Supervised Aggregative Feature Extraction.
+    \item[\textbf{SMART}] Self-monitoring and reporting technology.
+    \item[\textbf{STFC}] Science and Technology Facilities Council.
+    \item[\textbf{SVD}] Singular Value Decomposition.
+    \item[\textbf{SVM}] Support Vector Machine.
+    \item[\textbf{TS-1}] Target Station 1.
+    \item[\textbf{TS-2}] Target Station 2.
+    \item[\textbf{t-SNE}] t-distributed Stochastic Neighbour Embedding.
+    \item[\textbf{UKRI}] United Kingdom Research and Innovation.
+    \item[\textbf{UMAP}] Uniform Manifold Approximation and Projection.
+    \item[\textbf{VRAM}] Video Random Access Memory.
 
-    \end{tabular}
-\end{table}
+\end{description}
+\end{multicols}
+
+% --- End of List ---
 
 \clearpage
 
@@ -248,9 +254,28 @@ The things in this section will include
 }
 
 
-\section{Overview of the ISIS Research Facility}\label{sec:isisbg}
+\section{The ISIS Facility's Complexity and Operational Challenges}\label{sec:isisbg}
 
-The STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facility is a research centre for physical and life sciences. It is owned and operated by the STFC, a council within the United Kingdom Research and Innovation (UKRI). The UKRI is a public body of the United Kingdom's Government that directs funding for research and innovation through the science budget of the Department for Science, Innovation and Technology. ISIS was designed in the 1970s and early 1980s, with the core of the design being a strong-focusing machine with six radio frequency accelerating cavities to provide an average beam current of $200\mu A$ \cite{thomason2019isis}. According to (\citet{thomason2019isis}), with the introduction of ISIS and other neutron sources, rapid development of neutron instrumentation was stimulated. Over the years, the facility has been augmented with numerous components and instruments, such as the second target station. The current schematic representation of the facility can be seen in Figure~\ref{fig:isis}.
+% --- Restructured and Shortened Section 1.2.1 (approx. 500 words) ---
+
+% \subsection{Overview of the ISIS Research Facility}\label{sec:isisbg} % Retain original sectioning if needed
+% The STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facility is a research centre for physical and life sciences, operated by the STFC under UKRI funding \cite{thomason2019isis}. Established based on designs from the 1970s and 80s, ISIS utilises complex accelerator technology to produce neutron and muon beams, enabling detailed studies of materials at the atomic level \cite{thomason2019isis}. This process, however, is inherently complex and presents significant operational challenges.
+
+% \subsubsection{The ISIS Accelerator Chain and Operational Complexity} 
+% \textit{% A brief introductory sentence to replace the very first paragraph of original text}
+The ISIS Neutron and Muon Source at STFC Rutherford Appleton Laboratory is a large-scale research facility enabling physical and life sciences study through the production of neutron and muon beams \cite{thomason2019isis}. Achieving this requires a complex, multi-stage accelerator system, the operation and maintenance of which present significant challenges relevant to this project.
+
+The core process, described in \textit{A Practical Guide to the ISIS Neutron and Muon Source} (\citet{2021practicalguide}), involves accelerating negative hydrogen ($H^-$) ions through four major stages: an ion source, a radio-frequency quadrupole (RFQ), a linear accelerator (LINAC), and finally a large synchrotron ring. This chain ultimately produces an 800~MeV proton beam directed towards one of two target stations (TS-1 or TS-2) for neutron or muon generation \cite{2021practicalguide}. A schematic overview is shown in Figure~\ref{fig:isis}, with the particle path illustrated in Figure~\ref{fig:isis2}.
+
+Successful operation across these stages demands extreme precision and stability. Throughout the entire acceleration process, maintaining an ultra-high vacuum (between $10^{-8}$ and $10^{-9}$ atmospheric pressure) is crucial, requiring tens of vacuum pumps and continuous monitoring, as leaks can disrupt the beam and damage sensitive components \cite{2021practicalguide}. The initial $H^-$ ion source must provide a stable, consistent beam, as inconsistencies can propagate and amplify downstream; component wear within the source itself is a common maintenance task requiring immediate intervention \cite{2021practicalguide}. Accelerator structures, like those in the LINAC which utilise high-Q radio-frequency fields \cite{michael2006electronic}, require exceptional stability achieved through precise temperature regulation (significantly under $1^\circ C$ variation) to mitigate thermal effects of expansion and contraction \cite{2021practicalguide}.
+
+Within the 163m circumference synchrotron, magnetic fields and accelerating voltages must be ramped in precise synchronism over nearly 8000 revolutions to boost the beam energy to 800~MeV. Any deviation risks beam oscillation, particle loss, and component damage which necessitates continuous, precise monitoring of beam position and machine parameters via sensor networks \cite{2021practicalguide}. Even the injection mechanism, which uses charge-exchange via a thin foil to convert $H^-$ ions to protons \cite{2021practicalguide, ankenbrandt1980h}, relies on the integrity of this consumable foil, whose replacement is a scheduled maintenance activity and whose damage causes immediate performance loss \cite{2021practicalguide}.
+
+The complexity extends to beam transport and target stations. Extracted proton beams must be accurately steered by magnets towards the target stations; mis-steering can damage equipment, hence the need for heavy shielding and beam loss monitors \cite{2021practicalguide}. At the target stations, the high-energy beam strikes targets to produce neutrons or muons \cite{sharma2001nuclear, 2021practicalguide}. These target systems operate under extreme conditions and require careful monitoring and management to prevent overheating or material damage, representing another major operational and maintenance concern \cite{2021practicalguide}.
+
+\noindent This overview highlights the key takeaway: the ISIS facility involves an intricate sequence of precisely controlled stages, creating numerous potential points of failure. While precautions like beam loss monitors and physical shielding exist, the inherent complexity and harsh operating environment (radiation, high-power) mean that component degradation and operational faults are inevitable. Effectively managing the facility therefore necessitates robust maintenance strategies and sophisticated diagnostic capabilities. Documenting fault events, diagnoses, and repairs in operational logs (like the Operalog studied here) is essential, and the technical complexity of the facility directly influences the nature and variety of entries found in these logs, motivating the need for advanced analysis techniques like those explored in this paper.
+
+% --- End of Restructured Section ---
 
 \begin{figure}[htbp]
     \centering
@@ -265,27 +290,29 @@ The STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facilit
     \caption{ISIS ion source and chain of accelerators, with $H^-$ ions in blue and protons in red. Not to scale. Source: (\citet{2021practicalguide}).}\label{fig:isis2}
 \end{figure}
 
-The ISIS facility, described in A Practical Guide to the ISIS Neutron and Muon Source (\citet{2021practicalguide}), is comprised of four major stages: (1) the ion source, (2) the radio-frequency quadrupole (RFQ), (3) linear accelerator (LINAC) and (4) the synchrotron. These components combine to produce a 800 MeV proton beam that is directed to either target station 1 (TS-1) or target station 2 (TS-2). Starting with $H^-$ ions (protons with two orbiting electrons), the path taken through the four stages is shown in Figure~\ref{fig:isis2}. Throughout the entire $H^-$ or proton acceleration process, the beam must be kept under tight vacuum and, to do so, many tens of vacuum pumps are maintaining the vacuum between $10^{-8}$ and $10^{-9}$ of atmospheric pressure. Maintaining this vacuum integrity is a constant operational challenge as leaks may disrupt the beam and potentially damage sensitive components, necessitating numerous pumps and continuous monitoring system \cite{2021practicalguide}. The rest of this section explains the various stages in a more detail with the purpose of highlighting the complex infrastructure in place and critical control required for the reliable operation of the facility.
-
-The first stage of the ISIS machine is the ion source, which generates the negative hydrogen ($H^-$) ions, which are then accelerated through the RFQ and LINAC. This ion source is a pulsed source that ionises hydrogen gas via an electric discharge between an internal anode and cathode \cite{2021practicalguide}. As detailed in the guide, around 20ml of hydrogen gas per minute is continuously delivered to the ion source from a hydrogen gas bottle. Once the $H^-$ ions emerge from the ion source, they have an energy of 35 keV and are presented to the RFQ via the Low Energy Beam Transport line (LEBT). The LEBT prevents the low-energy $H^-$ beam from increasing in size (due to the mutual repulsion of the ions) and also incorporates a beam stop. This is essentially a remotely removable sheet of metal that physically blocks the beam. Precise control and monitoring of the beam intensity are required here since inconsistencies originating from the ion source affect the overall performance of the machine. This is because these issues can propagate and amplify through the subsequent stages. Additionally, the failure of the source itself, for example due to component wear, requires immediate intervention and is a common maintenance task \cite{2021practicalguide}.
-
-Following the ion source and LEBT, the $H^-$ beam enters the RFQ. This section of the machine utilises high-intensity radio frequency electric fields that contain (focus), group (bunch) and begin accelerating the particles in this beam up to an energy of 665 keV. A key function of the RFQ is to isolate downstream accelerators from variations originating in the ion source, thereby improving beam stability in the LINAC, synchrotron and target stations \cite{2021practicalguide}. However, the stability of the RFQ's own high-intensity beam is a primary concern as, again, fluctuations can lead to poorly formed bunches.
-
-The subsequent stage is the LINAC, which increases the beam energy from 665 keV to 70 MeV. This acceleration is achieved via high-intensity radio-frequency fields arranged in structures that possess a very high Q factor \cite{michael2006electronic} (around 50,000). This means their geometry must be exceptionally stable. Therefore the precise temperature regulation of the cooling water tank is critical in ensuring it is significantly under $1^\circ C$ so that the effects of thermal expansion and contraction are countered \cite{2021practicalguide}. Furthermore, maintaining a high vacuum is critical throughout the LINAC. Failure to do so can lead to premature stripping of loosely bound electrons in the $H^-$ ions, consequently leading to an increase in radioactivity and particle loss (i.e. beam loss). To detect and warn about such cases, beam loss monitors are installed throughout the LINAC, which provide an indication whenever there is an excessive loss in particles. \cite{2021practicalguide}.
-
-Once the $H^-$ particles leave the LINAC, they then pass through a beam transport line - the High Energy Drift Space (HEDS). The function of this is to mainly reduce the particles spreading and focus the beam to the synchrotron. To accumulate the high intensity beam in the synchrotron, ISIS employs charge-exchange injection. This technique allows incoming $H^-$ beam from the LINAC to be `layered' into the synchrotron's circumference over many turns. As the $H^-$ ions enter the synchrotron ring, they pass through a thin foil which strips away their two electrons, converting them to protons. The charge-exchange injection process is specifically chosen as it is the most efficient way of taking and wrapping a long string of particles around the circumference of a synchrotron \cite{2021practicalguide, ankenbrandt1980h}. The integrity of this thin foil is vital for efficient injection and represents a consumable component requiring periodic replacement, which is a scheduled maintenance activity. Damage to the foil will lead directly to beam loss and reduced performance.
-
-The 70 MeV beam is then injected into the synchrotron, which is the primary accelerator ring at ISIS. This ring boosts the (now proton) beam energy to 800 MeV. For an idea of scale, the machine has a circumference of around 163m (corresponding to a radius of approximately 26m). It features a repeating structure of ten `superperiods'. Each superperoid uses dipole magnets to bend the proton path by $36^\circ$ and quadrupole magnets to maintain beam focus \cite{2021practicalguide}. The protons gain energy over just under 8000 revolutions, as each turn gives a proton 0.1 MeV. Achieving this final energy requires extreme precision over each and every revolution. While the protons gain energy, the magnetic fields and accelerating radio-frequency voltages must also very precisely be increased in synchronism. Any deviations can cause the beam to oscillate and strike the vacuum vessel walls which results in particle loss and potential component damage. Therefore, continuous precise monitoring of beam position, magnet currents and more via a network of sensors is imperative for controlling the beam orbit and ensuring successful acceleration \cite{2021practicalguide}. The initially continuous ring of injected protons is gathered into two distinct bunches, a little more than $0.1\mu s$ apart, using a low-level radio-frequency voltage before the main acceleration begins \cite{2021practicalguide}.
-
-Once accelerated, in order to direct the proton bunches towards a pre-selected target station (TS-1 or TS-2) three kicker magnets are used which deflect the bunches upwards. These bunches are then bent into the respective extracted proton beam lines (EPB1 or EPB2). These lines use further magnets for steering. Safe transport relies on accurate magnet performance as mis-steering could direct the high-energy beam into the pipe walls. Additionally, as a safety precaution, both lines are heavily shielded in thick steel and concrete and beam loss monitors are installed along their length to detect any errant particles and provide crucial, real-time feedback to operators \cite{2021practicalguide}.
-
-The primary purpose of the ISIS facility culminates at the target stations. The high-energy proton beam collides with a dense, high atomic number target (tantalum-clad tungsten at ISIS), designed to produce a large number of neutrons via spallation, within a compact region of space \cite{2021practicalguide}. These energetic neutrons are then slowed down (moderated) by surrounding materials (liquid nitrogen, liquid hydrogen and water at ISIS) and reflected back towards instruments by a beryllium reflector \cite{sharma2001nuclear, 2021practicalguide}. Additionally, ISIS produces muons for experiments by inserting a thin (roughly 1cm thick) graphite target into the proton beam around 20m away from the TS-1 neutron target. Collision in this target generates pions, which subsequently decay into muons \cite{2021practicalguide}.
-This entire system needs extremely careful control and monitoring capabilities, as failure due to overheating or material damage is a major operational concern which requires careful management and represents a major maintenance undertaking. Precise monitoring is required of metrics such as incoming beam profile, target temperature, cryogenic temperatures. \\
-
-\noindent This detailed description sourced from the guide highlights some key takeaways. There are an incredible number of points of failure in the facility due to the highly precise and radioactive nature of the task. The ISIS team has taken many precautions such as fault detection mechanisms (i.e. the beam loss monitors) and breakdown counter-measures (i.e. the thick layer of steel and concrete in the EPB1 and EPB2 lines). However, the inherent complexity and harsh operating environment (radiation, high-power) necessitate both robust preventative maintenance schedules and sophisticated diagnostic capabilities that address the component degradation and failures that will inevitably arise. 
+% The STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facility is a research centre for physical and life sciences. It is owned and operated by the STFC, a council within the United Kingdom Research and Innovation (UKRI). The UKRI is a public body of the United Kingdom's Government that directs funding for research and innovation through the science budget of the Department for Science, Innovation and Technology. ISIS was designed in the 1970s and early 1980s, with the core of the design being a strong-focusing machine with six radio frequency accelerating cavities to provide an average beam current of $200\mu A$ \cite{thomason2019isis}. According to (\citet{thomason2019isis}), with the introduction of ISIS and other neutron sources, rapid development of neutron instrumentation was stimulated. Over the years, the facility has been augmented with numerous components and instruments, such as the second target station. The current schematic representation of the facility can be seen in Figure~\ref{fig:isis}.
+%
+% The ISIS facility, described in A Practical Guide to the ISIS Neutron and Muon Source (\citet{2021practicalguide}), is comprised of four major stages: (1) the ion source, (2) the radio-frequency quadrupole (RFQ), (3) linear accelerator (LINAC) and (4) the synchrotron. These components combine to produce a 800 MeV proton beam that is directed to either target station 1 (TS-1) or target station 2 (TS-2). Starting with $H^-$ ions (protons with two orbiting electrons), the path taken through the four stages is shown in Figure~\ref{fig:isis2}. Throughout the entire $H^-$ or proton acceleration process, the beam must be kept under tight vacuum and, to do so, many tens of vacuum pumps are maintaining the vacuum between $10^{-8}$ and $10^{-9}$ of atmospheric pressure. Maintaining this vacuum integrity is a constant operational challenge as leaks may disrupt the beam and potentially damage sensitive components, necessitating numerous pumps and continuous monitoring system \cite{2021practicalguide}. The rest of this section explains the various stages in a more detail with the purpose of highlighting the complex infrastructure in place and critical control required for the reliable operation of the facility.
+%
+% The first stage of the ISIS machine is the ion source, which generates the negative hydrogen ($H^-$) ions, which are then accelerated through the RFQ and LINAC. This ion source is a pulsed source that ionises hydrogen gas via an electric discharge between an internal anode and cathode \cite{2021practicalguide}. As detailed in the guide, around 20ml of hydrogen gas per minute is continuously delivered to the ion source from a hydrogen gas bottle. Once the $H^-$ ions emerge from the ion source, they have an energy of 35 keV and are presented to the RFQ via the Low Energy Beam Transport line (LEBT). The LEBT prevents the low-energy $H^-$ beam from increasing in size (due to the mutual repulsion of the ions) and also incorporates a beam stop. This is essentially a remotely removable sheet of metal that physically blocks the beam. Precise control and monitoring of the beam intensity are required here since inconsistencies originating from the ion source affect the overall performance of the machine. This is because these issues can propagate and amplify through the subsequent stages. Additionally, the failure of the source itself, for example due to component wear, requires immediate intervention and is a common maintenance task \cite{2021practicalguide}.
+%
+% Following the ion source and LEBT, the $H^-$ beam enters the RFQ. This section of the machine utilises high-intensity radio frequency electric fields that contain (focus), group (bunch) and begin accelerating the particles in this beam up to an energy of 665 keV. A key function of the RFQ is to isolate downstream accelerators from variations originating in the ion source, thereby improving beam stability in the LINAC, synchrotron and target stations \cite{2021practicalguide}. However, the stability of the RFQ's own high-intensity beam is a primary concern as, again, fluctuations can lead to poorly formed bunches.
+%
+% The subsequent stage is the LINAC, which increases the beam energy from 665 keV to 70 MeV. This acceleration is achieved via high-intensity radio-frequency fields arranged in structures that possess a very high Q factor \cite{michael2006electronic} (around 50,000). This means their geometry must be exceptionally stable. Therefore the precise temperature regulation of the cooling water tank is critical in ensuring it is significantly under $1^\circ C$ so that the effects of thermal expansion and contraction are countered \cite{2021practicalguide}. Furthermore, maintaining a high vacuum is critical throughout the LINAC. Failure to do so can lead to premature stripping of loosely bound electrons in the $H^-$ ions, consequently leading to an increase in radioactivity and particle loss (i.e. beam loss). To detect and warn about such cases, beam loss monitors are installed throughout the LINAC, which provide an indication whenever there is an excessive loss in particles. \cite{2021practicalguide}.
+%
+% Once the $H^-$ particles leave the LINAC, they then pass through a beam transport line - the High Energy Drift Space (HEDS). The function of this is to mainly reduce the particles spreading and focus the beam to the synchrotron. To accumulate the high intensity beam in the synchrotron, ISIS employs charge-exchange injection. This technique allows incoming $H^-$ beam from the LINAC to be `layered' into the synchrotron's circumference over many turns. As the $H^-$ ions enter the synchrotron ring, they pass through a thin foil which strips away their two electrons, converting them to protons. The charge-exchange injection process is specifically chosen as it is the most efficient way of taking and wrapping a long string of particles around the circumference of a synchrotron \cite{2021practicalguide, ankenbrandt1980h}. The integrity of this thin foil is vital for efficient injection and represents a consumable component requiring periodic replacement, which is a scheduled maintenance activity. Damage to the foil will lead directly to beam loss and reduced performance.
+%
+% The 70 MeV beam is then injected into the synchrotron, which is the primary accelerator ring at ISIS. This ring boosts the (now proton) beam energy to 800 MeV. For an idea of scale, the machine has a circumference of around 163m (corresponding to a radius of approximately 26m). It features a repeating structure of ten `superperiods'. Each superperoid uses dipole magnets to bend the proton path by $36^\circ$ and quadrupole magnets to maintain beam focus \cite{2021practicalguide}. The protons gain energy over just under 8000 revolutions, as each turn gives a proton 0.1 MeV. Achieving this final energy requires extreme precision over each and every revolution. While the protons gain energy, the magnetic fields and accelerating radio-frequency voltages must also very precisely be increased in synchronism. Any deviations can cause the beam to oscillate and strike the vacuum vessel walls which results in particle loss and potential component damage. Therefore, continuous precise monitoring of beam position, magnet currents and more via a network of sensors is imperative for controlling the beam orbit and ensuring successful acceleration \cite{2021practicalguide}. The initially continuous ring of injected protons is gathered into two distinct bunches, a little more than $0.1\mu s$ apart, using a low-level radio-frequency voltage before the main acceleration begins \cite{2021practicalguide}.
+%
+% Once accelerated, in order to direct the proton bunches towards a pre-selected target station (TS-1 or TS-2) three kicker magnets are used which deflect the bunches upwards. These bunches are then bent into the respective extracted proton beam lines (EPB1 or EPB2). These lines use further magnets for steering. Safe transport relies on accurate magnet performance as mis-steering could direct the high-energy beam into the pipe walls. Additionally, as a safety precaution, both lines are heavily shielded in thick steel and concrete and beam loss monitors are installed along their length to detect any errant particles and provide crucial, real-time feedback to operators \cite{2021practicalguide}.
+%
+% The primary purpose of the ISIS facility culminates at the target stations. The high-energy proton beam collides with a dense, high atomic number target (tantalum-clad tungsten at ISIS), designed to produce a large number of neutrons via spallation, within a compact region of space \cite{2021practicalguide}. These energetic neutrons are then slowed down (moderated) by surrounding materials (liquid nitrogen, liquid hydrogen and water at ISIS) and reflected back towards instruments by a beryllium reflector \cite{sharma2001nuclear, 2021practicalguide}. Additionally, ISIS produces muons for experiments by inserting a thin (roughly 1cm thick) graphite target into the proton beam around 20m away from the TS-1 neutron target. Collision in this target generates pions, which subsequently decay into muons \cite{2021practicalguide}.
+% This entire system needs extremely careful control and monitoring capabilities, as failure due to overheating or material damage is a major operational concern which requires careful management and represents a major maintenance undertaking. Precise monitoring is required of metrics such as incoming beam profile, target temperature, cryogenic temperatures. \\
+%
+% \noindent This detailed description sourced from the guide highlights some key takeaways. There are an incredible number of points of failure in the facility due to the highly precise and radioactive nature of the task. The ISIS team has taken many precautions such as fault detection mechanisms (i.e. the beam loss monitors) and breakdown counter-measures (i.e. the thick layer of steel and concrete in the EPB1 and EPB2 lines). However, the inherent complexity and harsh operating environment (radiation, high-power) necessitate both robust preventative maintenance schedules and sophisticated diagnostic capabilities that address the component degradation and failures that will inevitably arise. 
 
 \subsection{Maintenance at ISIS} 
-As detailed in the 33-year historical account of the ISIS facility (\citet{thomason2019isis}), the ISIS operations occur in cycles, periods of roughly 30-50 days where the machine runs constantly without breaks. Gaps between cycles typically range from 1 week to 3 months. In addition, typically every four years, shutdowns scheduled for 6-9 months occur for major maintenance and upgrade work. On the ground, day-to-day operations are run from the Main Control Room (MCR) by the ISIS crew which consists of 6 shift teams of the following roles: (1) duty officer, (2) assistant duty officer and (3) duty technician. \todo{Add the graph, if you can ever figure out the operating cycles before 2016.} The expertise and rapid response capabilities of these trained operational crews are vital for both routine operation and initial fault response.
+As detailed in the 33-year historical account of the ISIS facility (\citet{thomason2019isis}), the ISIS operations occur in cycles, periods of roughly 30-50 days where the machine runs constantly without breaks. Gaps between cycles typically range from 1 week to 3 months. In addition, typically every four years, shutdowns scheduled for 6-9 months occur for major maintenance and upgrade work. On the ground, day-to-day operations are run from the Main Control Room (MCR) by the ISIS crew which consists of 6 shift teams of the following roles: (1) duty officer, (2) assistant duty officer and (3) duty technician. The expertise and rapid response capabilities of these trained operational crews are vital for both routine operation and initial fault response.
 Minimising this downtime is crucial for several reasons inherent to operating a large-scale user facility like ISIS \cite{thomason2019isis}. Primarily, unscheduled downtime directly impacts the international researchers allocated beam time, potentially jeopardising experiments planned months or years in advance and wasting valuable research opportunities. Furthermore, interruptions disrupt the tightly packed operational schedule, reduce the overall scientific output, and incur significant operational costs without delivering the facility's core research product \cite{thomason2019isis}. Therefore, understanding the factors that contribute to downtime and implementing strategies to mitigate it are paramount.
 Many factors affect downtime such as having a robust plan, the day-to-day operators' knowledge of the system and adequate inventories of spares \cite{thomason2019isis}. Figure~\ref{fig:isisDowntime} shows the ratio of downtime to active machine operation since 2016, indicating this machine has been down for maintenance over half the time since 2016. In other words, over half the time, the machine is not active and is undergoing maintenance. This highlights the trade-off between maximising operational availability and minimizing failures through planned maintenance. The major maintenance strategies and their trade-offs are further explored in Section~\ref{sec:maintenanceTechniques}.
 
@@ -359,22 +386,24 @@ In industry, many maintenance strategies prefer using PdM whilst experimenting w
 
 
 
-\chapter{Natural Language Processing Background}
+\chapter{Natural Language Processing Background}\label{chap:nlpbg}
 
-This chapter delves into the technical background required for the methodology proposed in Chapter \ref{chap:Methodology}. Firstly, we discuss various measures of text similarity in Section \ref{sec:sentenceSimilarity}, which motivates text embeddings and categorises similarity measures into different generations. Section \ref{sec:sentenceEmbedding} introduces both third‑generation model BERT \cite{devlin2019bert} and the more recent fourth‑generation universal‐embedding architecture XLNet \cite{yang2019xlnet}. We specifically discuss the technical details of the BERT model and further iterations on it, then detail one improvement over BERT (XLNet) and outline the design principles that underpin contemporary fourth‑generation models. Afterwards, we cover two methods of dimensionality reduction,  PCA \cite{pearson1901liii,hotelling1933analysis} and UMAP \cite{mcinnes2018umap}, motivated by the need to visualise samples from the high‑dimensional embedding spaces of the aforementioned models, in Section \ref{sec:dimred}. Finally, we present three clustering algorithms—one partitioning‑based (k‑Medoids \todo{Fill this}\cite{}) and two density‑based (DBSCAN \cite{ester1996density} and HDBSCAN \cite{campello2013density})—together with four clustering‑evaluation metrics: (1) Inertia \todo{find the reference for this}\cite{}, (2) Silhouette \cite{rousseeuw1987silhouettes}, (3) Davies–Bouldin Index \cite{davies1979cluster}, and (4) Calinski–Harabasz Index \cite{calinski1974dendrite}. \todo{maybe talk about optuna, if we use it.} \todo{double check all citations here are not empty}\
+This chapter delves into the technical background required for the methodology proposed in Chapter \ref{chap:Methodology}. Firstly, we discuss various measures of text similarity in Section \ref{sec:sentenceSimilarity}, which motivates text embeddings and categorises similarity measures into different generations. Section \ref{sec:sentenceEmbedding} introduces the third‑generation model BERT \cite{devlin2019bert} and the fourth‑generation universal‐embedding architecture XLNet \cite{yang2019xlnet}. We specifically discuss the technical details of the BERT model and further iterations on it, then detail one improvement over BERT (XLNet) and outline the design principles that underpin contemporary fourth‑generation models. Afterwards, we cover two methods of dimensionality reduction,  PCA \cite{pearson1901liii,hotelling1933analysis} and UMAP \cite{mcinnes2018umap}, motivated by the need to visualise samples from the high‑dimensional embedding spaces of the aforementioned models, in Section \ref{sec:dimred}. Finally, we present three clustering algorithms - one partitioning‑based (k‑Medoids \cite{kmedoids}) and two density‑based (DBSCAN \cite{ester1996density} and HDBSCAN \cite{campello2013density}).
+
+%together with four clustering‑evaluation metrics: (1) Silhouette \cite{rousseeuw1987silhouettes}, (2) Davies-Bouldin Index \cite{davies1979cluster}, and (4) Calinski-Harabasz Index \cite{calinski1974dendrite}. \todo{maybe talk about optuna, if we use it.} \todo{double check all citations here are not empty}\
 
 
-\todo[inline,caption={}]{
-Describe the various technical factors required before attempting to understand the methodology.
-The things in this section will include
-\begin{itemize}
-    \item Discuss sentence embedding, similarity measures: BERT, RoBERTA, MPNet, XLNet, NOMIC.
-    \item Dimensional reduction techniques and need for them (UMAP, PCA, t-SNE).
-    \item Clustering methods: kmedoids, DBSCAN, DBSCAN*/HDBCAN
-    \item Clustering evaluation methods: todo I don't remember these off the top of my head 
-    \item Maybe briefly touch on Optuna?
-\end{itemize}
-}
+% \todo[inline,caption={}]{
+% Describe the various technical factors required before attempting to understand the methodology.
+% The things in this section will include
+% \begin{itemize}
+%     \item Discuss sentence embedding, similarity measures: BERT, RoBERTA, MPNet, XLNet, NOMIC.
+%     \item Dimensional reduction techniques and need for them (UMAP, PCA, t-SNE).
+%     \item Clustering methods: kmedoids, DBSCAN, DBSCAN*/HDBCAN
+%     \item Clustering evaluation methods: todo I don't remember these off the top of my head 
+%     \item Maybe briefly touch on Optuna?
+% \end{itemize}
+% }
 
 \section{Sentence Similarity}\label{sec:sentenceSimilarity}
 Sentence similarity, otherwise referred to as document similarity, is the (NLP) task of computing the quantification of the similarities between two sentences, documents or texts. This task is motivated by the increasingly large amount of digitisation of human languages (and data, in general), calling for the need to understand similarity between various texts \cite{raju2022sentence}. Examples of the use-cases of sentence similarity include: detection of academic malpractice via plagiarism \cite{lukashenko2007computer, baba2017plagiarism}, and text summarisation \cite {aliguliyev2009new, kumar2020semantic, jo2017k}. According to \cite{raju2022sentence}, there are two main types of sentence similarities: (1) lexical similarity and (2) semantic similarity. The former is a computation of the equality between the lexicon of two sentences (i.e. a purely syntactical view). This contrasts with semantic similarity, which compares meaning. Further, the type we focus on, semantic similarity can be split into three types: 
@@ -406,71 +435,92 @@ Briefly touched on in Section~\ref{sec:sentenceSimilarity}, sentence embedding (
     \caption{Example text embedding with Nomic Text Embedding v1.5 \cite{nussbaum2024nomic} of random sentences generated using OpenAI's ChatGPT o3-mini-high and projected onto 2 dimensions using UMAP \cite{mcinnes2018umap} with a random seed of 42 and minimum neighbours of 15. Only some of the labels are highlighted for visual clarity.}\label{fig:sentenceEmbeddingExample}
 \end{figure}
 
-\subsection{Transformers}\label{sec:BERT}
-Pre-trained language models (PLMs), such as BERT \cite{devlin2019bert}, have been widely successful in a wide range of NLP tasks through fine-tuning \cite{edunov2019pre, min2023recent}. Fine-tuning is the process of re-training a PLM on specialised tasks, leveraging the model's base knowledge, by applying perturbations to the pre-trained model parameters through gradient descent learning algorithms. These language models, trained on finding an embedding space for natural language as well as stochastically generating tokens to mimic natural language, often provide a great platform to perform task-specific model fine-tuning. 
-\todo{fix wording}
-Platforms such as HuggingFace \cite{wolf2019huggingface}, allow authors to upload these pre-trained model parameters which in-turn allows researchers to download them for them fine-tuning. Moreover, task-specific fine-tuned models parameters are uploaded, downloaded and shared on these platforms. These fine-tuned models are useful for researchers whose focus lies outside of optimising these model parameters.
-In this section, we talk about the transformer-family of language models.
+% \subsection{Transformers}\label{sec:BERT}
+% Pre-trained language models (PLMs), such as BERT \cite{devlin2019bert}, have been widely successful in a wide range of NLP tasks through fine-tuning \cite{edunov2019pre, min2023recent}. Fine-tuning is the process of re-training a PLM on specialised tasks, leveraging the model's base knowledge, by applying perturbations to the pre-trained model parameters through gradient descent learning algorithms. These language models, trained on finding an embedding space for natural language as well as stochastically generating tokens to mimic natural language, often provide a great platform to perform task-specific model fine-tuning. 
+% \todo{fix wording}
+% Platforms such as HuggingFace \cite{wolf2019huggingface}, allow authors to upload these pre-trained model parameters which in-turn allows researchers to download them for them fine-tuning. Moreover, task-specific fine-tuned models parameters are uploaded, downloaded and shared on these platforms. These fine-tuned models are useful for researchers whose focus lies outside of optimising these model parameters.
+% In this section, we talk about the transformer-family of language models.
+%
+% \subsubsection{BERT}
+% The Bidirectional Encoder Representations from Transformer (BERT) language model introduced in 2018 by Google AI Language team in (\citet{devlin2019bert}) was designed to learn deep bidirectional representations from unlabelled text. It achieved this by learning the left and right context in every layer of the model. The model implementation can be split into two phases: \todo{sprinkle some images in here.} (1) the pre-training phase; and (2) the fine-tuning phase. This allows the model architecture to remain common, with many down-stream NLP tasks benefiting from a single PLM \cite{devlin2019bert}. An example illustration can be seen in Figure~\ref{fig:bert1}, where a single model can be fine-tuned on many down-stream tasks by simply replacing the output layer. The model architecture is a multi-layer transformer encoder based on the original paper (\citet{vaswani2017attention}) which is bidirectional by nature. As the transformer architecture is a very well researched architecture, well represented in the literature and slightly out-of-scope for this paper, we refer the reader to the original paper.
+%
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.95\textwidth]{BERT1.png}
+%     \caption{The overall pre-training and fine-tuning phases for BERT. For different down-stream tasks, notice the same architecture, except output layer, is used. Source: (\citet{devlin2019bert}).}\label{fig:bert1}
+% \end{figure}
+%
+% \textbf{}\\ The pre-training phase can be split into two further training tasks (otherwise referred to as objectives):
+% \begin{itemize}
+% \item  Masked Language Modelling - During training, a portion of the input tokens are `masked' and the model predicts these masked tokens based on the remaining context, using cross-entropy loss \cite{zhang2018generalized}. In the literature, this is referred to as a Cloze task \cite{taylor1953cloze}. In the experiments conducted by (\citet{devlin2019bert}) 15\% of tokens in each sequence are randomly selected for masking. However, to mitigate the mismatch between pre-training and fine-tuning phases, a training data generator replaces each chosen masked tokens with: (1) the special token \texttt{[MASK]} 80\% of the time; (2) a random token 10\% of the time; and (3) the original token itself 10\% of the time \cite{devlin2019bert}.
+%     \item Next Sentence Prediction - In this task, the model is trained on a binary classification task prediction the relationship between sentence pairs. Given two sentences \texttt{A} and \texttt{B} either (1) sentence \texttt{B} is the actual sentence that follows \texttt{A} 50\% of the time or (2) sentence \texttt{B} is randomly selected from the corpus 50\% of the time \cite{devlin2019bert}. 
+% \end{itemize}
+%
+% \textbf{}\\ The Google AI Language team further fine-tune BERT across 11 NLP tasks, showing that BERT out-performed the state-of-the-art models at its point in time.
+%
+% As previously mentioned, a benefit of using PLMs such as BERT for NLP tasks (such as text embedding) is the ability to off-load the computationally intensive pre-training and any initial fine-tuning stages to another party. Although, this means that there now exists an implicit trust in that third-party's model parameters. For example, the third-party could be motivated by factors to censor certain phrases, artificially injecting testing data into training to increase performance metrics or maliciously change the embedding space. These are all factors which influence our decision on using a PLM and, thus, PLMs with transparently documented data sources, pre-training and fine-tuning should be preferred.
+%
+% Since the release of the Google AI Language team's BERT, there have been some developments on further improving the performance of PLMs based on techniques presented in the paper. Namely, we touch on two: XLNet \cite{yang2019xlnet} and MPNet \cite{song2020mpnet}. 
+% XLNet's architecture is backed by the Transfomer-XL model \cite{dai2019transformer}. However, it is still briefly covered here to motivate MPNet. MPNet is a hybrid model that inherits XLNet's key feature, permutation language modelling, and BERT's masked language modelling, producing a `unified view'.
+%
+% \subsubsection{XLNet}\label{sec:xlnet}
+%
+% According to (\citet{yang2019xlnet}), the most successful pre-training objectives can broadly be split into two categories: (1) auto-regressive (AR) and auto-encoding (AE). AR language modelling, given a sequence of tokens $X = (x_1, ..., x_T)$, aims to factorize likelihood of a token into either a forward (Equation~\ref{eq:fwdprod}) or backward (Equation~\ref{eq:bckprod}) product. As an AR language model encodes context in a singular direction (only forward or backward, but not both), it has been shown to not be effective \cite{yang2019xlnet}. The notation $X_{<i}$ for some $1 \le i \le T$ means to include the first $i - 1$ elements (vice versa for $X_{>i}$).
+%
+% \begin{align}
+%     p(x) &= \prod_{i=1}^{T} p(x_i | X_{<i})
+%     \label{eq:fwdprod} \\
+%     p(x) &= \prod_{i=T}^{i} p(x_i | X_{>i})
+%     \label{eq:bckprod}
+% \end{align}
+%
+% AE language modelling, such as BERT, on the other hand aims to construct the original data from masked or malformed input, without estimations of the probability densities \cite{yang2019xlnet}. 
+% One downside of BERT, is the discrepancy between the pre-training and fine-tuning phases. Although BERT utilises bidirectional context for reconstruction of the special \texttt{[MASK]} token during pre-training, this special token does not exist at the fine-tuning phase. Additionally, the predicted tokens are masked in the \textit{input} and BERT assumes the predicted tokens are independent to the surrounding context as it is not able to model joint probabilities \cite{yang2019xlnet}. This assumption is an gross oversimplification, as longer term dependencies are highly prevalent in natural language applications \cite{schank1972conceptual, dai2019transformer}. 
+%
+% Therefore, XLNet proposes an AR language modelling solution, backed by Transfomer-XL architecture \cite{dai2019transformer}, that combines the benefits of both AR and AE language modelling whilst avoiding their downsides. It does this by introducing two methods, described below.
+%
+% \begin{itemize}
+%     \item{Permutation language modelling - XLNet maximises the pre-training objective, the expected log-likelihood over all possible factorisation orders of a length-$T$ sequence. A factorisation order is simply one way of shuffling the token positions $1, ..., T$. Imagine picking a shuffle then walking through the sentence in that order - when we come to a token, we predict it only using the tokens that appeared earlier in the very same shuffle even if those tokens lie to its right in the original sequence. Since this procedure is repeated for all shuffles, every token eventually `sees' information from both sides of the input, which gives XLNet a BERT-like bidirectional context \cite{yang2019xlnet}. More formally, 
+%             \begin{equation} \max_{\theta} \text{  } \mathbb{E}_{z\in\mathcal{Z}_T} \bigl[ \sum_{i=1}^{T} \log p_{\theta} \bigl(x_{z_i}\mid x_{z_{<i}}\bigr) \bigr], \label{eq:plm} \end{equation}
+%             where $\mathcal{Z_T}$ is the set of all $T!$ permutations of the index list $[1, ... , T]$. For a given permutation $z = (z_1, ..., z_T)$, $X_{z_{<i}}$ denotes the tokens that appear before $z_i$ in that permutation. $\theta$ denotes the model parameters, and is shared across all orders \cite{yang2019xlnet}.
+%         }
+%
+%     \item{Two-stream self-attention - A naive transformer would expose the model to the very token it is trying to predict. XLNet avoids this by splitting the hidden state at every layer into (1) a content stream $h$, which encodes both content and position for every input token, and (2) a query stream $g$ which is target-aware. That is, the query stream knows where in the sequence a prediction is to be made, through its positional embedding but never sees the token's content \cite{vaswani2017attention, yang2019xlnet}. This helps the model use a different probability density depending on where in the text it is predicting, which BERT was lacking. At layer $m$ and target position $z_i$, the update sequence for $h$ and $g$ look like the following, using the regular attention function from (\citet{vaswani2017attention}), 
+%             \begin{align}
+%                 g_{z_i}^{(m)} &\leftarrow \text{Attention} (Q = g_{z_i}^{(m - 1)}, KV = h_{z_{<i}}^{(m - 1)}) \\
+%                 h_{z_i}^{(m)} &\leftarrow \text{Attention} (Q = h_{z_i}^{(m - 1)}, KV = h_{z_{\le i}}^{(m - 1)})
+%             \end{align}
+%             The query-stream vector $g_{(z_i)}^{(M)}$, after $M$ layers, is used to compute the soft-max \cite{gao2017properties} over some pre-determined vocabulary. This ensures the model predicts $x_{(z_i)}$ without ever having directly observed it. This is while the content stream continues to propagate contextual signals and positional signals.
+%         the use of two sets of hidden representations, the content representation and query representation. The content representation encodes both the context and the permutation $x_{(z_i)}$ whereas the query representation only encodes the position $z_i$ and the contextual information $X_{(Z_{<i})}$ \cite{yang2019xlnet}.}
+% \end{itemize}
+%
+% Through integration of permutation language modelling and two-stream self-attention, XLNet inherits the probability density estimation ability of AR models and bidirectional context of AE models. Additionally, it also side-steps BERT's pre-train and fine-tune discrepancy and independence assumption \cite{yang2019xlnet}. For further specific details on XLNet, the reader is referred to (\citet{yang2019xlnet}).
+
+\subsection{Transformers and Foundational Pre-trained Language Models}\label{sec:BERT} % 
+
+An important advancement in modern NLP is the use of Pre-trained Language Models (PLMs). Models like BERT \cite{devlin2019bert} demonstrate success and improvements in performance across various NLP tasks when adapted through a process called fine-tuning \cite{edunov2019pre, min2023recent}. Fine-tuning involves taking a general-purpose (termed `base') PLM, already trained on vast amounts of text data, and further training it on a smaller, task-specific dataset. This leverages the model's pre-existing knowledge of language structure and semantics, allowing for efficient adaptation to specialised tasks like the Operalog analysis in this paper. These PLMs effectively learn an embedding space for language and can often generate text, providing a powerful foundation \cite{devlin2019bert}. The accessibility of these models has been greatly enhanced by platforms like HuggingFace, which host pre-trained model parameters (or `weights'), enabling researchers to download and utilise or fine-tune them without undertaking the computationally prohibitive initial pre-training \cite{wolf2019huggingface}. This project leverages such pre-trained models, specifically focusing on the Transformer family.
+
+The Transformer architecture, introduced by (\citet{vaswani2017attention}), employ attention mechanisms, to compute pairwise token significance. That is, conceptually, attention allows the model - when processing a word in a sequence - to weigh the importance of other words in the sequence regardless of their distance to each other. This enables the model to capture long-range dependencies and understand context more effectively than earlier sequential models. While the detailed architecture involves components like multi-head attention and layer normalisation, the core idea is this context-aware weighting mechanism \cite{vaswani2017attention}. Given its foundational nature and detailed coverage in the literature, we refer the reader to the original paper for architectural specifics.
+
+Building upon the Transformer, several influential PLMs were developed. We briefly discuss two foundational models, BERT and XLNet, as their concepts and limitations motivate the subsequent choice of models like MPNet used later in this study.
 
 \subsubsection{BERT}
-The Bidirectional Encoder Representations from Transformer (BERT) language model introduced in 2018 by Google AI Language team in (\citet{devlin2019bert}) was designed to learn deep bidirectional representations from unlabelled text. It achieved this by learning the left and right context in every layer of the model. The model implementation can be split into two phases: \todo{sprinkle some images in here.} (1) the pre-training phase; and (2) the fine-tuning phase. This allows the model architecture to remain common, with many down-stream NLP tasks benefiting from a single PLM \cite{devlin2019bert}. An example illustration can be seen in Figure~\ref{fig:bert1}, where a single model can be fine-tuned on many down-stream tasks by simply replacing the output layer. The model architecture is a multi-layer transformer encoder based on the original paper (\citet{vaswani2017attention}) which is bidirectional by nature. As the transformer architecture is a very well researched architecture, well represented in the literature and slightly out-of-scope for this paper, we refer the reader to the original paper.
+The Bidirectional Encoder Representations from Transformers (BERT) model was a landmark development by Google AI \cite{devlin2019bert}. Its key innovation was learning deep \textit{bidirectional} representations by considering both the left and right context simultaneously in all layers. This contrasts with earlier models that typically processed text in only one direction. BERT achieves this primarily through its Masked Language Modelling (MLM) pre-training objective. During MLM, a percentage of input tokens (15\%) are randomly masked (replaced with a special \texttt{[MASK]} token), and the model learns to predict these original tokens based on the surrounding unmasked context \cite{devlin2019bert}. This forces the model to develop a deep understanding of word relationships and context from both directions. While BERT also used a Next Sentence Prediction task, MLM is its core contextual learning mechanism \cite{song2020mpnet}. BERT demonstrated state-of-the-art performance on numerous NLP tasks after fine-tuning \cite{devlin2019bert}.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.95\textwidth]{BERT1.png}
-    \caption{The overall pre-training and fine-tuning phases for BERT. For different down-stream tasks, notice the same architecture, except output layer, is used. Source: (\citet{devlin2019bert}).}\label{fig:bert1}
-\end{figure}
+However, BERT has limitations. A notable issue is the pre-train-to-fine-tune discrepancy: the artificial \texttt{[MASK]} token used during pre-training is absent in downstream tasks (i.e. during fine-tuning), potentially hindering performance. Furthermore, by predicting masked tokens independently, BERT doesn't explicitly model the dependencies between the masked tokens themselves, which can be an oversimplification for complex language understanding, as pointed out by (\citet{schank1972conceptual}) \cite{yang2019xlnet}.
 
-\textbf{}\\ The pre-training phase can be split into two further training tasks (otherwise referred to as objectives):
-\begin{itemize}
-\item  Masked Language Modelling - During training, a portion of the input tokens are `masked' and the model predicts these masked tokens based on the remaining context, using cross-entropy loss \cite{zhang2018generalized}. In the literature, this is referred to as a Cloze task \cite{taylor1953cloze}. In the experiments conducted by (\citet{devlin2019bert}) 15\% of tokens in each sequence are randomly selected for masking. However, to mitigate the mismatch between pre-training and fine-tuning phases, a training data generator replaces each chosen masked tokens with: (1) the special token \texttt{[MASK]} 80\% of the time; (2) a random token 10\% of the time; and (3) the original token itself 10\% of the time \cite{devlin2019bert}.
-    \item Next Sentence Prediction - In this task, the model is trained on a binary classification task prediction the relationship between sentence pairs. Given two sentences \texttt{A} and \texttt{B} either (1) sentence \texttt{B} is the actual sentence that follows \texttt{A} 50\% of the time or (2) sentence \texttt{B} is randomly selected from the corpus 50\% of the time \cite{devlin2019bert}. 
-\end{itemize}
+\subsubsection{XLNet}
 
-\textbf{}\\ The Google AI Language team further fine-tune BERT across 11 NLP tasks, showing that BERT out-performed the state-of-the-art models at its point in time.
+XLNet was proposed to address BERT's limitations while retaining the benefits of bidirectional context \cite{yang2019xlnet}. It employs an autoregressive (AR) approach, meaning it predicts tokens sequentially, but introduces Permutation Language Modelling. Conceptually, instead of processing the sentence in its original order, XLNet considers all possible permutations (shuffled orders) of the input sequence. For each permutation, it predicts a token based only on the tokens that came before it in that specific shuffled order. By maximizing the prediction likelihood across all permutations, the model implicitly learns context from both original directions (left and right) for every token \cite{yang2019xlnet}. This approach avoids the artificial \texttt{[MASK]} token and explicitly models dependencies between predicted tokens within a given permutation. It leverages the Transformer-XL architecture for improved handling of longer sequences \cite{dai2019transformer}.
 
-As previously mentioned, a benefit of using PLMs such as BERT for NLP tasks (such as text embedding) is the ability to off-load the computationally intensive pre-training and any initial fine-tuning stages to another party. Although, this means that there now exists an implicit trust in that third-party's model parameters. For example, the third-party could be motivated by factors to censor certain phrases, artificially injecting testing data into training to increase performance metrics or maliciously change the embedding space. These are all factors which influence our decision on using a PLM and, thus, PLMs with transparently documented data sources, pre-training and fine-tuning should be preferred.
+While XLNet offered improvements, the development of PLMs continued, leading to models like MPNet \cite{song2020mpnet}, which attempts to unify the strengths of both masked language modelling (like BERT) and permutation-based autoregressive modelling (like XLNet), motivating its consideration in this project (see Chapter~\ref{chap:Methodology}).
 
-Since the release of the Google AI Language team's BERT, there have been some developments on further improving the performance of PLMs based on techniques presented in the paper. Namely, we touch on two: XLNet \cite{yang2019xlnet} and MPNet \cite{song2020mpnet}. 
-XLNet's architecture is backed by the Transfomer-XL model \cite{dai2019transformer}. However, it is still briefly covered here to motivate MPNet. MPNet is a hybrid model that inherits XLNet's key feature, permutation language modelling, and BERT's masked language modelling, producing a `unified view'.
+\subsubsection{Considerations for Using Pre-trained Models}
 
-\subsubsection{XLNet}\label{sec:xlnet}
-
-According to (\citet{yang2019xlnet}), the most successful pre-training objectives can broadly be split into two categories: (1) auto-regressive (AR) and auto-encoding (AE). AR language modelling, given a sequence of tokens $X = (x_1, ..., x_T)$, aims to factorize likelihood of a token into either a forward (Equation~\ref{eq:fwdprod}) or backward (Equation~\ref{eq:bckprod}) product. As an AR language model encodes context in a singular direction (only forward or backward, but not both), it has been shown to not be effective \cite{yang2019xlnet}. The notation $X_{<i}$ for some $1 \le i \le T$ means to include the first $i - 1$ elements (vice versa for $X_{>i}$).
-
-\begin{align}
-    p(x) &= \prod_{i=1}^{T} p(x_i | X_{<i})
-    \label{eq:fwdprod} \\
-    p(x) &= \prod_{i=T}^{i} p(x_i | X_{>i})
-    \label{eq:bckprod}
-\end{align}
-
-AE language modelling, such as BERT, on the other hand aims to construct the original data from masked or malformed input, without estimations of the probability densities \cite{yang2019xlnet}. 
-One downside of BERT, is the discrepancy between the pre-training and fine-tuning phases. Although BERT utilises bidirectional context for reconstruction of the special \texttt{[MASK]} token during pre-training, this special token does not exist at the fine-tuning phase. Additionally, the predicted tokens are masked in the \textit{input} and BERT assumes the predicted tokens are independent to the surrounding context as it is not able to model joint probabilities \cite{yang2019xlnet}. This assumption is an gross oversimplification, as longer term dependencies are highly prevalent in natural language applications \cite{schank1972conceptual, dai2019transformer}. 
-
-Therefore, XLNet proposes an AR language modelling solution, backed by Transfomer-XL architecture \cite{dai2019transformer}, that combines the benefits of both AR and AE language modelling whilst avoiding their downsides. It does this by introducing two methods, described below.
-
-\begin{itemize}
-    \item{Permutation language modelling - XLNet maximises the pre-training objective, the expected log-likelihood over all possible factorisation orders of a length-$T$ sequence. A factorisation order is simply one way of shuffling the token positions $1, ..., T$. Imagine picking a shuffle then walking through the sentence in that order - when we come to a token, we predict it only using the tokens that appeared earlier in the very same shuffle even if those tokens lie to its right in the original sequence. Since this procedure is repeated for all shuffles, every token eventually `sees' information from both sides of the input, which gives XLNet a BERT-like bidirectional context \cite{yang2019xlnet}. More formally, 
-            \begin{equation} \max_{\theta} \text{  } \mathbb{E}_{z\in\mathcal{Z}_T} \bigl[ \sum_{i=1}^{T} \log p_{\theta} \bigl(x_{z_i}\mid x_{z_{<i}}\bigr) \bigr], \label{eq:plm} \end{equation}
-            where $\mathcal{Z_T}$ is the set of all $T!$ permutations of the index list $[1, ... , T]$. For a given permutation $z = (z_1, ..., z_T)$, $X_{z_{<i}}$ denotes the tokens that appear before $z_i$ in that permutation. $\theta$ denotes the model parameters, and is shared across all orders \cite{yang2019xlnet}.
-        }
-
-    \item{Two-stream self-attention - A naive transformer would expose the model to the very token it is trying to predict. XLNet avoids this by splitting the hidden state at every layer into (1) a content stream $h$, which encodes both content and position for every input token, and (2) a query stream $g$ which is target-aware. That is, the query stream knows where in the sequence a prediction is to be made, through its positional embedding but never sees the token's content \cite{vaswani2017attention, yang2019xlnet}. This helps the model use a different probability density depending on where in the text it is predicting, which BERT was lacking. At layer $m$ and target position $z_i$, the update sequence for $h$ and $g$ look like the following, using the regular attention function from (\citet{vaswani2017attention}), 
-            \begin{align}
-                g_{z_i}^{(m)} &\leftarrow \text{Attention} (Q = g_{z_i}^{(m - 1)}, KV = h_{z_{<i}}^{(m - 1)}) \\
-                h_{z_i}^{(m)} &\leftarrow \text{Attention} (Q = h_{z_i}^{(m - 1)}, KV = h_{z_{\le i}}^{(m - 1)})
-            \end{align}
-            The query-stream vector $g_{(z_i)}^{(M)}$, after $M$ layers, is used to compute the soft-max \cite{gao2017properties} over some pre-determined vocabulary. This ensures the model predicts $x_{(z_i)}$ without ever having directly observed it. This is while the content stream continues to propagate contextual signals and positional signals.
-        the use of two sets of hidden representations, the content representation and query representation. The content representation encodes both the context and the permutation $x_{(z_i)}$ whereas the query representation only encodes the position $z_i$ and the contextual information $X_{(Z_{<i})}$ \cite{yang2019xlnet}.}
-\end{itemize}
-
-Through integration of permutation language modelling and two-stream self-attention, XLNet inherits the probability density estimation ability of AR models and bidirectional context of AE models. Additionally, it also side-steps BERT's pre-train and fine-tune discrepancy and independence assumption \cite{yang2019xlnet}. For further specific details on XLNet, the reader is referred to (\citet{yang2019xlnet}).
+Finally, while leveraging PLMs significantly accelerates research, it introduces reliance on third-party models. As noted previously, users must trust that the pre-trained parameters are sound and haven't been subject to issues like data contamination or malicious alterations. Therefore, favouring models with transparently documented data sources and training procedures is generally preferred when possible.
 
 
 % \todo{Finish this off (the caption)}
-
-
 % \todo[inline, caption={}] {
 %     \begin{itemize}
 %         \item Mathematics of BERT (detailed in XLNet paper) - DONE
@@ -483,97 +533,97 @@ Through integration of permutation language modelling and two-stream self-attent
 %     \end{itemize}
 % }
 
-\section{Dimensionality Reduction}\label{sec:dimred}
-
-Embedding spaces can get large, often on the scale of hundreds or even thousands of embedding dimensions. For example, the BERT base architecture uses an embedding dimension of 768 \cite{devlin2019bert}. Therefore, in applications dealing with such embedding spaces, this motivates a technique that reduces the dimensions to 2- or 3-dimensions but reflects the high-dimensional characteristics of the dataset. 
-Dimensionality reduction exploits the redundancy of the dataset by finding a smaller set of new features (variables) that are representative of the original data \cite{sorzano2014survey}.
-
-It has been shown that many high-dimensional spaces show `counter-intuitive geometrical properties', impacting data analysis methods, such as clustering. This phenomenon is referred to as the `curse of dimensionality' \cite{verleysen2005curse, hinneburg1999optimal}. Further, most clustering algorithms (such as those described in Section~\ref{sec:clustering}) have been shown to be inefficient in high-dimensional spaces, due to this curse \cite{hinneburg1999optimal}. Thus, in order to apply clustering (as we will, later in Chapter~\ref{chap:Methodology}) dimensionality reduction is once again motivated.
-
-This technique is not new in Statistics, with one of the most widely used dimensionality reduction techniques, Principal Component Analysis (PCA), introduced in (\citet{pearson1901liii}). However, with the increase in the quantity of available data and computational resources, researchers in fields such as Machine Learning and Statistics have developed a wide array of techniques aimed at tackling the dimensionality reduction problem \cite{sorzano2014survey}.
-
-In this section, we cover the background required in understanding techniques used in Chapter~\ref{chap:Methodology}, Principal Component Analysis (PCA) and Uniform Manifold Approximation and Projection (UMAP).
-
-% \todo[inline, caption={}] {
-%     \begin{itemize}
-%         \item Talk why dimensionality reduction is needed: visualisation, curse of dimensionality, clustering? Figure out how to structure this well for the story.
-%         \item Talk about PCA and UMAP.
-%     \end{itemize}
-% }
-
-\subsection{Principal Component Analysis}
-Principal Component Analysis (PCA), as mentioned before, was first introduced in (\citet{pearson1901liii}) but later independently developed and named in (\citet{hotelling1933analysis}). PCA computes principal components, or variables which linearly decompose the features of the original dataset.
-The core idea is to find directions (the principal components) in the data that capture the maximum amount of variance, essentially identifying the axes along which the data spreads out the most \cite{abdi2010principal}. Each subsequent principal component is computed to be orthogonal (that is, statistically uncorrelated) to the previous ones, ensuring that the new components capture different aspects of the data's variance.
-
-This process can be described as an optimisation problem. Given a data matrix $X \in \mathbb{R}^{m \times n}$ (where $m$ is the number of data samples and $n$ is the number of original features), we want to find a new, lower-dimensional linear subspace, defined by the principal components, such that when the data $X$ is projected onto this subspace, the variance of the projected data is maximised. Equivalently, this can be viewed as finding the linear subspace that minimises the reconstruction error, specifically, the sum of squared distances (least-squares distance) between the original data points and their projections onto the subspace \cite{udell2016generalized}.
-
-More formally, if we want to reduce the dimensionality from $n$ features down to $k$ principal components (for $k < n$), we seek a matrix $C \in \mathbb{R}^{n \times k}$ whose columns represent these top $k$ orthogonal component directions. The projected data in the lower $k$-dimensional space is given by $XC$. We can approximate the original data $X$ by projecting back from this lower dimension using $XCC^T$. PCA aims to find the matrix $C$ that minimises the difference between the original data $X$ and this reconstructed data $XCC^T$, subject to the constraint that the column-wise components are orthogonal ($C^TC = I$, for the identity matrix $I$) \cite{udell2016generalized}:
-\begin{align}
-    \min_C || X - XCC^T ||_F^2 
-    \label{eq:pca} % Kept original label
-\end{align}
-
-A standard and efficient method for solving this optimisation problem and finding the principal components is through the Singular Value Decomposition (SVD) of the data matrix $X$ \cite{steinberger2005text, udell2016generalized}. SVD is a fundamental matrix factorisation technique that decomposes $X$ into three matrices:
-\begin{align}
-    X = USV^T \label{eq:svd} % Changed label to svd for clarity
-\end{align}
-Here, $U \in \mathbb{R}^{m \times k}$ and $V \in \mathbb{R}^{n \times k}$ are matrices with orthogonal columns, $S \in \mathbb{R}^{k \times k}$ is a diagonal matrix (only the diagonal contains non-zero elements) which contains the non-negative singular values ($s_i$) sorted in descending order, and $k$ is the rank of matrix $X$.
-
-The crucial link to PCA is that the columns of the matrix $V$ are precisely the principal component directions we seek. That is, the matrix $C$ in Equation~\ref{eq:pca}, containing the top $k$ principal components, corresponds to the first $k$ columns of $V$.
-
-Furthermore, SVD connects directly to the covariance matrix of the data ($X^TX$, assuming $X$ is centered). The decomposition of the covariance matrix is given by:
-\begin{align}
-    X^TX &= (USV^T)^T (USV^T) \\ % Show transpose step
-         &= (VS^T U^T) (USV^T) \\ % Apply transpose rules
-         &= V S^T (U^T U) S V^T \\ % Associativity
-         &= V S^T I S V^T \quad \text{(since } U^T U = I \text{)} \\
-         &= V (S^T S) V^T \\
-         &= V S^2 V^T\quad \text{(since } S \text{ is a diagonal matrix)}
-         \label{eq:svd_covariance} % Changed label, S^T S = S^2 as S is diagonal
-\end{align}
-
-This is the eigen-decomposition of the covariance matrix $X^TX$. It shows that the columns of $V$ are the eigenvectors (the principal components), and the diagonal entries of $S^2$  are the corresponding eigenvalues (i.e. $s_i^2 = \lambda_i$). Since the eigenvalues represent the variance of the data along the eigenvectors, the squared singular values ($s_i^2$) directly quantify the variance captured by each principal component \cite{udell2016generalized}. Therefore, computing the SVD of the data matrix $X$ provides both the principal components (in $V$) and the measure of variance associated with each component (in $S^2$) without explicitly forming the covariance matrix. Using a truncated SVD (keeping only the top $k$ components corresponding to the largest singular values) gives us a reduction in the dimensions.
-
-
-% \todo[inline, caption={}] {
-%     \begin{itemize}
-%         \item Talk about PCA mathematics and why its used for dim reduction
-%         \item Talk about elbowing and finding the most optimal (?)
-%     \end{itemize}
-% }
-
-\subsection{Uniform Manifold Approximation and Projection}\label{sec:umap}
-
-Unlike PCA, Uniform Manifold Approximation and Projection (UMAP) is generally considered a less directly interpretable dimensionality reduction method in terms of linear components. UMAP is a non-linear, stochastic `manifold learning technique' designed for dimensionality reduction, with theoretical foundations in Riemannian geometry and algebraic topology \cite{mcinnes2018umap}. As it places no constraints on the dimensionality of the input space, it is viable as a general-purpose technique in machine learning, often used for visualisation or as a pre-processing step for other algorithms like clustering. For the reader interested in the rigorous mathematics underpinning these topics, we refer them to the following textbooks: (1) (\citet{lee2003smooth}) for an introduction to differentiable and Riemannian manifolds; (2) (\citet{lee2006riemannian}) for Riemannian geometry in greater detail; and (3) (\citet{willard2012general}) for fundamental concepts of general topology.
-
-The UMAP algorithm operates under the assumption that the high-dimensional data (the input embeddings in our case) lies on or near a lower-dimensional manifold embedded within the high-dimensional space. The algorithm then attempts to find a low-dimensional representation (typically 2- or 3-dimensional) that best models the essential structure of this assumed manifold. \\
-
-\noindent Conceptually, the UMAP algorithm achieves this in two main stages \cite{mcinnes2018umap}:
-\begin{enumerate}
-    \item High-dimensional graph construction - First, UMAP constructs a representation of the relationships between data points in the original high-dimensional space. It does this by finding the nearest neighbours for each point and constructing a weighted graph where edge weights represent the estimated probability or likelihood that two points are closely connected on the underlying manifold. This step focuses on capturing the local structure and connectivity of the data.
-    \item Low-dimensional layout optimization - Second, UMAP initialises the data points in the target low-dimensional space randomly. It then iteratively adjusts the positions of these low-dimensional points to create a graph structure that is as similar as possible to the high-dimensional graph constructed in the first stage. This optimisation process aims to minimise the difference (often measured using cross-entropy, a measure of divergence between probability distributions \cite{zhang2018generalized}) between the edge weights (probabilities of connection) in the high-dimensional and low-dimensional graphs. In other words, it tries to arrange the points in the low dimension such that connected points in the high dimension remain connected, and disconnected points remain disconnected.
-\end{enumerate}
-
-The outcome is a low-dimensional embedding that aims to preserve both the local connectivity structure and, to some extent, the broader global structure of the data's manifold. 
-
-The output of the UMAP algorithm can be significantly influenced by several hyperparameters, which allow the user to tune the dimensionality reduction process \cite{mcinnes2018umap}. The two most commonly adjusted parameters are:
-\begin{itemize}
-    \item \texttt{n\_neighbors}: Determines the size of the local neighbourhood UMAP considers when initially modelling the manifold structure in the high-dimensional space. It controls the balance between capturing local detail versus preserving the global structure of the data. Lower values focus UMAP on very local structure, potentially isolating small, distinct groups but risking the loss of broader relationships. Higher values encourage UMAP to consider more points as neighbours, leading to embeddings that better reflect the overall global structure but may obscure fine-grained details or merge closely related clusters.
-    \item \texttt{min\_dist}: This parameter controls the minimum distance between points in the final low-dimensional embedding space. It primarily affects the visual density of the resulting plot. Lower values allow points to be packed very tightly together, emphasizing cluster separation and density. Higher values force points further apart, creating more dispersed embeddings where the structure within potential clusters might be more visible, but the clusters themselves may appear less distinct.
-    \item \texttt{n\_components}: This parameter specifies the target dimensionality of the reduced embedding space. It is commonly set to 2 or 3 for visualisation purposes, but can be set to higher values if the UMAP output is intended as input for subsequent machine learning tasks, such as clustering. Changing this directly alters the number of dimensions in the output array. 
-    \item \texttt{metric}: This parameter defines the distance metric used to measure similarity or dissimilarity between data points in the original high-dimensional input space when finding nearest neighbours. The default is typically `euclidean', but other metrics like `cosine' (cosine distance) or `manhattan' (Manhattan distance) can be specified. The choice of metric is crucial and depends heavily on the nature of the input data. For instance, `cosine' distance is often preferred for high-dimensional, sparse data such as text embeddings, as it measures orientation rather than magnitude \cite{mcinnes2018umap}. Using an inappropriate metric can significantly distort the perceived local structure and thus the final embedding.
-\end{itemize}
-
-Selecting appropriate values for these parameters often involves experimentation based on the dataset and the specific goals of the dimensionality reduction (i.e. visualisation vs. input for clustering) \cite{mcinnes2018umap}. Implementations of UMAP, such as the widely used \texttt{umap-learn} Python library, are noted for being computationally efficient and scalable relative to other non-linear techniques like t-distributed Stochastic Neighbour Embedding (t-SNE) \cite{cai2022theoretical}, making UMAP a practical choice for many machine learning applications \cite{mcinnes2018umap}.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.6\textwidth]{./images/umapElephant.png}
-    \caption{An illustration of UMAP applied (right) on samples taken from the skeletal structure of an elephant in 3-dimensions (left) with the UMAP hyperparameter values displayed. Highlighted, a black sphere (left) and circle (right), shows a chosen point mapped from 3-dimensions to 2. Source: (\citet{umapelephant}).}\label{fig:umapElephant}
-\end{figure}
-
-While powerful for visualisation and revealing non-linear structures, the resulting axes in the UMAP embedding do not have the same direct interpretation as the variance-ordered principal components derived from PCA.
-An example illustration of UMAP applied to an elephant skeletal structure, which is considered structured data, can be seen in Figure~\ref{fig:umapElephant}.
+% \section{Dimensionality Reduction}\label{sec:dimred}
+%
+% Embedding spaces can get large, often on the scale of hundreds or even thousands of embedding dimensions. For example, the BERT base architecture uses an embedding dimension of 768 \cite{devlin2019bert}. Therefore, in applications dealing with such embedding spaces, this motivates a technique that reduces the dimensions to 2- or 3-dimensions but reflects the high-dimensional characteristics of the dataset. 
+% Dimensionality reduction exploits the redundancy of the dataset by finding a smaller set of new features (variables) that are representative of the original data \cite{sorzano2014survey}.
+%
+% It has been shown that many high-dimensional spaces show `counter-intuitive geometrical properties', impacting data analysis methods, such as clustering. This phenomenon is referred to as the `curse of dimensionality' \cite{verleysen2005curse, hinneburg1999optimal}. Further, most clustering algorithms (such as those described in Section~\ref{sec:clustering}) have been shown to be inefficient in high-dimensional spaces, due to this curse \cite{hinneburg1999optimal}. Thus, in order to apply clustering (as we will, later in Chapter~\ref{chap:Methodology}) dimensionality reduction is once again motivated.
+%
+% This technique is not new in Statistics, with one of the most widely used dimensionality reduction techniques, Principal Component Analysis (PCA), introduced in (\citet{pearson1901liii}). However, with the increase in the quantity of available data and computational resources, researchers in fields such as Machine Learning and Statistics have developed a wide array of techniques aimed at tackling the dimensionality reduction problem \cite{sorzano2014survey}.
+%
+% In this section, we cover the background required in understanding techniques used in Chapter~\ref{chap:Methodology}, Principal Component Analysis (PCA) and Uniform Manifold Approximation and Projection (UMAP).
+%
+% % \todo[inline, caption={}] {
+% %     \begin{itemize}
+% %         \item Talk why dimensionality reduction is needed: visualisation, curse of dimensionality, clustering? Figure out how to structure this well for the story.
+% %         \item Talk about PCA and UMAP.
+% %     \end{itemize}
+% % }
+%
+% \subsection{PCA}
+% Principal Component Analysis (PCA), as mentioned before, was first introduced in (\citet{pearson1901liii}) but later independently developed and named in (\citet{hotelling1933analysis}). PCA computes principal components, or variables which linearly decompose the features of the original dataset.
+% The core idea is to find directions (the principal components) in the data that capture the maximum amount of variance, essentially identifying the axes along which the data spreads out the most \cite{abdi2010principal}. Each subsequent principal component is computed to be orthogonal (that is, statistically uncorrelated) to the previous ones, ensuring that the new components capture different aspects of the data's variance.
+%
+% This process can be described as an optimisation problem. Given a data matrix $X \in \mathbb{R}^{m \times n}$ (where $m$ is the number of data samples and $n$ is the number of original features), we want to find a new, lower-dimensional linear subspace, defined by the principal components, such that when the data $X$ is projected onto this subspace, the variance of the projected data is maximised. Equivalently, this can be viewed as finding the linear subspace that minimises the reconstruction error, specifically, the sum of squared distances (least-squares distance) between the original data points and their projections onto the subspace \cite{udell2016generalized}.
+%
+% More formally, if we want to reduce the dimensionality from $n$ features down to $k$ principal components (for $k < n$), we seek a matrix $C \in \mathbb{R}^{n \times k}$ whose columns represent these top $k$ orthogonal component directions. The projected data in the lower $k$-dimensional space is given by $XC$. We can approximate the original data $X$ by projecting back from this lower dimension using $XCC^T$. PCA aims to find the matrix $C$ that minimises the difference between the original data $X$ and this reconstructed data $XCC^T$, subject to the constraint that the column-wise components are orthogonal ($C^TC = I$, for the identity matrix $I$) \cite{udell2016generalized}:
+% \begin{align}
+%     \min_C || X - XCC^T ||_F^2 
+%     \label{eq:pca} % Kept original label
+% \end{align}
+%
+% A standard and efficient method for solving this optimisation problem and finding the principal components is through the Singular Value Decomposition (SVD) of the data matrix $X$ \cite{steinberger2005text, udell2016generalized}. SVD is a fundamental matrix factorisation technique that decomposes $X$ into three matrices:
+% \begin{align}
+%     X = USV^T \label{eq:svd} % Changed label to svd for clarity
+% \end{align}
+% Here, $U \in \mathbb{R}^{m \times k}$ and $V \in \mathbb{R}^{n \times k}$ are matrices with orthogonal columns, $S \in \mathbb{R}^{k \times k}$ is a diagonal matrix (only the diagonal contains non-zero elements) which contains the non-negative singular values ($s_i$) sorted in descending order, and $k$ is the rank of matrix $X$.
+%
+% The crucial link to PCA is that the columns of the matrix $V$ are precisely the principal component directions we seek. That is, the matrix $C$ in Equation~\ref{eq:pca}, containing the top $k$ principal components, corresponds to the first $k$ columns of $V$.
+%
+% Furthermore, SVD connects directly to the covariance matrix of the data ($X^TX$, assuming $X$ is centered). The decomposition of the covariance matrix is given by:
+% \begin{align}
+%     X^TX &= (USV^T)^T (USV^T) \\ % Show transpose step
+%          &= (VS^T U^T) (USV^T) \\ % Apply transpose rules
+%          &= V S^T (U^T U) S V^T \\ % Associativity
+%          &= V S^T I S V^T \quad \text{(since } U^T U = I \text{)} \\
+%          &= V (S^T S) V^T \\
+%          &= V S^2 V^T\quad \text{(since } S \text{ is a diagonal matrix)}
+%          \label{eq:svd_covariance} % Changed label, S^T S = S^2 as S is diagonal
+% \end{align}
+%
+% This is the eigen-decomposition of the covariance matrix $X^TX$. It shows that the columns of $V$ are the eigenvectors (the principal components), and the diagonal entries of $S^2$  are the corresponding eigenvalues (i.e. $s_i^2 = \lambda_i$). Since the eigenvalues represent the variance of the data along the eigenvectors, the squared singular values ($s_i^2$) directly quantify the variance captured by each principal component \cite{udell2016generalized}. Therefore, computing the SVD of the data matrix $X$ provides both the principal components (in $V$) and the measure of variance associated with each component (in $S^2$) without explicitly forming the covariance matrix. Using a truncated SVD (keeping only the top $k$ components corresponding to the largest singular values) gives us a reduction in the dimensions.
+%
+%
+% % \todo[inline, caption={}] {
+% %     \begin{itemize}
+% %         \item Talk about PCA mathematics and why its used for dim reduction
+% %         \item Talk about elbowing and finding the most optimal (?)
+% %     \end{itemize}
+% % }
+%
+% \subsection{UMAP}\label{sec:umap}
+%
+% Unlike PCA, Uniform Manifold Approximation and Projection (UMAP) is generally considered a less directly interpretable dimensionality reduction method in terms of linear components. UMAP is a non-linear, stochastic `manifold learning technique' designed for dimensionality reduction, with theoretical foundations in Riemannian geometry and algebraic topology \cite{mcinnes2018umap}. As it places no constraints on the dimensionality of the input space, it is viable as a general-purpose technique in machine learning, often used for visualisation or as a pre-processing step for other algorithms like clustering. For the reader interested in the rigorous mathematics underpinning these topics, we refer them to the following textbooks: (1) (\citet{lee2003smooth}) for an introduction to differentiable and Riemannian manifolds; (2) (\citet{lee2006riemannian}) for Riemannian geometry in greater detail; and (3) (\citet{willard2012general}) for fundamental concepts of general topology.
+%
+% The UMAP algorithm operates under the assumption that the high-dimensional data (the input embeddings in our case) lies on or near a lower-dimensional manifold embedded within the high-dimensional space. The algorithm then attempts to find a low-dimensional representation (typically 2- or 3-dimensional) that best models the essential structure of this assumed manifold. \\
+%
+% \noindent Conceptually, the UMAP algorithm achieves this in two main stages \cite{mcinnes2018umap}:
+% \begin{enumerate}
+%     \item High-dimensional graph construction - First, UMAP constructs a representation of the relationships between data points in the original high-dimensional space. It does this by finding the nearest neighbours for each point and constructing a weighted graph where edge weights represent the estimated probability or likelihood that two points are closely connected on the underlying manifold. This step focuses on capturing the local structure and connectivity of the data.
+    % \item Low-dimensional layout optimisation - Second, UMAP initialises the data points in the target low-dimensional space randomly. It then iteratively adjusts the positions of these low-dimensional points to create a graph structure that is as similar as possible to the high-dimensional graph constructed in the first stage. This optimisation process aims to minimise the difference (often measured using cross-entropy, a measure of divergence between probability distributions \cite{zhang2018generalized}) between the edge weights (probabilities of connection) in the high-dimensional and low-dimensional graphs. In other words, it tries to arrange the points in the low dimension such that connected points in the high dimension remain connected, and disconnected points remain disconnected.
+% \end{enumerate}
+%
+% The outcome is a low-dimensional embedding that aims to preserve both the local connectivity structure and, to some extent, the broader global structure of the data's manifold. 
+%
+% The output of the UMAP algorithm can be significantly influenced by several hyperparameters, which allow the user to tune the dimensionality reduction process \cite{mcinnes2018umap}. The two most commonly adjusted parameters are:
+% \begin{itemize}
+%     \item \texttt{n\_neighbors}: Determines the size of the local neighbourhood UMAP considers when initially modelling the manifold structure in the high-dimensional space. It controls the balance between capturing local detail versus preserving the global structure of the data. Lower values focus UMAP on very local structure, potentially isolating small, distinct groups but risking the loss of broader relationships. Higher values encourage UMAP to consider more points as neighbours, leading to embeddings that better reflect the overall global structure but may obscure fine-grained details or merge closely related clusters.
+%     \item \texttt{min\_dist}: This parameter controls the minimum distance between points in the final low-dimensional embedding space. It primarily affects the visual density of the resulting plot. Lower values allow points to be packed very tightly together, emphasizing cluster separation and density. Higher values force points further apart, creating more dispersed embeddings where the structure within potential clusters might be more visible, but the clusters themselves may appear less distinct.
+%     \item \texttt{n\_components}: This parameter specifies the target dimensionality of the reduced embedding space. It is commonly set to 2 or 3 for visualisation purposes, but can be set to higher values if the UMAP output is intended as input for subsequent machine learning tasks, such as clustering. Changing this directly alters the number of dimensions in the output array. 
+%     \item \texttt{metric}: This parameter defines the distance metric used to measure similarity or dissimilarity between data points in the original high-dimensional input space when finding nearest neighbours. The default is typically `euclidean', but other metrics like `cosine' (cosine distance) or `manhattan' (Manhattan distance) can be specified. The choice of metric is crucial and depends heavily on the nature of the input data. For instance, `cosine' distance is often preferred for high-dimensional, sparse data such as text embeddings, as it measures orientation rather than magnitude \cite{mcinnes2018umap}. Using an inappropriate metric can significantly distort the perceived local structure and thus the final embedding.
+% \end{itemize}
+%
+% Selecting appropriate values for these parameters often involves experimentation based on the dataset and the specific goals of the dimensionality reduction (i.e. visualisation vs. input for clustering) \cite{mcinnes2018umap}. Implementations of UMAP, such as the widely used \texttt{umap-learn} Python library, are noted for being computationally efficient and scalable relative to other non-linear techniques like t-distributed Stochastic Neighbour Embedding (t-SNE) \cite{cai2022theoretical}, making UMAP a practical choice for many machine learning applications \cite{mcinnes2018umap}.
+%
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{./images/umapElephant.png}
+%     \caption{An illustration of UMAP applied (right) on samples taken from the skeletal structure of an elephant in 3-dimensions (left) with the UMAP hyperparameter values displayed. Highlighted, a black sphere (left) and circle (right), shows a chosen point mapped from 3-dimensions to 2. Source: (\citet{umapelephant}).}\label{fig:umapElephant}
+% \end{figure}
+%
+% While powerful for visualisation and revealing non-linear structures, the resulting axes in the UMAP embedding do not have the same direct interpretation as the variance-ordered principal components derived from PCA.
+% An example illustration of UMAP applied to an elephant skeletal structure, which is considered structured data, can be seen in Figure~\ref{fig:umapElephant}.
 
 % \todo[inline, caption={}] {
 %     \begin{itemize}
@@ -581,6 +631,44 @@ An example illustration of UMAP applied to an elephant skeletal structure, which
 %         \item Use the visualisation of the elephant here.
 %     \end{itemize}
 % }
+
+\section{Dimensionality Reduction}\label{sec:dimred}
+
+The sentence embedding techniques discussed previously often produce high-dimensional vector representations, frequently on the scale of hundreds or even thousands of dimensions (i.e. 768 dimensions for BERT base \cite{devlin2019bert}). Directly analysing or visualising data in such high-dimensional spaces is challenging. Furthermore, many data analysis methods, including the clustering algorithms discussed later (Section~\ref{sec:clustering}), can suffer from performance degradation in high dimensions due to phenomena collectively known as the `curse of dimensionality' \cite{verleysen2005curse, hinneburg1999optimal}. This `curse' refers to counter-intuitive geometric properties of high-dimensional spaces that can make concepts like distance and density less meaningful \cite{verleysen2005curse}.
+
+Therefore, dimensionality reduction techniques are often employed. These methods aim to find a lower-dimensional representation (typically 2-dimensional or 3-dimensional for visualisation) that captures the most important structure or variance present in the original high-dimensional data \cite{sorzano2014survey}. By exploiting redundancy in the data, they project points into a smaller feature space suitable for visualisation or input to subsequent algorithms like clustering \cite{sorzano2014survey, hinneburg1999optimal}. While numerous techniques exist as shown by (\citet{sorzano2014survey}), this section focuses on two widely used methods employed in this project: Principal Component Analysis (PCA) \cite{pearson1901liii, hotelling1933analysis} and Uniform Manifold Approximation and Projection (UMAP) \cite{mcinnes2018umap}.
+
+\subsection{PCA}\label{sec:pca}
+
+Principal Component Analysis (PCA), first introduced by \citet{pearson1901liii} and later developed by \citet{hotelling1933analysis}, is a linear dimensionality reduction technique. The core idea is to identify new axes, called `principal components', in the direction of maximum variance in the data \cite{abdi2010principal}. The first principal component captures the largest amount of variance, the second captures the largest remaining variance while being orthogonal (that is, statistically uncorrelated) to the first, and so on. Projecting the original data onto the first few principal components creates a lower-dimensional representation that retains most of the original data's variance \cite{abdi2010principal}.
+
+Conceptually, PCA seeks a linear projection that either maximizes the variance of the projected data or, equivalently, minimises the `reconstruction error' which is the squared distance between original points and their projections \cite{udell2016generalized}. While the formal solution involves finding eigenvectors of the data's covariance matrix, a standard and efficient method to compute the principal components and their associated variance relies on the Singular Value Decomposition (SVD) of the (mean centred) data matrix $X$ \cite{steinberger2005text, udell2016generalized}. Here, mean centred refers to $X - \frac{1}{nm}\sum_i^n \sum_j^m X_{ij}$ for $X \in \mathbb{R} ^{n\times m}$. The SVD factorizes $X$ as $X = USV^T$, where the columns of $V$ represent the principal component directions, and the squared diagonal elements of $S$ represent the variance captured by each component \cite{udell2016generalized}. By keeping only the components associated with the largest singular values (a truncated SVD), PCA achieves dimensionality reduction while preserving maximal variance in a linear sense. A formal treatment of this as an optimisation problem can be found at Appendix~\ref{app:pca}.
+
+\subsection{UMAP}\label{sec:umap}
+
+Uniform Manifold Approximation and Projection (UMAP) is a more recent, non-linear dimensionality reduction technique based on manifold learning principles \cite{mcinnes2018umap}. Unlike PCA's linear projections, UMAP aims to capture potentially complex, non-linear structures in the data. It operates under the assumption that the high-dimensional data lies on or near a lower-dimensional manifold embedded within the higher-dimensional space \cite{mcinnes2018umap}. The goal is to find a low-dimensional embedding that faithfully represents the topological structure of this presumed manifold. While grounded in advanced mathematical concepts \cite{lee2003smooth, lee2006riemannian, willard2012general}, the intuition behind the algorithm can be understood through its two main conceptual stages \cite{mcinnes2018umap}:
+
+\begin{enumerate}
+    \item High-dimensional Graph Construction - UMAP first builds a weighted graph representation of the data in the original high-dimensional space. It identifies nearest neighbours for each data point and assigns edge weights based on the likelihood that points are closely connected on the underlying manifold. This step primarily focuses on capturing the local connectivity and structure of the data.
+    \item Low-dimensional Layout Optimisation - UMAP then seeks a corresponding low-dimensional embedding where the graph structure is as similar in structure as possible to the high-dimensional graph. It iteratively adjusts the positions of points in the low-dimensional space to minimise the difference (often measured using cross-entropy, a measure of divergence between probability distributions \cite{zhang2018generalized}) between the connectivity probabilities in the high- and low-dimensional representations. This optimisation aims to keep points connected in the low-dimensional space if they were connected in the high-dimensional space, and separated if they were not.
+\end{enumerate}
+
+The resulting low-dimensional embedding aims to preserve both local neighbourhood structure and, importantly, aspects of the data's broader global structure \cite{mcinnes2018umap}. UMAP's output is influenced by several key hyperparameters:
+\begin{itemize}
+    \item \texttt{n\_neighbors}: Controls the size of the local neighbourhood considered. Lower values emphasize local structure, potentially revealing fine clusters, while higher values capture more global structure, potentially merging related groups \cite{mcinnes2018umap}.
+    \item \texttt{min\_dist}: Affects the minimum separation between points in the low-dimensional embedding. Lower values create tighter, denser clusters, while higher values produce more spread out embeddings where intra-cluster structure might be more visible \cite{mcinnes2018umap}.
+    \item \texttt{n\_components}: Defines the dimensionality of the output embedding (typically 2- or 3-dimensions for visualisation).
+    \item \texttt{metric}: Specifies the distance measure used in the high-dimensional space (i.e. `euclidean', `cosine'). The choice is crucial: `cosine' distance is often preferred for high-dimensional text embeddings as it measures orientation rather than magnitude \cite{mcinnes2018umap}.
+\end{itemize}
+
+Selecting appropriate hyperparameters often requires experimentation (as explored in Section~\ref{sec:hyperparameterOpt}). UMAP implementations are generally computationally efficient compared to other non-linear methods like t-SNE \cite{cai2022theoretical, mcinnes2018umap}, making it practical for many applications. Figure~\ref{fig:umapElephant} provides a visual intuition of UMAP applied to structured data (sampled points from the skeletal structure of an elephant). Notably, structure preservation can be visually observed, as points from a tusk represent a shape which mirrors a tusk shadow in the 2-dimensional down-projection. However, while powerful for revealing non-linear structures, the axes of a UMAP projection do not have the direct variance interpretation of PCA's principal components.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{./images/umapElephant.png}
+    \caption{An illustration of UMAP applied (right) on samples taken from the skeletal structure of an elephant in 3-dimensions (left) with the UMAP hyperparameter values displayed. Highlighted, a black sphere (left) and circle (right), shows a chosen point mapped from 3-dimensions to 2. Source: (\citet{umapelephant}).}\label{fig:umapElephant}
+\end{figure}
+
 
 \section{Clustering}\label{sec:clustering}
 
@@ -602,63 +690,15 @@ The k-Medoids algorithm is a partitioning-based clustering method that aims to d
 A classical algorithm for implementing k-Medoids is Partitioning Around Medoids (PAM), introduced by (\citet{kmedoids}). PAM operates in two main phases:
 
 \begin{enumerate}
-    \item The build phase - An initial set of $k$ data points are seleceted as the starting medoids. This selection aims to establish a reasonable initial clustering by choosing points that are relatively central within potential groups that exists - minimising the initial total dissimilarity.
+    \item The build phase - An initial set of $k$ data points are selected as the starting medoids. This selection aims to establish a reasonable initial clustering by choosing points that are relatively central within potential groups that exists - minimising the initial total dissimilarity.
     \item The swap phase - This phase iteratively refines the set of medoids. For each currently selected medoid $m$ and each non-medoid point data point $x$, the algorithm computes the change in total dissimilarity that would result from swapping $m$ and $x$. That is, setting $x$ as that centroid of $m$'s cluster. The swap that yields the greatest reduction across all possible pairs is finally performed. This process repeats until no swap can further reduce the total dissimilarity which indicates a local optimum has been reached.
 \end{enumerate}
 
-The PAM algorithm employs a greedy search strategy during the swap phase, which means it may converge to a local rather than a global optimum \cite{kmedoids}. The computational complexity of the SWAP phase is often cited as $O(k(n - k)^2)$ per iteration, where $n$ is the number of data points and $k$ is the number of clusters \cite{kmedoids}.
+The PAM algorithm employs a greedy search strategy during the swap phase, which means it may converge to a local rather than a global optimum \cite{kmedoids}. The computational complexity of the swap phase is often cited as $O(k(n - k)^2)$ per iteration, where $n$ is the number of data points and $k$ is the number of clusters \cite{kmedoids}.
 
-Algorithm~\ref{alg:pam} provides a high-level pseudocode description of the relatively straightforward PAM process. It takes the desired number of clusters $k$ and the dataset $X$ as input, and outputs the final set of medoids $M$ and set of clusters $X'$. The fact that $k$ is a parameter to the algorithm means that either the number of clusters must be known beforehand or must be found through hyperparameter optimisation.
+Appendix~\ref{app:pam} provides a high-level pseudocode description of the relatively straightforward PAM process. It takes the desired number of clusters $k$ and the dataset $X$ as input, and outputs the final set of medoids $M$ and set of clusters $X'$. The fact that $k$ is a parameter to the algorithm means that either the number of clusters must be known beforehand or must be found through hyperparameter optimisation.
 
 % --- The Algorithm ---
-\begin{algorithm}[caption={Partitioning Around Medoids (PAM).}, label={alg:pam}]
-input: Dataset $X = \{x_1, ..., x_n\}$, integer $k$ (number of clusters)
-output: Set of $k$ medoids $M$, Partition $X' = \{C_1, ..., C_k\}$ where $C_j$ is the set of points assigned to medoid $m_j$
-
-begin
-    # --- Build Phase (Conceptual) ---
-    # Select an initial set of k medoids M from X
-    # (i.e. using a heuristic that minimizes initial total dissimilarity)
-    $M \gets$ SelectInitialMedoids($X, k$)
-
-    # --- Swap Phase ---
-    repeat
-        best_cost_reduction $\gets 0$
-        best_swap $\gets \emptyset$ 
-        total_cost $\gets$ ComputeTotalDissimilarity($X, M$) # Cost based on current M
-
-        # Consider swapping each medoid m with each non-medoid x
-        foreach $m \in M$ do
-            foreach $x \in X \setminus M$ do
-                # Compute cost if m is replaced by x
-                $M_{swap} \gets (M \setminus \{m\}) \cup \{x\}$
-                cost_after_swap $\gets$ ComputeTotalDissimilarity($X, M_{swap}$)
-                cost_reduction $\gets$ total_cost - cost_after_swap
-
-                # Check if this swap is the best found so far
-                if cost_reduction > best_cost_reduction then
-                    best_cost_reduction $\gets$ cost_reduction
-                    best_swap $\gets (m, x)$ # Store the potential swap pair
-                end
-            end
-        end
-
-        # Perform the best swap found in this iteration, if any cost reduction occurred
-        if best_cost_reduction > 0 then
-            ($m_{out}, x_{in}$) $\gets$ best_swap
-            $M \gets (M \setminus \{m_{out}\}) \cup \{x_{in}\}$ # Update medoid set
-            improved $\gets$ true
-        else
-            improved $\gets$ false # No cost reduction possible
-        end
-    until not improved # Stop when no swap improves the total cost
-
-    # Assign points to final medoids to form clusters X'
-    $X' \gets$ AssignPointsToClusters($X, M$)
-
-    return M, X'
-end
-\end{algorithm}
 
 % \todo[inline, caption={}] {
 %     \begin{itemize}
@@ -668,7 +708,7 @@ end
 %     \end{itemize}
 % }
 
-\subsection{DBSCAN}\ref{sec:dbscan}
+\subsection{DBSCAN} \label{sec:dbscan}
 
 Density-Based Spatial Clustering of Applications with Noise (DBSCAN) is density-based clustering algorithm, unlike partitioning methods like k-Medoids \cite{ester1996density}. Instead of partitioning data around centres, DBSCAN groups together points that are closely packed in high-density regions, separated by sparser areas. A key characteristic of this approach is its ability to discover clusters of arbitrary shapes and to automatically determine the number of clusters present, rather than requiring it as a predefined input \cite{ester1996density}. The core intuition is that points belonging to the same conceptual group or category tend to lie close to each other, forming denser regions than considered noise or outliers.
 
@@ -707,7 +747,7 @@ In general, DBSCAN offers significant advantages: it can identify clusters of ar
 %     \end{itemize}
 % }
 
-\subsection{HDBSCAN}\ref{sec:hdbscan}
+\subsection{HDBSCAN}\label{sec:hdbscan}
 
 Hierarchical Density-Based Spatial Clustering of Applications with Noise (HDBSCAN), proposed by \citet{campello2013density}, is an advancement over DBSCAN that generates a hierarchical clustering structure. This approach addresses a key limitation of DBSCAN: its reliance on a single global density threshold $\epsilon$ (equivalent to \texttt{Eps} in DBSCAN), which makes it difficult to identify clusters of varying densities simultaneously. HDBSCAN overcomes this by effectively exploring all possible density thresholds ($\lambda = \frac 1 \epsilon$, for all $\epsilon \in \big[0, \infty \big)$) to build a cluster hierarchy \cite{campello2013density}.
 
@@ -727,7 +767,7 @@ HDBSCAN builds upon the defining concepts relative to $m_{\text{pts}}$, only all
 
 The HDBSCAN algorithm constructs the cluster hierarchy based on these concepts. Conceptually, it first computes the core distance for all points. Then, it builds a graph where all points are vertices, and the weight of the edge between any two points is their mutual reachability distance. The algorithm finds the Minimum Spanning Tree (MST) of this complete graph. The cluster hierarchy (dendrogram) is then extracted from this MST by considering edges in decreasing order of weight (distance). As edges are removed (corresponding to decreasing the density threshold $\lambda$ or increasing the distance threshold $\epsilon$), connected components in the remaining graph represent clusters at that specific density level. The hierarchy captures how these components merge as the density threshold decreases \cite{campello2013density}. This process can be implemented efficiently, with a typical time complexity of $O(n^2)$ if pairwise distances are precomputed or provided, or potentially $O(dn^2)$ depending on MST construction details if distances are computed on the fly from $d$-dimensional data \cite{campello2013density}.
 
-To extract a meaningful flat partition from this hierarchy, HDBSCAN introduces the concept of cluster stability. This measure quantifies how persistent a cluster $C_i$ is across different density levels ($\lambda = \frac 1 \epsilon$). That is, as you vary the density level $\lambda$, what is the longest period in which the cluster exists without disappear or splitting. The stability $S(C_i)$ is calculated by summing, for each point $x_j$ belonging to cluster $C_i$, the range of density levels for which that point remains part of that specific cluster \cite{campello2013density}. More formally, using the notation from the paper where $\lambda_{\text{min}}(C_i)$ is the density level at which cluster $C_i$ appears (thought of as is `born') and $\lambda_{\text{max}}(x_j, C_i)$ is the density at which point $x_j$ leaves cluster $C_i$, either through becoming noise or part of some child cluster as density increases \cite{campello2013density}:
+To extract a meaningful flat partition from this hierarchy, HDBSCAN introduces the concept of cluster stability. This measure quantifies how persistent a cluster $C_i$ is across different density levels ($\lambda = \frac 1 \epsilon$). That is, as you vary the density level $\lambda$, this measures the longest period in which the cluster exists without disappearing or splitting. The stability $S(C_i)$ is calculated by summing, for each point $x_j$ belonging to cluster $C_i$, the range of density levels for which that point remains part of that specific cluster \cite{campello2013density}. More formally, using the notation from the paper where $\lambda_{\text{min}}(C_i)$ is the density level at which cluster $C_i$ appears (thought of as is `born') and $\lambda_{\text{max}}(x_j, C_i)$ is the density at which point $x_j$ leaves cluster $C_i$, either through becoming noise or part of some child cluster as density increases \cite{campello2013density}:
 
 \begin{align}
 S(C_i) = \sum_{x_j \in C_i} (\lambda_{\text{max}}(x_j, C_i) - \lambda_{\text{min}}(C_i))
@@ -738,25 +778,21 @@ Equation~\ref{eq:hdbscan-stability} adapts the concept of `excess of mass' \cite
 
 Using this concept of stability, HDBSCAN selects the optimal flat clustering by solving an optimisation problem: finding a maximal disjoint set of clusters from the hierarchy  such that the sum of stabilities $S(C_i)$ is maximised. Here a maximal disjoint set of clusters refers to the fact that no two cluster is an ancestor or descendant of another selected cluster, ensuring a flat partition covering all points down certain branches \cite{campello2013density}. The paper provides an efficient algorithm that traverses the simplified cluster tree bottom-up and then top-down to find this optimal set of stable clusters in linear time, relative to the size of the simplified tree. The simplified cluster tree is obtained after applying a minimum cluster size $m_{\text{dSize}}$, typically set equal to $m_{\text{pts}}$. This process effectively performs the optimal `local cuts' in the cluster dendrogram at different levels of hierarchy, based on this notion of cluster persistence.
 
-\section{Clustering Evaluation}\label{sec:clusteringEval}
-\todo[inline] {Maybe this can be moved to the methodology?}
-Furthermore, as evaluating the quality of unsupervised clustering results is crucial, we will also introduce several common clustering evaluation heuristics used in this work: Inertia, the Silhouette coefficient \cite{rousseeuw1987silhouettes}, the Davies-Bouldin Index \cite{davies1979cluster}, and the Calinski-Harabasz Index \cite{calinski1974dendrite}.
-
-\todo[inline, caption={}] {
-
-    Maybe this should be later on in the methodology? 
-
-    \begin{itemize}
-        \item Motivate the need for clustering evaluation.
-        \item Just highlight mathematics of each algorithm and mention the need for them.
-    \end{itemize}
-}
-\subsection{Inertia}
-\subsection{Silhouette}
-\subsection{Davies-Bouldin Index}
-\subsection{Calinski-Harabasz Index}
-
-\section{Maybe Optuna}
+% \section{Clustering Evaluation}\label{sec:clusteringEval}
+% \todo[inline] {Maybe this can be moved to the methodology?}
+% Furthermore, as evaluating the quality of unsupervised clustering results is crucial, we will also introduce several common clustering evaluation heuristics used in this work: Inertia, the Silhouette coefficient \cite{rousseeuw1987silhouettes}, the Davies-Bouldin Index \cite{davies1979cluster}, and the Calinski-Harabasz Index \cite{calinski1974dendrite}.
+% \todo[inline, caption={}] {
+%     Maybe this should be later on in the methodology? 
+%     \begin{itemize}
+%         \item Motivate the need for clustering evaluation.
+%         \item Just highlight mathematics of each algorithm and mention the need for them.
+%     \end{itemize}
+% }
+% \subsection{Inertia}
+% \subsection{Silhouette}
+% \subsection{Davies-Bouldin Index}
+% \subsection{Calinski-Harabasz Index}
+% \section{Maybe Optuna}
 
 \chapter{Automatic Categorisation and Label Generation}\label{chap:Methodology}
 
@@ -851,7 +887,7 @@ Additionally, as this project is an early stage exploration of auto-categorisati
 
 \todo{Clean up wording in the above}
 
-\section{Natural Language Pre-processing}
+\section{Natural Language Pre-processing}\label{sec:preproc}
 
 The aim of pre-processing the unstructured, English natural language text data from \\ \texttt{FaultDescription} is to normalise and prepare it for text embedding. Normalisation allows many syntactic permutations or augmentations of a text to be collapsed into one standardised form. This allows for consistent results as it ensures texts that are syntactically different but semantically similar will be mapped by embedding model to the same value. For pre-processing, and the rest of the pipeline, each log entry's \texttt{FaultDescription} is considered one text.
 
@@ -894,7 +930,7 @@ As text pre-processing is computationally intensive, using these flags to perfor
 \section{Text Embedding Model Selection and Application}
 After pre-processing, the cleaned and normalised \texttt{FaultDescription} text requires transformation into a numerical format suitable for analysis. Sentence embedding (introduced in Section~\ref{sec:sentenceEmbedding}) provides this by mapping text into a high-dimensional vector space, where semantic relationships are preserved. This is crucial for the project's goal: automatically categorising log entries by grouping semantically similar entries, which corresponds to finding similar fault types. 
 
-\subsection{Dataset and hardware driven requirements}
+\subsection{Dataset and hardware driven requirements}\label{sec:req}
 Effective categorisation relies on an embedding model that can accurately capture the syntactic and semantic nuances of these technical descriptions. Figure~\ref{fig:ionSourceTokenCountDist} highlights that, although the average \texttt{FaultDescription} entry has roughly 7 tokens, in the dataset, over 60\% of entries have less than 5 tokens and around 10\% of the 1251 entries have over 20 tokens. This includes entries which stretch to multiple sentences. Additionally, the vocabulary is heavily domain specific (i.e. `ion source') and a single out-of-place adjective can reverse the meaning of a fault report (i.e. `beam loss' versus `no beam loss').  
 
 Furthermore, the hardware available for research is detailed in Table~\ref{tab:researchHw}. Some models, such as large language models with a parameter counts in hundreds of millions or billions may exceed the 6GB GPU VRAM limit during inference. Therefore, we restrict consideration to models whose inference memory footprint and compute latency remain feasible on this hardware.
@@ -932,7 +968,7 @@ Two BERT-family sentence-embedding models satisfy the constraints above, MPNet a
 512-token context window with a 768 embedding dimension. Unifies BERT's masked and XLNet's permutation language modelling pre-training objectives. This gives better positional awareness for tokens that are further away from each other \cite{song2020mpnet}. MPNet has around 109 million parameters, meaning it is able to load onto the research hardware. The HuggingFace model path is: \texttt{sentence-transformers/all-mpnet-base-v2} and achieves a clustering score of 40.77, ranking at 98 on the MTEB leaderboard, at time of writing.
 
 \paragraph{Nomic - an overview}
-Current state-of-the-art 8192-token context window with up to a 768 embedding dimension. Utilises rotary positional embeddings and flash attention that provide long-context support while remaining relatively small, with around 137 million parameters. Task prefixes (i.e. \texttt{classification:}, \texttt{clustering:}, etc.) encourage distinct semantic sub-spaces, thus we prepend all inputs passed to this model with `clustering:'. Specifically, we use version 1.5 which takes advantage of matryoshka representation learning and is able to encode coarse versus fine-grained semantic information in embedding vector sub-spaces \cite{nussbaum2024nomic, nussbaum2024nomic1.5}. The HuggingFace model path is: \texttt{nomic-ai/nomic-embed-text-v1.5} and achieves a clustering score of 41.55, ranking at 54 on the MTEB leaderboard, at time of writing.
+Current state-of-the-art 8192-token context window with up to a 768 embedding dimension. Utilises rotary positional embeddings and flash attention that provide long-context support while remaining relatively small, with around 137 million parameters. Task prefixes (i.e. \texttt{classification:}, \texttt{clustering:}, etc.) encourage distinct semantic sub-spaces, thus we prepend all inputs passed to this model with `clustering:'. Specifically, we use version 1.5 which takes advantage of Matryoshka Representation Learning (MRL) and is able to encode coarse versus fine-grained semantic information in embedding vector sub-spaces \cite{nussbaum2024nomic, nussbaum2024nomic1.5}. The HuggingFace model path is: \texttt{nomic-ai/nomic-embed-text-v1.5} and achieves a clustering score of 41.55, ranking at 54 on the MTEB leaderboard, at time of writing.
 
 \paragraph{Excluded Models}
 The following embedding models were evaluated but ultimately excluded, either because they exceeded our 6GB VRAM budget or failed to meet clustering performance thresholds in pilot runs (see Table~\ref{tab:excludedModels}). Excluding these ensures all retained models both fit our hardware and deliver the minimum clustering quality we require.
@@ -957,73 +993,103 @@ The following embedding models were evaluated but ultimately excluded, either be
 \end{table}
 
 
-\subsection{Detailed Rationale}
-In this section, we cover the selected models in a higher level of technical detail.
+% \subsection{Detailed Rationale}
+% In this section, we cover the selected models in a higher level of technical detail.
+%
+% \subsubsection{MPNet}\label{sec:rationalempnet}
+%
+% MPNet aims to combine both BERT's and XLNet's pre-training objectives to achieve the benefits without the drawbacks of each individual models. This hybrid approach is particularly attractive for this project because the Operalog dataset contains a mixture of short, concise entries and longer, more descriptive entries detailing causal factors or sequences of events. Effectively understanding these requires capturing both fine-grained token relationships and broader contextual meaning.
+%
+% While detailed descriptions of BERT and XLNet are in Section~\ref{sec:BERT}, the key challenge MPNet addresses is that masked language modelling (BERT) assumes independence between masked tokens, potentially losing valuable dependency information, and permutation language modelling (XLNet), while capturing dependencies, can have inconsistencies regarding positional information between pre-training and fine-tuning \cite{song2020mpnet, yang2019xlnet}.
+%
+% MPNet proposes a 'unification' solution that addresses these issues. It achieves this by intelligently permuting the order of input tokens and applying masking in a way that allows the model to learn bidirectional context (like BERT) while also modelling the dependencies between tokens (like XLNet) \cite{song2020mpnet}.
+% This capability is crucial for the Operalog data, where understanding the relationship between specific technical terms, even if separated by other words, is key to identifying the true nature of a fault.
+% This unified objective function is formally defined in Appendix~\ref{app:mpnet_maths} (Equation~\ref{eq:mpnet_objective_appendix}).
+%
+% To facilitate this objective, MPNet structures the input by rearranging tokens based on the permutation and partitioning them into non-predicted and predicted segments, using appropriate masking (conceptually illustrated in Figure~\ref{fig:mpnet}). This allows the model to condition its predictions effectively. The precise mechanism for structuring the input is detailed with an example in Appendix~\ref{app:mpnet_maths} (Equation~\ref{eq:mpnet_input_appendix}).
+%
+% Similarly to XLNet, MPNet also employs a two‑stream self‑attention mechanism (content vs
+% query) but modifies the attention mask to enable the model to see the entire input sequence. The modified attention masks allow the query stream to access the
+% entire sequence during pre‑training, which better aligns with downstream (fine-tune) tasks \cite{song2020mpnet}. This also matters in our use-case as, using a pre-fine-tuned model, we want a pre-training objective that reflects inference usage, rather than focus on fine-tuning discrepancies.
+% Because many Operalog entries reiterate initial fault cues later in the same sentence (e.g. describing a corrective action by name), allowing the query stream full sequence visibility helps MPNet embed those long‑range dependencies.
+%
+% Similarly to XLNet, MPNet employs a two-stream self-attention mechanism (distinguishing content and query information). However, MPNet modifies the attention masks to allow the query stream to access the entire input sequence during pre-training \cite{song2020mpnet}. This modification better aligns the pre-training conditions with how the model is used during inference for downstream tasks like embedding generation.
+% This is relevant for our use-case as Operalog entries sometimes re-iterate initial fault symptoms or mention corrective actions later in the description (i.e. `ion source unstable ... source change required.'). Allowing the model full sequence visibility helps MPNet embed those long-range dependencies, leading to more accurate embeddings for capturing the overall semantic meaning.
+%
+% Using these changes, (\citet{song2020mpnet}) has quantitatively shown that MPNet leverages 92.5\% tokens (as opposed to 85\% by BERT) and 100\% of positions (as opposed to 92.5\% by XLNet) of input sequences (under the assumption they predict the same 15\% masked token amounts). In addition, they have also shown that MPNet outperforms the state-of-the-art, at the time of publishing, in almost all GLUE benchmark tasks (an industry standard language model benchmark, with 9 natural language understanding tasks) and various other benchmarks \cite{wang2018glue}. 
+%
+% For further information on the MPNet architecture and pre-training, the reader is referred to the original paper by (\citet{song2020mpnet}).
+%
+% \begin{figure}[htbp]
+%     \centering
+%     \begin{subfigure}[b]{0.493\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{MPNetMLM.png}
+%         \caption{Masked language modelling (left) compared to the permuted order (right, unified view).}
+%         \label{fig:MPNetMLM}
+%     \end{subfigure}%
+%     \hfill
+%     \begin{subfigure}[b]{0.455\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{MPNetPLM.png}
+%         \caption{Permutation language modelling (left) compared to the permuted order (right, unified view).}
+%         \label{fig:MPNetPLM}
+%     \end{subfigure}
+%     \caption{Comparison of both masked and permutation language modelling pre-training objectives. Here, tokens are denoted $X_i$, masked tokens are denoted \texttt{[M]} and positional encoding is denoted $P_i$. Source: (\citet{song2020mpnet}).}
+%     \label{fig:mpnet}
+% \end{figure}
+%
+%
+% \subsubsection{Nomic}\label{sec:nomic}
+%
+% The second model evaluated is Nomic. This model, released in 2024, represents a state-of-the-art, open-source text embedding model specifically designed for long-context understanding and reproducibility \cite{nussbaum2024nomic, nussbaum2024nomic1.5}. Version 1.5, used in this project, builds upon the initial release with features like Matryoshka Representation Learning (MRL) and multi-modal support.
+%
+%
+% The relevant adaptions and justifications are listed below.
+% \begin{itemize}
+%     \item Long context handling via RoPE - Nomic utilise Rotary Positional Embeddings (RoPE) instead of traditional positional embeddings \cite{su2024roformer, nussbaum2024nomic, vaswani2017attention}. RoPE encodes positional information using rotations, which has been shown to improve model generalisation to sequences of lengths not seen during pre-training (whether longer or shorter) \cite{su2024roformer}. This is a significant advantage for the Operalog dataset, where \texttt{FaultDescription} entries vary greatly in length (Figure~\ref{fig:hists}), helping ensure effective semantic understanding by the model.
+%     \item Computational efficiency - Despite its capabilities, Nomic v1.5 maintains a relatively small parameter count of around 137 million compared to other leading models, whose parameter counts typically exceed 1 billion significantly. It also incorporates architectural optimisations like FlashAttention \cite{dao2022flashattention}, an I/O-aware attention mechanism that reduces memory usage and latency during inference \cite{nussbaum2024nomic}. These factors were significant in selecting Nomic, as they allow the model to run efficiently within the constraints of the available 6GB GPU VRAM (Table~\ref{tab:researchHw}), unlike larger models such as Qwen2 or Mistral-7B (Table~\ref{tab:excludedModels}).
+%     \item Task-specific optimisation - Nomic supports task-specific prefixes prepended to the input text. For this project, the `clustering:' prefix was used for all \texttt{FaultDescription} entries fed into the Nomic model. This technique enables the model to produce embeddings specifically optimised for clustering tasks, by leveraging distinct semantic embedding subspaces learned during pre-training \cite{nussbaum2024nomic}. Utilising this prefix aims to enhance the quality of the embedding space specifically for the goal of grouping similar fault types, potentially leading to more coherent and meaningful clusters.
+%     \item Matryoshka Representation Learning (MRL) - Nomic version 1.5 incorporates MRL, which trains the model to produce nested embeddings where shorter prefixes of the full embedding vector still form meaningful representations \cite{kusupati2022matryoshka, nussbaum2024nomic1.5}. While the full 768-dimension embedding was used for this project, with MRL creating a structured embedding space, it opens up the possibility of detecting patterns that aid fault categorisation  more easily.
+%     \item Modern Architecture Choices - Nomic also incorporates other modern design choices adapted from BERT, such as removing the next sentence prediction pre-training objective, which simplifies pre-training and allowing for longer contiguous text processing, and using 0\% dropout, reflecting findings on training with very large datasets \cite{nussbaum2024nomic, liu2019roberta, xue2023repeat}. These contribute to its overall efficiency and performance.
+%     \item Benchmark Performance - Nomic version 1.5 demonstrates strong performance on the MTEB leaderboard, particularly for its size, ranking well on clustering tasks and providing empirical validation for its selection \cite{muennighoff2022mteb, nussbaum2024nomicelo}.
+% \end{itemize}
+%
+% For further technical details on the Nomic architecture, pre-training and MRL, readers are referred to the relevant publications \cite{nussbaum2024nomic, nussbaum2024nomic1.5, kusupati2022matryoshka}.
 
-\subsubsection{MPNet}\label{sec:rationalempnet}
+\subsubsection{Detailed Rationale}\label{sec:rationale_mpnet_nomic} % 
 
-MPNet aims to combine both BERT's and XLNet's pre-training objectives to achieve the benefits without the drawbacks of each individual models. This hybrid approach is particularly attractive for this project because the Operalog dataset contains a mixture of short, concise entries and longer, more descriptive entries detailing causal factors or sequences of events. Effectively understanding these requires capturing both fine-grained token relationships and broader contextual meaning.
+In this section, we elaborate on the rationale for selecting MPNet and Nomic as the primary embedding models for evaluation, connecting their specific properties to the requirements identified in Section~\ref{sec:req} and the conceptual background from Chapter~\ref{chap:nlpbg}.
 
-While detailed descriptions of BERT and XLNet are in Section~\ref{sec:BERT}, the key challenge MPNet addresses is that masked language modelling (BERT) assumes independence between masked tokens, potentially losing valuable dependency information, and permutation language modelling (XLNet), while capturing dependencies, can have inconsistencies regarding positional information between pre-training and fine-tuning \cite{song2020mpnet, yang2019xlnet}.
+\paragraph{MPNet Justification}
+MPNet \cite{song2020mpnet} was selected as a strong candidate due to its hybrid pre-training approach, designed to capture the benefits of both masked language modelling (like BERT \cite{devlin2019bert}) and permutation language modelling (like XLNet \cite{yang2019xlnet}) while mitigating their respective drawbacks. This hybrid nature seemed particularly well-suited to the Operalog dataset for several reasons.
 
-MPNet proposes a 'unification' solution that addresses these issues. It achieves this by intelligently permuting the order of input tokens and applying masking in a way that allows the model to learn bidirectional context (like BERT) while also modelling the dependencies between tokens (like XLNet) \cite{song2020mpnet}.
-This capability is crucial for the Operalog data, where understanding the relationship between specific technical terms, even if separated by other words, is key to identifying the true nature of a fault.
-This unified objective function is formally defined in Appendix~\ref{app:mpnet_maths} (Equation~\ref{eq:mpnet_objective_appendix}).
+\begin{enumerate}
+    \item The Operalog contains a mixture of short, concise fault entries and longer, multi-sentence descriptions detailing causal factors or sequences of events (as discussed in Section~\ref{sec:req}). Effectively representing these requires capturing both local word relationships and broader contextual meaning, potentially involving long-range dependencies. MPNet's unified objective, which learns bidirectional context while explicitly modelling dependencies between tokens (unlike BERT's independence assumption), appeared promising for handling this fault entry length variability \cite{song2020mpnet}. Understanding the relationship between specific technical terms within the log entries, even if separated by other words (i.e. identifying a fault type and its resolution described later in the entry), is key to correctly categorising the fault, making MPNet's dependency modelling capabilities attractive. The formal definition of MPNet's objective function and an example of its input structuring are provided in Appendix~\ref{app:mpnet_maths} for completeness (see Equations~\ref{eq:mpnet_objective_appendix} and \ref{eq:mpnet_input_appendix}). 
 
-To facilitate this objective, MPNet structures the input by rearranging tokens based on the permutation and partitioning them into non-predicted and predicted segments, using appropriate masking (conceptually illustrated in Figure~\ref{fig:mpnet}). This allows the model to condition its predictions effectively. The precise mechanism for structuring the input is detailed with an example in Appendix~\ref{app:mpnet_maths} (Equation~\ref{eq:mpnet_input_appendix}).
+    \item MPNet addresses potential discrepancies between pre-training and downstream tasks. While XLNet's permutation approach avoids BERT's reliance on the artificial \texttt{[MASK]} token, MPNet further refines the mechanism by modifying the two-stream attention masks \cite{song2020mpnet}. These modifications allow the model components responsible for prediction (the query stream) to access information from the entire sequence during pre-training, better mirroring how the model is used during inference for embedding generation \cite{song2020mpnet}. This alignment is advantageous when using an off-the-shelf pre-trained (and further fine-tuned) model directly for embedding, as done in this project. This full sequence visibility aids in capturing long-range dependencies potentially present in Operalog entries where initial symptoms might be reiterated or linked to actions later in the description \cite{song2020mpnet}.
 
-Similarly to XLNet, MPNet also employs a two‑stream self‑attention mechanism (content vs
-query) but modifies the attention mask to enable the model to see the entire input sequence. The modified attention masks allow the query stream to access the
-entire sequence during pre‑training, which better aligns with downstream (fine-tune) tasks \cite{song2020mpnet}. This also matters in our use-case as, using a pre-fine-tuned model, we want a pre-training objective that reflects inference usage, rather than focus on fine-tuning discrepancies.
-Because many Operalog entries reiterate initial fault cues later in the same sentence (e.g. describing a corrective action by name), allowing the query stream full sequence visibility helps MPNet embed those long‑range dependencies.
+    \item MPNet demonstrated strong performance on various NLP benchmarks at the time of its release, including the GLUE benchmark \cite{wang2018glue, song2020mpnet}, suggesting a robust general language understanding capability applicable to the technical language in the Operalog. Its parameter count (approximately 109 million) also made it feasible for the available hardware (Table~\ref{tab:researchHw}).
+\end{enumerate}
 
-Similarly to XLNet, MPNet employs a two-stream self-attention mechanism (distinguishing content and query information). However, MPNet modifies the attention masks to allow the query stream to access the entire input sequence during pre-training \cite{song2020mpnet}. This modification better aligns the pre-training conditions with how the model is used during inference for downstream tasks like embedding generation.
-This is relevant for our use-case as Operalog entries sometimes re-iterate initial fault symptoms or mention corrective actions later in the description (i.e. `ion source unstable ... source change required.'). Allowing the model full sequence visibility helps MPNet embed those long-range dependencies, leading to more accurate embeddings for capturing the overall semantic meaning.
+\paragraph{Nomic Justification}
+Nomic, specifically \texttt{nomic-embed-text-v1.5} \cite{nussbaum2024nomic, nussbaum2024nomic1.5}, was selected as a representative of more recent (i.e. fourth-generation), state-of-the-art open-source embedding models, offering several features potentially beneficial for this project.
 
-Using these changes, (\citet{song2020mpnet}) has quantitatively shown that MPNet leverages 92.5\% tokens (as opposed to 85\% by BERT) and 100\% of positions (as opposed to 92.5\% by XLNet) of input sequences (under the assumption they predict the same 15\% masked token amounts). In addition, they have also shown that MPNet outperforms the state-of-the-art, at the time of publishing, in almost all GLUE benchmark tasks (an industry standard language model benchmark, with 9 natural language understanding tasks) and various other benchmarks \cite{wang2018glue}. 
+\begin{enumerate}
+    \item A key advantage is its explicit design for long-context understanding. It utilizes Rotary Positional Embeddings (RoPE) \cite{su2024roformer} instead of traditional absolute or relative positional embeddings \cite{vaswani2017attention}. RoPE has been shown to improve generalisation to sequence lengths not seen during training \cite{su2024roformer}. Given the significant variation in the length of \texttt{FaultDescription} entries in the Operalog (Figure~\ref{fig:hists}), Nomic's ability to handle contexts up to 8192 tokens effectively was a major consideration - potentially offering better semantic representation for longer, more detailed entries compared to models with shorter context windows like MPNet (512 tokens).
 
-For further information on the MPNet architecture and pre-training, the reader is referred to the original paper by (\citet{song2020mpnet}).
+    \item Computational efficiency was another critical factor. Despite its long-context capability, Nomic v1.5 has a relatively low parameter count (approximatly 137 million) and incorporates optimisations like FlashAttention \cite{dao2022flashattention}, designed to reduce memory usage and latency \cite{nussbaum2024nomic}. This made it feasible to run inference within the project's 6GB GPU VRAM constraint (Table~\ref{tab:researchHw}), unlike significantly larger multi-billion parameter models considered (Table~\ref{tab:excludedModels}).
 
-\begin{figure}[htbp]
-    \centering
-    \begin{subfigure}[b]{0.493\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{MPNetMLM.png}
-        \caption{Masked language modelling (left) compared to the permuted order (right, unified view).}
-        \label{fig:MPNetMLM}
-    \end{subfigure}%
-    \hfill
-    \begin{subfigure}[b]{0.455\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{MPNetPLM.png}
-        \caption{Permutation language modelling (left) compared to the permuted order (right, unified view).}
-        \label{fig:MPNetPLM}
-    \end{subfigure}
-    \caption{Comparison of both masked and permutation language modelling pre-training objectives. Here, tokens are denoted $X_i$, masked tokens are denoted \texttt{[M]} and positional encoding is denoted $P_i$. Source: (\citet{song2020mpnet}).}
-    \label{fig:mpnet}
-\end{figure}
+    \item Nomic also offers task-specific optimisation via input prefixes \cite{nussbaum2024nomic}. By prepending `\texttt{clustering:}' to each \texttt{FaultDescription} entry, we aimed to leverage specific semantic subspaces within the model potentially optimised during its pre-training for clustering tasks. This was hypothesised to generate embeddings more suitable with the primary goal of grouping similar fault types compared to using a generic embedding.
 
+    \item Nomic v1.5 incorporates Matryoshka Representation Learning (MRL) \cite{kusupati2022matryoshka, nussbaum2024nomic1.5}. While this project utilised the full 768-dimension embeddings, MRL imbues the embedding space with a nested structure where shorter prefixes remain meaningful. This structured property might implicitly aid downstream tasks like clustering by organizing semantic information hierarchically, although exploring different MRL embedding lengths was outside the scope of this project.
 
-\subsubsection{Nomic}\label{sec:nomic}
-
-The second model evaluated is Nomic. This model, released in 2024, represents a state-of-the-art, open-source text embedding model specifically designed for long-context understanding and reproducibility \cite{nussbaum2024nomic, nussbaum2024nomic1.5}. Version 1.5, used in this project, builds upon the initial release with features like Matryoshka Representation Learning (MRL) and multi-modal support.
-
-
-The relevant adaptions and justifications are listed below.
-\begin{itemize}
-    \item Long context handling via RoPE - Nomic utilise Rotary Positional Embeddings (RoPE) instead of traditional positional embeddings \cite{su2024roformer, nussbaum2024nomic, vaswani2017attention}. RoPE encodes positional information using rotations, which has been shown to improve model generalisation to sequences of lengths not seen during pre-training (whether longer or shorter) \cite{su2024roformer}. This is a significant advantage for the Operalog dataset, where \texttt{FaultDescription} entries vary greatly in length (Figure~\ref{fig:hists}), helping ensure effective semantic understanding by the model.
-    \item Computational efficiency - Despite its capabilities, Nomic v1.5 maintains a relatively small parameter count of around 137 million compared to other leading models, whose parameter counts typically exceed 1 billion significantly. It also incorporates architectural optimizations like FlashAttention \cite{dao2022flashattention}, an I/O-aware attention mechanism that reduces memory usage and latency during inference \cite{nussbaum2024nomic}. These factors were significant in selecting Nomic, as they allow the model to run efficiently within the constraints of the available 6GB GPU VRAM (Table~\ref{tab:researchHw}), unlike larger models such as Qwen2 or Mistral-7B (Table~\ref{tab:excludedModels}).
-    \item Task-specific optimisation - Nomic supports task-specific prefixes prepended to the input text. For this project, the `clustering:' prefix was used for all \texttt{FaultDescription} entries fed into the Nomic model. This technique enables the model to produce embeddings specifically optimized for clustering tasks, by leveraging distinct semantic embedding subspaces learned during pre-training \cite{nussbaum2024nomic}. Utilising this prefix aims to enhance the quality of the embedding space specifically for the goal of grouping similar fault types, potentially leading to more coherent and meaningful clusters.
-    \item Matryoshka Representation Learning (MRL) - Nomic version 1.5 incorporates MRL, which trains the model to produce nested embeddings where shorter prefixes of the full embedding vector still form meaningful representations \cite{kusupati2022matryoshka, nussbaum2024nomic1.5}. While the full 768-dimension embedding was used for this project, with MRL creating a structured embedding space, it opens up the possibility of detecting patterns that aid fault categorisation  more easily.
-    \item Modern Architecture Choices - Nomic also incorporates other modern design choices adapted from BERT, such as removing the next sentence prediction pre-training objective, which simplifies pre-training and allowing for longer contiguous text processing, and using 0\% dropout, reflecting findings on training with very large datasets \cite{nussbaum2024nomic, liu2019roberta, xue2023repeat}. These contribute to its overall efficiency and performance.
-    \item Benchmark Performance - Nomic version 1.5 demonstrates strong performance on the MTEB leaderboard, particularly for its size, ranking well on clustering tasks and providing empirical validation for its selection \cite{muennighoff2022mteb, nussbaum2024nomicelo}.
-\end{itemize}
-
-For further technical details on the Nomic architecture, pre-training and MRL, readers are referred to the relevant publications \cite{nussbaum2024nomic, nussbaum2024nomic1.5, kusupati2022matryoshka}.
-
+    \item Nomic's demonstrated strong performance for its size on benchmarks like MTEB, including clustering tasks, provided empirical validation for its consideration \cite{muennighoff2022mteb, nussbaum2024nomicelo}. 
+\end{enumerate}
 
 \subsection {Section Summary}
-MPNet and Nomic satisfied the criteria set out initially, including the hardware requirements and dataset features identified previously. They are therefore carried forward through the remaining portion of the pipeline. 
+
+By evaluating both MPNet (representing a mature, unified BERT/XLNet approach) and Nomic (representing recent advancements in long-context efficiency and specialised embeddings), which meet the requirements criteria set in Section~\ref{sec:req}, this project aimed to explore different effective strategies for representing the challenging Operalog text data. 
 
 \section{Embedding dimensionality reduction}
 
@@ -1160,7 +1226,7 @@ To gain an initial understanding of suitable UMAP parameters for the Operalog da
 
 \subsection{Section Summary}
 
-Based on the comparison in the previous subsections, UMAP was selected over PCA as the preferred dimensionality reduction technique for the MPNet and Nomic embedding spaces. The preliminary visualisations also highlighted that UMAP's output is sensitive to its hyperparameters, indicating that a systematic approach is required to find optimal settings for revealing structure within the Operalog data. Directly evaluating the 'quality' of different UMAP projections is challenging therefore, to assess the effectiveness of various projections (resulting from different hyperparameter settings), we adopt an indirect evaluation strategy by applying clustering algorithms to the low-dimensional UMAP outputs. The quality of the resulting clusters, measured using specific clustering evaluation metrics (introduced in Section~\ref{sec:clusteringEval}), will serve as a proxy for how well the UMAP projection preserved the relevant structure for categorization. The next section introduces the clustering algorithms and metrics chosen for this purpose
+Based on the comparison in the previous subsections, UMAP was selected over PCA as the preferred dimensionality reduction technique for the MPNet and Nomic embedding spaces. The preliminary visualisations also highlighted that UMAP's output is sensitive to its hyperparameters, indicating that a systematic approach is required to find optimal settings for revealing structure within the Operalog data. Directly evaluating the 'quality' of different UMAP projections is challenging therefore, to assess the effectiveness of various projections (resulting from different hyperparameter settings), we adopt an indirect evaluation strategy by applying clustering algorithms to the low-dimensional UMAP outputs. The quality of the resulting clusters, measured using specific clustering evaluation metrics (introduced in Section~\ref{sec:clusteringEval}), will serve as a proxy for how well the UMAP projection preserved the relevant structure for categorisation. The next section introduces the clustering algorithms and metrics chosen for this purpose
 
 % \todo[inline, caption={}]{
 %     \begin{itemize}
@@ -1175,80 +1241,166 @@ Based on the comparison in the previous subsections, UMAP was selected over PCA 
 %     \end{itemize}
 % }
 
-\section{Unsupervised categorisation through clustering}
+\section{Unsupervised categorisation through clustering}\label{sec:unsupcat}
 
-The low-dimensional embedding space, projected by UMAP, is now ready for clustering. Clustering is the unsupervised machine learning task of grouping similar points together (see Section~\ref{sec:clustering}). Intuitively, each cluster produced by a clustering algorithm can be mapped uniquely to an Operalog fault category. However, as we are inducing fault categories `unsupervised', it is not immediate how to evaluate any one clustering. Three clustering algorithms were chosen, to compare against each other: k-Medoids \cite{kmedoids}, a partitioning-based clustering algorithm; DBSCAN \cite{ester1996density}, a density-based clustering algorithm; and HDBSCAN \cite{campello2013density}, a hybrid density and hierarchical clustering algorithm which is based on DBSCAN. In addition to this, k-Means \cite{macqueen1967some}, another partition-based clustering algorithm was considered but not chosen. This is due to the well-known disadvantages of k-Means; it is highly sensitive to the initialised configuration and it has issues with instability \cite{zhang2008improved}. This section outlines the clustering algorithms used and motivates the clustering heuristics used for clustering evaluation.
+Following dimensionality reduction via UMAP, the resulting low-dimensional embedding space is prepared for the core task of clustering. As outlined in Section~\ref{sec:clustering}, clustering is an unsupervised machine learning approach used to group similar data points. Within this project's context, the goal is to group the embeddings of Operalog \texttt{FaultDescription} entries such that each resulting cluster corresponds to a distinct, underlying fault category. Ideally, the clustering process should automatically discover these latent categories from the data structure.
 
-\todo{Maybe list these clustering heuristics explicitly here?}
+To explore different clustering paradigms, three algorithms were selected for evaluation based on their characteristics described in Section~\ref{sec:clustering}:
+
+\begin{itemize}
+    \item k-Medoids \cite{kmedoids} - A partitioning-based algorithm that groups data around actual data points (medoids).
+    \item DBSCAN \cite{ester1996density} - A density-based algorithm that identifies clusters based on regions of high point density.
+    \item HDBSCAN \cite{campello2013density} - An algorithm combining density-based principles with hierarchical clustering to identify stable clusters across varying densities.
+\end{itemize}
+
+Notably, k-Means \cite{macqueen1967some}, another common partitioning algorithm, was considered but excluded due to its known sensitivity to initialisation and potential instability compared to k-Medoids \cite{zhang2008improved}.
+
+A fundamental challenge in unsupervised clustering is evaluating the quality of the resulting clusters without ground truth labels. To quantitatively assess and compare the different clustering outcomes, three established internal evaluation metrics (heuristics) are employed: the Silhouette coefficient \cite{rousseeuw1987silhouettes}, the Davies-Bouldin index \cite{davies1979cluster}, and the Calinski-Harabasz index \cite{calinski1974dendrite}.
+
+This section details the rationale for selecting the specific clustering algorithms and introduces the evaluation heuristics used in the subsequent hyperparameter optimisation phase.
 
 \subsection{Clustering Candidates}
 
-The k-Medoids clustering algorithm has one key hyperparameter (see Section~\ref{sec:kmedoids}), $k$, the number of initial clusters. Due to this, to select the optimal configuration, various values of $k$ must be tested against clustering heuristics. Additionally, as mentioned in the detailed description of the k-Medoids algorithm, the runtime complexity of the algorithm 
+The suitability of each clustering algorithm depends on the structure of the data and the nature of the desired clusters. Below, we discuss the characteristics of each chosen algorithm in the context of the Operalog embedding data.
 
-The DBSCAN algorithm has two key hyperparameters (see Section~\ref{sec:dbscan}), \texttt{Eps} and \texttt{MinPts}. 
+\paragraph{k-Medoids} As described in Section~\ref{sec:kmedoids}, the k-Medoids algorithm (implemented via the PAM algorithm in common libraries like scikit-learn \cite{scikit-learn}) requires only one primary hyperparameter: $k$, the desired number of clusters. While determining the optimal $k$ for the unknown Operalog fault categories is non-trivial, having a single parameter simplifies the optimisation process. Furthermore, $k$ has an intuitive interpretation:  higher $k$ might isolate rate but specific ion source faults, while lower $k$ might group broader issues such as `ion source failure'. 
+However, k-Medoids assumes clusters are roughly spherical and aims to minimise distances to central medoids \cite{kmedoids}. Visual inspection of the UMAP projections (Figure~\ref{fig:dimred-compare} and Appendix~\ref{app:umaphypgrid}) suggests the Operalog embeddings form complex, non-spherical structures. Therefore, k-Medoids might struggle to accurately capture the boundaries of these potential fault categories. 
 
-The HDBSCAN algorithm only has one key hyperparameter (see Section~\ref{sec:hdbscan}), $m_{\text{pts}}$.
+\paragraph{DBSCAN} This algorithm (Section~\ref{sec:dbscan}) uses two key hyperparameters, \texttt{Eps} and \texttt{MinPts}, to define local density. Its main advantages are the ability to find arbitrarily shaped clusters and explicitly identify noise points, which could be valuable for isolating unusual or poorly described Operalog entries \cite{ester1996density}. However, DBSCAN's performance relies heavily on selecting appropriate \texttt{Eps} and \texttt{MinPts} values. Its use of a single, global density threshold makes it potentially sensitive to datasets containing clusters of varying densities \cite{campello2013density}. Assessing whether the Operalog embeddings exhibit such density variations is difficult visually. The IsoScore metric \cite{rudman2021isoscore}, which measures the uniformity of space utilisation by the projected points, provides some insight. Figure~\ref{fig:isoscore} shows average IsoScores of 0.653 (MPNet) and 0.710 (Nomic) for the UMAP projections. While these values indicate reasonable space utilisation, they are not close to 1, suggesting potential density variations that might pose a challenge for DBSCAN's global threshold approach. We expect some very short \texttt{FaultDescription} entries which are common, leading to dense clusters and longer entries, which are more rare, leading to sparse clusters. This insight would support the concern about the varying densities.
 
-\todo{Heavily fix the wording here, discuss benefits and drawbacks of each for our operalog and motivate why we need to test all three.}
+\paragraph{HDBSCAN} As an extension of DBSCAN (Section~\ref{sec:hdbscan}), HDBSCAN aims to overcome the sensitivity to Eps and the varying density problem. It achieves this by building a cluster hierarchy and using a stability measure to extract clusters that persist across a range of density levels \cite{campello2013density}. It requires only one primary hyperparameter, $m_{\text{pts}}$ (equivalent to \texttt{MinPts} in DBSCAN), making it simpler to tune than DBSCAN. Its ability to handle varying densities and its robustness (consistent results between runs) make it a strong candidate for the Operalog data, where the true number and density of fault categories are unknown. As mentioned before, since we expect a clusters of varied densities, being able to find stable clusters in this space is desirable for discovering potentially diverse fault types in the Operalog.
 
-\subsection{Clustering heuristics}  
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{./images/isoscore.png}
+    \caption{IsoScore comparison of MPNet versus Nomic embeddings over 100 runs of UMAP. UMAP parameters: \texttt{min\_dist} $=0.1$, \texttt{n\_neighbors} $=15$, \texttt{metric} $= \text{cosine}$.}\label{fig:isoscore}
+\end{figure}
 
-Motivated by the necessity to evaluate this open-ended problem, four clustering heuristics are utilised: inertia, ... \todo{list the others here}.
+Based on these characteristics, we hypothesize that HDBSCAN might be best suited for this task, followed by DBSCAN, with k-Medoids likely performing worst due to the non-spherical nature of the projected data. However, empirical evaluation across all three algorithms is necessary to validate these expectations and determine the most effective approach for automatically categorising the Operalog fault descriptions. The subsequent hyperparameter optimisation (Section~\ref{sec:hyperparameterOpt}) and evaluation will compare their performance quantitatively using the clustering heuristics.
 
+\subsection{Clustering heuristics} \label{sec:clusterheuristics}
 
-\todo[inline, caption={}]{
-    \begin{itemize}
-        \item mention k-medoids sklearn implementation uses PAM algorithm. Touch on the fact it only has one parameter, which is significant for our usecase
-        \item motivate the clustering - DONE ISH
-        \item talk about clustering algorithms we did not consider, with research - DONE ISh
-        \item explain the 3 clustering methods we have chosen to use and the hyperparameters in a table
-        \item show test clustering 
-        \item this section is not really quantitative, highlight how we have to introduce clustering heuristics 
-    \end{itemize}
-}
+Motivated by the necessity to quantitatively evaluate the quality of different clustering results in this unsupervised setting, three well-understood, internal clustering evaluation metrics (heuristics) are utilised. These metrics assess the `goodness-of-fit' based on the properties of the clusters themselves:
+\begin{itemize}
+    % \item Inertia - Also known as the within-cluster sum-of-squares, this metric measures cluster compactness by summing the squared distances of each sample to its closest cluster centre (medoid in the case of k-Medoids) \cite{macqueen1967some}. Lower inertia values generally indicate denser, more compact clusters. However, inertia tends to decrease as the number of clusters increases, making it less useful for comparing clusterings with different numbers of clusters (k).
+
+    \item Silhouette coefficient - This metric evaluates how well-separated clusters are by comparing each point's average distance to points in its own cluster (cohesion) with its average distance to points in the nearest neighbouring cluster (separation) \cite{rousseeuw1987silhouettes}. Scores range from -1 to 1, where values closer to 1 indicate well-separated, dense clusters, values near 0 suggest overlapping clusters, and negative values indicate potential misclassifications.
+
+    \item Davies-Bouldin index - This index quantifies the average `similarity' between each cluster and its most similar neighbour, where similarity is defined as the ratio of within-cluster scatter to between-cluster separation \cite{davies1979cluster}. Lower Davies-Bouldin scores indicate better clustering, implying clusters are compact and well-separated from their nearest neighbours.
+
+    \item Calinski-Harabasz index - Measures the ratio of the sum of between-cluster dispersion to the sum of within-cluster dispersion for all clusters \cite{calinski1974dendrite}. Higher Calinski-Harabasz scores generally indicate better defined clusters. That is, clusters are dense and well-separated.
+\end{itemize}
+
+Furthermore, each of these metrics captures a different aspect of clustering quality (compactness, separation and variance ratios). As it is unclear which single metric best reflects the desired clustering structure for a specific dataset and task, particularly in an exploratory context like identifying Operalog fault categories, all three metrics were used collectively during the hyperparameter optimisation phase (Section~\ref{sec:hyperparameterOpt}) to provide a more comprehensive assessment of the different clustering solutions.
+
+% \todo[inline, caption={}]{
+%     \begin{itemize}
+%         \item mention k-medoids sklearn implementation uses PAM algorithm. Touch on the fact it only has one parameter, which is significant for our usecase
+%         \item motivate the clustering - DONE ISH
+%         \item talk about clustering algorithms we did not consider, with research - DONE ISh
+%         \item explain the 3 clustering methods we have chosen to use and the hyperparameters in a table
+%         \item show test clustering 
+%         \item this section is not really quantitative, highlight how we have to introduce clustering heuristics 
+%     \end{itemize}
+% }
 
 \section{Hyperparameter optimisation}\label{sec:hyperparameterOpt}
 
+As established in previous sections, achieving effective unsupervised categorisation requires careful selection of parameters for both the dimensionality reduction (UMAP, Section~\ref{sec:umap}) and clustering stages (Section~\ref{sec:clustering}). Given the interplay between these stages and the sensitivity of algorithms like UMAP and DBSCAN to their settings, a systematic approach to find optimal parameter combinations is necessary. Furthermore, as discussed in Section~\ref{sec:clusterheuristics} different internal clustering evaluation metrics capture distinct aspects of cluster quality, and it is unclear which single metric best reflects the desired outcome for a specific dataset.   
+
+To address these challenges, this project employed the Optuna framework for automatic hyperparameter optimisation \cite{akiba2019optuna}. Optuna was selected over alternatives like Hyperband \cite{li2018hyperband} primarily due to its robust support for multi-objective optimisation \cite{akiba2019optuna}. This capability is crucial here, as the goal was to simultaneously optimise the clustering results based on multiple evaluation heuristics: the Silhouette coefficient, Davies-Bouldin index, and Calinski-Harabasz index. The optimisation aims to maximise the Silhouette and Calinski-Harabasz scores while minimising the Davies-Bouldin score \cite{rousseeuw1987silhouettes, davies1979cluster, calinski1974dendrite}. A practical advantage of Optuna noted during this work was its ability to save and resume optimisation states, improving research efficiency \cite{akiba2019optuna}.   
+
+An Optuna optimisation session, termed a `study', iteratively evaluates different hyperparameter configurations (`trials') \cite{akiba2019optuna}. For each trial, Optuna suggests parameter values based on a chosen sampler algorithm. This study utilised the Tree-structured Parzen Estimator sampler, which is Optuna's default algorithm known for efficiently exploring complex search spaces \cite{watanabe2023tree}. The core components of the Optuna study setup were:   
+
+\begin{itemize}
+    \item Objective function - A function designed to take a set of suggested hyperparameters, execute the relevant parts of the pipeline (UMAP transformation and clustering), calculate the three chosen clustering heuristic scores, and return these scores to Optuna. This function defines the search space by specifying the range or set of possible values for each hyperparameter using Optuna's library semantics. The specific hyperparameters optimised included shared UMAP settings and algorithm-specific parameters, with ranges informed by preliminary experimentation as shown in Table \ref{tab:hypreal}. To handle potential errors arising from UMAP's stochastic nature or problematic parameter combinations leading to clustering failures, the objective function incorporated a retry mechanism (up to 10 attempts). If errors persisted, the trial was assigned extremely poor heuristic scores to guide the optimiser away from that configuration region.
+    \item Number of trials - An upper limit defining the maximum number of configurations to evaluate within the study.
+\end{itemize}
+
+
+Upon completion of the specified number of trials, the study yields a set of optimal configurations, those for which no single objective (i.e. heuristic) score can be improved without worsening at least one other objective. Since multiple objectives often lead to several such `best' configurations, a post-optimisation filtering step was applied using rank aggregation \cite{li2019comparative}. For each heuristic, the optimal configurations were ranked, and each configuration received points equal to its inverse rank. For example, for 10 configurations, rank 1 gets 10 points, rank 2 gets 9, ..., rank 10 gets 1 point. These points were summed across all three heuristics for each configuration. The configuration(s) with the highest total score were selected as the final `best' performing set of hyperparameters, representing a balanced choice across the different measures of clustering quality. The quantitative results of this optimisation are presented and discussed in Chapter~\ref{chap:results}.
+
+
+\begin{table}[htbp]
+    \fontsize{8}{11}\selectfont % Font size setting
+    \centering
+    \caption{Optuna hyperparameter search space} % Caption
+    \label{tab:hypreal}
+    \renewcommand{\arraystretch}{1.2} % Row spacing
+    \rowcolors{2}{gray!10}{white} % Row coloring
+    % Use tabularx to fit the text width. 'X' column automatically adjusts and wraps text.
+    \begin{tabularx}{\textwidth}{l l X}
+        \toprule % Top rule from booktabs
+        \textbf{Scope} & \textbf{Hyperparameter} & \textbf{Range / Set} \\ % Column headers - slightly adjusted last header
+        \midrule % Middle rule from booktabs
+        General       & \texttt{n\_components} & Integer range $[2, 6]$ \\
+        General       & \texttt{n\_neighbors}  & Integer range $[3, 15]$ \\
+        General       & \texttt{min\_dist}     & Float range $(0, 0.2)$ \\
+        General       & \texttt{metric}        & Set $\{$ \texttt{'euclidean'}, \texttt{'cosine'} $\}$ \\
+        k-Medoids     & \texttt{k}             & Integer range $[3, 30]$ \\
+        DBSCAN        & \texttt{Eps}           & Float range $[0.1, 1.0]$ \\
+        DBSCAN        & \texttt{MinPts}        & Integer range $[3, 12]$ \\
+        HDBSCAN       & $m_{\text{pts}}$       & Integer range $[3, 30]$ \\
+        \bottomrule % Bottom rule from booktabs
+    \end{tabularx}
+    \renewcommand{\arraystretch}{1.0} % Reset arraystretch to default
+\end{table}
+
 \section{Label generation}
+
+After achieving the `most optimal’ clusters through the hyperparameter optimisation process described in Section~\ref{sec:unsupcat}, the final step involves automatically inferring meaningful names or labels for these discovered groups. This automatic label generation was performed leveraging the natural language processing capabilities of the SpaCy library \cite{spacy2}. The main idea is to capture the essence of the text in each cluster into a precise but representative phrase.
+
+The process begins by examining all the \texttt{FaultDescription} sentences assigned to a particular cluster. For each sentence, SpaCy is employed to perform detailed linguistic analysis, including part-of-speech tagging and dependency parsing \cite{tabassum2020survey}. This helps identify key components of the grammar and determine their relationships within the sentence.
+
+To focus on the most informative words, several filtering (pre-processing) steps are applied during this analysis. Common English stop-words, along with project-specific stop-words (like `ion source' or `breakdown', as discussed in Section~\ref{sec:preproc}), are disregarded \cite{tabassum2020survey}. Furthermore, tokens that are non-alphanumeric or consist of fewer than two characters are excluded to reduce noise from punctuation or trivial entries.
+
+From the remaining tokens, the system specifically identifies and collects verbs (particularly the root verb of sentences), direct objects (identified via dependency relations), nouns, and adjectives. To ensure consistency and group related word forms, lemmatisation is applied, reducing words to their base or dictionary form. For example, `changed' and `changing' become 'change' \cite{tabassum2020survey}.
+
+Building the label then involves constructing a naive phrase by combining the most frequently occurring elements identified across all sentences in the cluster. Specifically, the system determines:
+\begin{itemize}
+    \item The single most common verb (identified as the root of sentences).
+    \item The single most common direct object (based on dependency parsing).
+    \item The top two most common nouns (excluding any words already selected as the verb or direct object to ensure variety).
+\end{itemize}
+
+These selected components are then combined into a single, underscore-separated string to form the cluster's generated label. This approach incorporates a mechanism to handle cases where fewer than the desired number of unique terms are available within a cluster's vocabulary, ensuring a label is still generated. The selection process considers a configurable maximum number of top nouns to examine, ensuring efficiency while capturing the primary themes.
+
+Finally, this label generation process is integrated into the data handling workflow. It operates on the clustered data, mapping the generated underscore-separated label back to each original log entry belonging to that cluster.
+
+The intuition behind this heuristic approach is to capture the core semantic meaning of the fault descriptions within a cluster by focusing on the primary action (verb), the entity acted upon (direct object), and the key subjects or items involved (nouns), thereby creating a succinct, machine-generated descriptor for each automatically identified fault category.
 
 \section{CLI Application}\label{sec:CLI}
 
-\todo[inline, caption={}]{
+To facilitate the practical application and reproducibility of the methodology developed in this project, a Command Line Interface (CLI) tool was created, accompanying the code submission. This application encapsulates the end-to-end pipeline, providing users with a means to apply the automatic labelling process to Operalog data.
+
+The primary functions offered by the CLI include managing the hyperparameter optimisation process, allowing users to initiate new optimisation runs or resume existing ones, and executing the label inference step on clustered data. Upon completion, the tool generates two key output artefacts: an updated version of the Operalog dataset, augmented with columns indicating the assigned numerical cluster identifier (\text{label}) and the inferred natural language label (\texttt{real\_label}) for each entry, and a structured JSON file. This JSON file contains lists of the original sentences grouped by their assigned cluster, alongside a mapping from each cluster ID to its generated natural language label.
+
+To offer flexibility, the CLI exposes several parameters for user configuration. The primary parameters are listed below:
+\begin{itemize}
+    \item Model - The HuggingFace model path.
+    \item Keep punctuation - Boolean toggle which keeps punctuation from being stripped during the text pre-processing stage.
+    \item Ignore case - Boolean toggle which ignores casing during the text pre-processing stage.
+    \item Clustering methods - Define one or more clustering methods to use for the hyperparameter optimisation stage. 
+    \item Heuristic methods - Define one or more heuristic methods to use for the hyperparameter optimisation stage.
+\end{itemize}
+
+The design of the CLI application and its underlying codebase explicitly considers future development. Its structure allows users to experiment with embedding models beyond those researched in this project by simply providing a different model path. Furthermore, the modular organisation of the codebase aims to simplify the future integration of additional clustering algorithms or evaluation heuristics, enhancing the tool's potential utility for ongoing research or operational use.
+
+\chapter{Results and Discussion}\label{chap:results}
+
+\todo[inline, caption={}] {
     \begin{itemize}
-        \item Okay so we have done hyper parameter tuning etc but the real benefit of this tool is that it gives you a qualitatively assessable result in an easy to run format.
+        \item Rank aggregation
+        \item plot whiskers (or maybe in results?). acc this should be in results as it makes sense that is quantitative evaluation of results.
+        \item results should also talk about qualitatively and motivate the conclusion, this is a step in the right direction but not 100\%.
     \end{itemize}
 }
-
-
-\todo[inline,caption={}]{
-    Describe the methods and procedures used.
-    The things in this section will include.
-    \begin{itemize}
-        \item Explaining data format and data visualisation: wordcloud.
-        \item Data cleaning steps, including removing key words such as Ion Source.
-        \item Text preprocessing steps (cleaning) and computational challenges (tensorflow).
-        \item Choosing the best sentence embedding transformer: MPNET, NOMIC.
-        \item Data visualisation (before and after sentence embedding): similarity visualisation, explain unique sentences, token length distribution.
-        \item Motivate why clustering in higher dimensions performs worse
-        \item UMAP, PCA, t-SNE comparison. Motivate using UMAP.
-        \item UMAP hyperparameter optimisation.
-        \item Performing clustering with kmedoids, dbscan, hdbscan.
-        \item Using optuna.
-        \item Evaluation of results and choosing the best model (and arguing why hdbscan is the best by looking at the variance of dbscan and inflexibility of kmedoids)
-        \item Touch on the production of a CLI application that allows you to mix and match various parts of the pipeline. Motivate the need for command line tool.
-    \end{itemize}
-}
-
-\chapter{Results and Discussion}
 
 \todo[inline,caption={}]{
 Describe the results and analyse the results
 \begin{itemize}
-    \item Analyse the word cloud.
     \item Analyse the sentence embedding results.
-    \item Analyse UMAP vs. PCA vs. t-SNE qualitatively and later quantitatively (compared to the clustering).
     \item Anaylse the UMAP hyperparameter optimisation qualitatively, mention that we use Optuna.
-
     \item Next steps: Fine tuning the PLM (Nomic or MPNet). Using MOE nomic (v2). Rent higher computation, then you can use top performing PLMS. Using t-SNE to see differences.
 \end{itemize}
 }
@@ -1269,15 +1421,75 @@ Describe the results and analyse the results
 % References
 % -------------------------
 % \bibliographystyle{plainnat}
-
+\clearpage
+\begin{multicols}{2} 
+\small
 \bibliographystyle{plainnat}
 \bibliography{refs}  % Uses the external file refs.bib
+\end{multicols}
+
 
 \appendix
-\chapter{Further Discussion}
+\chapter{Supplementary Technical Details}
+
+\section{BERT and XLNet Pre-training}\label{app:bert_xlnet_details}
+
+This section provides supplementary technical details on the pre-training objectives and mechanisms of the BERT and XLNet models, as discussed conceptually in Section~\ref{sec:BERT}.
+
+\subsection{BERT Pre-training Tasks}
+
+The BERT model \cite{devlin2019bert} employs two pre-training objectives during its pre-training phase:
+
+\begin{itemize}
+    \item Masked Language Modelling - During training, a portion of the input tokens are `masked' and the model predicts these masked tokens based on the remaining context, using cross-entropy loss \cite{zhang2018generalized}. In the literature, this is referred to as a Cloze task \cite{taylor1953cloze}. In the experiments conducted by (\citet{devlin2019bert}) 15\% of tokens in each sequence are randomly selected for masking. To mitigate the mismatch between pre-training and fine-tuning phases where the \texttt{[MASK]} token does not appear, the training data generator replaces each chosen masked token with: (1) the special token \texttt{[MASK]} 80\% of the time; (2) a random token 10\% of the time; and (3) the original token itself 10\% of the time \cite{devlin2019bert}.
+
+    \item Next Sentence Prediction - In this task, the model is trained on a binary classification task predicting the relationship between sentence pairs. Given two sentences \texttt{A} and \texttt{B} either (1) sentence \texttt{B} is the actual sentence that follows \texttt{A} 50\% of the time or (2) sentence \texttt{B} is randomly selected from the corpus 50\% of the time \cite{devlin2019bert}. This task aimed to help BERT understand sentence relationships, though later models like RoBERTa and MPNet found it might not always be beneficial \cite{liu2019roberta, song2020mpnet}. % Added RoBERTa context from memory, optional
+\end{itemize}
+
+Figure~\ref{fig:bert1_appendix} illustrates the overall pre-training and fine-tuning workflow for BERT.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{BERT1.png} % Assuming BERT1.png is the correct image file
+    \caption[BERT Pre-training and Fine-tuning Phases (Appendix)]{The overall pre-training and fine-tuning phases for BERT. For different down-stream tasks, notice the same architecture, except output layer, is used. Source: (\citet{devlin2019bert}). (Figure originally appeared as Figure 2.2)}
+    \label{fig:bert1_appendix} % Changed label to avoid conflict
+\end{figure}
+
+\subsection{XLNet Technical Details}
+
+XLNet \cite{yang2019xlnet} introduced mechanisms to overcome limitations observed in BERT, particularly concerning the pre-train-to-fine-tune discrepancy and the independence assumption in MLM.
+
+\subsubsection*{Auto-regressive vs. Auto-encoding Perspectives}
+According to (\citet{yang2019xlnet}), pre-training objectives can be broadly categorized as auto-regressive (AR) or auto-encoding (AE). AR language modelling, given a sequence of tokens $X = (x_1, ..., x_T)$, aims to factorize the likelihood of a token into either a forward or backward product:
+\begin{align}
+    p(x) &= \prod_{i=1}^{T} p(x_i | X_{<i}) \label{eq:fwdprod_appendix} \\ % Relabeled
+    p(x) &= \prod_{i=T}^{i} p(x_i | X_{>i}) \label{eq:bckprod_appendix} % Relabeled
+\end{align}
+where $X_{<i}$ denotes tokens before position $i$. As standard AR models only encode context unidirectionally, their effectiveness can be limited \cite{yang2019xlnet}. AE models like BERT reconstruct original data from corrupted input (i.e. masked tokens), allowing bidirectional context but potentially suffering from issues like the pretrain-finetune discrepancy and independence assumptions \cite{yang2019xlnet}.
+
+\subsubsection*{Permutation Language Modeling Formalism}
+XLNet employs Permutation Language Modelling as an AR objective that captures bidirectional context. It maximizes the expected log-likelihood over all possible factorisation orders (permutations) of the input sequence \cite{yang2019xlnet}. More formally:
+\begin{equation}
+    \max_{\theta} \text{  } \mathbb{E}_{z\in\mathcal{Z}_T} \bigl[ \sum_{i=1}^{T} \log p_{\theta} \bigl(x_{z_i}\mid x_{z_{<i}}\bigr) \bigr], \label{eq:plm_appendix} % Relabeled
+\end{equation}
+where $\mathcal{Z_T}$ is the set of all $T!$ permutations of the index list $[1, ... , T]$. For a given permutation $z = (z_1, ..., z_T)$, $X_{z_{<i}}$ denotes the tokens appearing before $z_i$ in that permutation. $\theta$ represents the shared model parameters across all permutations \cite{yang2019xlnet}. By training across all permutations, each position learns to utilise context from all other positions.
+
+\subsubsection*{Two-Stream Self-Attention Mechanism}
+To implement permutation language modelling while preventing the model from seeing the token it needs to predict, XLNet uses a two-stream self-attention mechanism \cite{vaswani2017attention, yang2019xlnet}. It maintains two hidden states per position at each layer:
+\begin{enumerate}
+    \item Content Stream ($h$) - Encodes both the content and position of a token, similar to standard transformer hidden states. It can access contextual information up to and including the current position in the permutation.
+    \item Query Stream ($g$) - Encodes contextual information and the current position $z_i$, but, importantly, not the content $x_{z_i}$ of the token at the current position. It is used to gather information from the context $x_{z_{<i}}$ to predict $x_{z_i}$.
+\end{enumerate}
+At layer $m$ and target position $z_i$, the streams are updated using attention mechanisms, conceptually as follows \cite{vaswani2017attention, yang2019xlnet}:
+\begin{align}
+    g_{z_i}^{(m)} &\leftarrow \text{Attention} (Q = g_{z_i}^{(m - 1)}, KV = h_{z_{<i}}^{(m - 1)}) \label{eq:xlnet_g_update_appendix} \\ % Relabeled
+    h_{z_i}^{(m)} &\leftarrow \text{Attention} (Q = h_{z_i}^{(m - 1)}, KV = h_{z_{\le i}}^{(m - 1)}) \label{eq:xlnet_h_update_appendix} % Relabeled
+\end{align}
+The query stream $g_{z_i}^{(m)}$ attends only to the content representations $h$ of tokens preceding $z_i$ in the current permutation. The content stream $h_{z_i}^{(m)}$ calculates an attention distribution over tokens up to and including $z_i$. After the final layer $M$, the query stream representation $g_{(z_i)}^{(M)}$ is used to compute the probability distribution over the vocabulary for predicting $x_{z_i}$ via a soft-max layer \cite{gao2017properties, yang2019xlnet}. This mechanism allows XLNet to predict tokens using contextual information gathered auto-regressively based on the permutation, without directly accessing the target token's content representation.
+
 \section{MPNet Mathematical Formulations} \label{app:mpnet_maths}
 
-This appendix provides supplementary mathematical details for the MPNet model discussed in Section~\ref{sec:rationalempnet}.
+This section provides supplementary mathematical details for the MPNet model discussed in Section~\ref{sec:rationalempnet}.
 
 \subsection{MPNet Pre-training Objective}
 
@@ -1337,8 +1549,6 @@ where $[M]$ denotes the mask token placeholder.
 % \end{align}
 % identical to Eq. (3) in \citet{song2020mpnet}.  
 %
-% % ➜  Suggestion: move the equation and derivation to Appendix A and leave a
-% %    one‑line pointer here.
 % To illustrate, a 6‑token input
 % $(x_1,\dots,x_6)$ permuted as $(x_3,x_5,x_2,x_1,x_4,x_6)$ and masked after
 % $c{=}3$ becomes
@@ -1352,6 +1562,38 @@ where $[M]$ denotes the mask token placeholder.
 %     = \langle &x_3, x_5, x_2, [M], [M], [M], x_1, x_4, x_6 \rangle
 %     \label{eq:concatmpnet}
 % \end{align}
+
+
+\subsection{PCA Formalism and SVD Derivation}\label{app:pca}
+
+This appendix provides the formal mathematical details underpinning the conceptual description of Principal Component Analysis (PCA) presented in Section~\ref{sec:pca}, including its optimisation objective and connection to Singular Value Decomposition (SVD) \cite{steinberger2005text}. \\
+
+\noindent If we want to reduce the dimensionality from $n$ features down to $k$ principal components (for $k < n$), we seek a matrix $C \in \mathbb{R}^{n \times k}$ whose columns represent these top $k$ orthogonal component directions (i.e. columns are statistically uncorrelated). The projected data in the lower $k$-dimensional space is given by $XC$. We can approximate the original data $X$ by projecting back from this lower dimension using $XCC^T$. PCA aims to find the matrix $C$ that minimises the difference between the original data $X$ and this reconstructed data $XCC^T$, subject to the constraint that the column-wise components are orthogonal ($C^TC = I$, for the identity matrix $I$) \cite{udell2016generalized}:
+\begin{align}
+    \min_C \| X - XCC^T \|_F^2
+    \label{eq:pca_appendix} % Suggestion: Relabel for appendix context
+\end{align}
+
+A standard and efficient method for solving this optimisation problem and finding the principal components is through the Singular Value Decomposition (SVD) of the data matrix $X$ \cite{steinberger2005text, udell2016generalized}. SVD is a fundamental matrix factorisation technique that decomposes $X$ into three matrices:
+\begin{align}
+    X = USV^T \label{eq:svd_appendix} % Suggestion: Relabel for appendix context
+\end{align}
+Here, $U \in \mathbb{R}^{m \times k}$ and $V \in \mathbb{R}^{n \times k}$ are matrices with orthogonal columns, $S \in \mathbb{R}^{k \times k}$ is a diagonal matrix (only the diagonal contains non-zero elements) which contains the non-negative singular values ($s_i$) sorted in descending order, and $k$ is the rank of matrix $X$.
+
+The crucial link to PCA is that the columns of the matrix $V$ are precisely the principal component directions we seek. That is, the matrix $C$ in Equation~\ref{eq:pca_appendix}, containing the top $k$ principal components, corresponds to the first $k$ columns of $V$. % NOTE: Check if Equation reference needs updating
+
+Furthermore, SVD connects directly to the covariance matrix of the data ($X^TX$, assuming $X$ is centered). The decomposition of the covariance matrix is given by:
+\begin{align}
+    X^TX &= (USV^T)^T (USV^T) \\ % Show transpose step
+         &= (VS^T U^T) (USV^T) \\ % Apply transpose rules
+         &= V S^T (U^T U) S V^T \\ % Associativity
+         &= V S^T I S V^T \quad \text{(since } U^T U = I \text{)} \\
+         &= V (S^T S) V^T \\
+         &= V S^2 V^T\quad \text{(since } S \text{ is a diagonal matrix)}
+         \label{eq:svd_covariance_appendix} % Suggestion: Relabel for appendix context
+\end{align}
+
+This is the eigen-decomposition of the covariance matrix $X^TX$. It shows that the columns of $V$ are the eigenvectors (the principal components), and the diagonal entries of $S^2$  are the corresponding eigenvalues (i.e. $s_i^2 = \lambda_i$). Since the eigenvalues represent the variance of the data along the eigenvectors, the squared singular values ($s_i^2$) directly quantify the variance captured by each principal component \cite{udell2016generalized}. Therefore, computing the SVD of the data matrix $X$ provides both the principal components (in $V$) and the measure of variance associated with each component (in $S^2$) without explicitly forming the covariance matrix. Using a truncated SVD (keeping only the top $k$ components corresponding to the largest singular values) gives us a reduction in the dimensions.
 
 \section{UMAP Hyperparameter Search} \label{app:umaphypgrid}
 
@@ -1394,5 +1636,57 @@ Figures~\ref{fig:mpnet1} through \ref{fig:nomic3} in this appendix illustrate th
     \label{fig:nomic3}
 \end{figure}%
 
+\clearpage
+\section{k-Medoids - The PAM Algorithm}\label{app:pam}
+This section provides a high-level pseudocode of the Partitioning Around Medoids (PAM) algorithm, the core algorithm of the k-Medoids clustering method, as discussed in Section~\ref{sec:kmedoids} \cite{kmedoids}.
+
+\begin{algorithm}[caption={Partitioning Around Medoids (PAM).}, label={alg:pam}]
+input: Dataset $X = \{x_1, ..., x_n\}$, integer $k$ (number of clusters)
+output: Set of $k$ medoids $M$, Partition $X' = \{C_1, ..., C_k\}$ where $C_j$ is the set of points assigned to medoid $m_j$
+
+begin
+    # --- Build Phase (Conceptual) ---
+    # Select an initial set of k medoids M from X
+    # (i.e. using a heuristic that minimises initial total dissimilarity)
+    $M \gets$ SelectInitialMedoids($X, k$)
+
+    # --- Swap Phase ---
+    repeat
+        best_cost_reduction $\gets 0$
+        best_swap $\gets \emptyset$ 
+        total_cost $\gets$ ComputeTotalDissimilarity($X, M$) # Cost based on current M
+
+        # Consider swapping each medoid m with each non-medoid x
+        foreach $m \in M$ do
+            foreach $x \in X \setminus M$ do
+                # Compute cost if m is replaced by x
+                $M_{swap} \gets (M \setminus \{m\}) \cup \{x\}$
+                cost_after_swap $\gets$ ComputeTotalDissimilarity($X, M_{swap}$)
+                cost_reduction $\gets$ total_cost - cost_after_swap
+
+                # Check if this swap is the best found so far
+                if cost_reduction > best_cost_reduction then
+                    best_cost_reduction $\gets$ cost_reduction
+                    best_swap $\gets (m, x)$ # Store the potential swap pair
+                end
+            end
+        end
+
+        # Perform the best swap found in this iteration, if any cost reduction occurred
+        if best_cost_reduction > 0 then
+            ($m_{out}, x_{in}$) $\gets$ best_swap
+            $M \gets (M \setminus \{m_{out}\}) \cup \{x_{in}\}$ # Update medoid set
+            improved $\gets$ true
+        else
+            improved $\gets$ false # No cost reduction possible
+        end
+    until not improved # Stop when no swap improves the total cost
+
+    # Assign points to final medoids to form clusters X'
+    $X' \gets$ AssignPointsToClusters($X, M$)
+
+    return M, X'
+end
+\end{algorithm}
 
 \end{document}

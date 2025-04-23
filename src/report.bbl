@@ -1,4 +1,4 @@
-\begin{thebibliography}{96}
+\begin{thebibliography}{102}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -211,6 +211,12 @@ Alexander Hinneburg and Daniel~A Keim.
   in high-dimensional clustering.
 \newblock 1999.
 
+\bibitem[Honnibal and Montani(2017)]{spacy2}
+Matthew Honnibal and Ines Montani.
+\newblock {spaCy 2}: Natural language understanding with {B}loom embeddings,
+  convolutional neural networks and incremental parsing.
+\newblock 2017.
+
 \bibitem[Hotelling(1933)]{hotelling1933analysis}
 Harold Hotelling.
 \newblock Analysis of a complex of statistical variables into principal
@@ -311,6 +317,22 @@ Hongfei Li, Dhaivat Parikh, Qing He, Buyue Qian, Zhiguo Li, Dongping Fang, and
   predictive maintenance.
 \newblock \emph{Transportation Research Part C: Emerging Technologies},
   45:\penalty0 17--26, 2014.
+
+\bibitem[Li et~al.(2018)Li, Jamieson, DeSalvo, Rostamizadeh, and
+  Talwalkar]{li2018hyperband}
+Lisha Li, Kevin Jamieson, Giulia DeSalvo, Afshin Rostamizadeh, and Ameet
+  Talwalkar.
+\newblock Hyperband: A novel bandit-based approach to hyperparameter
+  optimization.
+\newblock \emph{Journal of Machine Learning Research}, 18\penalty0
+  (185):\penalty0 1--52, 2018.
+
+\bibitem[Li et~al.(2019)Li, Wang, and Xiao]{li2019comparative}
+Xue Li, Xinlei Wang, and Guanghua Xiao.
+\newblock A comparative study of rank aggregation methods for partial and top
+  ranked lists in genomic applications.
+\newblock \emph{Briefings in bioinformatics}, 20\penalty0 (1):\penalty0
+  178--189, 2019.
 
 \bibitem[Liang et~al.(2017)Liang, Sun, Sun, and Gao]{liang2017text}
 Hong Liang, Xiao Sun, Yunlei Sun, and Yuan Gao.
@@ -432,6 +454,16 @@ Karl Pearson.
 \newblock \emph{The London, Edinburgh, and Dublin philosophical magazine and
   journal of science}, 2\penalty0 (11):\penalty0 559--572, 1901.
 
+\bibitem[Pedregosa et~al.(2011)Pedregosa, Varoquaux, Gramfort, Michel, Thirion,
+  Grisel, Blondel, Prettenhofer, Weiss, Dubourg, Vanderplas, Passos,
+  Cournapeau, Brucher, Perrot, and Duchesnay]{scikit-learn}
+F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,
+  M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, J.~Vanderplas, A.~Passos,
+  D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay.
+\newblock Scikit-learn: Machine learning in {P}ython.
+\newblock \emph{Journal of Machine Learning Research}, 12:\penalty0 2825--2830,
+  2011.
+
 \bibitem[Pennington et~al.(2014)Pennington, Socher, and
   Manning]{pennington2014glove}
 Jeffrey Pennington, Richard Socher, and Christopher~D Manning.
@@ -458,6 +490,12 @@ Peter~J Rousseeuw.
   cluster analysis.
 \newblock \emph{Journal of computational and applied mathematics}, 20:\penalty0
   53--65, 1987.
+
+\bibitem[Rudman et~al.(2021)Rudman, Gillman, Rayne, and
+  Eickhoff]{rudman2021isoscore}
+William Rudman, Nate Gillman, Taylor Rayne, and Carsten Eickhoff.
+\newblock Isoscore: Measuring the uniformity of embedding space utilization.
+\newblock \emph{arXiv preprint arXiv:2108.07344}, 2021.
 
 \bibitem[Sammons et~al.(2016)Sammons, Christodoulopoulos, Kordjamshidi,
   Khashabi, Srikumar, and Roth]{sammons2016edison}
@@ -614,6 +652,12 @@ Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder, and Furu
 \newblock Multilingual e5 text embeddings: A technical report.
 \newblock \emph{arXiv preprint arXiv:2402.05672}, 2024.
 
+\bibitem[Watanabe(2023)]{watanabe2023tree}
+Shuhei Watanabe.
+\newblock Tree-structured parzen estimator: Understanding its algorithm
+  components and their roles for better empirical performance.
+\newblock \emph{arXiv preprint arXiv:2304.11127}, 2023.
+
 \bibitem[Willard(2012)]{willard2012general}
 Stephen Willard.
 \newblock \emph{General topology}.
@@ -627,13 +671,6 @@ Thomas Wolf, Lysandre Debut, Victor Sanh, Julien Chaumond, Clement Delangue,
 \newblock Huggingface's transformers: State-of-the-art natural language
   processing.
 \newblock \emph{arXiv preprint arXiv:1910.03771}, 2019.
-
-\bibitem[Xue et~al.(2023)Xue, Fu, Zhou, Zheng, and You]{xue2023repeat}
-Fuzhao Xue, Yao Fu, Wangchunshu Zhou, Zangwei Zheng, and Yang You.
-\newblock To repeat or not to repeat: Insights from scaling llm under
-  token-crisis.
-\newblock \emph{Advances in Neural Information Processing Systems},
-  36:\penalty0 59304--59322, 2023.
 
 \bibitem[Yang et~al.(2024)Yang, Yang, Hui, Zheng, Yu, Zhou, Li, Li, Liu, Huang,
   et~al.]{yang2407qwen2}
@@ -654,6 +691,12 @@ Zhilin Yang, Zihang Dai, Yiming Yang, Jaime Carbonell, Russ~R Salakhutdinov,
 Minghe Yu, Guoliang Li, Dong Deng, and Jianhua Feng.
 \newblock String similarity search and join: a survey.
 \newblock \emph{Frontiers of Computer Science}, 10:\penalty0 399--417, 2016.
+
+\bibitem[Zhang et~al.(2008)Zhang, Zhang, and Xue]{zhang2008improved}
+Zhe Zhang, Junxi Zhang, and Huifeng Xue.
+\newblock Improved k-means clustering algorithm.
+\newblock In \emph{2008 Congress on image and signal processing}, volume~5,
+  pages 169--172. IEEE, 2008.
 
 \bibitem[Zhang and Sabuncu(2018)]{zhang2018generalized}
 Zhilu Zhang and Mert Sabuncu.
