@@ -1,13 +1,16 @@
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {1.1}{\ignorespaces Examples of applications of PdM for industrial maintenance strategies.\relax }}{9}{table.caption.15}%
+\contentsline {table}{\numberline {1.1}{\ignorespaces Examples of applications of PdM for industrial maintenance strategies.\relax }}{10}{table.caption.10}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Description of important features (columns) in the Operalog.\relax }}{23}{table.caption.21}%
-\contentsline {table}{\numberline {3.2}{\ignorespaces Operational crew abbreviation mapping.\relax }}{26}{table.caption.29}%
-\contentsline {table}{\numberline {3.3}{\ignorespaces Research hardware description.\relax }}{27}{table.caption.30}%
-\contentsline {table}{\numberline {3.4}{\ignorespaces Models considered but excluded from the embedding pipeline.\relax }}{28}{table.caption.34}%
-\contentsline {table}{\numberline {3.5}{\ignorespaces UMAP hyperparameter values explored in naive grid search\relax }}{32}{table.caption.40}%
-\contentsline {table}{\numberline {3.6}{\ignorespaces Optuna hyperparameter search space\relax }}{38}{table.caption.45}%
+\contentsline {table}{\numberline {3.1}{\ignorespaces Description of important features (columns) in the Operalog.\relax }}{24}{table.caption.16}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Operational crew abbreviation mapping.\relax }}{27}{table.caption.20}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Research hardware description.\relax }}{28}{table.caption.21}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces Models considered but excluded from the embedding pipeline.\relax }}{29}{table.caption.25}%
+\contentsline {table}{\numberline {3.5}{\ignorespaces UMAP hyperparameter values explored in naive grid search\relax }}{34}{table.caption.31}%
+\contentsline {table}{\numberline {3.6}{\ignorespaces Optuna hyperparameter search space.\relax }}{39}{table.caption.36}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Summary of H2H optimisation runs (default pre-processing). All H2H runs used default pre-processing settings (\texttt {ignore\_case=True}, \texttt {keep\_punctuation=False}). Appendix references point to Appendix\nobreakspace {}\ref {app:exp_results_plots}.\relax }}{43}{table.caption.37}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Summary of Free-For-All (F4A) Optimisation Runs. Appendix references point to Appendix\nobreakspace {}\ref {app:exp_results_plots}. Pre-processor settings \texttt {ignore\_case} (normalise text casing) and \texttt {keep\_punc} (keep punctuation) are highlighted. See Section\nobreakspace {}\ref {sec:preproc} for more information. \relax }}{44}{table.caption.38}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

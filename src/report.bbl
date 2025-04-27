@@ -1,4 +1,4 @@
-\begin{thebibliography}{102}
+\begin{thebibliography}{104}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -91,6 +91,12 @@ Piotr Bojanowski, Edouard Grave, Armand Joulin, and Tomas Mikolov.
 \newblock \emph{Transactions of the association for computational linguistics},
   5:\penalty0 135--146, 2017.
 
+\bibitem[Borgi et~al.(2017)Borgi, Hidri, Neef, and Naceur]{borgi2017data}
+Tawfik Borgi, Adel Hidri, Benjamin Neef, and Mohamed~Saber Naceur.
+\newblock Data analytics for predictive maintenance of industrial robots.
+\newblock In \emph{2017 International Conference on Advanced Systems and
+  Electric Technologies (IC\_ASET)}, pages 412--417. IEEE, 2017.
+
 \bibitem[Budanitsky and Hirst(2001)]{budanitsky2001semantic}
 Alexander Budanitsky and Graeme Hirst.
 \newblock Semantic distance in wordnet: An experimental, application-oriented
@@ -138,6 +144,14 @@ Thyago~P Carvalho, Fabr{\'\i}zzio~AAMN Soares, Roberto Vita, Roberto da~P
 \newblock {Understanding UMAP}, 2020.
 \newblock URL \url{https://pair-code.github.io/understanding-umap/}.
 \newblock Last visited 2025-04-21.
+
+\bibitem[Curiskis et~al.(2020)Curiskis, Drake, Osborn, and
+  Kennedy]{curiskis2020evaluation}
+Stephan~A Curiskis, Barry Drake, Thomas~R Osborn, and Paul~J Kennedy.
+\newblock An evaluation of document clustering and topic modelling in two
+  online social networks: Twitter and reddit.
+\newblock \emph{Information Processing \& Management}, 57\penalty0
+  (2):\penalty0 102034, 2020.
 
 \bibitem[Dai et~al.(2019)Dai, Yang, Yang, Carbonell, Le, and
   Salakhutdinov]{dai2019transformer}
@@ -236,12 +250,6 @@ Harold Hotelling.
 \newblock {ISIS beam operations}, Apr 2024.
 \newblock URL \url{https://www.isis.stfc.ac.uk/Pages/beam-status.aspx}.
 \newblock Last visited 2025-04-15.
-
-\bibitem[{ISIS Neutron and Muon Source}(2025)]{isisdata}
-{ISIS Neutron and Muon Source}.
-\newblock {ISIS data gateway}, 2025.
-\newblock URL \url{https://data.isis.stfc.ac.uk/datagateway}.
-\newblock Last visited 2025-04-16.
 
 \bibitem[Jezzini et~al.(2013)Jezzini, Ayache, Elkhansa, Makki, and
   Zein]{jezzini2013effects}
@@ -402,6 +410,13 @@ Dietrich~W M{\"u}ller and G{\"u}nther Sawitzki.
 \newblock Excess mass estimates and tests for multimodality.
 \newblock \emph{Journal of the American Statistical Association}, 86\penalty0
   (415):\penalty0 738--746, 1991.
+
+\bibitem[Nallapati et~al.(2016)Nallapati, Zhou, Gulcehre, Xiang,
+  et~al.]{nallapati2016abstractive}
+Ramesh Nallapati, Bowen Zhou, Caglar Gulcehre, Bing Xiang, et~al.
+\newblock Abstractive text summarization using sequence-to-sequence rnns and
+  beyond.
+\newblock \emph{arXiv preprint arXiv:1602.06023}, 2016.
 
 \bibitem[Nota et~al.(2022)Nota, Postiglione, and Carvello]{nota2022text}
 Giancarlo Nota, Alberto Postiglione, and Rosario Carvello.

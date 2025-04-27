@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import umap
+from adjustText import adjust_text
 from sentence_transformers import SentenceTransformer
 
 # Define the sentences.
@@ -18,7 +19,7 @@ sentences = [
     "clustering: My car broke down in the middle of nowhere.",
     "clustering: I love my car.",
     "clustering: I really love my car.",
-    "clustering: The concert was the best I've ever attended.",
+    "clustering: The concert was the best ever.",
     "clustering: The concert was a complete disaster.",
     "clustering: I enjoy reading mystery novels.",
     "clustering: I detest reading long boring textbooks.",
@@ -50,7 +51,7 @@ displayed = [
     "clustering: Yesterday was a beautiful sunny day.",
     "clustering: My car broke down in the middle of nowhere.",
     "clustering: I love my car.",
-    "clustering: The concert was the best I've ever attended.",
+    "clustering: The concert was the best ever.",
     "clustering: I really love my car.",
     "clustering: The concert was a complete disaster.",
     "clustering: The city park seems neglected and dirty.",
@@ -84,32 +85,97 @@ df = pd.DataFrame(
 )
 
 # Set Seaborn style for publication quality.
-sns.set_theme(style="whitegrid", font_scale=1.2)
+# sns.set_theme(style="whitegrid", font_scale=1.5)
+#
+# # Create the scatterplot.
+# plt.figure(figsize=(12, 8))
+# ax = sns.scatterplot(
+#     data=df,
+#     x="UMAP_Component_1",
+#     y="UMAP_Component_2",
+#     s=100,
+#     color="skyblue",
+#     edgecolor="coral",
+# )
+#
+# # Annotate each point with its corresponding sentence; adjust offset for clarity.
+# for _, row in df[df["Sentence"].isin(displayed)].iterrows():
+#     plt.text(
+#         row["UMAP_Component_1"] + 0.01,
+#         row["UMAP_Component_2"] + 0.01,
+#         row["Sentence"],
+#         fontsize=15,
+#     )
+#
+# # Update the axis labels and title for scientific clarity.
+# plt.xlabel("UMAP Component 1 (arbitrary units)", fontsize=25)
+# plt.ylabel("UMAP Component 2 (arbitrary units)", fontsize=25)
+# # plt.title("2D Projection of Sentence Embeddings via UMAP", fontsize=16)
+# plt.tight_layout()
+#
+# plt.show()
 
-# Create the scatterplot.
-plt.figure(figsize=(12, 8))
-ax = sns.scatterplot(
+# 1.  Seaborn / Matplotlib defaults tuned for print
+sns.set_theme(
+    style="ticks",  # subtler grid
+    font="DejaVu Sans",  # common cross-platform sans serif
+    font_scale=1.8,  # globally bigger text
+    rc={
+        "axes.titlesize": 24,
+        "axes.labelsize": 22,
+        "xtick.labelsize": 18,
+        "ytick.labelsize": 18,
+    },
+)
+
+# 2.  Figure: large, high-dpi, white background (reports love vector PDFs too)
+fig, ax = plt.subplots(figsize=(15, 10), dpi=120, facecolor="white")
+
+# 3.  Scatter: colour-blind friendly palette + thick outline for contrast
+sns.scatterplot(
     data=df,
     x="UMAP_Component_1",
     y="UMAP_Component_2",
-    s=100,
-    color="mediumblue",
-    edgecolor="w",
+    s=160,
+    linewidth=0.8,
+    edgecolor="black",
+    palette="colorblind",
+    hue=None,  # or pass a categorical column if you want colour groups
+    ax=ax,
 )
 
-# Annotate each point with its corresponding sentence; adjust offset for clarity.
+# 4.  Text annotations – boxed, legible, non-overlapping
+texts = []
 for _, row in df[df["Sentence"].isin(displayed)].iterrows():
-    plt.text(
-        row["UMAP_Component_1"] + 0.01,
-        row["UMAP_Component_2"] + 0.01,
+    txt = ax.text(
+        row["UMAP_Component_1"],
+        row["UMAP_Component_2"],
         row["Sentence"],
-        fontsize=13,
+        ha="left",
+        va="bottom",
+        fontsize=16,
+        bbox=dict(
+            boxstyle="round,pad=0.25",
+            fc="white",
+            ec="skyblue",
+            lw=0.5,
+            alpha=0.8,
+        ),
     )
+    texts.append(txt)
 
-# Update the axis labels and title for scientific clarity.
-plt.xlabel("UMAP Component 1 (arbitrary units)", fontsize=14)
-plt.ylabel("UMAP Component 2 (arbitrary units)", fontsize=14)
-plt.title("2D Projection of Sentence Embeddings via UMAP", fontsize=16)
-plt.tight_layout()
+# 5.  Let adjustText nudge labels until nothing overlaps
+adjust_text(
+    texts,
+    arrowprops=dict(arrowstyle="-", lw=0.5, color="coral", alpha=0.8),
+    ax=ax,
+    expand_points=(1.5, 2),
+)
+
+# 6.  Final cosmetic touches
+ax.set_xlabel("UMAP Component 1", labelpad=12)
+ax.set_ylabel("UMAP Component 2", labelpad=12)
+sns.despine(ax=ax, trim=True)
+fig.tight_layout()
 
 plt.show()

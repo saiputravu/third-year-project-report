@@ -1,6 +1,7 @@
 \documentclass[10pt,oneside]{report}
 
 % Encoding and font packages
+\usepackage{float}
 \usepackage[table]{xcolor}
 \usepackage{multicol}
 \usepackage[utf8]{inputenc}
@@ -140,7 +141,6 @@
 \addcontentsline{toc}{chapter}{Abbreviations and Acronyms}
 \chapter*{Abbreviations and Acronyms}
 
-\todo{Alphabetically sort this}
 \begin{multicols}{2}
 \begin{description}
     % Using \item[<Term>] <Definition> format
@@ -159,10 +159,12 @@
     \item[\textbf{ELMo}] Embeddings from Language Models.
     \item[\textbf{EPB1}] Extracted proton beam line 1.
     \item[\textbf{EPB2}] Extracted proton beam line 2.
+    \item[\textbf{F4A}] Free-For-All.
     \item[\textbf{FAP}] Fault Analysis Pathway.
     \item[\textbf{FLD}] First-line diagnosis system.
     \item[\textbf{GPT}] Generative Pre-trained Transformer.
     \item[\textbf{GPU}] Graphics Processing Unit.
+    \item[\textbf{H2H}] Head-to-Head.
     \item[\textbf{HDBSCAN}] Hierarchical Density-Based Spatial Clustering of Application with Noise.
     \item[\textbf{HDD}] Hard-Disk Drive.
     \item[\textbf{HEDS}] High energy drift space.
@@ -214,58 +216,93 @@
 % Chapters
 % -------------------------
 \chapter*{Abstract}
-\todo[inline]{TODO}
 
+The ISIS Neutron and Muon Source is a large-scale research facility requiring complex machinery and sophisticated maintenance strategies to ensure operational availability for international scientific users. Predictive maintenance (PdM) policies offer potential for optimising maintenance and reducing costly downtime, but leveraging the facility's text-based operational fault log (Operalog) is hindered by its unstructured nature. This project addresses the challenge of automatically categorising a subsection of log entries, the ion source failures, by developing and evaluating an unsupervised machine learning pipeline based on modern Natural Language Processing (NLP) techniques. The pipeline involves: (1) pre-processing of the \texttt{FaultDescription} field; (2) generating semantic vector representations using state-of-the-art sentence embedding models (MPNet and Nomic); (3) applying dimensionality reduction (UMAP); (4) performing unsupervised clustering (k-Medoids, DBSCAN, HDBSCAN); (5) optimising hyperparameters using Optuna with multiple clustering validity heuristics; and (6) automatically generating descriptive cluster labels using SpaCy. 
+
+% The ISIS Neutron and Muon Source is a large-scale research facility requiring complex machinery and sophisticated maintenance strategies to ensure operational availability for international scientific users \cite{thomason2019isis}. Predictive maintenance (PdM) policies offer potential for optimising maintenance and reducing costly downtime \cite{carvalho2019systematic, mobley2002introduction}, but leveraging the facility's text-based operational fault log (Operalog) is hindered by its unstructured nature \cite{nota2022text}. This project addresses the challenge of automatically categorising a subsection of log entries, the ion source failures, by developing and evaluating an unsupervised machine learning pipeline based on modern Natural Language Processing (NLP) techniques. The pipeline involves: (1) pre-processing of the \texttt{FaultDescription} field; (2) generating semantic vector representations using state-of-the-art sentence embedding models (MPNet \cite{song2020mpnet} and Nomic \cite{nussbaum2024nomic}); (3) applying dimensionality reduction (UMAP \cite{mcinnes2018umap}); (4) performing unsupervised clustering (k-Medoids \cite{kmedoids}, DBSCAN \cite{ester1996density}, HDBSCAN \cite{campello2013density}); (5) optimising hyperparameters using Optuna \cite{akiba2019optuna} with multiple clustering validity heuristics \cite{rousseeuw1987silhouettes, davies1979cluster, calinski1974dendrite}; and (6) automatically generating descriptive cluster labels using SpaCy \cite{spacy2}. 
+%
+% The optimisation process, favouring HDBSCAN \cite{campello2013density} clustering on UMAP-reduced \cite{mcinnes2018umap} Nomic \cite{nussbaum2024nomic} embeddings with default text pre-processing, suggested between 5 and 25 distinct fault categories within the ion source data.
+
+The optimisation process, favouring HDBSCAN clustering on UMAP-reduced Nomic embeddings with default text pre-processing, suggested between 5 and 25 distinct fault categories within the ion source data.
+
+Given the complexity and novelty of this task, this work focuses on demonstrating the feasibility of this approach and represents significant progress in developing tools for analysing specialised industrial logs. The primary contribution is the pipeline methodology itself. Future work is essential for refining the automatically generated labels to maximise their operational utility. This research paves the way for enhanced data-driven predictive maintenance at complex scientific facilities.
 
 \chapter{Introduction}
 
-This project concerns the use of statistical and machine learning models to augment the predictive maintenance process at the STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facility. The ISIS Neutron and Muon facility is a research centre for physical and life sciences, owned and operated by the STFC, a council that forms the UK Research and Innovation. In order to produce beams of neutrons and muons, allowing scientists to study materials at the atomic level, large and complex structures and machinery are required. The facility has a wealth of instrumentation taking multitudes of measurements to ensure that proper maintenance is completed in a timely manner. \\
+The Science and Technology Facilities Council's (STFC) ISIS Neutron and Muon Source, located at the Rutherford Appleton Laboratory, is a research centre enabling studies across physical and life sciences by producing beams of neutrons and muons \cite{thomason2019isis}. Generating these beams requires large, intricate accelerator systems operating under extreme and demanding conditions \cite{2021practicalguide}. The inherent complexity means component failures are inevitable, making effective maintenance crucial for minimising downtime and maximising scientific output \cite{thomason2019isis}.
 
-\todo[inline] {Finish this off, also mention this is one of two parts. And this aims to focus on the Operalog, a rich textual record of real-world failures of the of the ISIS facility.
+While the ISIS Neutron and Muon Source (hereafter, referred to as ISIS for brevity) employs various maintenance strategies, leveraging predictive maintenance (PdM) techniques holds significant promise \cite{thomason2019isis, susto2012predictive}. PdM aims to predict failures based on data analysis, enabling proactive intervention \cite{carvalho2019systematic}. The facility's Operational Log (Operalog) contains decades of valuable text entries detailing faults and their remediation. However, its unstructured nature, domain-specific terminology, and variability currently hinder systematic analysis for PdM \cite{usuga2022using}.
 
-Also, mention that this is a very open-ended research project and what we should be judged on? i.e. progressing the space of auto-categorisation of industrial operational logs.
+This project tackles this challenge by exploring the application of modern Natural Language Processing (NLP) and unsupervised machine learning techniques to automatically categorise these textual entries. It is crucial to recognise the scale and open-ended nature of this research endeavour; there is no established `industry standard' for automatically categorising such specialised industrial operational logs \cite{carvalho2019systematic}. Therefore, this project's primary aim is not to deliver a final, production-ready system, but rather to progress the state-of-the-art by developing and rigorously evaluating an innovative pipeline for this task. The core contribution lies in the methodology itself through exploring the feasibility, comparing different technical approaches, and building a tool that demonstrates a pathway towards automated insight extraction from these complex logs. This work constitutes one part of a two-part collaborative project; the partner project focuses on analysing structured data from specialised ion source logs.
 
-Also mention there is no "industry standard" for this to compare it to. 
-}
+The specific objectives of this project, framed within this exploratory context, are:
+\begin{enumerate}
+    \item To pre-process and clean the unstructured text data from the Operalog (the \\ \texttt{FaultDescription} field) with a focus on `ion source' entries.
+    \item To investigate and compare the effectiveness of different state-of-the-art sentence embedding models (MPNet \cite{song2020mpnet}, Nomic \cite{nussbaum2024nomic}).
+    \item To evaluate dimensionality reduction techniques (PCA \cite{pearson1901liii} vs. UMAP \cite{mcinnes2018umap}).
+    \item To apply and compare different unsupervised clustering algorithms (k-Medoids \cite{kmedoids}, DBSCAN \cite{ester1996density}, HDBSCAN \cite{campello2013density}) to identify potential fault categories.
+    \item To implement a systematic hyperparameter optimisation strategy, using Optuna \cite{akiba2019optuna}, based on internal clustering evaluation metrics \cite{rousseeuw1987silhouettes, davies1979cluster, calinski1974dendrite} to identify promising pipeline configurations.
+    \item To develop and demonstrate a method for automatically generating initial descriptive labels for the discovered clusters.
+\end{enumerate}
 
-\textbf{ }
-\todo[inline,caption={}]{
-Introduce the sections of the paper.
+
+The evaluation strategy involves assessing the technical success of the pipeline components and the relative performance of different configurations. As ground truth fault categories are unavailable, the evaluation relies on internal clustering validation metrics, a standard approach in unsupervised learning . Specifically, the Silhouette coefficient, Davies-Bouldin index and Calinski-Harabasz index metrics were chosen based on their widespread use and ability to capture different aspects of cluster cohesion and separation \cite{rousseeuw1987silhouettes, davies1979cluster, calinski1974dendrite}. To systematically identify optimal pipeline parameters under these multiple objectives, the Optuna framework \cite{akiba2019optuna} was utilised, leveraging its capabilities for efficient multi-objective search. Alongside these quantitative indicators, qualitative assessment will consider the coherence of the discovered clusters with domain knowledge of the Operalog and of the ISIS facility.
+
+% \todo {Explain the setting, explain the project achievement, Explain the setting, Derive aims from the literature. Explain how the evaluation strategy was chosen and why.}
+
+This report is structured as follows:
+
 \begin{itemize}
-    \item Refine this after coming back
-    \item Section 2,
-    \item Section 3, 
-    \item ...
+    \item \textbf{Chapter 2 (Natural Language Processing Background)} - Provides the necessary theoretical background on the core NLP and machine learning techniques employed.
+    \item \textbf{Chapter 3 (Automatic Categorisation and Label Generation)} - Details the developed methodology, data handling, specific tool choices, hyperparameter optimisation framework, and the label generation approach.
+    \item \textbf{Chapter 4 (Results and Discussion)} - Presents experimental results demonstrating the pipeline's capability to automatically structure the log entries and compares the performance of different embedding, dimensionality reduction, and clustering choices. This chapter additionally discusses the implications of these findings, particularly favouring the HDBSCAN algorithm \cite{campello2013density} for this dataset, and reflects on the overall feasibility of the approach.
+    \item \textbf{Chapter 5 (Conclusion)} - Summarises the project's progress, highlighting the successful development and evaluation of the auto-categorisation pipeline, reflects on limitations, and outlines crucial next steps for future research, particularly concerning label refinement and validation.
 \end{itemize}
-}
-
 
 \section{Motivation}
-Motivate the research project.
 
+The primary motivation for this research is the potential to gain insight on information within the ISIS Operalog's extensive unstructured text data. Manual analysis is labour-intensive and potentially misses subtle patterns which are crucial for effective predictive maintenance (PdM) \cite{usuga2022using, borgi2017data, susto2012predictive, susto2016dealing}. Automating the categorisation of fault reports promises to reduce this burden, enable faster diagnostics, and facilitate the identification of recurring failure modes, directly supporting data-driven PdM strategies \cite{nota2022text, abijith2023large, carvalho2019systematic}.
 
-\todo[inline,caption={}]{
-The things in this section will include
+However, the specific characteristics of the Operalog - its unstructured format, domain-specific language, semantic nuance, and variable entry length - make this auto-categorisation task particularly challenging. Simple methods are insufficient, necessitating the exploration of advanced NLP techniques capable of understanding semantic meaning. This project is therefore motivated by the opportunity to significantly advance the methodology for analysing such specialised operational logs. By constructing and evaluating a novel pipeline incorporating state-of-the-art sentence embeddings \cite{song2020mpnet, nussbaum2024nomic} and unsupervised clustering \cite{kmedoids, ester1996density, campello2013density}, we aim to demonstrate the potential of these techniques and provide a foundational tool for future, more refined systems. The progress achieved in developing and evaluating this pipeline constitutes the core technological advancement delivered by this work.
+
+The specific research aims stemming from this motivation are:
+
 \begin{itemize}
-    \item Introduce the problem: Auto-categorisation and label inference
-    \item Highlight the research aims. This should highlight the vastly open nature of the project and then hone in on the particular issue I am tackling. (i.e. to progress the state of PdM ...)
-    \item Identify the data input, expected output, data shape and explain why this motivates the project
+    \item To determine if modern NLP techniques can effectively group semantically similar fault descriptions from the unstructured Operalog text.
+    \item To compare the performance of different embedding models, dimensionality reduction techniques, and clustering algorithms within this specific application context.
+    \item To develop a methodology for systematically optimising the parameters of this unsupervised pipeline to achieve the most coherent and meaningful categorisation possible within this exploratory phase.
+    \item To explore the possibility of automatically generating human-interpretable labels for the discovered fault categories, acknowledging this as an initial step requiring further development.
+    \item The input data is the pre-processed \texttt{FaultDescription} text which is scoped to `ion source' during this project, with the hope to extend the pipeline more generally in future work.
 \end{itemize}
-}
+
+The expected output is a version of this dataset augmented with cluster IDs and preliminary generated labels, alongside a comparative evaluation of the pipeline configurations explored. The evaluation approach, detailed in Chapter~\ref{chap:results}, relies on internal clustering heuristics (Silhouette coefficient, Davies-Bouldin index, Calinski-Harabasz index) to guide hyperparameter optimisation and assess cluster quality quantitatively \cite{rousseeuw1987silhouettes, davies1979cluster, calinski1974dendrite}. Successfully demonstrating the pipeline's ability to structure this complex data represents significant progress towards leveraging the Operalog for improved maintenance and operational reliability at ISIS.
+
+% Sources and related content
+% \todo[inline,caption={}]{
+% The things in this section will include
+% \begin{itemize}
+%     \item Introduce the problem: Auto-categorisation and label inference
+%     \item Highlight the research aims. This should highlight the vastly open nature of the project and then hone in on the particular issue I am tackling. (i.e. to progress the state of PdM ...)
+%     \item Identify the data input, expected output, data shape and explain why this motivates the project
+% \end{itemize}
+% }
 
 
 \section{The ISIS Facility's Complexity and Operational Challenges}\label{sec:isisbg}
-
-% --- Restructured and Shortened Section 1.2.1 (approx. 500 words) ---
 
 % \subsection{Overview of the ISIS Research Facility}\label{sec:isisbg} % Retain original sectioning if needed
 % The STFC Rutherford Appleton Laboratory's ISIS Neutron and Muon research facility is a research centre for physical and life sciences, operated by the STFC under UKRI funding \cite{thomason2019isis}. Established based on designs from the 1970s and 80s, ISIS utilises complex accelerator technology to produce neutron and muon beams, enabling detailed studies of materials at the atomic level \cite{thomason2019isis}. This process, however, is inherently complex and presents significant operational challenges.
 
 % \subsubsection{The ISIS Accelerator Chain and Operational Complexity} 
 % \textit{% A brief introductory sentence to replace the very first paragraph of original text}
+
+\todo[inline]{
+    Discuss this by referencing the figures
+}
+
 The ISIS Neutron and Muon Source at STFC Rutherford Appleton Laboratory is a large-scale research facility enabling physical and life sciences study through the production of neutron and muon beams \cite{thomason2019isis}. Achieving this requires a complex, multi-stage accelerator system, the operation and maintenance of which present significant challenges relevant to this project.
 
-The core process, described in \textit{A Practical Guide to the ISIS Neutron and Muon Source} (\citet{2021practicalguide}), involves accelerating negative hydrogen ($H^-$) ions through four major stages: an ion source, a radio-frequency quadrupole (RFQ), a linear accelerator (LINAC), and finally a large synchrotron ring. This chain ultimately produces an 800~MeV proton beam directed towards one of two target stations (TS-1 or TS-2) for neutron or muon generation \cite{2021practicalguide}. A schematic overview is shown in Figure~\ref{fig:isis}, with the particle path illustrated in Figure~\ref{fig:isis2}.
+The core process, described in \textit{A Practical Guide to the ISIS Neutron and Muon Source} \cite{2021practicalguide}, involves accelerating negative hydrogen ($H^-$) ions through four major stages: an ion source, a radio-frequency quadrupole (RFQ), a linear accelerator (LINAC), and finally a large synchrotron ring. This chain ultimately produces an 800~MeV proton beam directed towards one of two target stations (TS-1 or TS-2) for neutron or muon generation \cite{2021practicalguide}. A schematic overview is shown in Figure~\ref{fig:isis}, with the particle path illustrated in Figure~\ref{fig:isis2}.
 
 Successful operation across these stages demands extreme precision and stability. Throughout the entire acceleration process, maintaining an ultra-high vacuum (between $10^{-8}$ and $10^{-9}$ atmospheric pressure) is crucial, requiring tens of vacuum pumps and continuous monitoring, as leaks can disrupt the beam and damage sensitive components \cite{2021practicalguide}. The initial $H^-$ ion source must provide a stable, consistent beam, as inconsistencies can propagate and amplify downstream; component wear within the source itself is a common maintenance task requiring immediate intervention \cite{2021practicalguide}. Accelerator structures, like those in the LINAC which utilise high-Q radio-frequency fields \cite{michael2006electronic}, require exceptional stability achieved through precise temperature regulation (significantly under $1^\circ C$ variation) to mitigate thermal effects of expansion and contraction \cite{2021practicalguide}.
 
@@ -273,9 +310,7 @@ Within the 163m circumference synchrotron, magnetic fields and accelerating volt
 
 The complexity extends to beam transport and target stations. Extracted proton beams must be accurately steered by magnets towards the target stations; mis-steering can damage equipment, hence the need for heavy shielding and beam loss monitors \cite{2021practicalguide}. At the target stations, the high-energy beam strikes targets to produce neutrons or muons \cite{sharma2001nuclear, 2021practicalguide}. These target systems operate under extreme conditions and require careful monitoring and management to prevent overheating or material damage, representing another major operational and maintenance concern \cite{2021practicalguide}.
 
-\noindent This overview highlights the key takeaway: the ISIS facility involves an intricate sequence of precisely controlled stages, creating numerous potential points of failure. While precautions like beam loss monitors and physical shielding exist, the inherent complexity and harsh operating environment (radiation, high-power) mean that component degradation and operational faults are inevitable. Effectively managing the facility therefore necessitates robust maintenance strategies and sophisticated diagnostic capabilities. Documenting fault events, diagnoses, and repairs in operational logs (like the Operalog studied here) is essential, and the technical complexity of the facility directly influences the nature and variety of entries found in these logs, motivating the need for advanced analysis techniques like those explored in this paper.
-
-% --- End of Restructured Section ---
+\noindent This overview highlights the key takeaway: the ISIS facility involves an intricate sequence of precisely controlled stages, creating numerous potential points of failure. While precautions like beam loss monitors and physical shielding exist, the inherent complexity and harsh operating environment (radiation, high-power) mean that component degradation and operational faults are inevitable. Effectively managing the facility therefore necessitates robust maintenance strategies and sophisticated diagnostic capabilities. Documenting fault events, diagnoses, and repairs in operational logs (like the Operalog studied here) is essential, and the technical complexity of the facility directly influences the nature and variety of entries found in these logs, motivating the need for advanced analysis techniques like those explored in this report.
 
 \begin{figure}[htbp]
     \centering
@@ -312,22 +347,23 @@ The complexity extends to beam transport and target stations. Extracted proton b
 % \noindent This detailed description sourced from the guide highlights some key takeaways. There are an incredible number of points of failure in the facility due to the highly precise and radioactive nature of the task. The ISIS team has taken many precautions such as fault detection mechanisms (i.e. the beam loss monitors) and breakdown counter-measures (i.e. the thick layer of steel and concrete in the EPB1 and EPB2 lines). However, the inherent complexity and harsh operating environment (radiation, high-power) necessitate both robust preventative maintenance schedules and sophisticated diagnostic capabilities that address the component degradation and failures that will inevitably arise. 
 
 \subsection{Maintenance at ISIS} 
-As detailed in the 33-year historical account of the ISIS facility (\citet{thomason2019isis}), the ISIS operations occur in cycles, periods of roughly 30-50 days where the machine runs constantly without breaks. Gaps between cycles typically range from 1 week to 3 months. In addition, typically every four years, shutdowns scheduled for 6-9 months occur for major maintenance and upgrade work. On the ground, day-to-day operations are run from the Main Control Room (MCR) by the ISIS crew which consists of 6 shift teams of the following roles: (1) duty officer, (2) assistant duty officer and (3) duty technician. The expertise and rapid response capabilities of these trained operational crews are vital for both routine operation and initial fault response.
+As detailed in the 33-year historical account of the ISIS facility \cite{thomason2019isis}, the ISIS operations occur in cycles, periods of roughly 30-50 days where the machine runs constantly without breaks. Gaps between cycles typically range from 1 week to 3 months. In addition, typically every four years, shutdowns scheduled for 6-9 months occur for major maintenance and upgrade work. On the ground, day-to-day operations are run from the Main Control Room (MCR) by the ISIS crew which consists of 6 shift teams of the following roles: (1) duty officer, (2) assistant duty officer and (3) duty technician. The expertise and rapid response capabilities of these trained operational crews are vital for both routine operation and initial fault response.
 Minimising this downtime is crucial for several reasons inherent to operating a large-scale user facility like ISIS \cite{thomason2019isis}. Primarily, unscheduled downtime directly impacts the international researchers allocated beam time, potentially jeopardising experiments planned months or years in advance and wasting valuable research opportunities. Furthermore, interruptions disrupt the tightly packed operational schedule, reduce the overall scientific output, and incur significant operational costs without delivering the facility's core research product \cite{thomason2019isis}. Therefore, understanding the factors that contribute to downtime and implementing strategies to mitigate it are paramount.
 Many factors affect downtime such as having a robust plan, the day-to-day operators' knowledge of the system and adequate inventories of spares \cite{thomason2019isis}. Figure~\ref{fig:isisDowntime} shows the ratio of downtime to active machine operation since 2016, indicating this machine has been down for maintenance over half the time since 2016. In other words, over half the time, the machine is not active and is undergoing maintenance. This highlights the trade-off between maximising operational availability and minimizing failures through planned maintenance. The major maintenance strategies and their trade-offs are further explored in Section~\ref{sec:maintenanceTechniques}.
 
-To help reduce downtime, over the last few years, a first-line diagnosis (FLD) system was introduced, presented in (\citet{fld2017}). The FLD system helps reduce downtime by providing expert guidance on fault diagnosis and resolution, which has been shown to improve the dissemination of knowledge from experts to operations. The FLD utilises Fault Analysis Pathways (FAPs), which provide structural links between ISIS subsystems. This allows users of the system to access granular subsystems' local documentation minimising file hunting and saving time and effort. An example FAP can be seen in Figure~\ref{fig:fap}.
+To help reduce downtime, over the last few years, a first-line diagnosis (FLD) system was introduced, presented in (\citet{fld2017}). The FLD system helps reduce downtime by providing expert guidance on fault diagnosis and resolution, which has been shown to improve the dissemination of knowledge from experts to operations. The FLD utilises Fault Analysis Pathways (FAPs), which provide structural links between ISIS subsystems. This allows users of the system to access granular subsystems' local documentation minimising file hunting and saving time and effort. 
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{isisDowntime.png}
-    \caption{A visualisation of the machine downtime as opposed to time operating, according to the ISIS operational cycle. Data source: (\citet{isisbeamoperations2024})}\label{fig:isisDowntime}
+    \caption{Active versus Downtime days (2016 - 2024), according to the ISIS operational cycle. Data source: (\citet{isisbeamoperations2024})}\label{fig:isisDowntime}
 \end{figure}
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.95\textwidth]{fap.png}
-    \caption{Example FAP1101, screenshotted from an iPAD version of FLD version 2.2, which shows the FAP for pre-injector, injector and High Energy Drift Space. Source: (\citet{fld2017})}\label{fig:fap}
-\end{figure}
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.95\textwidth]{fap.png}
+%     \caption{Example FAP1101, screenshotted from an iPAD version of FLD version 2.2, which shows the FAP for pre-injector, injector and High Energy Drift Space. Source: (\citet{fld2017})}\label{fig:fap}
+% \end{figure}
 
 
 % \textbf{}\\
@@ -353,10 +389,10 @@ In industry, the uptime of production systems is strongly coupled with the equip
 In the literature, various terms and categories of maintenance arise each with differing strategies \cite{susto2012predictive, mobley2002introduction, susto2016dealing}. Thus, while there exists some disagreement in nomenclature, we consider the four categories presented in (\citet{susto2012predictive}). The four maintenance policy categories are as follows, noting that each policy has, uniquely, their own benefits and drawbacks:
 
 \begin{enumerate}
-    \item{Run-to-failure (R2F) maintenance: Continual usage of the system until failure. Restoration is performed at the point of noticing failure condition. This is the simplest approach and typically the most costly method as it reduces the facility's availability and requires a complete replacement of parts.} 
-    \item{Preventative maintenance (PvM): Otherwise referred to as scheduled maintenance, performing maintenance at regular intervals to increase longevity of the component or in anticipation of the end of expected life of the component. While this typically prevents many errors, it wastes maintenance cycles when systems are perfectly healthy. Hence, causing unnecessary downtime and cost.}
-    \item{Condition-based maintenance (CBM): Taking the action to perform maintenance on equipment through monitoring various health characteristics and metrics of the components of the system. This approach requires continuous monitoring and, thus, allows for close to instant response on maintenance only when required. However, a drawback of this policy is that one cannot plan maintenances in advance.}
-    \item{Predictive maintenance (PdM): Otherwise referred to as statistical-based maintenance, only performs maintenance actions when determined necessary. Prediction tools are utilised to implement forward-planning and scheduling systems, using statistical inference methods. However, if these statistical inferences are not accurate, the whole system suffers which inevitably leads to additional downtime and costs.}
+    \item{\textbf{Run-to-failure (R2F) maintenance} - Continual usage of the system until failure. Restoration is performed at the point of noticing failure condition. This is the simplest approach and typically the most costly method as it reduces the facility's availability and requires a complete replacement of parts.} 
+    \item{\textbf{Preventative maintenance (PvM)} - Otherwise referred to as scheduled maintenance, performing maintenance at regular intervals to increase longevity of the component or in anticipation of the end of expected life of the component. While this typically prevents many errors, it wastes maintenance cycles when systems are perfectly healthy. Hence, causing unnecessary downtime and cost.}
+    \item{\textbf{Condition-based maintenance (CBM)} - Taking the action to perform maintenance on equipment through monitoring various health characteristics and metrics of the components of the system. This approach requires continuous monitoring and, thus, allows for close to instant response on maintenance only when required. However, a drawback of this policy is that one cannot plan maintenances in advance.}
+    \item{\textbf{Predictive maintenance (PdM)} - Otherwise referred to as statistical-based maintenance, only performs maintenance actions when determined necessary. Prediction tools are utilised to implement forward-planning and scheduling systems, using statistical inference methods. However, if these statistical inferences are not accurate, the whole system suffers which inevitably leads to additional downtime and costs.}
 \end{enumerate}
 It should be noted that several sources conflate CBM and PdM \cite{mobley2002introduction}. As in (\citet{susto2012predictive}), where they are given as separate categories, we follow suit. \\ 
 
@@ -368,8 +404,6 @@ In industry, many maintenance strategies prefer using PdM whilst experimenting w
 \begin{table}[htbp]
     \fontsize{8}{12}\selectfont
     \centering
-    \caption{Examples of applications of PdM for industrial maintenance strategies.}
-    \label{tab:pdmPaperTable}
     \begin{adjustbox}{max width=\textwidth}
     \begin{tabular}{p{1.5cm} p{8.5cm} p{3cm}}
         \toprule
@@ -382,6 +416,8 @@ In industry, many maintenance strategies prefer using PdM whilst experimenting w
         \bottomrule
     \end{tabular}
     \end{adjustbox}
+    \caption{Examples of applications of PdM for industrial maintenance strategies.}
+    \label{tab:pdmPaperTable}
 \end{table}
 
 
@@ -409,9 +445,9 @@ This chapter delves into the technical background required for the methodology p
 Sentence similarity, otherwise referred to as document similarity, is the (NLP) task of computing the quantification of the similarities between two sentences, documents or texts. This task is motivated by the increasingly large amount of digitisation of human languages (and data, in general), calling for the need to understand similarity between various texts \cite{raju2022sentence}. Examples of the use-cases of sentence similarity include: detection of academic malpractice via plagiarism \cite{lukashenko2007computer, baba2017plagiarism}, and text summarisation \cite {aliguliyev2009new, kumar2020semantic, jo2017k}. According to \cite{raju2022sentence}, there are two main types of sentence similarities: (1) lexical similarity and (2) semantic similarity. The former is a computation of the equality between the lexicon of two sentences (i.e. a purely syntactical view). This contrasts with semantic similarity, which compares meaning. Further, the type we focus on, semantic similarity can be split into three types: 
 
 \begin{itemize}
-    \item String-based similarity: Measures similarity directly between two strings, accounting for string sequences and character composition. These can be fine-grained, i.e. character-based; coarse-grained, i.e. term-based; or a hybrid mixture of both \cite{yu2016string}.
-    \item Knowledge-based similarity: Measures the degree to which two sentences are related, utilising semantic networks (i.e. knowledge graphs). Examples of Knowledge-based similarity approaches include WordNet \cite{budanitsky2001semantic}, the most popular type of approach.
-    \item Corpus-based similarity: Premised on a provided corpus, a large database of text to derive inferences from. Methods of this type require the development statistical or DL models that train on the provided corpus and estimate the similarity between two sentence-pair inputs. Popular examples include traditional statistical models, such as LSA \cite{landauer1998introduction} and SVD \cite{steinberger2005text} as well as word embedding models (utilising ML), such as Word2Vec \cite{bojanowski2017enriching}, GloVe \cite{pennington2014glove} and fastText \cite{mikolov2013efficient}.
+    \item \textbf{String-based similarity} - Measures similarity directly between two strings, accounting for string sequences and character composition. These can be fine-grained, i.e. character-based; coarse-grained, i.e. term-based; or a hybrid mixture of both \cite{yu2016string}.
+    \item \textbf{Knowledge-based similarity} - Measures the degree to which two sentences are related, utilising semantic networks (i.e. knowledge graphs). Examples of Knowledge-based similarity approaches include WordNet \cite{budanitsky2001semantic}, the most popular type of approach.
+    \item \textbf{Corpus-based similarity} - Premised on a provided corpus, a large database of text to derive inferences from. Methods of this type require the development statistical or DL models that train on the provided corpus and estimate the similarity between two sentence-pair inputs. Popular examples include traditional statistical models, such as LSA \cite{landauer1998introduction} and SVD \cite{steinberger2005text} as well as word embedding models (utilising ML), such as Word2Vec \cite{bojanowski2017enriching}, GloVe \cite{pennington2014glove} and fastText \cite{mikolov2013efficient}.
 \end{itemize}
 
 Most of the models mentioned above require some numerical representation of the text to be able to apply mathematical procedures for similarity calculation. Computing this representation involves converting unstructured textual data into one or more vectors. Typically, this process includes (1) general natural language pre-processing steps such as stop-word removal, case normalisation, parts-of-speech tagging, lemmatisation, and tokenisation \cite{tabassum2020survey}; and (2) applying an embedding model, either to a single token (word embedding) or to a sequence of tokens (sentence embedding). Step (1) can be seen as a feature extraction step applied on the unstructured textual data, where feature extraction is the process of extracting the most useful components of the data \cite{sammons2016edison}. For example, part-of-speech tagging can be seen as introducing non-trivial features to some token through extracting the surrounding context. 
@@ -420,8 +456,8 @@ This representation is known as an embedding, with the span of the possible vect
 
 Therefore, the problem of sentence similarity can be directly mapped from the problem of sentence embedding (otherwise referred to as text embedding), where text embedding is the (NLP) task of learning a high-dimensional embedding space representation. Various aspects of text embedding are more thoroughly covered in Section~\ref{sec:sentenceEmbedding}. However, with the advent of the transformer architecture \cite{vaswani2017attention} and rise of the large language models, text embedding has been increasingly solved using DL models with high parameter counts \cite{cao2024recent} and considering extremely large token sequences. Nowadays, word embedding models are considered obsolete with (\citet{cao2024recent}) only considering these models second-generation. Further, the paper states newer generations fall into the following categories:
 \begin{itemize}
-    \item Third-generation: contextualised embeddings. These models dynamically account for contexts, encoding them into the embedding space. Examples of models include ELMo \cite{sarzynska2021detecting}, GPT \cite{radford2018improving} and BERT \cite{devlin2019bert}. As these models are trained to both understand some embedding space and generate natural language text, they are canonically referred to as language models.
-    \item Fourth-generation: universal text embeddings. The generation which is currently state-of-the-art, with the aim of developing a unified model which is able to address multiple downstream tasks. Examples of models in this generation, making progress towards unification include Gecko \cite{lee2024gecko}, Multilingual e5 text embeddings \cite{wang2024multilingual}, Nomic \cite{nussbaum2024nomic} and many more. 
+    \item \textbf{Third-generation} - contextualised embeddings. These models dynamically account for contexts, encoding them into the embedding space. Examples of models include ELMo \cite{sarzynska2021detecting}, GPT \cite{radford2018improving} and BERT \cite{devlin2019bert}. As these models are trained to both understand some embedding space and generate natural language text, they are canonically referred to as language models.
+    \item \textbf{Fourth-generation} - universal text embeddings. The generation which is currently state-of-the-art, with the aim of developing a unified model which is able to address multiple downstream tasks. Examples of models in this generation, making progress towards unification include Gecko \cite{lee2024gecko}, Multilingual e5 text embeddings \cite{wang2024multilingual}, Nomic \cite{nussbaum2024nomic} and many more. 
 \end{itemize}
 
 Second-, third- and fourth-generation text embedding models are used frequently in PdM for applications such as insight extraction \cite{abijith2023large,usuga2022using} and clustering intents from unstructured text data. Sources of natural language datasets, in industrial applications typically arise from operational or managerial log files which document aspects such as failures, resolutions and comments. Advanced text embedding models enable for semi- or fully automatic insight retrieval and auto-categorisation, enabling intuitive understanding of the textual datasets potentially highlighting patterns in failure \cite{nota2022text}.
@@ -431,7 +467,7 @@ Briefly touched on in Section~\ref{sec:sentenceSimilarity}, sentence embedding (
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.95\textwidth]{sentenceEmbeddingExample.png}
+    \includegraphics[width=0.95\textwidth]{sentenceEmbeddingExample1.png}
     \caption{Example text embedding with Nomic Text Embedding v1.5 \cite{nussbaum2024nomic} of random sentences generated using OpenAI's ChatGPT o3-mini-high and projected onto 2 dimensions using UMAP \cite{mcinnes2018umap} with a random seed of 42 and minimum neighbours of 15. Only some of the labels are highlighted for visual clarity.}\label{fig:sentenceEmbeddingExample}
 \end{figure}
 
@@ -498,7 +534,7 @@ Briefly touched on in Section~\ref{sec:sentenceSimilarity}, sentence embedding (
 
 \subsection{Transformers and Foundational Pre-trained Language Models}\label{sec:BERT} % 
 
-An important advancement in modern NLP is the use of Pre-trained Language Models (PLMs). Models like BERT \cite{devlin2019bert} demonstrate success and improvements in performance across various NLP tasks when adapted through a process called fine-tuning \cite{edunov2019pre, min2023recent}. Fine-tuning involves taking a general-purpose (termed `base') PLM, already trained on vast amounts of text data, and further training it on a smaller, task-specific dataset. This leverages the model's pre-existing knowledge of language structure and semantics, allowing for efficient adaptation to specialised tasks like the Operalog analysis in this paper. These PLMs effectively learn an embedding space for language and can often generate text, providing a powerful foundation \cite{devlin2019bert}. The accessibility of these models has been greatly enhanced by platforms like HuggingFace, which host pre-trained model parameters (or `weights'), enabling researchers to download and utilise or fine-tune them without undertaking the computationally prohibitive initial pre-training \cite{wolf2019huggingface}. This project leverages such pre-trained models, specifically focusing on the Transformer family.
+An important advancement in modern NLP is the use of Pre-trained Language Models (PLMs). Models like BERT \cite{devlin2019bert} demonstrate success and improvements in performance across various NLP tasks when adapted through a process called fine-tuning \cite{edunov2019pre, min2023recent}. Fine-tuning involves taking a general-purpose (termed `base') PLM, already trained on vast amounts of text data, and further training it on a smaller, task-specific dataset. This leverages the model's pre-existing knowledge of language structure and semantics, allowing for efficient adaptation to specialised tasks like the Operalog analysis in this report. These PLMs effectively learn an embedding space for language and can often generate text, providing a powerful foundation \cite{devlin2019bert}. The accessibility of these models has been greatly enhanced by platforms like HuggingFace, which host pre-trained model parameters (or `weights'), enabling researchers to download and utilise or fine-tune them without undertaking the computationally prohibitive initial pre-training \cite{wolf2019huggingface}. This project leverages such pre-trained models, specifically focusing on the Transformer family.
 
 The Transformer architecture, introduced by (\citet{vaswani2017attention}), employ attention mechanisms, to compute pairwise token significance. That is, conceptually, attention allows the model - when processing a word in a sequence - to weigh the importance of other words in the sequence regardless of their distance to each other. This enables the model to capture long-range dependencies and understand context more effectively than earlier sequential models. While the detailed architecture involves components like multi-head attention and layer normalisation, the core idea is this context-aware weighting mechanism \cite{vaswani2017attention}. Given its foundational nature and detailed coverage in the literature, we refer the reader to the original paper for architectural specifics.
 
@@ -636,11 +672,11 @@ Finally, while leveraging PLMs significantly accelerates research, it introduces
 
 The sentence embedding techniques discussed previously often produce high-dimensional vector representations, frequently on the scale of hundreds or even thousands of dimensions (i.e. 768 dimensions for BERT base \cite{devlin2019bert}). Directly analysing or visualising data in such high-dimensional spaces is challenging. Furthermore, many data analysis methods, including the clustering algorithms discussed later (Section~\ref{sec:clustering}), can suffer from performance degradation in high dimensions due to phenomena collectively known as the `curse of dimensionality' \cite{verleysen2005curse, hinneburg1999optimal}. This `curse' refers to counter-intuitive geometric properties of high-dimensional spaces that can make concepts like distance and density less meaningful \cite{verleysen2005curse}.
 
-Therefore, dimensionality reduction techniques are often employed. These methods aim to find a lower-dimensional representation (typically 2-dimensional or 3-dimensional for visualisation) that captures the most important structure or variance present in the original high-dimensional data \cite{sorzano2014survey}. By exploiting redundancy in the data, they project points into a smaller feature space suitable for visualisation or input to subsequent algorithms like clustering \cite{sorzano2014survey, hinneburg1999optimal}. While numerous techniques exist as shown by (\citet{sorzano2014survey}), this section focuses on two widely used methods employed in this project: Principal Component Analysis (PCA) \cite{pearson1901liii, hotelling1933analysis} and Uniform Manifold Approximation and Projection (UMAP) \cite{mcinnes2018umap}.
+Therefore, dimensionality reduction techniques are often employed. These methods aim to find a lower-dimensional representation (typically 2-dimensional or 3-dimensional for visualisation) that captures the most important structure or variance present in the original high-dimensional data \cite{sorzano2014survey}. By exploiting redundancy in the data, they project points into a smaller feature space suitable for visualisation or input to subsequent algorithms like clustering \cite{sorzano2014survey, hinneburg1999optimal}. While numerous techniques exist, as shown by (\citet{sorzano2014survey}), this section focuses on two widely used methods employed in this project: Principal Component Analysis (PCA) \cite{pearson1901liii, hotelling1933analysis} and Uniform Manifold Approximation and Projection (UMAP) \cite{mcinnes2018umap}.
 
 \subsection{PCA}\label{sec:pca}
 
-Principal Component Analysis (PCA), first introduced by \citet{pearson1901liii} and later developed by \citet{hotelling1933analysis}, is a linear dimensionality reduction technique. The core idea is to identify new axes, called `principal components', in the direction of maximum variance in the data \cite{abdi2010principal}. The first principal component captures the largest amount of variance, the second captures the largest remaining variance while being orthogonal (that is, statistically uncorrelated) to the first, and so on. Projecting the original data onto the first few principal components creates a lower-dimensional representation that retains most of the original data's variance \cite{abdi2010principal}.
+Principal Component Analysis (PCA), first introduced by (\citet{pearson1901liii}) and later developed by (\citet{hotelling1933analysis}), is a linear dimensionality reduction technique. The core idea is to identify new axes, called `principal components', in the direction of maximum variance in the data \cite{abdi2010principal}. The first principal component captures the largest amount of variance, the second captures the largest remaining variance while being orthogonal (that is, statistically uncorrelated) to the first, and so on. Projecting the original data onto the first few principal components creates a lower-dimensional representation that retains most of the original data's variance \cite{abdi2010principal}.
 
 Conceptually, PCA seeks a linear projection that either maximizes the variance of the projected data or, equivalently, minimises the `reconstruction error' which is the squared distance between original points and their projections \cite{udell2016generalized}. While the formal solution involves finding eigenvectors of the data's covariance matrix, a standard and efficient method to compute the principal components and their associated variance relies on the Singular Value Decomposition (SVD) of the (mean centred) data matrix $X$ \cite{steinberger2005text, udell2016generalized}. Here, mean centred refers to $X - \frac{1}{nm}\sum_i^n \sum_j^m X_{ij}$ for $X \in \mathbb{R} ^{n\times m}$. The SVD factorizes $X$ as $X = USV^T$, where the columns of $V$ represent the principal component directions, and the squared diagonal elements of $S$ represent the variance captured by each component \cite{udell2016generalized}. By keeping only the components associated with the largest singular values (a truncated SVD), PCA achieves dimensionality reduction while preserving maximal variance in a linear sense. A formal treatment of this as an optimisation problem can be found at Appendix~\ref{app:pca}.
 
@@ -649,16 +685,16 @@ Conceptually, PCA seeks a linear projection that either maximizes the variance o
 Uniform Manifold Approximation and Projection (UMAP) is a more recent, non-linear dimensionality reduction technique based on manifold learning principles \cite{mcinnes2018umap}. Unlike PCA's linear projections, UMAP aims to capture potentially complex, non-linear structures in the data. It operates under the assumption that the high-dimensional data lies on or near a lower-dimensional manifold embedded within the higher-dimensional space \cite{mcinnes2018umap}. The goal is to find a low-dimensional embedding that faithfully represents the topological structure of this presumed manifold. While grounded in advanced mathematical concepts \cite{lee2003smooth, lee2006riemannian, willard2012general}, the intuition behind the algorithm can be understood through its two main conceptual stages \cite{mcinnes2018umap}:
 
 \begin{enumerate}
-    \item High-dimensional Graph Construction - UMAP first builds a weighted graph representation of the data in the original high-dimensional space. It identifies nearest neighbours for each data point and assigns edge weights based on the likelihood that points are closely connected on the underlying manifold. This step primarily focuses on capturing the local connectivity and structure of the data.
-    \item Low-dimensional Layout Optimisation - UMAP then seeks a corresponding low-dimensional embedding where the graph structure is as similar in structure as possible to the high-dimensional graph. It iteratively adjusts the positions of points in the low-dimensional space to minimise the difference (often measured using cross-entropy, a measure of divergence between probability distributions \cite{zhang2018generalized}) between the connectivity probabilities in the high- and low-dimensional representations. This optimisation aims to keep points connected in the low-dimensional space if they were connected in the high-dimensional space, and separated if they were not.
+    \item \textbf{High-dimensional Graph Construction} - UMAP first builds a weighted graph representation of the data in the original high-dimensional space. It identifies nearest neighbours for each data point and assigns edge weights based on the likelihood that points are closely connected on the underlying manifold. This step primarily focuses on capturing the local connectivity and structure of the data.
+    \item \textbf{Low-dimensional Layout Optimisation} - UMAP then seeks a corresponding low-dimensional embedding where the graph structure is as similar in structure as possible to the high-dimensional graph. It iteratively adjusts the positions of points in the low-dimensional space to minimise the difference (often measured using cross-entropy, a measure of divergence between probability distributions \cite{zhang2018generalized}) between the connectivity probabilities in the high- and low-dimensional representations. This optimisation aims to keep points connected in the low-dimensional space if they were connected in the high-dimensional space, and separated if they were not.
 \end{enumerate}
 
 The resulting low-dimensional embedding aims to preserve both local neighbourhood structure and, importantly, aspects of the data's broader global structure \cite{mcinnes2018umap}. UMAP's output is influenced by several key hyperparameters:
 \begin{itemize}
-    \item \texttt{n\_neighbors}: Controls the size of the local neighbourhood considered. Lower values emphasize local structure, potentially revealing fine clusters, while higher values capture more global structure, potentially merging related groups \cite{mcinnes2018umap}.
-    \item \texttt{min\_dist}: Affects the minimum separation between points in the low-dimensional embedding. Lower values create tighter, denser clusters, while higher values produce more spread out embeddings where intra-cluster structure might be more visible \cite{mcinnes2018umap}.
-    \item \texttt{n\_components}: Defines the dimensionality of the output embedding (typically 2- or 3-dimensions for visualisation).
-    \item \texttt{metric}: Specifies the distance measure used in the high-dimensional space (i.e. `euclidean', `cosine'). The choice is crucial: `cosine' distance is often preferred for high-dimensional text embeddings as it measures orientation rather than magnitude \cite{mcinnes2018umap}.
+    \item \textbf{\texttt{n\_neighbors}} - Controls the size of the local neighbourhood considered. Lower values emphasize local structure, potentially revealing fine clusters, while higher values capture more global structure, potentially merging related groups \cite{mcinnes2018umap}.
+    \item \textbf{\texttt{min\_dist}} - Affects the minimum separation between points in the low-dimensional embedding. Lower values create tighter, denser clusters, while higher values produce more spread out embeddings where intra-cluster structure might be more visible \cite{mcinnes2018umap}.
+    \item \textbf{\texttt{n\_components}} - Defines the dimensionality of the output embedding (typically 2- or 3-dimensions for visualisation).
+    \item \textbf{\texttt{metric}} - Specifies the distance measure used in the high-dimensional space (i.e. `euclidean', `cosine'). The choice is crucial, `cosine' distance is often preferred for high-dimensional text embeddings as it measures orientation rather than magnitude \cite{mcinnes2018umap}.
 \end{itemize}
 
 Selecting appropriate hyperparameters often requires experimentation (as explored in Section~\ref{sec:hyperparameterOpt}). UMAP implementations are generally computationally efficient compared to other non-linear methods like t-SNE \cite{cai2022theoretical, mcinnes2018umap}, making it practical for many applications. Figure~\ref{fig:umapElephant} provides a visual intuition of UMAP applied to structured data (sampled points from the skeletal structure of an elephant). Notably, structure preservation can be visually observed, as points from a tusk represent a shape which mirrors a tusk shadow in the 2-dimensional down-projection. However, while powerful for revealing non-linear structures, the axes of a UMAP projection do not have the direct variance interpretation of PCA's principal components.
@@ -690,8 +726,8 @@ The k-Medoids algorithm is a partitioning-based clustering method that aims to d
 A classical algorithm for implementing k-Medoids is Partitioning Around Medoids (PAM), introduced by (\citet{kmedoids}). PAM operates in two main phases:
 
 \begin{enumerate}
-    \item The build phase - An initial set of $k$ data points are selected as the starting medoids. This selection aims to establish a reasonable initial clustering by choosing points that are relatively central within potential groups that exists - minimising the initial total dissimilarity.
-    \item The swap phase - This phase iteratively refines the set of medoids. For each currently selected medoid $m$ and each non-medoid point data point $x$, the algorithm computes the change in total dissimilarity that would result from swapping $m$ and $x$. That is, setting $x$ as that centroid of $m$'s cluster. The swap that yields the greatest reduction across all possible pairs is finally performed. This process repeats until no swap can further reduce the total dissimilarity which indicates a local optimum has been reached.
+    \item \textbf{The build phase} - An initial set of $k$ data points are selected as the starting medoids. This selection aims to establish a reasonable initial clustering by choosing points that are relatively central within potential groups that exists, minimising the initial total dissimilarity.
+    \item \textbf{The swap phase} - This phase iteratively refines the set of medoids. For each currently selected medoid $m$ and each non-medoid point data point $x$, the algorithm computes the change in total dissimilarity that would result from swapping $m$ and $x$. That is, setting $x$ as that centroid of $m$'s cluster. The swap that yields the greatest reduction across all possible pairs is finally performed. This process repeats until no swap can further reduce the total dissimilarity which indicates a local optimum has been reached.
 \end{enumerate}
 
 The PAM algorithm employs a greedy search strategy during the swap phase, which means it may converge to a local rather than a global optimum \cite{kmedoids}. The computational complexity of the swap phase is often cited as $O(k(n - k)^2)$ per iteration, where $n$ is the number of data points and $k$ is the number of clusters \cite{kmedoids}.
@@ -714,22 +750,23 @@ Density-Based Spatial Clustering of Applications with Noise (DBSCAN) is density-
 
 The algorithm's behaviour and the concept of density is controlled by two hyperparameters \cite{ester1996density}:
 \begin{itemize}
-    \item \texttt{Eps} - This parameter defines the maximum distance between two points for one to be considered as in the neighbourhood of the other. It essentially sets the radius for identifying neighbours. A smaller \texttt{Eps} value requires points to be closer together to form a dense region, potentially leading to smaller, tighter clusters and classifying more points as noise. Conversely, a larger \texttt{Eps} value allows clusters to span sparser regions and potentially merge groups that might otherwise be distinct.
-    \item \texttt{MinPts} - This parameter specifies the minimum number of points (including the point itself) required within a point's Eps-neighbourhood for that point to be considered a core point (i.e. an interior point of a dense region). \text{MinPts} defines the threshold for density. A higher value requires more points to constitute a dense core, potentially resulting in fewer clusters and more points being classified as noise. A lower value allows sparser groupings to qualify as clusters, potentially resulting in more clusters.
+    \item \textbf{\texttt{Eps}} - This parameter defines the maximum distance between two points for one to be considered as in the neighbourhood of the other. It essentially sets the radius for identifying neighbours. A smaller \texttt{Eps} value requires points to be closer together to form a dense region, potentially leading to smaller, tighter clusters and classifying more points as noise. Conversely, a larger \texttt{Eps} value allows clusters to span sparser regions and potentially merge groups that might otherwise be distinct.
+    \item \textbf{\texttt{MinPts}} - This parameter specifies the minimum number of points (including the point itself) required within a point's Eps-neighbourhood for that point to be considered a core point (i.e. an interior point of a dense region). \text{MinPts} defines the threshold for density. A higher value requires more points to constitute a dense core, potentially resulting in fewer clusters and more points being classified as noise. A lower value allows sparser groupings to qualify as clusters, potentially resulting in more clusters.
 \end{itemize}
 
 Determining appropriate values for \texttt{Eps} and \texttt{MinPts} often requires a heuristic (such as the one described by (\citet{ester1996density})) or domain knowledge, as DBSCAN is an unsupervised machine learning algorithm \cite{ester1996density}.
 
-To understand the algorithm's operation, several core concepts are essential \cite{ester1996density} \begin{itemize}
-    \item Eps-neighbourhood - The Eps-neighbourhood of a point is the area within a radius of length \texttt{Eps} from that point.
-    \item Density-reachable - A point $p$ is density reachable from another core point, if there is a sequence of points from $p$ to $q$ where the distance between any two points is less than or equal to \texttt{Eps} and every point in this sequence except $q$ must be a core point. This defines a chain of density connecting $p$ to $q$.
+To understand the algorithm's operation, several core concepts are essential \cite{ester1996density}
+\begin{itemize}
+    \item \textbf{Eps-neighbourhood} - The Eps-neighbourhood of a point is the area within a radius of length \texttt{Eps} from that point.
+    \item \textbf{Density-reachable} - A point $p$ is density reachable from another core point, if there is a sequence of points from $p$ to $q$ where the distance between any two points is less than or equal to \texttt{Eps} and every point in this sequence except $q$ must be a core point. This defines a chain of density connecting $p$ to $q$.
 \end{itemize}
 
 Additionally, based on the hyperparameters, DBSCAN categorises each point in the dataset into one of the three types \cite{ester1996density}. 
 \begin{itemize}
-    \item Core point - A point whose Eps-neighbourhood contains at least \texttt{MinPts} points, including itself. Core points are considered to be in the interior of a dense cluster.
-    \item Border point - A point that is not a core point itself, but falls within the Eps-neighbourhood of at least one core point. Border points lie on the border of a cluster.
-    \item Noise point - A point that is neither a core point nor a border point. These points typically reside in low-density regions and are not assigned to any cluster.
+    \item \textbf{Core point} - A point whose Eps-neighbourhood contains at least \texttt{MinPts} points, including itself. Core points are considered to be in the interior of a dense cluster.
+    \item \textbf{Border point} - A point that is not a core point itself, but falls within the Eps--neighbourhood of at least one core point. Border points lie on the border of a cluster.
+    \item \textbf{Noise point} - A point that is neither a core point nor a border point. These points typically reside in low-density regions and are not assigned to any cluster.
 \end{itemize}
 
 The DBSCAN algorithm, formally defined in (\citet{ester1996density}), iterates through the data points. When it encounters an unvisited point, it checks if that point qualifies as a core point by examining the set of points Eps-neighbourhood. If it is indeed a core point, then a new cluster is formed. This cluster is then expanded by finding all density-reachable points, starting from this initial core points. This involves recursively exploring the Eps-neighbourhood of all core points found during the expansion process. Any point reachable through a chain of core points connected by their Eps-neighbourhood becomes part of the cluster. If an unvisited point examined is not a core point, it is initially marked as noise, although it may be later reclassified as a border point, if found within the Eps-neighbourhood of a core point belonging to an expanding cluster. Points identified as density-reachable but not core points become border points assigned to this cluster. This procedure continues until all points in the dataset have been visited and assigned to a cluster or designated as noise.
@@ -759,8 +796,8 @@ To establish a formal link between the flat clustering of DBSCAN and the hierarc
 
 HDBSCAN builds upon the defining concepts relative to $m_{\text{pts}}$, only allowing $\epsilon$ (or $\lambda$) to vary \cite{campello2013density}:
 \begin{itemize}
-    \item Core distance ($d_{\text{core}}(x)$) - For a data point $x$, this is the distance to its $m_{\text{pts}}$-th nearest neighbour (including itself). It serves as a measure of the local density around $x$. A smaller core distance implies a denser region.
-    \item Mutual reachability distance ($d_{\text{mreach}}(x_p, x_q)$) - Defined for two data points $x_p, x_q$, this is the maximum of their respective core distances and their pairwise distance defined as:
+    \item \textbf{Core distance ($d_{\text{core}}(x)$)} - For a data point $x$, this is the distance to its $m_{\text{pts}}$-th nearest neighbour (including itself). It serves as a measure of the local density around $x$. A smaller core distance implies a denser region.
+    \item \textbf{Mutual reachability distance ($d_{\text{mreach}}(x_p, x_q)$)} - Defined for two data points $x_p, x_q$, this is the maximum of their respective core distances and their pairwise distance defined as:
         \[d_{\text{mreach}}(x_p, x_q) = \max \{ d_{\text{core}}(x_p), d_{\text{core}}(x_q), d(x_p, x_q) \}\]
     This adjusted distance measure ensures that points in sparse regions are effectively pushed further apart, reflecting density differences.
 \end{itemize}
@@ -798,9 +835,9 @@ Using this concept of stability, HDBSCAN selects the optimal flat clustering by 
 
 \section{Data}
 
-Data relevant to the operational state and maintenance of the ISIS facility originates from several sources. The facility publishes open-access datasets, primarily containing instrument calibrations and experimental metrics, via its data portal \citep{isisdata}. Alongside this, the ISIS team maintains proprietary internal datasets detailing specific component performance, which are available upon request. For this research, access was granted to historical logs for the ion source component, with entries dating back to 27 March 2003. Furthermore, the operations crew maintains a daily operational log, the Operalog, documenting facility faults and the corresponding remedial actions taken.
+Data relevant to the operational state and maintenance of the ISIS facility originates several sources. The ISIS team maintains proprietary internal datasets detailing specific component performance, which are available upon request. For this research, access was granted to historical logs for the ion source component, with entries dating back to 27 March 2003 and the Operalog, an operational log maintained by the operations crew, which documents facility faults and the corresponding remedial actions taken.
 
-Given the breadth of available data and the project's scope constraints, a decision was made to focus the analysis presented in this paper on the \textbf{Operalog}. This dataset provides a rich textual record of real-world failures across the facility, offering valuable insights despite its partially unstructured nature. Data from the specialised ion source logs is the focus of the partner project. 
+Given the breadth of available data and the project's scope constraints, a decision was made to focus the analysis presented in this report on the \textbf{Operalog}. This dataset provides a rich textual record of real-world failures across the facility, offering valuable insights despite its partially unstructured nature. Data from the specialised ion source logs is the focus of the partner project. 
 
 \subsection{The Operalog}
 The operational log, otherwise referred to as the `Operalog', is an Excel spreadsheet with entries documenting moments of machinery failure within the ISIS facility covering the period 1996 - 2023. Table~\ref{tab:operalog} documents the important features. Notably, the day-to-day operational crew have developed custom abbreviations, acronyms and terminology which may not immediately be clear. Additionally, different crew members have varying writing styles and levels of depth of information. Thus, this results in an unstructured text dataset which has a huge variance in quality and quantity of information. Furthermore, as noted in Table~\ref{tab:operalog}, \texttt{FaultRepair} was seemingly made redundant post-2017. Figure~\ref{fig:FaultDescriptionVSFaultRepairs} highlights the distribution in the text lengths of both unstructured text fields. Furthermore, around $0.02\%$ of \texttt{FaultDescription} fields are empty whereas around $66\%$ of \texttt{FaultRepair} fields are empty. The generally shorter entries in \texttt{FaultRepair}, with a large majority having fewer than or equal to 5 characters, suggest lower informational content compared to \texttt{FaultDescription}. This is further illustrated in the Wordcloud illustrations \cite{oesper2011wordcloud} (Figure~\ref{fig:wc}), where \texttt{FaultRepair} only has one extremely large word (`reset'). As the size of the word indicates the frequency, this means \texttt{FaultRepair} has the word `reset' in almost all non-empty entries. With `reset' being exactly 5 characters and most non-empty entries in \texttt{FaultRepair} being at most 5 characters (of which, those that contain reset are over 70\% of entries), it is easy to see that the \texttt{FaultDescription} field contains richer, more informative context. 
@@ -829,20 +866,59 @@ The operational log, otherwise referred to as the `Operalog', is an Excel spread
     \label{tab:operalog}
 \end{table}
 
+% \begin{figure}[htbp]
+%     \centering
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{FaultDescriptionVSFaultRepairs.png}
+%         \caption{Frequency distribution of the text lengths for non-blank \texttt{FaultDescription} and \texttt{FaultRepair} fields. Each bar represents a range of 5 characters.}\label{fig:FaultDescriptionVSFaultRepairs}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/ionSourceTokenCountDist.png}
+%         \caption{Frequency distribution of the number of tokens for non-blank \texttt{FaultDescription} and \texttt{FaultRepair} entries. Each bar represents a range of around 2 tokens.}\label{fig:ionSourceTokenCountDist}
+%     \end{subfigure}
+%     \caption{Frequency distributions of characters and tokens.}
+%     \label{fig:hists}
+% \end{figure}
+
+% \begin{figure}[htbp]
+%     \centering
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{FaultDescriptionVSFaultRepairs.png}
+%         \caption{Distribution of text character lengths for non-empty \texttt{FaultDescription} and \texttt{FaultRepair} entries. Bin width is 5 characters.}
+%         \label{fig:FaultDescriptionVSFaultRepairs}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/ionSourceTokenCountDist.png}
+%         \caption{Distribution of token counts for non-empty \texttt{FaultDescription} and \texttt{FaultRepair} entries. Bin width is approximately 2 tokens.}
+%         \label{fig:ionSourceTokenCountDist}
+%     \end{subfigure}
+%     \caption[Operalog Field Length Distributions]{Comparison of length distributions (character counts and token counts) for the \texttt{FaultDescription} and \texttt{FaultRepair} fields in the Operalog dataset.}
+%     \label{fig:hists}
+% \end{figure}
+
+
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{FaultDescriptionVSFaultRepairs.png}
-        \caption{Frequency distribution of the text lengths for non-blank \texttt{FaultDescription} and \texttt{FaultRepair} fields. Each bar represents a range of 5 characters.}\label{fig:FaultDescriptionVSFaultRepairs}
+        \caption{Character length distribution.}
+        \label{fig:FaultDescriptionVSFaultRepairs}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{./images/ionSourceTokenCountDist.png}
-        \caption{Frequency distribution of the number of tokens for non-blank \texttt{FaultDescription} and \texttt{FaultRepair} entries. Each bar represents a range of around 2 tokens.}\label{fig:ionSourceTokenCountDist}
+        \caption{Token count distribution.}
+        \label{fig:ionSourceTokenCountDist}
     \end{subfigure}
-    \caption{Frequency distributions of characters and tokens.}
+    \caption[Operalog Field Length Distributions]{Frequency distributions comparing the non-empty \texttt{FaultDescription} and \texttt{FaultRepair} fields from the Operalog. Left shows the distribution of text lengths in characters (each bar represents a range of approximately 5 characters). Right shows the distribution of the number of tokens (each bar represents a range of approximately 2 tokens).}
     \label{fig:hists}
 \end{figure}
 
@@ -865,15 +941,14 @@ The operational log, otherwise referred to as the `Operalog', is an Excel spread
     \label{fig:wc}
 \end{figure}
 
-\subsection{Preliminary Data Analysis}
-\todo[inline, caption={}]{ 
-    \begin{itemize}
-        \item Talk about amount of issues per year
-        \item Talk about the distribution of text lengths across whole df
-        \item Talk about the distribution of text lengths across iondf
-    \end{itemize}
-}
-
+% \subsection{Preliminary Data Analysis}
+% \todo[inline, caption={}]{ 
+%     \begin{itemize}
+%         \item Talk about amount of issues per year
+%         \item Talk about the distribution of text lengths across whole df
+%         \item Talk about the distribution of text lengths across iondf
+%     \end{itemize}
+% }
 
 \section{Overview}
 
@@ -883,17 +958,13 @@ The process of transforming an unlabelled, uninformative Operalog into an inform
 
 Several hyperparameters affect the performance of the label generating process. Examples include model or algorithm specific parameters (i.e. the dimensionality reduction or clustering algorithms) and clustering `goodness' heuristics used. These hyperparameters are tuned using Optuna \cite{akiba2019optuna}, an automatic optimisation framework specifically designed for machine learning applications and allows for multi-objective optimisation. This hyperparameter optimisation process determines `best' induced categories, and thus labels, for each issue type. 
 
-Additionally, as this project is an early stage exploration of auto-categorisation for the ISIS Operalog, the major focus is on ion source \texttt{Equipment} type unless explicitly specified. This enables the project to focus on refining the approach in a scoped manner with a structured goal in mind - to progress the auto-categorisation effort on the ISIS Operalog. The subsequent sections of this chapter detail each stage of this end-to-end pipeline, developed with the goal of producing an effective auto-categorisation model for the Operalog data.
-
-\todo{Clean up wording in the above}
+Additionally, as this project is an early stage exploration of auto-categorisation for the ISIS Operalog, the focus is on entries of ion source \texttt{Equipment} type. This enables the project to focus on refining the approach in a scoped manner with a structured goal in mind - to progress the auto-categorisation effort on the ISIS Operalog. The subsequent sections of this chapter detail each stage of this end-to-end pipeline, developed with the goal of producing an effective auto-categorisation model for the Operalog data.
 
 \section{Natural Language Pre-processing}\label{sec:preproc}
 
 The aim of pre-processing the unstructured, English natural language text data from \\ \texttt{FaultDescription} is to normalise and prepare it for text embedding. Normalisation allows many syntactic permutations or augmentations of a text to be collapsed into one standardised form. This allows for consistent results as it ensures texts that are syntactically different but semantically similar will be mapped by embedding model to the same value. For pre-processing, and the rest of the pipeline, each log entry's \texttt{FaultDescription} is considered one text.
 
-\todo{Clean up wording in the above}
-
-Tokenisation is one of the earliest stages of natural language processing. To perform tokenisation, we use Tensorflow's \texttt{UnicodeScriptTokenizer} \cite{tensorflow2015whitepaper}. Tensorflow is `an end-to-end platform for machine learning', which provides efficient machine learning algorithm implementations. A tokeniser, such as this, splits the text into sub-units called `tokens' \cite{gefenstette1999tokenization}. These tokens are useful to pass to subsequent natural language processing stages which is, in our case, text embedding. UnicodeScriptTokenizer, a specialised version of Tensorflow's \texttt{Tokenizer}, tokenises `UTF-8 strings by splitting where there is a change in Unicode script' (\cite{tensorflow2015whitepaper}, Tensorflow Text). 
+Tokenisation is one of the earliest stages of natural language processing \cite{tabassum2020survey, sammons2016edison}. To perform tokenisation, we use Tensorflow's \texttt{UnicodeScriptTokenizer} \cite{tensorflow2015whitepaper}. Tensorflow is `an end-to-end platform for machine learning', which provides efficient machine learning algorithm implementations. A tokeniser, such as this, splits the text into sub-units called `tokens' \cite{gefenstette1999tokenization}. These tokens are useful to pass to subsequent natural language processing stages which is, in our case, text embedding. \texttt{UnicodeScriptTokenizer}, a specialised version of Tensorflow's \texttt{Tokenizer}, tokenises `UTF-8 strings by splitting where there is a change in Unicode script' \cite{tensorflow2015whitepaper}.
 
 Once tokenised, stop-word removal is performed. Stop-words are non-informative words such as articles, prepositions and pronouns. Therefore removal of these words tends to help models have access to informative contexts and reduce noise \cite{silva2003importance}. We consider the standard English stop-words from NLTK \cite{bird2009natural} and some context specific stop-words. This includes `ion source' which does not provide any informative contexts as we have already scoped our dataset to ion source \texttt{Equipment} and `breakdown' which appears in just over $50\%$ of entries. 
 
@@ -903,16 +974,12 @@ Furthermore, punctuation tokens are converted into one of two categories: end-of
 
 Just in terms of ion source \texttt{Equipment}, the pre-processing is applied across 1251 log entries, ranging from 2009 - 2023. Tokenisation and operating on tokens is computationally intensive, thus the solution operates on tensors, leveraging Tensorflow capabilities to perform GPU-based compute, which speeds up machine learning based applications \cite{tensorflow2015whitepaper, baldini2014predicting}.
 
-As text pre-processing is computationally intensive, using these flags to perform hyperparameter optimisation (Section~\ref{sec:hyperparameterOpt}) is an inefficient use of compute. This is because the pre-processing must be re-computed using these Boolean flags, for each configuration run. As these flags are Boolean, it is relatively easy to manually enumerate each configuration option and, thus, these parameters are instead exposed through the CLI application (Section~\ref{sec:CLI}) rather than in the hyperparameter optimisation process.
-
-\todo{Clean up wording in the above}
+To improve computational efficiency, Boolean flags controlling text casing and punctuation removal were excluded from the hyperparameter optimisation phase (Section~\ref{sec:hyperparameterOpt}). Incorporating them would require the computationally expensive pre-processing step to be repeated for each Optuna \cite{akiba2019optuna} trial, a hyperparameter framework used in Section~\ref{sec:hyperparameterOpt}, even for minor parameter adjustments unrelated to these flags. Given that there are only a few combinations for these Boolean settings, they are more efficiently managed as user-selectable options via the CLI application (Section~\ref{sec:CLI}), ensuring pre-processing is performed only once per selected configuration.
 
 \rowcolors{2}{gray!10}{white}
 \begin{table}[htbp]
     \fontsize{8}{12}\selectfont
     \centering
-    \caption{Operational crew abbreviation mapping.}
-    \label{tab:abbrevCrew}
     \begin{adjustbox}{max width=\textwidth}
     \begin{tabular}{c | c}
         \toprule
@@ -924,6 +991,8 @@ As text pre-processing is computationally intensive, using these flags to perfor
         \bottomrule
     \end{tabular}
     \end{adjustbox}
+    \caption{Operational crew abbreviation mapping.}
+    \label{tab:abbrevCrew}
 \end{table}
 
 
@@ -1195,8 +1264,6 @@ To gain an initial understanding of suitable UMAP parameters for the Operalog da
 \begin{table}[htbp]
     \fontsize{8}{11}\selectfont % Kept your font size setting
     \centering
-    \caption{UMAP hyperparameter values explored in naive grid search} % Correct caption
-    \label{tab:umapgrid} % Kept your label
     \renewcommand{\arraystretch}{1.2} % Increase vertical spacing between rows slightly
     \rowcolors{2}{gray!10}{white} % Keep your row coloring
     \begin{tabular}{p{3cm}|p{8.5cm}} % Use left-aligned columns, no vertical rule
@@ -1209,6 +1276,8 @@ To gain an initial understanding of suitable UMAP parameters for the Operalog da
         \bottomrule % Bottom rule from booktabs
     \end{tabular}
     \renewcommand{\arraystretch}{1.0} % Reset arraystretch to default
+    \caption{UMAP hyperparameter values explored in naive grid search} % Correct caption
+    \label{tab:umapgrid} % Kept your label
 \end{table}
 
 
@@ -1248,9 +1317,9 @@ Following dimensionality reduction via UMAP, the resulting low-dimensional embed
 To explore different clustering paradigms, three algorithms were selected for evaluation based on their characteristics described in Section~\ref{sec:clustering}:
 
 \begin{itemize}
-    \item k-Medoids \cite{kmedoids} - A partitioning-based algorithm that groups data around actual data points (medoids).
-    \item DBSCAN \cite{ester1996density} - A density-based algorithm that identifies clusters based on regions of high point density.
-    \item HDBSCAN \cite{campello2013density} - An algorithm combining density-based principles with hierarchical clustering to identify stable clusters across varying densities.
+    \item \textbf{k-Medoids \cite{kmedoids}} - A partitioning-based algorithm that groups data around actual data points (medoids).
+    \item \textbf{DBSCAN \cite{ester1996density}} - A density-based algorithm that identifies clusters based on regions of high point density.
+    \item \textbf{HDBSCAN \cite{campello2013density}} - An algorithm combining density-based principles with hierarchical clustering to identify stable clusters across varying densities.
 \end{itemize}
 
 Notably, k-Means \cite{macqueen1967some}, another common partitioning algorithm, was considered but excluded due to its known sensitivity to initialisation and potential instability compared to k-Medoids \cite{zhang2008improved}.
@@ -1276,7 +1345,7 @@ However, k-Medoids assumes clusters are roughly spherical and aims to minimise d
     \caption{IsoScore comparison of MPNet versus Nomic embeddings over 100 runs of UMAP. UMAP parameters: \texttt{min\_dist} $=0.1$, \texttt{n\_neighbors} $=15$, \texttt{metric} $= \text{cosine}$.}\label{fig:isoscore}
 \end{figure}
 
-Based on these characteristics, we hypothesize that HDBSCAN might be best suited for this task, followed by DBSCAN, with k-Medoids likely performing worst due to the non-spherical nature of the projected data. However, empirical evaluation across all three algorithms is necessary to validate these expectations and determine the most effective approach for automatically categorising the Operalog fault descriptions. The subsequent hyperparameter optimisation (Section~\ref{sec:hyperparameterOpt}) and evaluation will compare their performance quantitatively using the clustering heuristics.
+Based on these characteristics, we hypothesise that HDBSCAN might be best suited for this task, followed by DBSCAN, with k-Medoids likely performing worst due to the non-spherical nature of the projected data. However, empirical evaluation across all three algorithms is necessary to validate these expectations and determine the most effective approach for automatically categorising the Operalog fault descriptions. The subsequent hyperparameter optimisation (Section~\ref{sec:hyperparameterOpt}) and evaluation will compare their performance quantitatively using the clustering heuristics.
 
 \subsection{Clustering heuristics} \label{sec:clusterheuristics}
 
@@ -1284,11 +1353,11 @@ Motivated by the necessity to quantitatively evaluate the quality of different c
 \begin{itemize}
     % \item Inertia - Also known as the within-cluster sum-of-squares, this metric measures cluster compactness by summing the squared distances of each sample to its closest cluster centre (medoid in the case of k-Medoids) \cite{macqueen1967some}. Lower inertia values generally indicate denser, more compact clusters. However, inertia tends to decrease as the number of clusters increases, making it less useful for comparing clusterings with different numbers of clusters (k).
 
-    \item Silhouette coefficient - This metric evaluates how well-separated clusters are by comparing each point's average distance to points in its own cluster (cohesion) with its average distance to points in the nearest neighbouring cluster (separation) \cite{rousseeuw1987silhouettes}. Scores range from -1 to 1, where values closer to 1 indicate well-separated, dense clusters, values near 0 suggest overlapping clusters, and negative values indicate potential misclassifications.
+    \item \textbf{Silhouette coefficient} - This metric evaluates how well-separated clusters are by comparing each point's average distance to points in its own cluster (cohesion) with its average distance to points in the nearest neighbouring cluster (separation) \cite{rousseeuw1987silhouettes}. Scores range from -1 to 1, where values closer to 1 indicate well-separated, dense clusters, values near 0 suggest overlapping clusters, and negative values indicate potential misclassifications.
 
-    \item Davies-Bouldin index - This index quantifies the average `similarity' between each cluster and its most similar neighbour, where similarity is defined as the ratio of within-cluster scatter to between-cluster separation \cite{davies1979cluster}. Lower Davies-Bouldin scores indicate better clustering, implying clusters are compact and well-separated from their nearest neighbours.
+    \item \textbf{Davies-Bouldin index} - This index quantifies the average `similarity' between each cluster and its most similar neighbour, where similarity is defined as the ratio of within-cluster scatter to between-cluster separation \cite{davies1979cluster}. Lower Davies-Bouldin scores indicate better clustering, implying clusters are compact and well-separated from their nearest neighbours.
 
-    \item Calinski-Harabasz index - Measures the ratio of the sum of between-cluster dispersion to the sum of within-cluster dispersion for all clusters \cite{calinski1974dendrite}. Higher Calinski-Harabasz scores generally indicate better defined clusters. That is, clusters are dense and well-separated.
+    \item \textbf{Calinski-Harabasz index} - Measures the ratio of the sum of between-cluster dispersion to the sum of within-cluster dispersion for all clusters \cite{calinski1974dendrite}. Higher Calinski-Harabasz scores generally indicate better defined clusters. That is, clusters are dense and well-separated.
 \end{itemize}
 
 Furthermore, each of these metrics captures a different aspect of clustering quality (compactness, separation and variance ratios). As it is unclear which single metric best reflects the desired clustering structure for a specific dataset and task, particularly in an exploratory context like identifying Operalog fault categories, all three metrics were used collectively during the hyperparameter optimisation phase (Section~\ref{sec:hyperparameterOpt}) to provide a more comprehensive assessment of the different clustering solutions.
@@ -1313,8 +1382,8 @@ To address these challenges, this project employed the Optuna framework for auto
 An Optuna optimisation session, termed a `study', iteratively evaluates different hyperparameter configurations (`trials') \cite{akiba2019optuna}. For each trial, Optuna suggests parameter values based on a chosen sampler algorithm. This study utilised the Tree-structured Parzen Estimator sampler, which is Optuna's default algorithm known for efficiently exploring complex search spaces \cite{watanabe2023tree}. The core components of the Optuna study setup were:   
 
 \begin{itemize}
-    \item Objective function - A function designed to take a set of suggested hyperparameters, execute the relevant parts of the pipeline (UMAP transformation and clustering), calculate the three chosen clustering heuristic scores, and return these scores to Optuna. This function defines the search space by specifying the range or set of possible values for each hyperparameter using Optuna's library semantics. The specific hyperparameters optimised included shared UMAP settings and algorithm-specific parameters, with ranges informed by preliminary experimentation as shown in Table \ref{tab:hypreal}. To handle potential errors arising from UMAP's stochastic nature or problematic parameter combinations leading to clustering failures, the objective function incorporated a retry mechanism (up to 10 attempts). If errors persisted, the trial was assigned extremely poor heuristic scores to guide the optimiser away from that configuration region.
-    \item Number of trials - An upper limit defining the maximum number of configurations to evaluate within the study.
+    \item \textbf{Objective function} - A function designed to take a set of suggested hyperparameters, execute the relevant parts of the pipeline (UMAP transformation and clustering), calculate the three chosen clustering heuristic scores, and return these scores to Optuna. This function defines the search space by specifying the range or set of possible values for each hyperparameter using Optuna's library semantics. The specific hyperparameters optimised included shared UMAP settings and algorithm-specific parameters, with ranges informed by preliminary experimentation as shown in Table \ref{tab:hypreal}. To handle potential errors arising from UMAP's stochastic nature or problematic parameter combinations leading to clustering failures, the objective function incorporated a retry mechanism (up to 10 attempts). If errors persisted, the trial was assigned extremely poor heuristic scores to guide the optimiser away from that configuration region.
+    \item \textbf{Number of trials} - An upper limit defining the maximum number of configurations to evaluate within the study.
 \end{itemize}
 
 
@@ -1324,8 +1393,6 @@ Upon completion of the specified number of trials, the study yields a set of opt
 \begin{table}[htbp]
     \fontsize{8}{11}\selectfont % Font size setting
     \centering
-    \caption{Optuna hyperparameter search space} % Caption
-    \label{tab:hypreal}
     \renewcommand{\arraystretch}{1.2} % Row spacing
     \rowcolors{2}{gray!10}{white} % Row coloring
     % Use tabularx to fit the text width. 'X' column automatically adjusts and wraps text.
@@ -1344,9 +1411,11 @@ Upon completion of the specified number of trials, the study yields a set of opt
         \bottomrule % Bottom rule from booktabs
     \end{tabularx}
     \renewcommand{\arraystretch}{1.0} % Reset arraystretch to default
+    \caption{Optuna hyperparameter search space.} % Caption
+    \label{tab:hypreal}
 \end{table}
 
-\section{Label generation}
+\section{Label generation}\label{sec:labelgen}
 
 After achieving the `most optimal’ clusters through the hyperparameter optimisation process described in Section~\ref{sec:unsupcat}, the final step involves automatically inferring meaningful names or labels for these discovered groups. This automatic label generation was performed leveraging the natural language processing capabilities of the SpaCy library \cite{spacy2}. The main idea is to capture the essence of the text in each cluster into a precise but representative phrase.
 
@@ -1377,41 +1446,348 @@ The primary functions offered by the CLI include managing the hyperparameter opt
 
 To offer flexibility, the CLI exposes several parameters for user configuration. The primary parameters are listed below:
 \begin{itemize}
-    \item Model - The HuggingFace model path.
-    \item Keep punctuation - Boolean toggle which keeps punctuation from being stripped during the text pre-processing stage.
-    \item Ignore case - Boolean toggle which ignores casing during the text pre-processing stage.
-    \item Clustering methods - Define one or more clustering methods to use for the hyperparameter optimisation stage. 
-    \item Heuristic methods - Define one or more heuristic methods to use for the hyperparameter optimisation stage.
+    \item \textbf{Model} - The HuggingFace model path.
+    \item \textbf{Keep punctuation} - Boolean toggle which keeps punctuation from being stripped during the text pre-processing stage.
+    \item \textbf{Ignore case} - Boolean toggle which ignores casing during the text pre-processing stage.
+    \item \textbf{Clustering methods} - Define one or more clustering methods to use for the hyperparameter optimisation stage. 
+    \item \textbf{Heuristic methods} - Define one or more heuristic methods to use for the hyperparameter optimisation stage.
 \end{itemize}
 
 The design of the CLI application and its underlying codebase explicitly considers future development. Its structure allows users to experiment with embedding models beyond those researched in this project by simply providing a different model path. Furthermore, the modular organisation of the codebase aims to simplify the future integration of additional clustering algorithms or evaluation heuristics, enhancing the tool's potential utility for ongoing research or operational use.
 
+% \chapter{Results and Discussion}\label{chap:results}
+%
+% As mentioned in Section~\ref{sec:hyperparameterOpt}, we perform hyperparameter optimisation on parameters, as shown in Table~\ref{tab:hypreal}. Three heuristics (Silhouette coefficient, Davies-Bouldin index and Calinski-Harabasz index) for the three clustering methods (k-Medoids, DBSCAN and HDBSCAN). To initially get an idea of the clustering, we fix the clustering methods to less than three and analyse the clusters. Then, with the insights, we introduce another metric, the `unclustered\_percentage' \todo{maybe I wont say this sentence}. Finally, the three clustering methods are ran against each other over \todo{set thsi once done} $400$ trials toggling the two boolean flags (keep punctuation and ignore case), resulting in four runs, and the result with the most informative clustering labels are chosen. This is chosen subjectively. \todo{point out this is is not good and we want to move away from subjectiveness in the future.} \todo{piont out the min,max of each clustering method we are using.}
+%
+% Note that this $400$ was chosen due to the short-term instability in results. This is mainly introduced by the stochastic process of the optimisation pipeline (i.e. the dimensionality reduction with UMAP and clustering methods).
+%
+% Call the phases: (1) Head-To-Head (H2H) phase; (2) Free-For-All (F4A) phase (and make abbreviatiosn for this todo)
+%
+% \section{Experiments and Results}
+%
+% \subsection{Head-to-Head}
+%
+% Each head to head study was run for $400$ trials on both the MPNet and Nomic embedding spaces. This section details the results.
+%
+% The chosen ran were:
+% \todo{Make this as a table and label each one (A), (B), (C) so we can refer to it as run A, run B etc.}
+% \begin{itemize}
+%     \item k-Medoids, DBSCAN 
+%     \item DBSCAN, HDBSCAN
+%     \item only HDBSCAN optimisation, as this was hypothesised as the best, we explored whether having the other clustering methods was drawing away unnecessary attention during optimisation.
+% \end{itemize}
+%
+% These checks ignorecase and ignore punctuation.
+%
+% \todo{Explain why I am looking at cluster sizes}
+%
+% Cluster sizes are a good indication of the distribution of labels and how general a label is. We generally want, run-to-run, for a model to produces clusters of a consistent size.
+%
+% Figures \ref{fig:mpnet_h2h}~and~\ref{fig:nomic_h2h}, show the rank aggregation result, both MPNet and Nomic, for the top 3 configurations and their heuristic scores for k-Medoids versus DBSCAN (run (A)), and DBSCAN versus HDBSCAN (run (B)) as a 3-dimensional plot. Additionally, Figures \ref{fig:mpnet_h2h_whisker} and \ref{fig:nomic_h2h_whisker} highlight the distribution of cluster sizes, if each configuration was used for clustering.
+%
+% Notably, for MPNet, DBSCAN showed the widest whisker plots, indicating a higher variance and thus, more unstable results. Further, one source of instability comes from stochastic nature of UMAP (see Section~\ref{sec:umap}), and thus for some configuration recognised as `good', multiple runs may be required to re-produce the `good' results. Taking this into account, the results shown in the Figures \ref{fig:mpnet_h2h_whisker} and \ref{fig:nomic_h2h_whisker} is the entire distribution of cluster sizes over 10 runs, for the configuration over. 
+%
+
+
+% \pagebreak
+% \todo{fix this}
+% \begin{figure}[htbp]
+%     \centering
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_kmedoidsvsdbscan_whisker.png}
+%         \caption{k-Medoids versus DBSCAN}
+%         \label{fig:mpnet_kmedoidsvsdbscan}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_kmedoidsvshdbscan_whisker.png}
+%         \caption{k-Medoids versus HDBSCAN}
+%         \label{fig:mpnet_kmedoidsvshdbscan}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_dbscanvshdbscan_whisker.png}
+%         \caption{DBSCAN versus HDBSCAN}
+%         \label{fig:mpnet_dbscanvshdbscan}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_hdbscan_whisker.png}
+%         \caption{HDBSCAN}
+%         \label{fig:mpnet_hdbscan}
+%     \end{subfigure}
+%     \caption{MPNet: Whisker plots of the distribution of the sizes of clusters for each configuration returned by Optuna. Empty means there were no optimal configurations using that clustering method.}
+%     \label{fig:mpnet_h2h_whisker}
+% \end{figure}
+
+% \pagebreak
+% \todo{fix this}
+% \begin{figure}[htbp]
+%     \centering
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_kmedoidsvsdbscan_whisker.png}
+%         \caption{k-Medoids versus DBSCAN}
+%         \label{fig:nomic_kmedoidsvsdbscan}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_kmedoidsvshdbscan_whisker.png}
+%         \caption{k-Medoids versus HDBSCAN}
+%         \label{fig:nomic_kmedoidsvshdbscan}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_dbscanvshdbscan_whisker.png}
+%         \caption{DBSCAN versus HDBSCAN}
+%         \label{fig:nomic_dbscanvshdbscan}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_hdbscan_whisker.png}
+%         \caption{HDBSCAN}
+%         \label{fig:nomic_hdbscan}
+%     \end{subfigure}
+%     \caption{Nomic: Whisker plots of the distribution of the sizes of clusters for each configuration returned by Optuna. Empty means there were no optimal configurations using that clustering method.}
+%     \label{fig:nomic_h2h_whisker}
+% \end{figure}
+%
+% \subsection{Free-For-All}
+%
+% In this section, all clustering methods were compared against each other for $400$ trials, for all heuristics but over the boolean toggles from before, with each embedding space (MPNet and Nomic).  The results can be seen in (TODO). This will ideally plot the number of the clustesr. Think abuot how to lay this out.
+%
+% \section{Discussion}
+%
+% From the results, it is evident that DBSCAN is the most volatile and produces the most varied number of clusters. However, interestingly, HDBSCAN is the next most varied, with k-medoids being the most stable. This would make sense, though, as the number of clusters is set as a hyperparameter during optimisation, so there is only a fixed range of cluster sizes it can be. Disregarding this, HDBSCAN appears to be the most stable, given it has no prior information on the number of clusters. Additionally, Figure~\ref{fig:mpnet_dbscanvshdbscan}, DBSCAN got dominated by HDBSCAN to the point that there were no contending configurations found over $400$ trials. 
+%
+%
+% \todo[inline, caption={}] {
+%     \begin{itemize}
+%         \item Rank aggregation - DONE
+%         \item plot whiskers (or maybe in results?). acc this should be in results as it makes sense that is quantitative evaluation of results. - DONE ish
+%         \item results should also talk about qualitatively and motivate the conclusion, this is a step in the right direction but not 100\%. 
+%     \end{itemize}
+% }
+%
+% \todo[inline,caption={}]{
+% Describe the results and analyse the results
+% \begin{itemize}
+%     \item Analyse the sentence embedding results.
+%     \item Anaylse the UMAP hyperparameter optimisation qualitatively, mention that we use Optuna.
+%     \item Next steps: Fine tuning the PLM (Nomic or MPNet). Using MOE nomic (v2). Rent higher computation, then you can use top performing PLMS. Using t-SNE to see differences.
+% \end{itemize}
+% }
+
 \chapter{Results and Discussion}\label{chap:results}
 
-\todo[inline, caption={}] {
-    \begin{itemize}
-        \item Rank aggregation
-        \item plot whiskers (or maybe in results?). acc this should be in results as it makes sense that is quantitative evaluation of results.
-        \item results should also talk about qualitatively and motivate the conclusion, this is a step in the right direction but not 100\%.
-    \end{itemize}
-}
+This chapter presents the results obtained from the hyperparameter optimisation process detailed in Section~\ref{sec:hyperparameterOpt}. Recall that the optimisation sought to find the best parameters for the UMAP dimensionality reduction (Section~\ref{sec:umap}) and subsequent clustering stage (Section~\ref{sec:clustering}) by evaluating three clustering algorithms (k-Medoids, DBSCAN, HDBSCAN) across both MPNet and Nomic embedding spaces. The optimisation used three internal clustering heuristics (Silhouette coefficient, Davies-Bouldin index, Calinski-Harabasz index) as objectives \cite{rousseeuw1987silhouettes, davies1979cluster, calinski1974dendrite}, maximising the Silhouette and Calinski-Harabasz scores while minimising the Davies-Bouldin score. 
 
-\todo[inline,caption={}]{
-Describe the results and analyse the results
+The optimisation was conducted in two main phases:
+\begin{enumerate}
+    \item \textbf{Head-to-Head (H2H) Phase} - Pairwise comparisons of clustering algorithms, plus an HDBSCAN-only run, were performed to gain initial insights into their relative performance and stability under specific conditions (detailed in Section~\ref{sec:h2h_results}). These runs used default text pre-processing (ignoring case and ignoring punctuation).
+    \item \textbf{Free-For-All (F4A) Phase} - All three clustering algorithms were compared simultaneously, exploring the impact of different text pre-processing flags (toggling \texttt{ignore\_case} and \texttt{keep\_punctuation}) to identify robust, high-performing configurations across various settings (detailed in Section~\ref{sec:f4a_results}).
+\end{enumerate}
+
+For each phase, Optuna \cite{akiba2019optuna} studies were run for 400 trials per configuration. This relatively high number of trials was chosen to account for the inherent stochasticity in both the UMAP algorithm (Section~\ref{sec:umap}) and the Optuna sampler \cite{watanabe2023tree}, ensuring a more robust exploration of the hyperparameter space defined in Table~\ref{tab:hypreal}. The best configurations from each study were identified using the rank aggregation method described in Section~\ref{sec:hyperparameterOpt}.
+
+The subjective choice of the final label is based on a qualitative assessment of the labels generated from the quantitatively best-performing cluster configuration identified via rank aggregation. Improving the quantitative evaluation of generated label quality remains an area for future work. 
+
+\section{Experiments and Results}\label{sec:exp_results}
+
+% Suggestion: Move detailed figures referenced below to an Appendix B.
+
+\subsection{Head-to-Head (H2H) Phase}\label{sec:h2h_results}
+
+In the H2H phase, four distinct optimisation studies were conducted for both MPNet and Nomic embeddings, each running for 400 trials, as summarised in Table~\ref{tab:h2h_summary}. These runs used the default pre-processing settings (\texttt{ignore\_case} = \texttt{True}, \texttt{keep\_punctuation} = \texttt{False}).
+
+% \begin{itemize} % \todo{Made the list into a table-like structure}
+%     \item \textbf{Run A} - Comparing k-Medoids vs. DBSCAN.
+%     \item \textbf{Run B} - Comparing k-Medoids vs. DBSCAN.
+%     \item \textbf{Run C} - Comparing DBSCAN vs. HDBSCAN.
+%     \item \textbf{Run D} - Optimising HDBSCAN only (to assess if competition from other methods hindered its optimisation).
+% \end{itemize}
+
+\begin{table}[H] 
+    \centering
+    \rowcolors{2}{gray!10}{white}
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{l l l l}
+        \toprule
+        \textbf{Run ID} & \textbf{Description} & \textbf{Optimal Config. Plots} & \textbf{Cluster Size Plots} \\
+        \midrule
+        Run A & k-Medoids vs. DBSCAN & Fig.~\ref{fig:mpnet_kmedoids_vs_dbscan_h2h_config} (MPNet) & Fig.~\ref{fig:mpnet_h2h_runa} (MPNet) \\
+              &                      & Fig.~\ref{fig:nomic_kmedoids_vs_dbscan_h2h_config} (Nomic) & Fig.~\ref{fig:nomic_h2h_runa} (Nomic) \\
+        Run B & k-Medoids vs. HDBSCAN & Fig.~\ref{fig:mpnet_kmedoids_vs_hdbscan_h2h_config} (MPNet) & Fig.~\ref{fig:mpnet_h2h_runb} (MPNet) \\
+              &                       & Fig.~\ref{fig:nomic_kmedoids_vs_hdbscan_h2h_config} (Nomic) & Fig.~\ref{fig:nomic_h2h_runb} (Nomic) \\
+        Run C & DBSCAN vs. HDBSCAN    & Fig.~\ref{fig:mpnet_dbscan_vs_hdbscan_h2h_config} (MPNet) & Fig.~\ref{fig:mpnet_h2h_runc} (MPNet) \\
+              &                       & Fig.~\ref{fig:nomic_dbscan_vs_hdbscan_h2h_config} (Nomic) & Fig.~\ref{fig:nomic_h2h_runc} (Nomic) \\
+        Run D & HDBSCAN Only          & Fig.~\ref{fig:mpnet_hdbscan_only_h2h_config} (MPNet) & Fig.~\ref{fig:mpnet_h2h_rund} (MPNet) \\
+              &                       & Fig.~\ref{fig:nomic_hdbscan_only_h2h_config} (Nomic) & Fig.~\ref{fig:nomic_h2h_rund} (Nomic) \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+    \vspace{0.5em} % Add a small space after the table
+    \caption{Summary of H2H optimisation runs (default pre-processing).
+    All H2H runs used default pre-processing settings (\texttt{ignore\_case=True}, \texttt{keep\_punctuation=False}). Appendix references point to Appendix~\ref{app:exp_results_plots}.}
+    \label{tab:h2h_summary}
+\end{table}
+
+
+\noindent Key performance indicators included the heuristic scores achieved by the top configurations (selected via rank aggregation) and the stability of the clustering results, assessed by examining the distribution of cluster sizes produced by the highlighted top configurations over multiple independent runs. In this case, 10 runs were used here to capture variability stemming from UMAP's stochasticity. Cluster size distribution provides insight into whether an algorithm consistently finds a similar number of clusters of similar sizes, which is desirable for reproducible categorisation. 
+
+% Detailed visualisations comparing the heuristic scores for the top-ranked H2H configurations for MPNet and Nomic embeddings are presented in Appendix~\ref{sec:h2h_config_appendix}. These plots show the trade-offs between the different heuristics for the best solutions found.
+% \todo{Think about whether to move some examples up here}
+
+Detailed visualisations comparing the heuristic scores for the top-ranked H2H configurations for MPNet and Nomic embeddings are presented in Appendix~\ref{sec:h2h_config_appendix} (Figures~\ref{fig:mpnet_h2h_config_appendix} and \ref{fig:nomic_h2h_config_appendix}). These plots show the trade-offs between the different heuristics for the best solutions found.
+The stability analysis, showing the distribution of cluster sizes over 10 runs for the best configurations identified in the H2H phase, is presented in Appendix~\ref{sec:h2h_whisker_appendix} (Figures~\ref{fig:mpnet_h2h_whisker_appendix} and \ref{fig:nomic_h2h_whisker_appendix}).
+
+% Observing these distributions (particularly for MPNet, Figure~\ref{fig:mpnet_h2h_whisker_appendix}), several trends emerged:
+% \begin{itemize}
+%     \item DBSCAN often exhibited the widest variance in cluster sizes and sometimes failed to find optimal configurations which is indicated by the wide range (1 to around 500) of in MPNet Run A (Figure~\ref{fig:mpnet_h2h_runa}), suggesting higher instability or sensitivity to hyperparameters within this specific data context compared to the other methods. For example, in Nomic Run A (Figure~\ref{fig:nomic_h2h_runa}), DBSCAN produced only 3 clusters as the highest value, whereas, in the Nomic Run C (Figure~\ref{nomic_h2h_runc}), it has runs with up to 40 clusters.
+%     \item k-Medoids generally produced stable cluster counts, which is expected as the number of clusters ($k$) is a fixed hyperparameter determined during optimisation within a defined range (Table~\ref{tab:hypreal}). However, MPNet Run B (Figure~\ref{fig:mpnet_h2h_runb}) shows k-Medoids configurations getting dominated by HDBSCAN, suggesting that HDBSCAN clustering out-performs k-Medoids.
+%     \item HDBSCAN, despite not having the number of clusters predefined, demonstrated reasonable stability in the number and size of clusters identified across runs, particularly when optimised alone (Run C, Figures~\ref{fig:mpnet_h2h_runc} and \ref{fig:nomic_h2h_runc}). In the DBSCAN vs. HDBSCAN comparison (Run B, Figures~\ref{fig:mpnet_h2h_runb} and \ref{fig:nomic_h2h_runb}), HDBSCAN configurations showed the highest range of results, indicating that DBSCAN introduces noise when optimising using Optuna. 
+% \end{itemize}
+
+
+Observing these distributions (e.g., MPNet results in Figure~\ref{fig:mpnet_h2h_whisker_appendix}), several trends emerged:
 \begin{itemize}
-    \item Analyse the sentence embedding results.
-    \item Anaylse the UMAP hyperparameter optimisation qualitatively, mention that we use Optuna.
-    \item Next steps: Fine tuning the PLM (Nomic or MPNet). Using MOE nomic (v2). Rent higher computation, then you can use top performing PLMS. Using t-SNE to see differences.
+    \item DBSCAN often exhibited wide variance in cluster sizes (i.e. a range from 1 to nearly 500 clusters found across runs for optimal configurations in MPNet Run A, Figure~\ref{fig:mpnet_h2h_runa}) and sometimes failed to identify competitive optimal configurations (indicated by empty plots in the appendix, i.e. Figure~\ref{fig:mpnet_h2h_runc} for MPNet Run C). This suggests higher instability or sensitivity to hyperparameters within this specific data context compared to the other methods. For instance, Nomic Run A (Figure~\ref{fig:nomic_h2h_runa}) configurations using DBSCAN yielded at most 3 clusters, whereas Nomic Run C (Figure~\ref{fig:nomic_h2h_runc}) showed DBSCAN configurations producing up to 40 clusters, highlighting its variable behaviour.
+    \item k-Medoids generally produced stable cluster counts, as expected since the number of clusters ($k$) is a hyperparameter optimised within a defined range (Table~\ref{tab:hypreal}). However, in comparisons like Run B (i.e. MPNet, Figure~\ref{fig:mpnet_kmedoids_vs_hdbscan_h2h_config}), k-Medoids configurations were often dominated by HDBSCAN in the optimal set, suggesting HDBSCAN found better heuristic trade-offs.
+    \item HDBSCAN demonstrated reasonable stability in the number and size of clusters identified across runs, particularly when optimised alone (Run D, Figures~\ref{fig:mpnet_h2h_rund} and \ref{fig:nomic_h2h_rund}). In the DBSCAN vs. HDBSCAN comparison (Run C, Figures~\ref{fig:mpnet_dbscan_vs_hdbscan_h2h_config} and \ref{fig:nomic_dbscan_vs_hdbscan_h2h_config}), HDBSCAN configurations clearly dominated the optimal set, reinforcing its superior performance in this dataset. 
 \end{itemize}
-}
 
-\chapter{Conclusion}
 
-\todo[inline, caption={}]{
-    \begin{itemize}
-        \item Definitely talk about clear and transparent PLMs and malicious stuff (see BERT section).
-    \end{itemize}
-}
+These H2H results provide preliminary evidence supporting the initial hypothesis (Section~\ref{sec:unsupcat}), that density-based methods capable of handling varying densities (i.e. HDBSCAN) might be better suited to this dataset than the global density-based DBSCAN or the partition-based k-Medoids. Although k-Medoids offers predictable cluster counts, it got dominated by HDBSCAN, indicating that HDBSCAN may be the superior choice on this dataset. 
+
+\subsection{Free-For-All (F4A) Phase}\label{sec:f4a_results}
+
+% Building on the H2H insights, the F4A phase involved four distinct optimisation studies, each comparing \textbf{all three} clustering methods (k-Medoids, DBSCAN, HDBSCAN) simultaneously for 400 trials per study. These studies explored the impact of the text pre-processing flags (Section~\ref{sec:preproc}) on the final clustering outcome:
+
+Building on the H2H insights, the F4A phase involved four distinct optimisation studies, each comparing all three clustering methods (k-Medoids, DBSCAN, HDBSCAN) simultaneously for 400 trials per study. These studies explored the impact of the text pre-processing flags (Section~\ref{sec:preproc}) on the final clustering outcome, as summarised in Table~\ref{tab:f4a_summary}.
+
+% \todo{make this into a table}
+% \begin{itemize}
+%     \item \textbf{Run 1} - \texttt{ignore\_case=False}, \texttt{keep\_punctuation=False} (Figures~\ref{fig:mpnet_ff_f4a_config}, \ref{fig:nomic_ff_f4a_config}, \ref{fig:mpnet_ff_f4a_whisker}, \ref{fig:nomic_ff_f4a_whisker})
+%     \item \textbf{Run 2} - \texttt{ignore\_case=False}, \texttt{keep\_punctuation=True} (Figures~\ref{fig:mpnet_ft_f4a_config}, \ref{fig:nomic_ft_f4a_config}, \ref{fig:mpnet_ft_f4a_whisker}, \ref{fig:nomic_ft_f4a_whisker})
+%     \item \textbf{Run 3} - \texttt{ignore\_case=True},  \texttt{keep\_punctuation=False} (Default) (Figures~\ref{fig:mpnet_tf_f4a_config}, \ref{fig:nomic_tf_f4a_config}, \ref{fig:mpnet_tf_f4a_whisker}, \ref{fig:nomic_tf_f4a_whisker})
+%     \item \textbf{Run 4} - \texttt{ignore\_case=True},  \texttt{keep\_punctuation=True} (Figures~\ref{fig:mpnet_tt_f4a_config}, \ref{fig:nomic_tt_f4a_config}, \ref{fig:mpnet_tt_f4a_whisker}, \ref{fig:nomic_tt_f4a_whisker})
+% \end{itemize}
+
+\begin{table}[H]
+    \centering
+    \rowcolors{2}{gray!10}{white}
+    \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{l l l l l}
+        \toprule
+        \textbf{Run ID} & \textbf{\texttt{ignore\_case}} & \textbf{\texttt{keep\_punc}} & \textbf{Optimal Config. Plots} & \textbf{Cluster Size Plots} \\
+        \midrule
+        Run 1           & False   & False & Fig.~\ref{fig:mpnet_ff_f4a_config} (MPNet) & Fig.~\ref{fig:mpnet_ff_f4a_whisker} (MPNet) \\
+                        &         &                             & Fig.~\ref{fig:nomic_ff_f4a_config} (Nomic) & Fig.~\ref{fig:nomic_ff_f4a_whisker} (Nomic) \\
+        Run 2           & False   & True & Fig.~\ref{fig:mpnet_ft_f4a_config} (MPNet) & Fig.~\ref{fig:mpnet_ft_f4a_whisker} (MPNet) \\
+                        &         &                             & Fig.~\ref{fig:nomic_ft_f4a_config} (Nomic) & Fig.~\ref{fig:nomic_ft_f4a_whisker} (Nomic) \\
+        Run 3 (Default) & True    & False & Fig.~\ref{fig:mpnet_tf_f4a_config} (MPNet) & Fig.~\ref{fig:mpnet_tf_f4a_whisker} (MPNet) \\
+                        &         &                              & Fig.~\ref{fig:nomic_tf_f4a_config} (Nomic) & Fig.~\ref{fig:nomic_tf_f4a_whisker} (Nomic) \\
+        Run 4           & True    & True & Fig.~\ref{fig:mpnet_tt_f4a_config} (MPNet) & Fig.~\ref{fig:mpnet_tt_f4a_whisker} (MPNet) \\
+                        &         &                                                    & Fig.~\ref{fig:nomic_tt_f4a_config} (Nomic) & Fig.~\ref{fig:nomic_tt_f4a_whisker} (Nomic) \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+    % \vspace{0.5em} % Add a small space after the table
+    \caption{Summary of Free-For-All (F4A) Optimisation Runs. Appendix references point to Appendix~\ref{app:exp_results_plots}. Pre-processor settings \texttt{ignore\_case} (normalise text casing) and \texttt{keep\_punc} (keep punctuation) are highlighted. See Section~\ref{sec:preproc} for more information. }
+    \label{tab:f4a_summary}
+\end{table}
+
+\noindent These runs were performed for both MPNet and Nomic embeddings. The goal was to identify the overall best-performing and most robust configurations considering both the clustering algorithm and the pre-processing variations.
+
+Results from the F4A phase provided insights into the influence of pre-processing choices. Comparing the cluster size distributions in Appendix~\ref{sec:f4a_whisker_appendix} (Figures~\ref{fig:mpnet_f4a_whisker_appendix} and \ref{fig:nomic_f4a_whisker_appendix}), Run 2 (\texttt{ignore\_case=False}, \texttt{keep\_punc=True}) appeared to perform poorly, in both MPNet and Nomic, where only DBSCAN produced an optimal configuration finding just one clustering (Figure~\ref{fig:mpnet_ft_f4a_whisker}).
+
+Runs 1 and 3, both featuring \texttt{keep\_punc=False}, generally exhibited lower variance in cluster sizes compared to Runs 2 and 4 (\texttt{keep\_punc=True}), especially visible in the DBSCAN results (known for variability from Section~\ref{sec:h2h_results}). This suggests that removing punctuation (\texttt{keep\_punc=False}) is beneficial, likely because punctuation tokens introduced noise which was detrimental to the embedding models' semantic representations for this dataset. Comparing Run 1 (\texttt{ignore\_case=False}) and Run 3 (\texttt{ignore\_case=True}), both with punctuation removed, Run 3 (ignoring case) often showed slightly more consistent results (especially in the Nomic embeddings), suggesting that ignoring case standardisation also helps.
+
+However, HDBSCAN configurations still produced some outliers in terms of cluster size across most runs, indicating sensitivity in certain parameter regions. However, these outliers may be more useful configurations, as HDBSCAN tends to produce very conservative configurations with low cluster sizes of around 3 to 5.
+
+The extreme outlier cluster size (>400) found in MPNet Run 1 (Figure~\ref{fig:mpnet_ff_f4a_whisker}) might highlight a specific sensitivity or edge case within the optimisation process for that particular setting. Overall, the F4A results reinforce the preference for HDBSCAN and suggest that the default pre-processing (Run 3: \texttt{ignore\_case=True}, \texttt{keep\_punc=False}) provides a good balance of performance and stability.
+
+% The results results from the F4A phase indicated that Run 2 was the worst configuration, as it produced only one optimal configuration (DBSCAN) of a very low cluster size (1 for MPNet, 4 for Nomic). The runs with the lowest variation were 1 and 3 for both Nomic and MPNet, indicated by the DBSCAN runs (which were shown to be the most variable in Section~\ref{sec:h2h_results}). This suggests that, indicated by the common \texttt{keep\_punct = False}, punctuation tokens introduced a large amount of noise to the embedding models and the pre-processing stage helped. Additionally, HDBSCAN produces outliers in all runs (except those where it is not present), indicating that, due to this instability, the `best' configurations are likely not yet found. Moreover, both in MPNet and Nomic embeddings, \texttt{ignore\_case = True} consistently produces clusters, albeit it does not guarantee stability. Also, Figure~\ref{fig:mpnet_ff_f4a_whisker} shows an extreme outlier configuration, which produced a cluster size of over 400. This might indicate that in the general case, this setting is stable and might highlight an issue with the hyperparameter optimisation process.
+ 
+% Figures for F4A could include:
+% - Plots comparing best heuristic scores (e.g., box plots) for each algorithm under each flag setting.
+% - 3D heuristic plots for the overall best configurations found in F4A.
+% - Whisker plots of cluster sizes for the overall best configurations.
+% - Plot showing the number of clusters found by DBSCAN/HDBSCAN in F4A runs.
+% \todo{Add relevant summary figures/tables here and ensure all detailed supporting figures are placed in Appendix B and correctly referenced.}
+
+\section{Discussion}\label{sec:discussion} 
+
+The analysis of cluster sizes across the H2H and F4A experiments (Appendices~\ref{sec:h2h_whisker_appendix} and \ref{sec:f4a_whisker_appendix}) suggests a plausible range for the number of distinct fault categories within the ion source data. Excluding extreme outliers and configurations resulting in very few clusters (often associated with DBSCAN instability or less optimal methods), the more stable HDBSCAN configurations frequently identified between approximately 5 and 25 clusters. This range may represent a reasonable estimate for the number of operationally relevant fault categories inferable from this dataset using the current methodology, although further validation is required.
+
+The experimental results presented, combining insights from both the H2H and F4A phases, highlight several key aspects of applying unsupervised clustering to the ISIS Operalog data.
+
+
+\begin{enumerate}
+    \item The instability observed with DBSCAN, particularly regarding the variance in cluster sizes and its occasional failure to find competitive solutions during optimisation (summarised in Tables~\ref{tab:h2h_summary} and \ref{tab:f4a_summary} referencing appendix figures), suggests that its reliance on a single global density threshold (\texttt{Eps}) is a limitation for this dataset. This aligns with the expectation that the Operalog entries, varying significantly in length and specificity, likely form clusters of differing densities (Section~\ref{sec:unsupcat}).
+
+    \item HDBSCAN emerged as a more robust density-based method, consistently finding `good' solutions according to the heuristics and demonstrating better stability than DBSCAN across runs, even without a predefined cluster count. Its ability to handle varying densities via its hierarchical approach and stability-based extraction \cite{campello2013density} appears advantageous here.
+
+    \item While k-Medoids provided stable cluster counts due to its nature, its suitability is questionable given the likely non-spherical shapes of clusters in the UMAP-projected embedding space (Figure~\ref{fig:dimred-compare}). The optimal configurations found via heuristics might not correspond well to the true underlying fault categories if the shape assumption is violated.
+
+    \item the F4A phase demonstrated that pre-processing choices significantly impacted the quality of the resulting clusters. Specifically, removing punctuation (\texttt{keep\_punc=False}) consistently yielded better and more stable results across algorithms and embedding models (comparing Runs 1\&3 vs. 2\&4 in Table~\ref{tab:f4a_summary}), suggesting punctuation added noise. Ignoring case (\texttt{ignore\_case=True}) also appeared beneficial for stability compared to maintaining case sensitivity when punctuation was removed (comparing Run 3 vs. Run 1).
+
+    \item There was no clear difference between the MPNet and Nomic. However, Optuna tended to produce configurations within the inferred true cluster size range more often in Nomic (Figure~\ref{fig:nomic_f4a_whisker_appendix}. However, in both H2H and F4A, HDBSCAN run on Nomic embeddings resulted in more conservative cluster sizes, with few outliers beyond that range.
+
+    \item Comparing the embedding models, neither MPNet nor Nomic demonstrated a dramatically superior performance across all heuristic trade-offs and stability plots (Appendices~\ref{sec:h2h_config_appendix}-\ref{sec:f4a_whisker_appendix}). However, optimal configurations derived from Nomic embeddings potentially aligned more frequently with the inferred reasonable cluster size range (5-25 clusters discussed earlier), particularly in the F4A phase (Figure~\ref{fig:nomic_f4a_whisker_appendix}). Furthermore, when using HDBSCAN, Nomic embeddings tended to yield cluster size distributions with fewer extreme outliers compared to MPNet (compare Figures~\ref{fig:mpnet_h2h_whisker_appendix} and \ref{fig:nomic_h2h_whisker_appendix}, and Figures~\ref{fig:mpnet_f4a_whisker_appendix} and \ref{fig:nomic_f4a_whisker_appendix}).
+
+    \item the process highlighted the importance of using multiple clustering heuristics. Different configurations optimised differently across the Silhouette, Davies-Bouldin, and Calinski-Harabasz indices, necessitating the rank aggregation approach to select balanced solutions. However, the ultimate validation of the `best' clustering lies in the semantic and operational utility of the resulting categories and their generated labels. While this pipeline provides a systematic, quantitatively-guided method for finding promising clusterings, the qualitative assessment of the generated labels remains crucial and identifies a key area for future refinement. Although, another interpretation of this could mean that the clustering heuristics are not specialised enough to the dataset, possibly motivating a re-evaluation of what a `good' clustering is.
+\end{enumerate}
+
+
+\noindent Finally, selecting the single definitive configuration for final label generation presents challenges. While Optuna and rank aggregation identify a set of quantitatively `optimal' configurations (i.e. the top 5), choosing among these requires further consideration. The stability analysis, examining cluster size distributions over multiple runs (Appendices~\ref{sec:h2h_whisker_appendix} and \ref{sec:f4a_whisker_appendix}), provides valuable insights into robustness, but ambiguity can remain in selecting the best trade-off between heuristic scores, stability, and the interpretability of the resulting clusters (especially for methods like HDBSCAN which handles noise and varying densities differently depending on parameters). The inherent stochasticity within the pipeline (such as from UMAP) adds another layer of complexity, as slightly different cluster assignments might arise even from the same `best' configuration parameters across independent runs. This reinforces the point that while this pipeline offers a systematic approach, the ultimate validation relies on qualitative assessment and operational utility. Therefore, refining the criteria for selecting the final configuration and developing more robust methods for quantitatively assessing the generated label quality are important directions for future work.
+
+% \todo[inline, caption={}]{Original TODOs moved here for review/removal:
+%     \begin{itemize}
+%         \item Rank aggregation - DONE (covered in methodology and applied)
+%         \item plot whiskers (or maybe in results?). acc this should be in results as it makes sense that is quantitative evaluation of results. - DONE (Moved to Appendix, referenced from text)
+%         \item results should also talk about qualitatively and motivate the conclusion, this is a step in the right direction but not 100\%. - DONE (Addressed in Discussion, linking quantitative results to qualitative label assessment)
+%         \item Describe the results and analyse the results - DONE (Integrated into Results/Discussion)
+%         \item Analyse the sentence embedding results. - DONE (Implicitly done by running pipeline on both MPNet/Nomic, specific comparisons belong in F4A results)
+%         \item Analyse the UMAP hyperparameter optimisation qualitatively, mention that we use Optuna. - DONE (Covered in Methodology/Results intro)
+%         \item Next steps: Fine tuning the PLM (Nomic or MPNet). Using MOE nomic (v2). Rent higher computation, then you can use top performing PLMS. Using t-SNE to see differences. - DONE (These belong in Chapter 5: Conclusion/Future Work)
+%     \end{itemize}
+% }
+
+\chapter{Conclusion}\label{chap:conclusion}
+
+This project successfully developed and evaluated an end-to-end unsupervised machine learning pipeline for the automatic categorisation of unstructured operational log entries from the ISIS Neutron and Muon Source's Operalog, focusing specifically on \texttt{FaultDescription} data related to the ion source equipment. Recognising the open-ended nature of this task and the lack of established industry benchmarks. The primary contribution lies in demonstrating the feasibility of applying modern NLP techniques, specifically sentence embeddings combined with dimensionality reduction and clustering, to extract meaningful structure from complex, domain-specific textual data.
+
+The core methodology involved pre-processing the text, generating embeddings using MPNet \cite{song2020mpnet} and Nomic \cite{nussbaum2024nomic} models, reducing dimensionality with UMAP \cite{mcinnes2018umap}, performing clustering using k-Medoids \cite{kmedoids}, DBSCAN \cite{ester1996density}, and HDBSCAN \cite{campello2013density}, and systematically optimising hyperparameters via Optuna \cite{akiba2019optuna} based on multiple internal clustering heuristics \cite{rousseeuw1987silhouettes, davies1979cluster, calinski1974dendrite}. The experimental results presented in Chapter~\ref{chap:results} and Appendix~\ref{app:exp_results_plots} provided valuable insights. Notably, HDBSCAN \cite{campello2013density} consistently emerged as the most applicable clustering algorithm for this dataset due to its ability to effectively handle varying cluster densities and demonstrating superior performance stability compared to DBSCAN and k-Medoids across different evaluation metrics. The Free-For-All optimisation phase indicated that removing punctuation and ignoring text case during pre-processing generally yielded more stable and quantitatively better clustering results. While both MPNet and Nomic embeddings enabled effective clustering, Nomic showed potential advantages in producing cluster size distributions more aligned with the inferred range of 5-25 distinct categories and exhibiting fewer extreme outliers, particularly when paired with HDBSCAN. A naive, heuristic-based method for automatically generating cluster labels using SpaCy \cite{spacy2} was also implemented, completing the pipeline from raw text to potential category identification. The entire process was encapsulated within a reusable CLI tool (Section~\ref{sec:CLI}) to facilitate further experimentation and application.
+
+Despite the successful demonstration of the pipeline's capability, several challenges and limitations remain, as discussed in Section~\ref{sec:discussion}. Selecting the single best configuration from the set of optimal solutions produced by multi-objective optimisation is non-trivial, requiring careful consideration of the trade-offs between quantitative heuristics and qualitative assessment of cluster interpretability. The inherent stochasticity, particularly from UMAP, also adds complexity to achieving perfectly reproducible cluster assignments. Furthermore, the current label generation method, which relies upon a naive average of the `best' clusters, requires significant refinement to ensure the labels are truly informative and operationally useful.
+
+These limitations naturally lead to several avenues for future work.
+\begin{enumerate}
+    \item \textbf{Fine-tuning PLMs} - The performance of the pipeline could potentially be improved by fine-tuning the embedding models (MPNet or Nomic) specifically on the Operalog data or related technical documentation from ISIS. This could adapt the models more closely to the domain-specific language and nuances, potentially leading to more discriminative embeddings.
+    \item \textbf{Exploring Alternative Models} - Given the rapid pace of development in NLP, investigating newer embedding models could yield benefits. This could include exploring variants or subsequent releases of models like Nomic (i.e. version 2). However, this may necessitate access to greater computational resources, particularly increased GPU VRAM, to handle potentially larger models effectively.
+    \item \textbf{Refined Label Generation} - The current naive label generation (Section~\ref{sec:labelgen}) is a key area for improvement. More sophisticated techniques, such as leveraging topic modelling \cite{curiskis2020evaluation} within clusters or using abstractive summarization models \cite{nallapati2016abstractive}, can be explored to generate more accurate and descriptive labels. Evaluating label quality quantitatively also remains an open challenge.
+    \item \textbf{Broader Data Scope} - The analysis should be extended beyond the `ion source' equipment type to encompass the full range of systems documented in the Operalog, assessing the pipeline's generalisability.
+    \item \textbf{Integration with Structured Data} - Combining the insights from this text-based analysis with findings from the partner project focusing on structured ion source logs could yield a more holistic understanding of fault patterns and potentially improve predictive maintenance models.
+\end{enumerate}
+
+Finally, it is crucial to consider the ethical implications inherent in using complex machine learning models, particularly PLMs derived from external sources. As discussed in Section~\ref{sec:BERT}, relying on pre-trained models introduces a dependency on the practices of the model creators \cite{wolf2019huggingface}. There are potential risks associated with models trained on vast, often opaque datasets, including the possibility of inheriting societal biases present in the training data, or potential data contamination issues that might affect model behaviour in unforeseen ways \cite{min2023recent}. While less likely with reputable sources, the theoretical risk of maliciously manipulated models also exists. Therefore, a commitment to using models from transparent sources, critically evaluating their outputs, and understanding their limitations is paramount. Furthermore, handling operational data like the Operalog requires adherence to appropriate data privacy and confidentiality protocols, ensuring sensitive information is protected throughout the analysis pipeline. \\
+
+\noindent In conclusion, this project has successfully demonstrated the potential of applying an unsupervised NLP pipeline, leveraging state-of-the-art embedding and clustering techniques, to automatically categorise unstructured operational logs from the complex ISIS facility. While further refinements, particularly in label generation and configuration selection, are necessary for direct operational deployment, the developed methodology and accompanying CLI tool provide a valuable foundation. This work represents significant progress towards unlocking the rich information contained within textual logs, paving the way for improved diagnostics, data-driven insights, and ultimately, more effective predictive maintenance strategies at large-scale scientific facilities.
+
+
+% \todo[inline, caption={}]{
+%     \begin{itemize}
+%         \item Definitely talk about clear and transparent PLMs and malicious stuff (see BERT section).
+%     \end{itemize}
+% }
 
 % \todo[inline,caption={}]{
 % Summarize your findings and suggest areas for future work.
@@ -1430,8 +1806,662 @@ Describe the results and analyse the results
 
 
 \appendix
-\chapter{Supplementary Technical Details}
 
+\chapter{Results and Figures}
+\section{UMAP Hyperparameter Search} \label{app:umaphypgrid}
+
+% Figures~\ref{fig:mpnet1} through \ref{fig:nomic3} in this appendix illustrate the results of the naive grid search performed over the UMAP hyperparameters listed in Table~\ref{tab:umapgrid}, applied to both MPNet and Nomic embeddings of the Operalog \texttt{FaultDescription} entries. These visualisations demonstrate the effects of varying parameters like \texttt{n\_neighbors}, \texttt{min\_dist} and \texttt{metric} as described conceptually in Section~\ref{sec:umap}. Notably, visual inspection suggests that, for the goal of creating a low-dimensional representation that isolates structural groupings in this specific dataset, the `cosine' distance metric did not produce significantly different or clearly superior results compared to the `euclidean' metric. This outcome is somewhat surprising as cosine distance is frequently recommended for text embedding applications in the literature \cite{cao2024recent, baba2017plagiarism}. This observation, combined with the difficulty in determining the optimal settings purely through visual inspection of numerous plots, makes it evident that this naive grid search approach is insufficient. It therefore motivates the need for the systematic hyperparameter optimisation process detailed in Section~\ref{sec:hyperparameterOpt}.
+%
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=\textwidth]{./images/mpnethyp1.png}
+%     \caption{MPNet, grid search for UMAP hyperparameter (see Table~\ref{tab:umapgrid}) over the parameters \texttt{metric} and \texttt{min\_dist}}
+%     \label{fig:mpnet1}
+% \end{figure}%
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=\textwidth]{./images/mpnethyp2.png}
+%     \caption{MPNet, grid search for UMAP hyperparameter (see Table~\ref{tab:umapgrid}) over the parameters \texttt{min\_dist} and \texttt{n\_neighbors}}
+%     \label{fig:mpnet2}
+% \end{figure}%
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=\textwidth]{./images/mpnethyp3.png}
+%     \caption{MPNet, grid search for UMAP hyperparameter (see Table~\ref{tab:umapgrid}) over the parameters \texttt{metric} and \texttt{n\_neighbors}}
+%     \label{fig:mpnet3}
+% \end{figure}%
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=\textwidth]{./images/nomichyp1.png}
+%     \caption{Nomic, grid search for UMAP hyperparameter (see Table~\ref{tab:umapgrid}) over the parameters \texttt{metric} and \texttt{min\_dist}}
+%     \label{fig:nomic1}
+% \end{figure}%
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=\textwidth]{./images/nomichyp2.png}
+%     \caption{Nomic, grid search for UMAP hyperparameter (see Table~\ref{tab:umapgrid}) over the parameters \texttt{min\_dist} and \texttt{n\_neighbors}}
+%     \label{fig:nomic2}
+% \end{figure}%
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=\textwidth]{./images/nomichyp3.png}
+%     \caption{Nomic, grid search for UMAP hyperparameter (see Table~\ref{tab:umapgrid}) over the parameters \texttt{metric} and \texttt{n\_neighbors}}
+%     \label{fig:nomic3}
+% \end{figure}%
+%
+% \clearpage
+%
+% \section{Experimental Results}
+% This section provides plots of figures detailing optimisation results (Chapter~\ref{chap:results}) for both the experimentation phases, Head-to-Head (H2H) and Free-For-All (F4A). Both Section~\ref{sec:h2h_config} and Section~\ref{f4a_config} contain embedding specific optimal Optuna \cite{akiba2019optuna} configuration plots for H2H and F4A phases, respectively. The top 5 configurations are highlighted with red markers, unless there are less than 5 optimal configurations found. In that case, only the top 1 configuration is highlighted. As the Silhouette coefficient and Calinski-Harabasz index are maximised whereas Davies-Bouldin index is minimised, the closer a configuration is to the top left corner, the more optimal it is. Closer markers appear more opaque and further appear more translucent. 
+%
+% Section~\ref{sec:h2h_whisker} and Section~\ref{sec:f4a_whisker} detail embedding specific cluster size whisker plots.
+%
+% \subsection{H2H Configuration Plots}\label{sec:h2h_config}
+% \subsubsection{MPNet}
+%
+% \begin{figure}[H]
+%     \centering
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_kmedoidsvsdbscan.png}
+%         \caption{k-Medoids versus DBSCAN}
+%         \label{fig:mpnet_kmedoidsvsdbscan}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_kmedoidsvshdbscan.png}
+%         \caption{k-Medoids versus HDBSCAN}
+%         \label{fig:mpnet_kmedoidsvshdbscan}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_dbscanvshdbscan.png}
+%         \caption{DBSCAN versus HDBSCAN}
+%         \label{fig:mpnet_dbscanvshdbscan}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_hdbscan.png}
+%         \caption{HDBSCAN}
+%         \label{fig:mpnet_hdbscan}
+%     \end{subfigure}
+%     \caption{MPNet: 3-dimensional plot of the most optimal configurations found Optuna hyperparameter configurations. Top 5 configurations, based on rank aggregation are coloured in red (Section~\ref{sec:hyperparameterOpt}). More opaque markers are closer, more transparent markers are further.}
+%     \label{fig:mpnet_h2h}
+% \end{figure}
+%
+% \subsubsection{Nomic}
+%
+% \begin{figure}[H]
+%     \centering
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_kmedoidsvsdbscan.png}
+%         \caption{k-Medoids versus DBSCAN}
+%         \label{fig:nomic_kmedoidsvsdbscan}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_kmedoidsvshdbscan.png}
+%         \caption{k-Medoids versus HDBSCAN}
+%         \label{fig:nomic_kmedoidsvshdbscan}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_dbscanvshdbscan.png}
+%         \caption{DBSCAN versus HDBSCAN}
+%         \label{fig:nomic_dbscanvshdbscan}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_hdbscan.png}
+%         \caption{HDBSCAN}
+%         \label{fig:nomic_hdbscan}
+%     \end{subfigure}
+%     \caption{Nomic: 3-dimensional plot of the most optimal configurations found Optuna hyperparameter configurations. Top 5 configurations, based on rank aggregation are coloured in red (Section~\ref{sec:hyperparameterOpt}). More opaque markers are closer, more transparent markers are further.}
+%     \label{fig:nomic_f4a}
+% \end{figure}
+%
+% \subsection{H2H Cluster Sizes}\label{sec:h2h_whisker}
+%
+% \subsubsection{MPNet}
+%
+% % --- Figure Part 1 ---
+% \begin{figure}[H] 
+%     \centering
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_kmedoidsvsdbscan_whisker.png}
+%         \caption{k-Medoids versus DBSCAN}
+%     \end{subfigure}
+%     \hfill 
+%     \begin{subfigure}[b]{\textwidth} % Reduced width slightly
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_kmedoidsvshdbscan_whisker.png}
+%         \caption{k-Medoids versus HDBSCAN}
+%     \end{subfigure}
+%     % No main caption here yet
+% \end{figure} % End of first figure part
+% % --- Figure Part 2 ---
+% \begin{figure}[H]
+%     \ContinuedFloat
+%     \centering
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_dbscanvshdbscan_whisker.png}
+%         \caption{DBSCAN versus HDBSCAN}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_hdbscan_whisker.png}
+%         \caption{HDBSCAN}
+%     \end{subfigure}
+%     \caption{MPNet: Whisker plots of the distribution of the sizes of clusters for each configuration returned by Optuna.}
+%     \label{fig:mpnet_h2h_whisker}
+% \end{figure}
+%
+% \subsubsection{Nomic}
+%
+% % --- Figure Part 1 ---
+% \begin{figure}[H] 
+%     \centering
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_kmedoidsvsdbscan_whisker.png}
+%         \caption{k-Medoids versus DBSCAN}
+%     \end{subfigure}
+%     \hfill 
+%     \begin{subfigure}[b]{\textwidth} % Reduced width slightly
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_kmedoidsvshdbscan_whisker.png}
+%         \caption{k-Medoids versus HDBSCAN}
+%     \end{subfigure}
+%     % No main caption here yet
+% \end{figure} % End of first figure part
+% % --- Figure Part 2 ---
+% \begin{figure}[H]
+%     \ContinuedFloat
+%     \centering
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_dbscanvshdbscan_whisker.png}
+%         \caption{DBSCAN versus HDBSCAN}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_hdbscan_whisker.png}
+%         \caption{HDBSCAN}
+%     \end{subfigure}
+%     \caption{Nomic: Whisker plots of the distribution of the sizes of clusters for each configuration returned by Optuna.}
+%     \label{fig:nomic_h2h_whisker}
+% \end{figure}
+%
+% \subsection{F4A Configuration Plots}\label{sec:f4a_config}
+%
+% \subsubsection{MPNet}
+%
+% \begin{figure}[H]
+%     \centering
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_false-false.png}
+%         \caption{\texttt{ignore\_case=False},  \texttt{keep\_punctuation=False}}
+%         \label{fig:mpnet_false-false}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_false-true.png}
+%         \caption{\texttt{ignore\_case=False}, \texttt{keep\_punctuation=True}}
+%         \label{fig:mpnet_false-true}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_true-false.png}
+%         \caption{\texttt{ignore\_case=True},  \texttt{keep\_punctuation=False}}
+%         \label{fig:mpnet_true-false}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_true-true.png}
+%         \caption{\texttt{ignore\_case=True}, \texttt{keep\_punctuation=True}}
+%         \label{fig:mpnet_true-true}
+%     \end{subfigure}
+%     \caption{mpnet: 3-dimensional plot of the most optimal configurations found Optuna hyperparameter configurations. Top 5 configurations, based on rank aggregation are coloured in red (Section~\ref{sec:hyperparameterOpt}). More opaque markers are closer, more transparent markers are further.}
+%     \label{fig:mpnet_f4a}
+% \end{figure}
+%
+% \subsubsection{Nomic}
+%
+% \begin{figure}[H]
+%     \centering
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_false-false.png}
+%         \caption{\texttt{ignore\_case=False},  \texttt{keep\_punctuation=False}}
+%         \label{fig:nomic_false-false}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_false-true.png}
+%         \caption{\texttt{ignore\_case=False}, \texttt{keep\_punctuation=True}}
+%         \label{fig:nomic_false-true}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_true-false.png}
+%         \caption{\texttt{ignore\_case=True},  \texttt{keep\_punctuation=False}}
+%         \label{fig:nomic_true-false}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_true-true.png}
+%         \caption{\texttt{ignore\_case=True}, \texttt{keep\_punctuation=True}}
+%         \label{fig:nomic_true-true}
+%     \end{subfigure}
+%     \caption{Nomic: 3-dimensional plot of the most optimal configurations found Optuna hyperparameter configurations. Top 5 configurations, based on rank aggregation are coloured in red (Section~\ref{sec:hyperparameterOpt}). More opaque markers are closer, more transparent markers are further.}
+%     \label{fig:nomic_f4a}
+% \end{figure}
+%
+% \subsection{F4A Cluster Sizes}\label{sec:f4a_whisker}
+% \subsubsection{MPNet}
+%
+% % --- Figure Part 1 ---
+% \begin{figure}[H] 
+%     \centering
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_false-false_whisker.png}
+%         \caption{\texttt{ignore\_case=False}, \texttt{keep\_punctuation=False}} 
+%     \end{subfigure}
+%     \hfill 
+%     \begin{subfigure}[b]{\textwidth} % Reduced width slightly
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_false-true_whisker.png}
+%         \caption{\texttt{ignore\_case=False}, \texttt{keep\_punctuation=True}} 
+%     \end{subfigure}
+%     % No main caption here yet
+% \end{figure} % End of first figure part
+% % --- Figure Part 2 ---
+% \begin{figure}[H]
+%     \ContinuedFloat
+%     \centering
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_true-false_whisker.png}
+%         \caption{\texttt{ignore\_case=True}, \texttt{keep\_punctuation=False}} 
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/mpnet_true-true_whisker.png}
+%         \caption{\texttt{ignore\_case=True}, \texttt{keep\_punctuation=True}} 
+%     \end{subfigure}
+%     \caption{MPNet: Whisker plots of the distribution of the sizes of clusters for each configuration returned by Optuna.}
+%     \label{fig:mpnet_f4a_whisker}
+% \end{figure}
+%
+% \subsubsection{Nomic}
+%
+% % --- Figure Part 1 ---
+% \begin{figure}[H] 
+%     \centering
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_false-false_whisker.png}
+%         \caption{\texttt{ignore\_case=False}, \texttt{keep\_punctuation=False}} 
+%     \end{subfigure}
+%     \hfill 
+%     \begin{subfigure}[b]{\textwidth} % Reduced width slightly
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_false-true_whisker.png}
+%         \caption{\texttt{ignore\_case=False}, \texttt{keep\_punctuation=True}} 
+%     \end{subfigure}
+%     % No main caption here yet
+% \end{figure} % End of first figure part
+% % --- Figure Part 2 ---
+% \begin{figure}[H]
+%     \ContinuedFloat
+%     \centering
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_true-false_whisker.png}
+%         \caption{\texttt{ignore\_case=True}, \texttt{keep\_punctuation=False}} 
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{./images/nomic_true-true_whisker.png}
+%         \caption{\texttt{ignore\_case=True}, \texttt{keep\_punctuation=True}} 
+%     \end{subfigure}
+%     \caption{Nomic: Whisker plots of the distribution of the sizes of clusters for each configuration returned by Optuna.}
+%     \label{fig:nomic_f4a_whisker}
+% \end{figure}
+% \chapter{Results and Figures} % Or adjust chapter/section titling as needed
+% \label{app:results_figures}
+
+\section{Experimental Results Plots}\label{app:exp_results_plots}
+
+% Revised introductory text
+This appendix section presents supplementary visualisations supporting the hyperparameter optimisation results discussed in Chapter~\ref{chap:results}. The plots detail outcomes for both the Head-to-Head (H2H) and Free-For-All (F4A) experimentation phases using Optuna \cite{akiba2019optuna}.
+
+Sections~\ref{sec:h2h_config_appendix} and \ref{sec:f4a_config_appendix} display the results of the multi-objective optimisation studies. These 3-dimensional plots show the trade-offs between the Silhouette coefficient (higher is better), Calinski-Harabasz index (higher is better), and Davies-Bouldin index (lower is better) for the evaluated configurations. The best configuration found by Optuna, identified via rank aggregation (Section~\ref{sec:hyperparameterOpt}), are highlighted with red markers (top 5, or top 1 if fewer than 5 non-dominated solutions were found). Markers closer to the ideal top-left-front corner represent better solutions across the three heuristics; marker opacity indicates distance in the 3D space (more opaque is closer).
+
+Sections~\ref{sec:h2h_whisker_appendix} and \ref{sec:f4a_whisker_appendix} present whisker plots illustrating the distribution of cluster sizes obtained from the optimal configurations identified in the corresponding optimisation runs. These plots show the stability and typical scale of clusters produced by different pipeline settings over 10 independent runs (to account for UMAP stochasticity). Note that empty plots indicate that no competitive configurations using that specific clustering method were found among the optimal set for that particular Optuna study.
+
+\subsection{H2H Optimal Configuration Plots}\label{sec:h2h_config_appendix}
+\subsubsection{MPNet}
+
+\begin{figure}[H]
+    \centering
+    % Subfigures as before...
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_kmedoidsvsdbscan.png}
+        \caption{Run A: k-Medoids vs. DBSCAN}
+        \label{fig:mpnet_kmedoids_vs_dbscan_h2h_config} % Adjusted label
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_kmedoidsvshdbscan.png}
+        \caption{Run B: k-Medoids vs. HDBSCAN}
+        \label{fig:mpnet_kmedoids_vs_hdbscan_h2h_config} % Adjusted label
+    \end{subfigure}
+    \\
+    \vspace{1em}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_dbscanvshdbscan.png}
+        \caption{Run C: DBSCAN vs. HDBSCAN}
+        \label{fig:mpnet_dbscan_vs_hdbscan_h2h_config}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_hdbscan.png}
+        \caption{Run D: HDBSCAN Only}
+        \label{fig:mpnet_hdbscan_only_h2h_config}
+    \end{subfigure}
+    % Revised main caption
+    \caption{Heuristic trade-offs for optimal configurations from H2H Optuna runs using MPNet embeddings. Best solutions highlighted in red.}
+    \label{fig:mpnet_h2h_config_appendix}
+\end{figure}
+
+\subsubsection{Nomic}
+
+\begin{figure}[H]
+    \centering
+    % Subfigures as before...
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_kmedoidsvsdbscan.png}
+        \caption{Run A: k-Medoids vs. DBSCAN}
+        \label{fig:nomic_kmedoids_vs_dbscan_h2h_config} 
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_kmedoidsvshdbscan.png}
+        \caption{Run B: k-Medoids vs. HDBSCAN}
+        \label{fig:nomic_kmedoids_vs_hdbscan_h2h_config}
+    \end{subfigure}
+    \\
+    \vspace{1em}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_dbscanvshdbscan.png}
+        \caption{Run C: DBSCAN vs. HDBSCAN}
+        \label{fig:nomic_dbscan_vs_hdbscan_h2h_config} 
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_hdbscan.png}
+        \caption{Run D: HDBSCAN Only}
+        \label{fig:nomic_hdbscan_only_h2h_config} 
+    \end{subfigure}
+    % Revised main caption
+    \caption{Heuristic trade-offs for optimal configurations from H2H Optuna runs using Nomic embeddings. Best solutions highlighted in red.}
+    \label{fig:nomic_h2h_config_appendix} % Main figure label
+\end{figure}
+
+% --- H2H Cluster Sizes ---
+\subsection{H2H Cluster Size Distributions}\label{sec:h2h_whisker_appendix}
+
+\subsubsection{MPNet}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_kmedoidsvsdbscan_whisker.png}
+        \caption{Run A: k-Medoids vs. DBSCAN}\label{fig:mpnet_h2h_runa}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_kmedoidsvshdbscan_whisker.png}
+        \caption{Run B: k-Medoids vs. HDBSCAN}\label{fig:mpnet_h2h_runb}
+    \end{subfigure}
+\end{figure}
+\begin{figure}[H]
+    \ContinuedFloat
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_dbscanvshdbscan_whisker.png}
+        \caption{Run C: DBSCAN vs. HDBSCAN}\label{fig:mpnet_h2h_runc}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_hdbscan_whisker.png}
+        \caption{Run D: HDBSCAN Only}\label{fig:mpnet_h2h_rund}
+    \end{subfigure}
+    \caption{Cluster size distributions over 10 runs for optimal H2H configurations using MPNet embeddings. Empty plots indicate no optimal configurations were found for that method.}
+    \label{fig:mpnet_h2h_whisker_appendix}
+\end{figure}
+
+\subsubsection{Nomic}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_kmedoidsvsdbscan_whisker.png}
+        \caption{Run A: k-Medoids vs. DBSCAN}\label{fig:nomic_h2h_runa}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_kmedoidsvshdbscan_whisker.png}
+        \caption{Run B: k-Medoids vs. HDBSCAN}\label{fig:nomic_h2h_runb}
+    \end{subfigure}
+\end{figure}
+\begin{figure}[H]
+    \ContinuedFloat
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_dbscanvshdbscan_whisker.png}
+        \caption{Run C: DBSCAN vs. HDBSCAN}\label{fig:nomic_h2h_runc}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_hdbscan_whisker.png}
+        \caption{Run D: HDBSCAN Only}\label{fig:nomic_h2h_rund}
+    \end{subfigure}
+    \caption{Cluster size distributions over 10 runs for optimal H2H configurations using Nomic embeddings. Empty plots indicate no optimal configurations were found for that method.}
+    \label{fig:nomic_h2h_whisker_appendix}
+\end{figure}
+
+% --- F4A Configuration Plots ---
+\subsection{F4A Optimal Configuration Plots}\label{sec:f4a_config_appendix} % Renamed section title
+
+\subsubsection{MPNet}
+
+\begin{figure}[H]
+    \centering
+    % Subfigures arranged 2x2
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_false-false.png}
+        \caption{\texttt{ignore\_case=False}, \texttt{keep\_punct=False}}
+        \label{fig:mpnet_ff_f4a_config} % Adjusted label
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_false-true.png}
+        \caption{\texttt{ignore\_case=False}, \texttt{keep\_punct=True}}
+        \label{fig:mpnet_ft_f4a_config} % Adjusted label
+    \end{subfigure}
+    \\
+    \vspace{1em}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_true-false.png}
+        \caption{\texttt{ignore\_case=True}, \texttt{keep\_punct=False}}
+        \label{fig:mpnet_tf_f4a_config} % Adjusted label
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_true-true.png}
+        \caption{\texttt{ignore\_case=True}, \texttt{keep\_punct=True}}
+        \label{fig:mpnet_tt_f4a_config} % Adjusted label
+    \end{subfigure}
+    % Revised main caption
+    \caption{Heuristic trade-offs for optimal configurations from F4A Optuna runs using MPNet embeddings, varying pre-processing flags. Best solutions highlighted in red.}
+    \label{fig:mpnet_f4a_config_appendix} % Main figure label
+\end{figure}
+
+\subsubsection{Nomic}
+
+\begin{figure}[H]
+    \centering
+    % Subfigures arranged 2x2
+     \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_false-false.png}
+        \caption{\texttt{ignore\_case=False}, \texttt{keep\_punct=False}}
+        \label{fig:nomic_ff_f4a_config} % Adjusted label
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_true-false.png}
+        \caption{\texttt{ignore\_case=False}, \texttt{keep\_punct=True}}
+        \label{fig:nomic_ft_f4a_config} % Adjusted label
+    \end{subfigure}
+    \\
+    \vspace{1em}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_false-true.png}
+        \caption{\texttt{ignore\_case=True}, \texttt{keep\_punct=False}}
+        \label{fig:nomic_tf_f4a_config} % Adjusted label
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_true-true.png}
+        \caption{\texttt{ignore\_case=True}, \texttt{keep\_punct=True}}
+        \label{fig:nomic_tt_f4a_config} % Adjusted label
+    \end{subfigure}
+    % Revised main caption
+    \caption{Heuristic trade-offs for optimal configurations from F4A Optuna runs using Nomic embeddings, varying pre-processing flags. Best solutions highlighted in red.}
+    \label{fig:nomic_f4a_config_appendix} % Main figure label
+\end{figure}
+
+% --- F4A Cluster Sizes ---
+\subsection{F4A Cluster Size Distributions}\label{sec:f4a_whisker_appendix}
+
+\subsubsection{MPNet}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_false-false_whisker.png}
+        \caption{\texttt{ignore\_case=False}, \texttt{keep\_punct=False}} \label{fig:mpnet_ff_f4a_whisker}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_false-true_whisker.png}
+        \caption{\texttt{ignore\_case=False}, \texttt{keep\_punct=True}} \label{fig:mpnet_ft_f4a_whisker}
+    \end{subfigure}
+\end{figure}
+\begin{figure}[H]
+    \ContinuedFloat
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_true-false_whisker.png}
+        \caption{\texttt{ignore\_case=True}, \texttt{keep\_punct=False}} \label{fig:mpnet_tf_f4a_whisker}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/mpnet_true-true_whisker.png}
+        \caption{\texttt{ignore\_case=True}, \texttt{keep\_punct=True}} \label{fig:mpnet_tt_f4a_whisker}
+    \end{subfigure}
+    \caption{Cluster size distributions over 10 runs for optimal F4A configurations using MPNet embeddings, varying pre-processing flags.}
+    \label{fig:mpnet_f4a_whisker_appendix}
+\end{figure}
+
+\subsubsection{Nomic}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_false-false_whisker.png}
+        \caption{\texttt{ignore\_case=False}, \texttt{keep\_punct=False}} \label{fig:nomic_ff_f4a_whisker}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_true-false_whisker.png}
+        \caption{\texttt{ignore\_case=False}, \texttt{keep\_punct=True}} \label{fig:nomic_ft_f4a_whisker}
+    \end{subfigure}
+\end{figure}
+\begin{figure}[H]
+    \ContinuedFloat
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_false-true_whisker.png}
+        \caption{\texttt{ignore\_case=True}, \texttt{keep\_punct=False}} \label{fig:nomic_tf_f4a_whisker}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{./images/nomic_true-true_whisker.png}
+        \caption{\texttt{ignore\_case=True}, \texttt{keep\_punct=True}} \label{fig:nomic_tt_f4a_whisker}
+    \end{subfigure}
+    \caption{Cluster size distributions over 10 runs for optimal F4A configurations using Nomic embeddings, varying pre-processing flags.}
+    \label{fig:nomic_f4a_whisker_appendix}
+\end{figure}
+
+
+\pagebreak
+\chapter{Supplementary Technical Details}
 \section{BERT and XLNet Pre-training}\label{app:bert_xlnet_details}
 
 This section provides supplementary technical details on the pre-training objectives and mechanisms of the BERT and XLNet models, as discussed conceptually in Section~\ref{sec:BERT}.
@@ -1441,18 +2471,18 @@ This section provides supplementary technical details on the pre-training object
 The BERT model \cite{devlin2019bert} employs two pre-training objectives during its pre-training phase:
 
 \begin{itemize}
-    \item Masked Language Modelling - During training, a portion of the input tokens are `masked' and the model predicts these masked tokens based on the remaining context, using cross-entropy loss \cite{zhang2018generalized}. In the literature, this is referred to as a Cloze task \cite{taylor1953cloze}. In the experiments conducted by (\citet{devlin2019bert}) 15\% of tokens in each sequence are randomly selected for masking. To mitigate the mismatch between pre-training and fine-tuning phases where the \texttt{[MASK]} token does not appear, the training data generator replaces each chosen masked token with: (1) the special token \texttt{[MASK]} 80\% of the time; (2) a random token 10\% of the time; and (3) the original token itself 10\% of the time \cite{devlin2019bert}.
+    \item \textbf{Masked Language Modelling} - During training, a portion of the input tokens are `masked' and the model predicts these masked tokens based on the remaining context, using cross-entropy loss \cite{zhang2018generalized}. In the literature, this is referred to as a Cloze task \cite{taylor1953cloze}. In the experiments conducted by (\citet{devlin2019bert}) 15\% of tokens in each sequence are randomly selected for masking. To mitigate the mismatch between pre-training and fine-tuning phases where the \texttt{[MASK]} token does not appear, the training data generator replaces each chosen masked token with: (1) the special token \texttt{[MASK]} 80\% of the time; (2) a random token 10\% of the time; and (3) the original token itself 10\% of the time \cite{devlin2019bert}.
 
-    \item Next Sentence Prediction - In this task, the model is trained on a binary classification task predicting the relationship between sentence pairs. Given two sentences \texttt{A} and \texttt{B} either (1) sentence \texttt{B} is the actual sentence that follows \texttt{A} 50\% of the time or (2) sentence \texttt{B} is randomly selected from the corpus 50\% of the time \cite{devlin2019bert}. This task aimed to help BERT understand sentence relationships, though later models like RoBERTa and MPNet found it might not always be beneficial \cite{liu2019roberta, song2020mpnet}. % Added RoBERTa context from memory, optional
+    \item \textbf{Next Sentence Prediction} - In this task, the model is trained on a binary classification task predicting the relationship between sentence pairs. Given two sentences \texttt{A} and \texttt{B} either (1) sentence \texttt{B} is the actual sentence that follows \texttt{A} 50\% of the time or (2) sentence \texttt{B} is randomly selected from the corpus 50\% of the time \cite{devlin2019bert}. This task aimed to help BERT understand sentence relationships, though later models like RoBERTa and MPNet found it might not always be beneficial \cite{liu2019roberta, song2020mpnet}.
 \end{itemize}
 
 Figure~\ref{fig:bert1_appendix} illustrates the overall pre-training and fine-tuning workflow for BERT.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.95\textwidth]{BERT1.png} % Assuming BERT1.png is the correct image file
+    \includegraphics[width=0.95\textwidth]{BERT1.png} 
     \caption[BERT Pre-training and Fine-tuning Phases (Appendix)]{The overall pre-training and fine-tuning phases for BERT. For different down-stream tasks, notice the same architecture, except output layer, is used. Source: (\citet{devlin2019bert}). (Figure originally appeared as Figure 2.2)}
-    \label{fig:bert1_appendix} % Changed label to avoid conflict
+    \label{fig:bert1_appendix} 
 \end{figure}
 
 \subsection{XLNet Technical Details}
@@ -1462,8 +2492,8 @@ XLNet \cite{yang2019xlnet} introduced mechanisms to overcome limitations observe
 \subsubsection*{Auto-regressive vs. Auto-encoding Perspectives}
 According to (\citet{yang2019xlnet}), pre-training objectives can be broadly categorized as auto-regressive (AR) or auto-encoding (AE). AR language modelling, given a sequence of tokens $X = (x_1, ..., x_T)$, aims to factorize the likelihood of a token into either a forward or backward product:
 \begin{align}
-    p(x) &= \prod_{i=1}^{T} p(x_i | X_{<i}) \label{eq:fwdprod_appendix} \\ % Relabeled
-    p(x) &= \prod_{i=T}^{i} p(x_i | X_{>i}) \label{eq:bckprod_appendix} % Relabeled
+    p(x) &= \prod_{i=1}^{T} p(x_i | X_{<i}) \label{eq:fwdprod_appendix} \\
+    p(x) &= \prod_{i=T}^{i} p(x_i | X_{>i}) \label{eq:bckprod_appendix}
 \end{align}
 where $X_{<i}$ denotes tokens before position $i$. As standard AR models only encode context unidirectionally, their effectiveness can be limited \cite{yang2019xlnet}. AE models like BERT reconstruct original data from corrupted input (i.e. masked tokens), allowing bidirectional context but potentially suffering from issues like the pretrain-finetune discrepancy and independence assumptions \cite{yang2019xlnet}.
 
@@ -1477,8 +2507,8 @@ where $\mathcal{Z_T}$ is the set of all $T!$ permutations of the index list $[1,
 \subsubsection*{Two-Stream Self-Attention Mechanism}
 To implement permutation language modelling while preventing the model from seeing the token it needs to predict, XLNet uses a two-stream self-attention mechanism \cite{vaswani2017attention, yang2019xlnet}. It maintains two hidden states per position at each layer:
 \begin{enumerate}
-    \item Content Stream ($h$) - Encodes both the content and position of a token, similar to standard transformer hidden states. It can access contextual information up to and including the current position in the permutation.
-    \item Query Stream ($g$) - Encodes contextual information and the current position $z_i$, but, importantly, not the content $x_{z_i}$ of the token at the current position. It is used to gather information from the context $x_{z_{<i}}$ to predict $x_{z_i}$.
+    \item \textbf{Content Stream ($h$)} - Encodes both the content and position of a token, similar to standard transformer hidden states. It can access contextual information up to and including the current position in the permutation.
+    \item \textbf{Query Stream ($g$)} - Encodes contextual information and the current position $z_i$, but, importantly, not the content $x_{z_i}$ of the token at the current position. It is used to gather information from the context $x_{z_{<i}}$ to predict $x_{z_i}$.
 \end{enumerate}
 At layer $m$ and target position $z_i$, the streams are updated using attention mechanisms, conceptually as follows \cite{vaswani2017attention, yang2019xlnet}:
 \begin{align}
@@ -1580,7 +2610,7 @@ A standard and efficient method for solving this optimisation problem and findin
 \end{align}
 Here, $U \in \mathbb{R}^{m \times k}$ and $V \in \mathbb{R}^{n \times k}$ are matrices with orthogonal columns, $S \in \mathbb{R}^{k \times k}$ is a diagonal matrix (only the diagonal contains non-zero elements) which contains the non-negative singular values ($s_i$) sorted in descending order, and $k$ is the rank of matrix $X$.
 
-The crucial link to PCA is that the columns of the matrix $V$ are precisely the principal component directions we seek. That is, the matrix $C$ in Equation~\ref{eq:pca_appendix}, containing the top $k$ principal components, corresponds to the first $k$ columns of $V$. % NOTE: Check if Equation reference needs updating
+The crucial link to PCA is that the columns of the matrix $V$ are precisely the principal component directions we seek. That is, the matrix $C$ in Equation~\ref{eq:pca_appendix}, containing the top $k$ principal components, corresponds to the first $k$ columns of $V$. 
 
 Furthermore, SVD connects directly to the covariance matrix of the data ($X^TX$, assuming $X$ is centered). The decomposition of the covariance matrix is given by:
 \begin{align}
@@ -1595,46 +2625,6 @@ Furthermore, SVD connects directly to the covariance matrix of the data ($X^TX$,
 
 This is the eigen-decomposition of the covariance matrix $X^TX$. It shows that the columns of $V$ are the eigenvectors (the principal components), and the diagonal entries of $S^2$  are the corresponding eigenvalues (i.e. $s_i^2 = \lambda_i$). Since the eigenvalues represent the variance of the data along the eigenvectors, the squared singular values ($s_i^2$) directly quantify the variance captured by each principal component \cite{udell2016generalized}. Therefore, computing the SVD of the data matrix $X$ provides both the principal components (in $V$) and the measure of variance associated with each component (in $S^2$) without explicitly forming the covariance matrix. Using a truncated SVD (keeping only the top $k$ components corresponding to the largest singular values) gives us a reduction in the dimensions.
 
-\section{UMAP Hyperparameter Search} \label{app:umaphypgrid}
-
-Figures~\ref{fig:mpnet1} through \ref{fig:nomic3} in this appendix illustrate the results of the naive grid search performed over the UMAP hyperparameters listed in Table~\ref{tab:umapgrid}, applied to both MPNet and Nomic embeddings of the Operalog \texttt{FaultDescription} entries. These visualisations demonstrate the effects of varying parameters like \texttt{n\_neighbors}, \texttt{min\_dist} and \texttt{metric} as described conceptually in Section~\ref{sec:umap}. Notably, visual inspection suggests that, for the goal of creating a low-dimensional representation that isolates structural groupings in this specific dataset, the `cosine' distance metric did not produce significantly different or clearly superior results compared to the `euclidean' metric. This outcome is somewhat surprising as cosine distance is frequently recommended for text embedding applications in the literature \cite{cao2024recent, baba2017plagiarism}. This observation, combined with the difficulty in determining the optimal settings purely through visual inspection of numerous plots, makes it evident that this naive grid search approach is insufficient. It therefore motivates the need for the systematic hyperparameter optimisation process detailed in Section~\ref{sec:hyperparameterOpt}.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{./images/mpnethyp1.png}
-    \caption{MPNet, grid search for UMAP hyperparameter (see Table~\ref{tab:umapgrid}) over the parameters \texttt{metric} and \texttt{min\_dist}}
-    \label{fig:mpnet1}
-\end{figure}%
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{./images/mpnethyp2.png}
-    \caption{MPNet, grid search for UMAP hyperparameter (see Table~\ref{tab:umapgrid}) over the parameters \texttt{min\_dist} and \texttt{n\_neighbors}}
-    \label{fig:mpnet2}
-\end{figure}%
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{./images/mpnethyp3.png}
-    \caption{MPNet, grid search for UMAP hyperparameter (see Table~\ref{tab:umapgrid}) over the parameters \texttt{metric} and \texttt{n\_neighbors}}
-    \label{fig:mpnet3}
-\end{figure}%
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{./images/nomichyp1.png}
-    \caption{Nomic, grid search for UMAP hyperparameter (see Table~\ref{tab:umapgrid}) over the parameters \texttt{metric} and \texttt{min\_dist}}
-    \label{fig:nomic1}
-\end{figure}%
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{./images/nomichyp2.png}
-    \caption{Nomic, grid search for UMAP hyperparameter (see Table~\ref{tab:umapgrid}) over the parameters \texttt{min\_dist} and \texttt{n\_neighbors}}
-    \label{fig:nomic2}
-\end{figure}%
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{./images/nomichyp3.png}
-    \caption{Nomic, grid search for UMAP hyperparameter (see Table~\ref{tab:umapgrid}) over the parameters \texttt{metric} and \texttt{n\_neighbors}}
-    \label{fig:nomic3}
-\end{figure}%
 
 \clearpage
 \section{k-Medoids - The PAM Algorithm}\label{app:pam}
