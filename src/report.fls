@@ -1190,12 +1190,12 @@ INPUT ./images//ISIS.png
 INPUT ./images//ISIS.png
 INPUT ./images//ISIS.png
 INPUT ./images//ISIS.png
+INPUT ./images//ISIS2.png
+INPUT ./images//ISIS2.png
+INPUT ./images//ISIS2.png
+INPUT ./images//ISIS2.png
+INPUT ./images//ISIS2.png
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx10.tfm
-INPUT ./images//ISIS2.png
-INPUT ./images//ISIS2.png
-INPUT ./images//ISIS2.png
-INPUT ./images//ISIS2.png
-INPUT ./images//ISIS2.png
 INPUT ./images//isisDowntime.png
 INPUT ./images//isisDowntime.png
 INPUT ./images//isisDowntime.png
